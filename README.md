@@ -1,12 +1,17 @@
-# Work in Progress - Onfido Python Client Library
+# Onfido Python Client Library
 
-:warning: **Under development**
+:warning: **IN BETA**
 
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses.
 
+This project supersedes the automatically generated [api-python-client](https://github.com/onfido/api-python-client) library (`onfido` in PyPi).
+
 ## Installation
 
-SECTION WORK IN PROGRESS
+`pip install onfido-python`
+
+:warning: Having the old `onfido` package installed at the same will cause
+errors.
 
 ## Usage
 
@@ -14,7 +19,9 @@ Make API calls by using an instance of the `Api` class and providing your API
 token:
 
 ```python
-    api = onfido.Api("<YOUR_API_TOKEN>")
+import onfido
+
+api = onfido.Api("<YOUR_API_TOKEN>")
 ```
 
 ### Regions
@@ -98,7 +105,6 @@ api.live_photo.all("<APPLICANT_ID>")        # => Returns all live photos belongi
 Checks are performed on an applicant. Depending on the type of check you wish to perform, different information will be required when you create an applicant. A check consists of one or more reports.
 
 ```python
-
 request_body = {"applicant_id": "12345", "report_names": ["document", "facial_similarity_photo"]}
 
 api.check.create(request_body) # => Creates a check
