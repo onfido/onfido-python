@@ -1,6 +1,6 @@
 import onfido
 
-api = onfido.Api("My_API_Key")
+api = onfido.Api("<AN_API_TOKEN>")
 
 check_details = {
     "applicant_id": "12345",

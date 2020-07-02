@@ -3,7 +3,7 @@ import pytest
 from onfido.webhook_event_verifier import WebhookEventVerifier
 from onfido.exceptions import OnfidoInvalidSignatureError
 
-api = onfido.Api("My_API_Key")
+api = onfido.Api("<AN_API_TOKEN>")
 
 raw_event = (
     '{"payload":'

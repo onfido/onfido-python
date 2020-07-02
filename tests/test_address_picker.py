@@ -1,6 +1,6 @@
 import onfido
 
-api = onfido.Api("My_API_Key")
+api = onfido.Api("<AN_API_TOKEN>")
 
 
 def test_address_picker(requests_mock):

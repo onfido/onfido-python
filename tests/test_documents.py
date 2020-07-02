@@ -2,7 +2,7 @@ import onfido
 import pytest
 import io
 
-api = onfido.Api("My_API_Key")
+api = onfido.Api("<AN_API_TOKEN>")
 
 fake_uuid = "58a9c6d2-8661-4dbd-96dc-b9b9d344a7ce"
 
