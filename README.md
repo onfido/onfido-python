@@ -10,8 +10,7 @@ This project supersedes the automatically generated [api-python-client](https://
 
 `pip install onfido-python`
 
-:warning: Having the old `onfido` package installed at the same will cause
-errors.
+:warning: Having the old `onfido` package installed at the same time will cause errors.
 
 ## Usage
 
@@ -32,10 +31,20 @@ The library will use the default base URL (api.onfido.com) for the EU region, if
 no region is specified.
 
 To specify the US region do:
-    `api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.US)`
+
+```python
+from onfido.regions import Region
+
+api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.US)
+```
 
 To specify the CA region do:
-    `api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.CA)`
+
+```python
+from onfido.regions import Region
+
+api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.CA)
+```
 
 See https://documentation.onfido.com/#regions for supported regions.
 
@@ -64,6 +73,12 @@ api.applicant.restore("<APPLICANT_ID>") # => Restore an applicant scheduled for 
 api.applicant.find("<APPLICANT_ID>")  # => Finds a single applicant
 api.applicant.all()  # => Returns all applicants
 ```
+
+`applicant.all()` takes the following optional arguments:
+
+`include_deleted=true`: include applicants scheduled for deletion.
+`per_page`: set the number of results per page. Defaults to 20.
+`page`: return specific pages. Defaults to 1.
 
 **Note:** Calling `api.applicant.delete` adds the applicant and all associated
 documents, photos, videos, checks, reports and analytics data to our deletion
