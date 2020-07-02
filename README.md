@@ -2,9 +2,13 @@
 
 :warning: **IN BETA**
 
+[onfido-python on PyPI](https://pypi.org/project/onfido-python/)
+
+Version 0.3.3
+
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses.
 
-This project supersedes the automatically generated [api-python-client](https://github.com/onfido/api-python-client) library (`onfido` in PyPi).
+This project supersedes the automatically generated [api-python-client](https://github.com/onfido/api-python-client) library (`onfido` in PyPI).
 
 ## Installation
 
