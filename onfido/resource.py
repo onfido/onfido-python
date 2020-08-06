@@ -18,6 +18,7 @@ class Resource:
     @property
     def _headers(self):
         return {
+            "User-Agent": f"onfido-python/0.4.0",
             "Authorization": f"Token token={self.api_token}"
         }
 
