@@ -1,7 +1,11 @@
+import pkg_resources
+
 import requests
 from .onfido_download import OnfidoDownload
 from .exceptions import error_decorator, OnfidoUnknownError
 from .mimetype import mimetype_from_name
+
+CURRENT_VERSION = pkg_resources.get_distribution("onfido").version
 
 class Resource:
     def __init__(self, api_token, base_url):
@@ -18,7 +22,7 @@ class Resource:
     @property
     def _headers(self):
         return {
-            "User-Agent": f"onfido-python/0.5.0",
+            "User-Agent": f"onfido-python/{CURRENT_VERSION}",
             "Authorization": f"Token token={self.api_token}"
         }
 
