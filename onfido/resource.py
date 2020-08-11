@@ -5,7 +5,7 @@ from .onfido_download import OnfidoDownload
 from .exceptions import error_decorator, OnfidoUnknownError
 from .mimetype import mimetype_from_name
 
-CURRENT_VERSION = pkg_resources.get_distribution("onfido").version
+CURRENT_VERSION = pkg_resources.get_distribution("onfido-python").version
 
 class Resource:
     def __init__(self, api_token, base_url):
