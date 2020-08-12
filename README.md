@@ -94,7 +94,7 @@ information.
 Some report types require identity documents (passport, driving licence etc.) in order to be processed.
 
 ```python
-request_body = {"applicant_id": "<APPLICANT_ID>", "document_type": "passport"}
+request_body = {"applicant_id": "<APPLICANT_ID>", "type": "passport"}
 sample_file = open("<FILE_NAME>", "rb")
 
 api.document.upload(sample_file, request_body)   # => Uploads a document
