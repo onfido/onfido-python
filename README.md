@@ -1,7 +1,5 @@
 # Onfido Python Client Library
 
-:warning: **IN BETA**
-
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
 Version 1.0.0
