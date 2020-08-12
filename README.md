@@ -4,7 +4,7 @@
 
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
-Version 0.5.0
+Version 1.0.0
 
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses.
 
