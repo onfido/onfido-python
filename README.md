@@ -194,7 +194,7 @@ with Onfido's SDKs.
 ```python
 request_body = {"applicant_id": "<APPLICANT_ID>", "application_id": "<APPLICATION_ID>"}
 
-api.sdk_token.create(request_body) # => Creates an SDK token
+api.sdk_token.generate(request_body) # => Creates an SDK token
 ```
 
 ### Error Handling
