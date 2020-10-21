@@ -197,15 +197,13 @@ request_body = {"applicant_id": "<APPLICANT_ID>", "application_id": "<APPLICATIO
 api.sdk_token.generate(request_body) # => Creates an SDK token
 ```
 
-#### Autofill
+#### Extraction (Autofill)
 
 Extract data from documents. This endpoint only returns extracted data that can be used for automatic form filling.
 You must provide the ID of a document that has already been uploaded.
 
 ```python
-request_body = {"document_id": "<DOCUMENT_ID>"}
-
-api.autofill.perform(request_body) # => Returns data extracted from the document
+api.extraction.perform("<DOCUMENT_ID>") # => Returns data extracted from the document
 ```
 
 ### Error Handling
