@@ -7,7 +7,9 @@ from .resources.live_photos import LivePhotos
 from .resources.live_videos import LiveVideos
 from .resources.webhooks import Webhooks
 from .resources.sdk_tokens import SdkToken
+from .resources.extraction import Extraction
 from .regions import Region
+
 
 class Api:
     def __init__(self, api_token, base_url=Region.EU):
@@ -20,3 +22,4 @@ class Api:
         self.webhook = Webhooks(api_token, base_url)
         self.live_photo = LivePhotos(api_token, base_url)
         self.live_video = LiveVideos(api_token, base_url)
+        self.extraction = Extraction(api_token, base_url)

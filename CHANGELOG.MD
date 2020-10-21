@@ -1,3 +1,7 @@
+## v1.1.0, 20 October 2020
+
+- Added support for Extraction (a.k.a. Autofill).
+
 ## v1.0.0, 12 August 2020
 
 - Full release

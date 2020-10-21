@@ -2,7 +2,7 @@
 
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
-Version 1.0.0
+Version 1.1.0
 
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses.
 
@@ -197,6 +197,15 @@ request_body = {"applicant_id": "<APPLICANT_ID>", "application_id": "<APPLICATIO
 api.sdk_token.generate(request_body) # => Creates an SDK token
 ```
 
+#### Extraction (Autofill)
+
+Extract data from documents. This endpoint only returns extracted data that can be used for automatic form filling.
+You must provide the ID of a document that has already been uploaded.
+
+```python
+api.extraction.perform("<DOCUMENT_ID>") # => Returns data extracted from the document
+```
+
 ### Error Handling
 
 - `OnfidoServerError` is raised whenever Onfido returns a `5xx` response
@@ -210,6 +219,7 @@ api.sdk_token.generate(request_body) # => Creates an SDK token
 
 1. Fork it ( https://github.com/onfido/onfido-python/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+3. Run the tests (`poetry run pytest tests/test_my_new_feature.py`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create a new Pull Request
