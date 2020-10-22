@@ -1,3 +1,7 @@
+## v1.1.1, 22 October 2020
+
+- Fixed arguments for extraction.
+
 ## v1.1.0, 20 October 2020
 
 - Added support for Extraction (a.k.a. Autofill).
