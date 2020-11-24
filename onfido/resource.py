@@ -8,9 +8,10 @@ from .mimetype import mimetype_from_name
 CURRENT_VERSION = pkg_resources.get_distribution("onfido-python").version
 
 class Resource:
-    def __init__(self, api_token, base_url):
+    def __init__(self, api_token, base_url, timeout):
         self.api_token = api_token
         self.base_url = base_url
+        self.timeout = timeout
 
     @property
     def url(self):
@@ -42,21 +43,20 @@ class Resource:
             'file': (file.name, file, mimetype_from_name(file.name))
         }
         
-        response = requests.post(self.build_url(path), data=request_body, files = files, headers=self._headers)
+        response = requests.post(self.build_url(path), data=request_body,
+                                 files=files, headers=self._headers)
 
         return self.handle_response(response)
 
     @error_decorator
     def post(self, path, **request_body):
-        response = requests.post(self.build_url(path), json=request_body,
-                                 headers=self._headers)
+        response = requests.post(self.build_url(path), json=request_body, headers=self._headers)
 
         return self.handle_response(response)
 
     @error_decorator
     def put(self, path, data=None):
-        response = requests.put(self.build_url(path), json=data,
-                                headers=self._headers)
+        response = requests.put(self.build_url(path), json=data, headers=self._headers)
 
         return self.handle_response(response)
 

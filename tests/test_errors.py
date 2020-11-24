@@ -4,6 +4,7 @@ import requests
 import onfido
 
 api = onfido.Api("<AN_API_TOKEN>")
+api_timeout = onfido.Api("<AN_API_TOKEN>", timeout=0.0001)
 
 fake_uuid = "58a9c6d2-8661-4dbd-96dc-b9b9d344a7ce"
 
@@ -57,3 +58,6 @@ def test_errors():
     with pytest.raises(OnfidoRequestError):
         raise_status_code(499)
 
+def test_timeout():
+    with pytest.raises(OnfidoTimeoutError):
+        api_timeout.applicant.all()

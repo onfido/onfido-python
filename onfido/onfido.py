@@ -12,14 +12,14 @@ from .regions import Region
 
 
 class Api:
-    def __init__(self, api_token, base_url=Region.EU):
-        self.applicant = Applicants(api_token, base_url)
-        self.document = Documents(api_token, base_url)
-        self.address = Addresses(api_token, base_url)
-        self.check = Checks(api_token, base_url)
-        self.report = Reports(api_token, base_url)
-        self.sdk_token = SdkToken(api_token, base_url)
-        self.webhook = Webhooks(api_token, base_url)
-        self.live_photo = LivePhotos(api_token, base_url)
-        self.live_video = LiveVideos(api_token, base_url)
-        self.extraction = Extraction(api_token, base_url)
+    def __init__(self, api_token, base_url=Region.EU, timeout=None):
+        self.applicant = Applicants(api_token, base_url, timeout)
+        self.document = Documents(api_token, base_url, timeout)
+        self.address = Addresses(api_token, base_url, timeout)
+        self.check = Checks(api_token, base_url, timeout)
+        self.report = Reports(api_token, base_url, timeout)
+        self.sdk_token = SdkToken(api_token, base_url, timeout)
+        self.webhook = Webhooks(api_token, base_url, timeout)
+        self.live_photo = LivePhotos(api_token, base_url, timeout)
+        self.live_video = LiveVideos(api_token, base_url, timeout)
+        self.extraction = Extraction(api_token, base_url, timeout)
