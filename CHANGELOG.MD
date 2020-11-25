@@ -1,3 +1,7 @@
+## v1.2.0, 25 November 2020
+
+- Adds option to set global configuration for timeouts.
+
 ## v1.1.1, 22 October 2020
 
 - Fixed arguments for extraction.
