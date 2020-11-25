@@ -44,31 +44,31 @@ class Resource:
         }
         
         response = requests.post(self.build_url(path), data=request_body,
-                                 files=files, headers=self._headers)
+                                 files=files, headers=self._headers, timeout=self.timeout)
 
         return self.handle_response(response)
 
     @error_decorator
     def post(self, path, **request_body):
-        response = requests.post(self.build_url(path), json=request_body, headers=self._headers)
+        response = requests.post(self.build_url(path), json=request_body, headers=self._headers, timeout=self.timeout)
 
         return self.handle_response(response)
 
     @error_decorator
     def put(self, path, data=None):
-        response = requests.put(self.build_url(path), json=data, headers=self._headers)
+        response = requests.put(self.build_url(path), json=data, headers=self._headers, timeout=self.timeout)
 
         return self.handle_response(response)
 
     @error_decorator
     def get(self, path, payload=None):
-        response = requests.get(self.build_url(path), headers=self._headers, params=payload)
+        response = requests.get(self.build_url(path), headers=self._headers, params=payload, timeout=self.timeout)
 
         return self.handle_response(response)
 
     @error_decorator
     def download_request(self, path):
-        response = requests.get(self.build_url(path), headers=self._headers)
+        response = requests.get(self.build_url(path), headers=self._headers, timeout=self.timeout)
 
         response.raise_for_status()
 
@@ -80,7 +80,7 @@ class Resource:
 
     @error_decorator
     def delete_request(self, path):
-        response = requests.delete(self.build_url(path), headers=self._headers)
+        response = requests.delete(self.build_url(path), headers=self._headers, timeout=self.timeout)
 
         return self.handle_response(response)
 
