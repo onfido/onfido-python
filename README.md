@@ -2,7 +2,7 @@
 
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
-Version 1.1.1
+Version 1.2.0
 
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses.
 
@@ -49,6 +49,21 @@ api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.CA)
 ```
 
 See https://documentation.onfido.com/#regions for supported regions.
+
+### Timeouts
+
+You can optionally set a global timeout for all requests in the API
+constructor. This takes a floating number input and each whole integer
+increment corresponds to a second. 
+
+For example, to set a timeout of 1 second:
+
+```python
+api = onfido.Api("<YOUR_API_TOKEN>", timeout=1)
+```
+
+The default value for `timeout` is `None`, meaning no timeout will be set on
+the client side.
 
 ### Response format
 
