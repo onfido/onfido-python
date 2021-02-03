@@ -2,7 +2,7 @@
 
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
-Version 1.2.1
+Version 1.3.0
 
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses.
 
@@ -135,8 +135,6 @@ api.live_photo.all("<APPLICANT_ID>")        # => Returns all live photos belongi
 #### Live Videos
 
 Live videos are footage of the applicant's face, recorded and uploaded by the Onfido input-capture SDKs (iOS, Android or Web), at the same time as the document image is captured—also by the SDKs. These videos are used for Facial Similarity Video reports.
-
-:warning: Using the `upload_request` method against `live_video` will return the exception `OnfidoNotImplementedError`. Live video uploads should be conducted via one of our input-capture SDKs, not via the API.
 
 ```python
 api.live_video.find("<LIVE_VIDEO_ID>")      # => Finds a live video

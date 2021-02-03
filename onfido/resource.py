@@ -1,5 +1,4 @@
 import pkg_resources
-
 import requests
 from .onfido_download import OnfidoDownload
 from .exceptions import error_decorator, OnfidoUnknownError
@@ -9,25 +8,25 @@ CURRENT_VERSION = pkg_resources.get_distribution("onfido-python").version
 
 class Resource:
     def __init__(self, api_token, base_url, timeout):
-        self.api_token = api_token
-        self.base_url = base_url
-        self.timeout = timeout
+        self._api_token = api_token
+        self._base_url = base_url
+        self._timeout = timeout
 
     @property
-    def url(self):
-        return getattr(self.base_url, "region_url", self.base_url)
+    def _url(self):
+        return getattr(self._base_url, "region_url", self._base_url)
 
-    def build_url(self, path):
-        return self.url + path
+    def _build_url(self, path):
+        return self._url + path
 
     @property
     def _headers(self):
         return {
             "User-Agent": f"onfido-python/{CURRENT_VERSION}",
-            "Authorization": f"Token token={self.api_token}"
+            "Authorization": f"Token token={self._api_token}"
         }
 
-    def handle_response(self, response):
+    def _handle_response(self, response):
         response.raise_for_status()
         if response.status_code == 204:
             return None
@@ -38,37 +37,37 @@ class Resource:
             raise OnfidoUnknownError("Onfido returned invalid JSON") from e
 
     @error_decorator
-    def upload_request(self, path, file, **request_body):
+    def _upload_request(self, path, file, **request_body):
         files = {
             'file': (file.name, file, mimetype_from_name(file.name))
         }
         
-        response = requests.post(self.build_url(path), data=request_body,
-                                 files=files, headers=self._headers, timeout=self.timeout)
+        response = requests.post(self._build_url(path), data=request_body,
+                                 files=files, headers=self._headers, timeout=self._timeout)
 
-        return self.handle_response(response)
-
-    @error_decorator
-    def post(self, path, **request_body):
-        response = requests.post(self.build_url(path), json=request_body, headers=self._headers, timeout=self.timeout)
-
-        return self.handle_response(response)
+        return self._handle_response(response)
 
     @error_decorator
-    def put(self, path, data=None):
-        response = requests.put(self.build_url(path), json=data, headers=self._headers, timeout=self.timeout)
+    def _post(self, path, **request_body):
+        response = requests.post(self._build_url(path), json=request_body, headers=self._headers, timeout=self._timeout)
 
-        return self.handle_response(response)
-
-    @error_decorator
-    def get(self, path, payload=None):
-        response = requests.get(self.build_url(path), headers=self._headers, params=payload, timeout=self.timeout)
-
-        return self.handle_response(response)
+        return self._handle_response(response)
 
     @error_decorator
-    def download_request(self, path):
-        response = requests.get(self.build_url(path), headers=self._headers, timeout=self.timeout)
+    def _put(self, path, data=None):
+        response = requests.put(self._build_url(path), json=data, headers=self._headers, timeout=self._timeout)
+
+        return self._handle_response(response)
+
+    @error_decorator
+    def _get(self, path, payload=None):
+        response = requests.get(self._build_url(path), headers=self._headers, params=payload, timeout=self._timeout)
+
+        return self._handle_response(response)
+
+    @error_decorator
+    def _download_request(self, path):
+        response = requests.get(self._build_url(path), headers=self._headers, timeout=self._timeout)
 
         response.raise_for_status()
 
@@ -79,8 +78,7 @@ class Resource:
 
 
     @error_decorator
-    def delete_request(self, path):
-        response = requests.delete(self.build_url(path), headers=self._headers, timeout=self.timeout)
+    def _delete_request(self, path):
+        response = requests.delete(self._build_url(path), headers=self._headers, timeout=self._timeout)
 
-        return self.handle_response(response)
-
+        return self._handle_response(response)
