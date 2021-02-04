@@ -1,3 +1,8 @@
+## v1.3.0, 04 February 2021
+
+- Updates README with live video functionality.
+- Marks Resource methods private.
+
 ## v1.2.0, 25 November 2020
 
 - Adds option to set global configuration for timeouts.
