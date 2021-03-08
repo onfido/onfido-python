@@ -1,3 +1,7 @@
+## v1.4.0, 09 March 2021
+
+- Updates README.
+
 ## v1.3.0, 04 February 2021
 
 - Updates README with live video functionality.
