@@ -1,4 +1,4 @@
-## v1.4.0, 09 March 2021
+## v1.3.1, 09 March 2021
 
 - Updates README.
 
