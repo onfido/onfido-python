@@ -1,3 +1,8 @@
+## v2.0.0, XX March 2021
+
+- Updated region base URLs to point to Onfido API v3.1
+- Added support for 'Download check' endpoint
+
 ## v1.3.1, 09 March 2021
 
 - Updates README.

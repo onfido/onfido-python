@@ -31,12 +31,12 @@ def test_mocked_status_code(requests_mock):
     response = requests.Response()
     response.status_code = 422
 
-    requests_mock.get(f"https://api.onfido.com/v3/applicants/{fake_uuid}", exc=requests.HTTPError(response=response))
+    requests_mock.get(f"https://api.onfido.com/v3.1/applicants/{fake_uuid}", exc=requests.HTTPError(response=response))
     with pytest.raises(OnfidoRequestError):
         api.applicant.find(fake_uuid)
 
 def test_onfido_unknown_error(requests_mock):
-    requests_mock.get(f"https://api.onfido.com/v3/applicants/{fake_uuid}", text="NOT VALID JSON")
+    requests_mock.get(f"https://api.onfido.com/v3.1/applicants/{fake_uuid}", text="NOT VALID JSON")
 
     with pytest.raises(OnfidoUnknownError):
         api.applicant.find(fake_uuid)

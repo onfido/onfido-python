@@ -14,3 +14,6 @@ class Checks(Resource):
 
     def resume(self, check_id:str):
         self._post(f"checks/{check_id}/resume")
+
+    def download(self, check_id:str):
+        return self._download_request(f"checks/{check_id}/download")
