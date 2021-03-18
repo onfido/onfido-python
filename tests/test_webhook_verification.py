@@ -10,7 +10,7 @@ raw_event = (
     '{"resource_type":"check","action":"check.completed","object":'
     '{"id":"check-123",'
     '"status":"complete","completed_at_iso8601":"2020-01-01T00:00:00Z",'
-    '"href":"https://api.onfido.com/v3.1/checks/check-123"}}}'
+    '"href":"https://api.onfido.com/v3/checks/check-123"}}}'
 )
 
 secret_token = "_ABC123abc123ABC123abc123ABC123_"
@@ -20,7 +20,7 @@ expected_event = {
     "resource_type": "check",
     "object": {
         "id": "check-123",
-        "href": "https://api.onfido.com/v3.1/checks/check-123",
+        "href": "https://api.onfido.com/v3/checks/check-123",
         "status": "complete",
         "completed_at_iso8601": "2020-01-01T00:00:00Z"
     }

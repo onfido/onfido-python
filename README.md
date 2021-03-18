@@ -4,6 +4,8 @@
 
 Version 1.4.0
 
+This version uses Onfido API v3.1. Refer to our API documentation for details of which client library versions use [Onfido API v3](https://documentation.onfido.com/#client-libraries) and [Onfido API v2](https://documentation.onfido.com/v2/#api-client-libraries). 
+
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses for all resources.
 
 This project supersedes the automatically generated [api-python-client](https://github.com/onfido/api-python-client) library (`onfido` in PyPI).
