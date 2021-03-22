@@ -11,8 +11,10 @@ from .resources.extraction import Extraction
 from .regions import Region
 
 
+region = Region.EU # Also supports Region.US and Region.CA
+
 class Api:
-    def __init__(self, api_token, base_url=Region.EU, timeout=None):
+    def __init__(self, api_token, base_url=region, timeout=None):
         self.applicant = Applicants(api_token, base_url, timeout)
         self.document = Documents(api_token, base_url, timeout)
         self.address = Addresses(api_token, base_url, timeout)

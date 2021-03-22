@@ -4,6 +4,7 @@ from .onfido_download import OnfidoDownload
 from .exceptions import error_decorator, OnfidoUnknownError
 from .mimetype import mimetype_from_name
 
+
 CURRENT_VERSION = pkg_resources.get_distribution("onfido-python").version
 
 class Resource:
@@ -34,7 +35,7 @@ class Resource:
         try:
             return response.json()
         except ValueError as e:
-            raise OnfidoUnknownError("Onfido returned invalid JSON") from e
+            raise OnfidoUnknownError("Onfido returned invalid JSON") from e        
 
     @error_decorator
     def _upload_request(self, path, file, **request_body):

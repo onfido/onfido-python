@@ -2,11 +2,11 @@
 
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
-Version 1.4.0
-
-This version uses Onfido API v3.1. Refer to our API documentation for details of which client library versions use [Onfido API v3](https://documentation.onfido.com/#client-libraries) and [Onfido API v2](https://documentation.onfido.com/v2/#api-client-libraries). 
+Version 2.0.0
 
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses for all resources.
+
+This version uses Onfido API v3.1. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API. 
 
 This project supersedes the automatically generated [api-python-client](https://github.com/onfido/api-python-client) library (`onfido` in PyPI).
 
@@ -31,7 +31,7 @@ api = onfido.Api("<YOUR_API_TOKEN>")
 
 Set the region in the API instance using the `base_url` parameter.
 
-The library will use the default base URL (api.onfido.com) for the EU region, if
+The library will use the default base URL (api.eu.onfido.com) for the EU region, if
 no region is specified.
 
 To specify the US region do:
