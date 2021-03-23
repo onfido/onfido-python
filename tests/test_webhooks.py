@@ -1,6 +1,7 @@
 import onfido
+from onfido.regions import Region
 
-api = onfido.Api("<AN_API_TOKEN>")
+api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
 webhook_details = {
   "url": "https://<URL>",

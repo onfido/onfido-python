@@ -1,7 +1,8 @@
 import onfido
+from onfido.regions import Region
 import pytest
 
-api = onfido.Api("<AN_API_TOKEN>")
+api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
 fake_uuid = "58a9c6d2-8661-4dbd-96dc-b9b9d344a7ce"
 fake_uuid2 = "a63c28a2-5e58-4f7d-bfe8-4b5fe5214c55"

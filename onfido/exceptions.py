@@ -23,6 +23,9 @@ class OnfidoConnectionError(OnfidoError):
 class OnfidoTimeoutError(OnfidoError):
     pass
 
+class OnfidoRegionError(OnfidoError):
+    pass
+
 def error_decorator(func):
     def wrapper(*args, **kwargs):
         try:

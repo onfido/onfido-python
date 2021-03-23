@@ -40,7 +40,7 @@ from onfido.regions import Region
 api = onfido.Api("<YOUR_API_TOKEN>", region=Region.EU)
 ```
 
-`region` does not take a default parameter.
+`region` does not take a default parameter. Failure to pass a correct region will raise an `OnfidoRegionError`.
 
 See https://documentation.onfido.com/#regions for more information about our supported regions at a given time.
 

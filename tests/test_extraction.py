@@ -1,6 +1,7 @@
 import onfido
+from onfido.regions import Region
 
-api = onfido.Api("<AN_API_TOKEN>")
+api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
 fake_document_uuid = "58a9c6d2-8661-4dbd-96dc-b9b9d344a7ce"
 

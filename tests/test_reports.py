@@ -1,6 +1,7 @@
 import onfido
+from onfido.regions import Region
 
-api = onfido.Api("<AN_API_TOKEN>")
+api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
 check_details = {
     "applicant_id": "12345",

@@ -1,7 +1,6 @@
 import onfido
 from onfido.regions import Region
 
-
 applicant_details = {
   "first_name": "Optimus",
   "last_name": "Prime"

@@ -9,6 +9,7 @@ from .resources.webhooks import Webhooks
 from .resources.sdk_tokens import SdkToken
 from .resources.extraction import Extraction
 from .regions import Region
+from .exceptions import OnfidoRegionError
 
 
 class Api:
@@ -27,4 +28,4 @@ class Api:
         valid_regions = [Region.EU, Region.US, Region.CA]
 
         if region not in valid_regions:
-            raise TypeError("region must be one of Region.EU, Region.US or Region.CA")
+            raise OnfidoRegionError("region must be one of Region.EU, Region.US or Region.CA")
