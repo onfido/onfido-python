@@ -42,4 +42,5 @@ def error_decorator(func):
 
         except requests.RequestException as e:
             raise OnfidoUnknownError(e)
+
     return wrapper

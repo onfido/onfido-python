@@ -29,28 +29,20 @@ api = onfido.Api("<YOUR_API_TOKEN>")
 
 ### Regions
 
-Set the region in the API instance using the `base_url` parameter.
+Set the region in the API instance using the `region` parameter, which takes a value from the `Region` enum (currently `Region.EU`, `Region.US` or `Region.CA`).
 
-The library will use the default base URL (api.eu.onfido.com) for the EU region, if
-no region is specified.
-
-To specify the US region do:
+For example, to specify the EU region:
 
 ```python
+import onfido
 from onfido.regions import Region
 
-api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.US)
+api = onfido.Api("<YOUR_API_TOKEN>", region=Region.EU)
 ```
 
-To specify the CA region do:
+`region` does not take a default parameter.
 
-```python
-from onfido.regions import Region
-
-api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.CA)
-```
-
-See https://documentation.onfido.com/#regions for supported regions.
+See https://documentation.onfido.com/#regions for more information about our supported regions at a given time.
 
 ### Timeouts
 

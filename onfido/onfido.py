@@ -11,17 +11,20 @@ from .resources.extraction import Extraction
 from .regions import Region
 
 
-region = Region.EU # Also supports Region.US and Region.CA
-
 class Api:
-    def __init__(self, api_token, base_url=region, timeout=None):
-        self.applicant = Applicants(api_token, base_url, timeout)
-        self.document = Documents(api_token, base_url, timeout)
-        self.address = Addresses(api_token, base_url, timeout)
-        self.check = Checks(api_token, base_url, timeout)
-        self.report = Reports(api_token, base_url, timeout)
-        self.sdk_token = SdkToken(api_token, base_url, timeout)
-        self.webhook = Webhooks(api_token, base_url, timeout)
-        self.live_photo = LivePhotos(api_token, base_url, timeout)
-        self.live_video = LiveVideos(api_token, base_url, timeout)
-        self.extraction = Extraction(api_token, base_url, timeout)
+    def __init__(self, api_token, region, timeout=None):
+        self.applicant = Applicants(api_token, region, timeout)
+        self.document = Documents(api_token, region, timeout)
+        self.address = Addresses(api_token, region, timeout)
+        self.check = Checks(api_token, region, timeout)
+        self.report = Reports(api_token, region, timeout)
+        self.sdk_token = SdkToken(api_token, region, timeout)
+        self.webhook = Webhooks(api_token, region, timeout)
+        self.live_photo = LivePhotos(api_token, region, timeout)
+        self.live_video = LiveVideos(api_token, region, timeout)
+        self.extraction = Extraction(api_token, region, timeout)
+    
+        valid_regions = [Region.EU, Region.US, Region.CA]
+
+        if region not in valid_regions:
+            raise TypeError("region must be one of Region.EU, Region.US or Region.CA")

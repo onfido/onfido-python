@@ -1,6 +1,6 @@
 ## v2.0.0, 25 March 2021
 
-- Updated region base URLs to point to Onfido API v3.1
+- `base_url` parameter has become `region`, which takes one of `Region.EU`, `Region.US` or `Region.CA` and no longer has a default value
 - Added support for 'Download check' endpoint
 
 ## v1.3.1, 09 March 2021

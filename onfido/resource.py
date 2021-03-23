@@ -8,14 +8,14 @@ from .mimetype import mimetype_from_name
 CURRENT_VERSION = pkg_resources.get_distribution("onfido-python").version
 
 class Resource:
-    def __init__(self, api_token, base_url, timeout):
+    def __init__(self, api_token, region, timeout):
         self._api_token = api_token
-        self._base_url = base_url
+        self._region = region
         self._timeout = timeout
 
     @property
     def _url(self):
-        return getattr(self._base_url, "region_url", self._base_url)
+        return getattr(self._region, "region_url", self._region)
 
     def _build_url(self, path):
         return self._url + path
@@ -76,7 +76,6 @@ class Resource:
             return OnfidoDownload(response)
         except ValueError as e:
             raise OnfidoUnknownError("Onfido returned invalid JSON") from e
-
 
     @error_decorator
     def _delete_request(self, path):
