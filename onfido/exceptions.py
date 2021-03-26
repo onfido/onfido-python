@@ -5,6 +5,9 @@ import requests.exceptions
 class OnfidoError(Exception):
     pass
 
+class OnfidoRegionError(Exception):
+    pass
+
 class OnfidoUnknownError(OnfidoError):
     pass
 
@@ -21,9 +24,6 @@ class OnfidoConnectionError(OnfidoError):
     pass
 
 class OnfidoTimeoutError(OnfidoError):
-    pass
-
-class OnfidoRegionError(OnfidoError):
     pass
 
 def error_decorator(func):
