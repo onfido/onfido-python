@@ -93,7 +93,7 @@ api.applicant.create(applicant_details)
   "email": null,
   "dob": "1990-01-01",
   "delete_at": null,
-  "href": "/v3/applicants/<APPLICANT_ID>",
+  "href": "/v3.1/applicants/<APPLICANT_ID>",
   "id_numbers": [],
   "address": {
     "flat_number": null,
