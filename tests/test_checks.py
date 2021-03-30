@@ -35,6 +35,6 @@ def test_resume_check(requests_mock):
 
 def test_download_check(requests_mock):
     mock_download = requests_mock.get(f"https://api.eu.onfido.com/v3.1/checks/{fake_uuid}/download", text="FAKE PDF BINARY", headers={"Content-type": "application/pdf"})
-    onfido_download = api.checks.download(fake_uuid)
+    onfido_download = api.check.download(fake_uuid)
     assert mock_download.called is True
     assert onfido_download.content_type == "application/pdf"    
