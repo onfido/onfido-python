@@ -1,5 +1,5 @@
 import pytest
-from onfido.exceptions import OnfidoRequestError, OnfidoServerError, OnfidoConnectionError, OnfidoTimeoutError, OnfidoUnknownError, error_decorator
+from onfido.exceptions import OnfidoRequestError, OnfidoServerError, OnfidoConnectionError, OnfidoTimeoutError, OnfidoUnknownError, OnfidoRegionError, error_decorator
 from onfido.regions import Region
 import requests
 import onfido
@@ -41,6 +41,10 @@ def test_onfido_unknown_error(requests_mock):
 
     with pytest.raises(OnfidoUnknownError):
         api.applicant.find(fake_uuid)
+
+def test_region_error():
+    with pytest.raises(OnfidoRegionError):
+        onfido.Api("<AN_API_TOKEN>", region=Region.FR)
 
 def test_errors():
     with pytest.raises(OnfidoTimeoutError):

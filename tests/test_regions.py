@@ -7,6 +7,12 @@ applicant_details = {
 }
 
 
+def test_europe_region(requests_mock):
+    api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
+    mock_create = requests_mock.post("https://api.eu.onfido.com/v3.1/applicants/", json=[])
+    api.applicant.create(applicant_details)
+    assert mock_create.called is True
+
 def test_canada_region(requests_mock):
     api = onfido.Api("<AN_API_TOKEN>", region=Region.CA)
     mock_create = requests_mock.post("https://api.ca.onfido.com/v3.1/applicants/", json=[])
