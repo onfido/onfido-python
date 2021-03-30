@@ -28,4 +28,4 @@ class Api:
         valid_regions = [Region.EU, Region.US, Region.CA]
 
         if region not in valid_regions:
-            raise OnfidoRegionError("region must be one of Region.EU, Region.US or Region.CA")
+            raise OnfidoRegionError("The region must be one of Region.EU, Region.US or Region.CA. We previously defaulted to Region.EU, so if you previously didn’t set a region or used api.onfido.com, please set your region to Region.EU")
