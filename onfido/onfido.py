@@ -24,8 +24,8 @@ class Api:
         self.live_photo = LivePhotos(api_token, region, timeout)
         self.live_video = LiveVideos(api_token, region, timeout)
         self.extraction = Extraction(api_token, region, timeout)
-    
-        valid_regions = [Region.EU, Region.US, Region.CA]
 
-        if region not in valid_regions:
+        if region in [Region.EU, Region.US, Region.CA]:
+            pass
+        elif "api.onfido.com" in region:
             raise OnfidoRegionError("The region must be one of Region.EU, Region.US or Region.CA. We previously defaulted to Region.EU, so if you previously didn’t set a region or used api.onfido.com, please set your region to Region.EU")

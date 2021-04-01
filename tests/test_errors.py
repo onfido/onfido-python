@@ -44,7 +44,7 @@ def test_onfido_unknown_error(requests_mock):
 
 def test_region_error():
     with pytest.raises(OnfidoRegionError):
-        onfido.Api("<AN_API_TOKEN>", region=Region.FR)
+        onfido.Api("<AN_API_TOKEN>", region="https://api.onfido.com/v3.1/")
 
 def test_errors():
     with pytest.raises(OnfidoTimeoutError):
@@ -61,4 +61,3 @@ def test_errors():
 
     with pytest.raises(OnfidoRequestError):
         raise_status_code(499)
-
