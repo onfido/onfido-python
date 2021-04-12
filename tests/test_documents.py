@@ -1,14 +1,15 @@
 import onfido
+from onfido.regions import Region
 import pytest
 import io
 
-api = onfido.Api("<AN_API_TOKEN>")
+api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
 fake_uuid = "58a9c6d2-8661-4dbd-96dc-b9b9d344a7ce"
 
 
 def test_upload_document(requests_mock):
-    mock_upload = requests_mock.post("https://api.onfido.com/v3/documents/", json=[])
+    mock_upload = requests_mock.post("https://api.eu.onfido.com/v3.1/documents/", json=[])
 
     request_body = {"applicant_id": fake_uuid,
                     "document_type": "driving_licence"}
@@ -26,17 +27,17 @@ def test_upload_document_missing_params():
         api.document.upload(sample_file=string_io)
 
 def test_find_document(requests_mock):
-    mock_find = requests_mock.get(f"https://api.onfido.com/v3/documents/{fake_uuid}", json=[])
+    mock_find = requests_mock.get(f"https://api.eu.onfido.com/v3.1/documents/{fake_uuid}", json=[])
     api.document.find(fake_uuid)
     assert mock_find.called is True
 
 def test_list_documents(requests_mock):
-    mock_list = requests_mock.get(f"https://api.onfido.com/v3/documents?applicant_id={fake_uuid}", json=[])
+    mock_list = requests_mock.get(f"https://api.eu.onfido.com/v3.1/documents?applicant_id={fake_uuid}", json=[])
     api.document.all(fake_uuid)
     assert mock_list.called is True
 
 def test_download_document(requests_mock):
-    mock_download = requests_mock.get(f"https://api.onfido.com/v3/documents/{fake_uuid}/download", text="FAKE IMAGE BINARY", headers={"Content-type": "image/png"})
+    mock_download = requests_mock.get(f"https://api.eu.onfido.com/v3.1/documents/{fake_uuid}/download", text="FAKE IMAGE BINARY", headers={"Content-type": "image/png"})
     onfido_download = api.document.download(fake_uuid)
     assert mock_download.called is True
     assert onfido_download.content_type == "image/png"

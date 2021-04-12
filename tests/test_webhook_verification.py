@@ -1,9 +1,10 @@
 import onfido
-import pytest
+from onfido.regions import Region
 from onfido.webhook_event_verifier import WebhookEventVerifier
 from onfido.exceptions import OnfidoInvalidSignatureError
+import pytest
 
-api = onfido.Api("<AN_API_TOKEN>")
+api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
 raw_event = (
     '{"payload":'

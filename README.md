@@ -2,9 +2,11 @@
 
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
-Version 1.3.1
+Version 2.0.0
 
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses for all resources.
+
+This version uses Onfido API v3.1. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API. 
 
 This project supersedes the automatically generated [api-python-client](https://github.com/onfido/api-python-client) library (`onfido` in PyPI).
 
@@ -27,28 +29,20 @@ api = onfido.Api("<YOUR_API_TOKEN>")
 
 ### Regions
 
-Set the region in the API instance using the `base_url` parameter.
+Set the region in the API instance using the `region` parameter, which takes a value from the `Region` enum (currently `Region.EU`, `Region.US` or `Region.CA`).
 
-The library will use the default base URL (api.onfido.com) for the EU region, if
-no region is specified.
-
-To specify the US region do:
+For example, to specify the EU region:
 
 ```python
+import onfido
 from onfido.regions import Region
 
-api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.US)
+api = onfido.Api("<YOUR_API_TOKEN>", region=Region.EU)
 ```
 
-To specify the CA region do:
+`region` does not take a default parameter. Failure to pass a correct region will raise an `OnfidoRegionError`.
 
-```python
-from onfido.regions import Region
-
-api = onfido.Api("<YOUR_API_TOKEN>", base_url=Region.CA)
-```
-
-See https://documentation.onfido.com/#regions for supported regions.
+See https://documentation.onfido.com/#regions for more information about our supported regions at a given time.
 
 ### Timeouts
 
@@ -99,7 +93,7 @@ api.applicant.create(applicant_details)
   "email": null,
   "dob": "1990-01-01",
   "delete_at": null,
-  "href": "/v3/applicants/<APPLICANT_ID>",
+  "href": "/v3.1/applicants/<APPLICANT_ID>",
   "id_numbers": [],
   "address": {
     "flat_number": null,

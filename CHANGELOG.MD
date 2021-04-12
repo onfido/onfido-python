@@ -1,3 +1,8 @@
+## v2.0.0, 12 April 2021
+
+- `base_url` parameter has become `region`, which takes one of `Region.EU`, `Region.US` or `Region.CA` and no longer has a default value
+- Added support for 'Download check' endpoint
+
 ## v1.3.1, 09 March 2021
 
 - Updates README.
