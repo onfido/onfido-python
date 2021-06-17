@@ -32,19 +32,19 @@ def test_mocked_status_code(requests_mock):
     response = requests.Response()
     response.status_code = 422
 
-    requests_mock.get(f"https://api.eu.onfido.com/v3.1/applicants/{fake_uuid}", exc=requests.HTTPError(response=response))
+    requests_mock.get(f"https://api.eu.onfido.com/v3.2/applicants/{fake_uuid}", exc=requests.HTTPError(response=response))
     with pytest.raises(OnfidoRequestError):
         api.applicant.find(fake_uuid)
 
 def test_onfido_unknown_error(requests_mock):
-    requests_mock.get(f"https://api.eu.onfido.com/v3.1/applicants/{fake_uuid}", text="NOT VALID JSON")
+    requests_mock.get(f"https://api.eu.onfido.com/v3.2/applicants/{fake_uuid}", text="NOT VALID JSON")
 
     with pytest.raises(OnfidoUnknownError):
         api.applicant.find(fake_uuid)
 
 def test_region_error():
     with pytest.raises(OnfidoRegionError):
-        onfido.Api("<AN_API_TOKEN>", region="https://api.onfido.com/v3.1/")
+        onfido.Api("<AN_API_TOKEN>", region="https://api.onfido.com/v3.2/")
 
 def test_errors():
     with pytest.raises(OnfidoTimeoutError):
