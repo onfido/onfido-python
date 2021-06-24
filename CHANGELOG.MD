@@ -1,3 +1,7 @@
+## v2.1.0, 24th June 2021
+
+- Update to use API v3.2
+
 ## v2.0.0, 12 April 2021
 
 - `base_url` parameter has become `region`, which takes one of `Region.EU`, `Region.US` or `Region.CA` and no longer has a default value
