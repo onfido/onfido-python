@@ -1,3 +1,7 @@
+## v2.2.0, 2nd March 2022
+
+- Update to use API v3.3
+
 ## v2.1.0, 24th June 2021
 
 - Update to use API v3.2
