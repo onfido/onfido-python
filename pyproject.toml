@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "onfido-python"
-version = "2.1.0"
+version = "2.2.0"
 description = "The official wrapper for the Onfido API"
 homepage = "https://github.com/onfido/onfido-python"
 readme = "README.md"
