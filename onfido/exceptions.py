@@ -35,7 +35,13 @@ def error_decorator(func):
             if e.response.status_code >= 500:
                 raise OnfidoServerError() from e
             else:
-                raise OnfidoRequestError() from e
+                error = None
+                if e.response.status_code == 422:
+                    content_type = e.response.headers.get('Content-Type', '')
+                    if 'application/json' in content_type:
+                        resp_json = e.response.json()
+                        error = resp_json.get("error")
+                raise OnfidoRequestError(error) from e
 
         except requests.Timeout as e:
             raise OnfidoTimeoutError(e)

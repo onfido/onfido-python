@@ -1,6 +1,8 @@
 import onfido
+from onfido.exceptions import OnfidoRequestError
 from onfido.regions import Region
 import io
+import pytest
 
 api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
@@ -17,6 +19,33 @@ def test_upload_photo(requests_mock):
 
     assert mock_upload.called is True
 
+def test_upload_live_photo_validation_error(requests_mock):
+    mock_upload = requests_mock.post(
+        "https://api.eu.onfido.com/v3.3/live_photos/",
+        json={
+            "error": {
+                "type": "validation_error",
+                "message": "There was a validation error on this request",
+                "fields": {
+                    "face_detection": [
+                        "Face not detected in image. Please note this validation can be disabled by setting the advanced_validation parameter to false."
+                    ]
+                },
+            }
+        },
+        headers={ 'Content-Type': 'application/json' },
+        status_code=422
+    )
+
+    sample_file = open("sample_photo.png", "rb")
+    request_body = {"advanced_validation": "true"}
+
+    with pytest.raises(OnfidoRequestError) as error:
+        api.live_photo.upload(sample_file, request_body)
+
+    assert mock_upload.called is True
+    assert error.value.args[0]['fields']['face_detection']
+        
 def test_find_live_photo(requests_mock):
     mock_find = requests_mock.get(f"https://api.eu.onfido.com/v3.3/live_photos/{fake_uuid}", json=[])
     api.live_photo.find(fake_uuid)

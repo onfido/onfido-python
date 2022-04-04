@@ -1,4 +1,5 @@
 import onfido
+from onfido.exceptions import OnfidoRequestError
 from onfido.regions import Region
 import pytest
 import io
@@ -19,6 +20,35 @@ def test_upload_document(requests_mock):
     api.document.upload(sample_file, request_body)
 
     assert mock_upload.called is True
+
+def test_upload_document_validation_error(requests_mock):
+    mock_upload = requests_mock.post(
+        "https://api.eu.onfido.com/v3.3/documents/",
+        json={
+            "error": {
+                "type": "validation_error",
+                "message": "There was a validation error on this request",
+                "fields": {
+                    "document_detection": [
+                        "no document in image"
+                    ]
+                },
+            }
+        },
+        headers={ 'Content-Type': 'application/json' },
+        status_code=422
+    )
+
+    sample_file = open("sample_driving_licence.png", "rb")
+    request_body = {"applicant_id": fake_uuid,
+                    "document_type": "driving_licence",
+                    "validate_image_quality": True}
+
+    with pytest.raises(OnfidoRequestError) as error:
+        api.document.upload(sample_file, request_body)
+
+    assert mock_upload.called is True
+    assert error.value.args[0]['fields']['document_detection']
 
 def test_upload_document_missing_params():
     string_io = io.StringIO("Data to be uploaded")
