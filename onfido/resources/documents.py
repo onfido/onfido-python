@@ -1,8 +1,9 @@
 from ..resource import Resource
+from typing import BinaryIO
 
 
 class Documents(Resource):
-    def upload(self, sample_file, request_body):
+    def upload(self, sample_file:BinaryIO, request_body):
         return self._upload_request("documents/", sample_file, **request_body)
 
     def find(self, document_id:str):

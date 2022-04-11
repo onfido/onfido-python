@@ -1,8 +1,9 @@
 from ..resource import Resource
+from typing import BinaryIO
 
 
 class LivePhotos(Resource):
-    def upload(self, sample_file:bytes, request_body):
+    def upload(self, sample_file:BinaryIO, request_body):
         return self._upload_request("live_photos/", sample_file, **request_body)
 
     def find(self, live_photo_id:str):
