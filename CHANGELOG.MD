@@ -1,3 +1,7 @@
+## v2.3.0, 11 April 2022
+
+- Improve error handling for 422 errors
+
 ## v2.2.0, 2nd March 2022
 
 - Update to use API v3.3
