@@ -77,6 +77,10 @@ applicant_details = {
     "town": "London",
     "postcode": "S2 2DF",
     "country": "GBR"
+  },
+  "location": {
+    "ip_address": "127.0.0.1",
+    "country_of_residence": "GBR"
   }
 }
 
