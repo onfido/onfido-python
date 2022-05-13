@@ -69,18 +69,18 @@ For example, to create an applicant:
 
 ```python
 applicant_details = {
-  "first_name": "Jane",
-  "last_name": "Doe",
-  "dob": "1984-01-01",
-  "address": {
-    "street": "Second Street",
-    "town": "London",
-    "postcode": "S2 2DF",
-    "country": "GBR"
+  'first_name': 'Jane',
+  'last_name': 'Doe',
+  'dob': '1984-01-01',
+  'address': {
+    'street': 'Second Street',
+    'town': 'London',
+    'postcode': 'S2 2DF',
+    'country': 'GBR'
   },
-  "location": {
-    "ip_address": "127.0.0.1",
-    "country_of_residence": "GBR"
+  'location': {
+    'ip_address': '127.0.0.1',
+    'country_of_residence': 'GBR'
   }
 }
 
@@ -89,29 +89,34 @@ api.applicant.create(applicant_details)
 
 ```python
 {
-  "id": "<APPLICANT_ID>",
-  "created_at": "2019-10-09T16:52:42Z",
-  "sandbox": true,
-  "first_name": "Jane",
-  "last_name": "Doe",
-  "email": null,
-  "dob": "1990-01-01",
-  "delete_at": null,
-  "href": "/v3.1/applicants/<APPLICANT_ID>",
-  "id_numbers": [],
-  "address": {
-    "flat_number": null,
-    "building_number": null,
-    "building_name": null,
-    "street": "Second Street",
-    "sub_street": null,
-    "town": "London",
-    "state": null,
-    "postcode": "S2 2DF",
-    "country": "GBR",
-    "line1": null,
-    "line2": null,
-    "line3": null
+  'id': '<APPLICANT_ID>',
+  'created_at': '2019-10-09T16:52:42Z',
+  'sandbox': True,
+  'first_name': 'Jane',
+  'last_name': 'Doe',
+  'email': None,
+  'dob': '1990-01-01',
+  'delete_at': None,
+  'href': '/v3.1/applicants/<APPLICANT_ID>',
+  'id_numbers': [],
+  'address': {
+    'flat_number': None,
+    'building_number': None,
+    'building_name': None,
+    'street': 'Second Street',
+    'sub_street': None,
+    'town': 'London',
+    'state': None,
+    'postcode': 'S2 2DF',
+    'country': 'GBR',
+    'line1': None,
+    'line2': None,
+    'line3': None
+  },
+  'phone_number': None,
+  'location': {
+    'ip_address': '127.0.0.1',
+    'country_of_residence': 'GBR'
   }
 }
 ```

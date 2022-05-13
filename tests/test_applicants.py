@@ -8,7 +8,7 @@ applicant_details = {
   "first_name": "Jane",
   "last_name": "Doe",
   "dob": "1984-01-01",
-  "phone_number": "+1 879-853-9257",
+  "phone_number": "+44 7911 123456",
   "address": {
     "street": "Second Street",
     "town": "London",
