@@ -15,9 +15,9 @@ def test_upload_document(requests_mock):
     request_body = {"applicant_id": fake_uuid,
                     "document_type": "driving_licence",
                     "location": {
-                        "ip_address": "127.0.0.1",
-                        "country_of_residence": "GBR"
-                        }
+                      "ip_address": "127.0.0.1",
+                      "country_of_residence": "GBR"
+                      }
                     }
 
     sample_file = open("sample_driving_licence.png", "rb")
