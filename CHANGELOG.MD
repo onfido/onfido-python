@@ -1,3 +1,7 @@
+## v2.4.0, 12th May 2022
+
+- Update to use API v3.4, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v34)
+
 ## v2.3.0, 11 April 2022
 
 - Improve error handling for 422 errors
