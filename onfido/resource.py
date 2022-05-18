@@ -44,7 +44,7 @@ class Resource:
             'file': (file.name, file, mimetype_from_name(file.name))
         }
         
-        response = requests.post(self._build_url(path), data=flat_nested_dict(request_body),
+        response = requests.post(self._build_url(path), json=flat_nested_dict(request_body),
                                  files=files, headers=self._headers, timeout=self._timeout)
 
         return self._handle_response(response)
