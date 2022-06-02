@@ -17,7 +17,8 @@ def test_upload_document(requests_mock):
                     "location": {
                       "ip_address": "127.0.0.1",
                       "country_of_residence": "GBR"
-                      }
+                      },
+                    "validate_image_quality": True
                     }
 
     sample_file = open("sample_driving_licence.png", "rb")

@@ -10,10 +10,10 @@ def form_data_converter(data):
 
     # Perform needed conversion for each
     for k, v in data.items():
-        if type(v) is dict:
+        if isinstance(v, dict):
             for child_k, child_v in v.items():
                 result['{}[{}]'.format(k, child_k)] = child_v
-        elif type(v) is bool:
+        elif isinstance(v, bool):
             result[k] = str(v).lower()
         else:
             result[k] = v
