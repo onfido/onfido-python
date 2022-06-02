@@ -1,19 +1,21 @@
 
-def flat_nested_dict(data):
-    """ Flat nested dictionary """
+def form_data_converter(data):
+    """ Flat nested dictionary and stringify booleans for form-data """
 
-    # Check if any value is a dictionary
-    if any(type(item) is dict for item in data.values()):
-
-        # Start copying not nested values
-        result = {k: v for k, v in data.items() if type(v) is not dict}
-
-        # And add nested ones with proper format
-        for root_k, root_v in data.items():
-            if type(root_v) is dict:
-                for k, v in root_v.items():
-                    result['{}[{}]'.format(root_k, k)] = v
-
-        return result
-    else:
+    # If no dict or booleans among values, no conversion needed
+    if not any(type(item) in (dict, bool) for item in data.values()):
         return data
+
+    result = {}
+
+    # Perform needed conversion for each
+    for k, v in data.items():
+        if type(v) is dict:
+            for child_k, child_v in v.items():
+                result['{}[{}]'.format(k, child_k)] = child_v
+        elif type(v) is bool:
+            result[k] = str(v).lower()
+        else:
+            result[k] = v
+
+    return result
