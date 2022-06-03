@@ -13,11 +13,12 @@ def test_upload_document(requests_mock):
     mock_upload = requests_mock.post("https://api.eu.onfido.com/v3.4/documents/", json=[])
 
     request_body = {"applicant_id": fake_uuid,
-                    "document_type": "driving_licence",
+                    "type": "driving_licence",
                     "location": {
                       "ip_address": "127.0.0.1",
                       "country_of_residence": "GBR"
-                      }
+                      },
+                    "validate_image_quality": True
                     }
 
     sample_file = open("sample_driving_licence.png", "rb")
@@ -46,7 +47,7 @@ def test_upload_document_validation_error(requests_mock):
 
     sample_file = open("sample_driving_licence.png", "rb")
     request_body = {"applicant_id": fake_uuid,
-                    "document_type": "driving_licence",
+                    "type": "driving_licence",
                     "validate_image_quality": True}
 
     with pytest.raises(OnfidoRequestError) as error:
