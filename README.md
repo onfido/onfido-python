@@ -2,11 +2,11 @@
 
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
-Version 2.3.0
+Version 2.5.0
 
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses for all resources.
 
-This version uses Onfido API v3.4. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API.
+This version uses Onfido API v3.5. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API.
 
 This project supersedes the automatically generated [api-python-client](https://github.com/onfido/api-python-client) library (`onfido` in PyPI).
 

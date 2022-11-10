@@ -1,3 +1,7 @@
+## v2.5.0, 11th November 2022
+
+- Update to use API v3.5, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v35)
+
 ## v2.4.1, 2nd Jun 2022
 
 - Fix boolean serialization in upload request ([issue #25](https://github.com/onfido/onfido-python/issues/25))

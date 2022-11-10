@@ -10,7 +10,7 @@ fake_uuid = "58a9c6d2-8661-4dbd-96dc-b9b9d344a7ce"
 
 
 def test_upload_photo(requests_mock):
-    mock_upload = requests_mock.post("https://api.eu.onfido.com/v3.4/live_photos/", json=[])
+    mock_upload = requests_mock.post("https://api.eu.onfido.com/v3.5/live_photos/", json=[])
 
     sample_file = open("sample_photo.png", "rb")
     request_body = {"advanced_validation": "true"}
@@ -21,7 +21,7 @@ def test_upload_photo(requests_mock):
 
 def test_upload_live_photo_validation_error(requests_mock):
     mock_upload = requests_mock.post(
-        "https://api.eu.onfido.com/v3.4/live_photos/",
+        "https://api.eu.onfido.com/v3.5/live_photos/",
         json={
             "error": {
                 "type": "validation_error",
@@ -47,17 +47,17 @@ def test_upload_live_photo_validation_error(requests_mock):
     assert error.value.args[0]['fields']['face_detection']
         
 def test_find_live_photo(requests_mock):
-    mock_find = requests_mock.get(f"https://api.eu.onfido.com/v3.4/live_photos/{fake_uuid}", json=[])
+    mock_find = requests_mock.get(f"https://api.eu.onfido.com/v3.5/live_photos/{fake_uuid}", json=[])
     api.live_photo.find(fake_uuid)
     assert mock_find.called is True
 
 def test_list_live_photos(requests_mock):
-    mock_list = requests_mock.get(f"https://api.eu.onfido.com/v3.4/live_photos/?applicant_id={fake_uuid}", json=[])
+    mock_list = requests_mock.get(f"https://api.eu.onfido.com/v3.5/live_photos/?applicant_id={fake_uuid}", json=[])
     api.live_photo.all(fake_uuid)
     assert mock_list.called is True
 
 def test_download_live_photo(requests_mock):
-    mock_download = requests_mock.get(f"https://api.eu.onfido.com/v3.4/live_photos/{fake_uuid}/download", text="FAKE IMAGE BINARY", headers={"Content-type": "image/png"})
+    mock_download = requests_mock.get(f"https://api.eu.onfido.com/v3.5/live_photos/{fake_uuid}/download", text="FAKE IMAGE BINARY", headers={"Content-type": "image/png"})
     onfido_download = api.live_photo.download(fake_uuid)
     assert mock_download.called is True
     assert onfido_download.content_type == "image/png"
