@@ -19,7 +19,7 @@ python = ">=3.6,<4"
 requests = "^2.24.0"
 
 [tool.poetry.dev-dependencies]
-pytest = "yes"
+pytest = "*"
 requests_mock = "^1.8.0"
 black = "^19.10b0"
 pytest-black = "^0.3.9"
