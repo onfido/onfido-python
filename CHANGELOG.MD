@@ -1,4 +1,4 @@
-## v2.4.0, 6th October 2022
+## v2.5.0, 11th November 2022
 
 - Update to use API v3.5, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v35)
 
