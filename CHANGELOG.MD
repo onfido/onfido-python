@@ -1,3 +1,7 @@
+## v2.6.0, 22nd November 2022
+
+- Add Motion support
+
 ## v2.5.0, 11th November 2022
 
 - Update to use API v3.5, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v35)

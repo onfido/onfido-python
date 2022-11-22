@@ -5,6 +5,7 @@ from .resources.checks import Checks
 from .resources.reports import Reports
 from .resources.live_photos import LivePhotos
 from .resources.live_videos import LiveVideos
+from .resources.motion_captures import MotionCaptures
 from .resources.webhooks import Webhooks
 from .resources.sdk_tokens import SdkToken
 from .resources.extraction import Extraction
@@ -23,6 +24,7 @@ class Api:
         self.webhook = Webhooks(api_token, region, timeout)
         self.live_photo = LivePhotos(api_token, region, timeout)
         self.live_video = LiveVideos(api_token, region, timeout)
+        self.motion_capture = MotionCaptures(api_token, region, timeout)
         self.extraction = Extraction(api_token, region, timeout)
 
         if region in [Region.EU, Region.US, Region.CA]:
