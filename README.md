@@ -2,9 +2,9 @@
 
 [onfido-python on PyPI](https://pypi.org/project/onfido-python/)
 
-Version 2.6.0
-
 The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses for all resources.
+
+[![PyPI version](https://badge.fury.io/py/onfido-python.svg)](https://badge.fury.io/py/onfido-python)
 
 This version uses Onfido API v3.5. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API.
 
