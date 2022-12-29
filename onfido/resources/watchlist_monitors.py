@@ -13,4 +13,4 @@ class WatchlistMonitors(Resource):
         return self._get("watchlist_monitors/", payload=payload)
   
     def delete(self, applicant_id:str):
-        self._delete_request(f"applicants/{monitor_id}")
+        self._delete_request(f"watchlist_monitors/{monitor_id}")
