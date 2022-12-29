@@ -27,7 +27,7 @@ class Api:
         self.live_video = LiveVideos(api_token, region, timeout)
         self.motion_capture = MotionCaptures(api_token, region, timeout)
         self.extraction = Extraction(api_token, region, timeout)
-        self.watchlist_monitors = WatchlistMonitors(api_token, region, timeout)
+        self.watchlist_monitor = WatchlistMonitors(api_token, region, timeout)
 
         if region in [Region.EU, Region.US, Region.CA]:
             pass
