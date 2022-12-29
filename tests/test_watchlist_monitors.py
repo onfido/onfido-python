@@ -6,8 +6,11 @@ from onfido.regions import Region
 api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
 watchlist_details = {
-  "applicant_id": "12345",
-  "report_name": "watchlist_standard",
+    "applicant_id": "12345",
+    "report_name": "watchlist_standard",
+    "tags": [
+        "dummy_tag",
+    ],
 }
 
 fake_uuid = "96264b11-f734-4074-8be0-641c0099114c"
