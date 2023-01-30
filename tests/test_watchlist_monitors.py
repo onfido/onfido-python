@@ -32,7 +32,7 @@ def test_delete_monitor(requests_mock):
     assert mock_delete.called is True
 
 def test_list_monitors(requests_mock):
-    mock_list = requests_mock.get(f"https://api.eu.onfido.com/v3.5/watchlist_monitors?applicant_id={fake_uuid}", json=[])
+    mock_list = requests_mock.get(f"https://api.eu.onfido.com/v3.5/watchlist_monitors/?applicant_id={fake_uuid}", json=[])
     api.watchlist_monitor.all(fake_uuid)
     assert mock_list.called is True
     
