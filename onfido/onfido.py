@@ -9,6 +9,7 @@ from .resources.motion_captures import MotionCaptures
 from .resources.webhooks import Webhooks
 from .resources.sdk_tokens import SdkToken
 from .resources.extraction import Extraction
+from .resources.watchlist_monitors import WatchlistMonitors
 from .regions import Region
 from .exceptions import OnfidoRegionError
 
@@ -26,6 +27,7 @@ class Api:
         self.live_video = LiveVideos(api_token, region, timeout)
         self.motion_capture = MotionCaptures(api_token, region, timeout)
         self.extraction = Extraction(api_token, region, timeout)
+        self.watchlist_monitor = WatchlistMonitors(api_token, region, timeout)
 
         if region in [Region.EU, Region.US, Region.CA]:
             pass
