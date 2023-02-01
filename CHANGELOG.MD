@@ -1,3 +1,11 @@
+## v2.7.0, 24th January 2023
+
+- Update to use API v3.6, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v36)
+- Added Watchlist monitors
+- Handle filenames with a uppercase file extension
+- Bump certifi from 2020.6.20 to 2022.12.7
+- Add support for python 3.10
+
 ## v2.6.0, 22nd November 2022
 
 - Add Motion support
