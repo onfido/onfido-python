@@ -1,12 +1,15 @@
-import pkg_resources
 import requests
 from .onfido_download import OnfidoDownload
 from .exceptions import error_decorator, OnfidoUnknownError
 from .mimetype import mimetype_from_name
 from .utils import form_data_converter
 
+try:
+    import importlib.metadata as importlib_metadata
+except ImportError:
+    import importlib_metadata
 
-CURRENT_VERSION = pkg_resources.get_distribution("onfido-python").version
+CURRENT_VERSION = importlib_metadata.version("onfido-python")
 
 class Resource:
     def __init__(self, api_token, region, timeout):
