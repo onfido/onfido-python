@@ -17,6 +17,7 @@ packages = [
 [tool.poetry.dependencies]
 python = ">=3.6,<4"
 requests = "^2.24.0"
+importlib-metadata = {version = ">=0.12", markers = "python_version < \"3.8\""}
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
