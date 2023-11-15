@@ -3,6 +3,9 @@ from onfido.exceptions import OnfidoRequestError
 from onfido.regions import Region
 import pytest
 import io
+import asyncio
+import aiohttp
+from aioresponses import aioresponses
 
 api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
 
@@ -26,6 +29,28 @@ def test_upload_document(requests_mock):
     api.document.upload(sample_file, request_body)
 
     assert mock_upload.called is True
+
+@pytest.mark.asyncio
+async def test_async_upload_document(m):
+    loop = asyncio.get_event_loop()
+    async with aiohttp.ClientSession() as session:
+        async_api = onfido.AsyncApi("<AN_API_TOKEN>", region=Region.EU, aio_session=session)
+        request_body = {"applicant_id": fake_uuid,
+                        "type": "driving_licence",
+                        "location": {
+                        "ip_address": "127.0.0.1",
+                        "country_of_residence": "GBR"
+                        },
+                        "validate_image_quality": True
+                        }
+
+        m.post("https://api.eu.onfido.com/v3.6/documents/", payload=request_body)
+
+        sample_file = open("sample_driving_licence.png", "rb")
+
+        await async_api.document.upload(sample_file, request_body)
+
+        m.assert_called_once()
 
 def test_upload_document_validation_error(requests_mock):
     mock_upload = requests_mock.post(
