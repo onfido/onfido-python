@@ -1,3 +1,9 @@
+## v2.8.0, 15th November 2023
+
+- Support asyncio API
+- Handle filenames with a uppercase file extension
+- Replace pkg_resources
+
 ## v2.7.0, 24th January 2023
 
 - Update to use API v3.6, for more details please see our [release notes](https://developers.onfido.com/release-notes#api-v36)
