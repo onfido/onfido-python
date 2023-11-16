@@ -1,3 +1,4 @@
+import aiofiles
 import onfido
 from onfido.exceptions import OnfidoRequestError
 from onfido.regions import Region
@@ -46,9 +47,8 @@ async def test_async_upload_document(m):
 
         m.post("https://api.eu.onfido.com/v3.6/documents/", payload=request_body)
 
-        sample_file = open("sample_driving_licence.png", "rb")
-
-        await async_api.document.upload(sample_file, request_body)
+        async with aiofiles.open("sample_driving_licence.png", "rb") as sample_file:
+            await async_api.document.upload(sample_file, request_body)
 
         m.assert_called_once()
 
