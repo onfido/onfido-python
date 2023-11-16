@@ -1,4 +1,4 @@
-from aiohttp import BufferedReaderPayload, ClientSession, MultipartWriter, StringPayload
+from aiohttp import AsyncIterablePayload, ClientSession, MultipartWriter, StringPayload
 from .exceptions import OnfidoRequestError
 from aiohttp.client_reqrep import ClientResponse
 from .onfido_download import OnfidoAioDownload
@@ -69,7 +69,7 @@ class Resource:
                 )
 
             file_part = mpwriter.append_payload(
-                BufferedReaderPayload(
+                AsyncIterablePayload(
                     file,
                     content_type=mimetype_from_name(file.name),
                     headers={
