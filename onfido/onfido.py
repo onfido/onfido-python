@@ -2,6 +2,7 @@ from .resources.applicants import Applicants
 from .resources.documents import Documents
 from .resources.address_picker import Addresses
 from .resources.checks import Checks
+from .resources.workflow_runs import WorkflowRuns
 from .resources.reports import Reports
 from .resources.live_photos import LivePhotos
 from .resources.live_videos import LiveVideos
@@ -17,6 +18,7 @@ from .resources_aio.applicants import Applicants as AsyncApplicants
 from .resources_aio.documents import Documents as AsyncDocuments
 from .resources_aio.address_picker import Addresses as AsyncAddresses
 from .resources_aio.checks import Checks as AsyncChecks
+from .resources_aio.workflow_runs import WorkflowRuns as AsyncWorkflowRuns
 from .resources_aio.reports import Reports as AsyncReports
 from .resources_aio.live_photos import LivePhotos as AsyncLivePhotos
 from .resources_aio.live_videos import LiveVideos as AsyncLiveVideos
@@ -40,6 +42,7 @@ class Api:
         self.motion_capture = MotionCaptures(api_token, region, timeout)
         self.extraction = Extraction(api_token, region, timeout)
         self.watchlist_monitor = WatchlistMonitors(api_token, region, timeout)
+        self.workflowrun = WorkflowRuns(api_token, region, timeout)
 
         if region in [Region.EU, Region.US, Region.CA]:
             pass
@@ -60,6 +63,7 @@ class AsyncApi:
         self.motion_capture = AsyncMotionCaptures(api_token, region, aio_session, timeout)
         self.extraction = AsyncExtraction(api_token, region, aio_session, timeout)
         self.watchlist_monitor = AsyncWatchlistMonitors(api_token, region, aio_session, timeout)
+        self.workflowrun = AsyncWorkflowRuns(api_token, region, aio_session, timeout)
 
         if region in [Region.EU, Region.US, Region.CA]:
             pass

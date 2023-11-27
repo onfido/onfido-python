@@ -1,3 +1,7 @@
+## v2.9.0 24th November 2023
+
+- Added `signed_evidence_file` method for WorkflowRuns
+
 ## v2.8.0, 15th November 2023
 
 - Support asyncio API
