@@ -145,3 +145,12 @@ Resource information and code examples can be found at https://documentation.onf
 4. Commit your changes (`git commit -am 'Add some feature'`)
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create a new Pull Request
+
+## Support
+
+Should you encounter any technical issues during integration, please contact Onfido’s Customer Support team
+via [email](mailto:support@onfido.com), including the word ISSUE: at the start of the subject line.
+
+Alternatively, you can search the support documentation available via the customer experience
+portal, [public.support.onfido.com](http://public.support.onfido.com).
+
