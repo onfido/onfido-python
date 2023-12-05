@@ -33,7 +33,7 @@ def test_list_workflow_runs(requests_mock):
     assert mock_list.called is True
     assert history[0].method == 'GET'
     query_params = urlparse(history[0].url).query
-    assert history[0].url.removesuffix(query_params) == "https://api.eu.onfido.com/v3.6/workflow_runs?"
+    assert history[0].url == "https://api.eu.onfido.com/v3.6/workflow_runs?" + query_params
     assert parse_qs(query_params) == { 
         "page": ['2'], 
         "status": ["approved,declined"], 
