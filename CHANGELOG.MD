@@ -1,3 +1,7 @@
+## v2.10.0 24th November 2023
+
+- Added core methods for [WorkflowRuns](https://documentation.onfido.com/#workflow-runs)
+
 ## v2.9.0 24th November 2023
 
 - Added `signed_evidence_file` method for WorkflowRuns
