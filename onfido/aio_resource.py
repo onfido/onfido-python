@@ -39,11 +39,10 @@ class Resource:
     async def _handle_response(self, response: ClientResponse):
         if response.status == 422:
             error = None
-            if response.code == 422:
-                content_type = response.headers.get("Content-Type", "")
-                if "application/json" in content_type:
-                    resp_json = await response.json()
-                    error = resp_json.get("error")
+            content_type = response.headers.get("Content-Type", "")
+            if "application/json" in content_type:
+                resp_json = await response.json()
+                error = resp_json.get("error")
             raise OnfidoRequestError(error)
 
         response.raise_for_status()
