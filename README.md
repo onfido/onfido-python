@@ -1,156 +1,130 @@
-# Onfido Python Client Library
+# Onfido Python Library
 
-[onfido-python on PyPI](https://pypi.org/project/onfido-python/)
+The official Python library for integrating with the Onfido API.
 
-The official wrapper for Onfido's API. Refer to the full [API documentation](https://documentation.onfido.com) for details of expected requests and responses for all resources.
-
-[![PyPI version](https://badge.fury.io/py/onfido-python.svg)](https://badge.fury.io/py/onfido-python)
+Documentation can be found at <https://documentation.onfido.com>.
 
 This version uses Onfido API v3.6. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API.
 
-This project supersedes the automatically generated [api-python-client](https://github.com/onfido/api-python-client) library (`onfido` in PyPI).
+## Installation & Usage
 
-## Installation
+### Requirements
 
-`pip install onfido-python`
+Python 3.7+
 
-:warning: Having the old `onfido` package installed at the same time will cause errors.
+### Installation
 
-## Getting started
+#### Pip
 
-Make API calls by using an instance of the `Api` class and providing your API
-token:
+If the python package is hosted on a repository, you can install directly using:
+
+```sh
+pip install onfido
+```
+
+Then import the package:
+```python
+import onfido
+```
+
+#### Poetry
+
+```sh
+poetry add onfido
+```
+
+Then import the package:
+```python
+import onfido
+```
+
+### Tests
+
+Execute `pytest` to run the tests.
+
+## Getting Started
+
+Import the `DefaultApi` object, this is the main object used for interfacing with the API:
 
 ```python
 import onfido
 
-api = onfido.Api("<YOUR_API_TOKEN>")
+import urllib3
+from os import environ
+
+configuration = onfido.Configuration(
+    api_token=environ['ONFIDO_API_TOKEN'],
+    region=onfido.configuration.Region.EU,     # Supports `EU`, `US` and `CA`
+    timeout=urllib3.util.Timeout(connect=60.0, read=60.0)
+  )
+
+with onfido.ApiClient(configuration) as api_client:
+  onfido_api = onfido.DefaultApi(api_client)
+  ...
 ```
 
-### Regions
+NB: by default, timeout values are set to 30 seconds.
 
-Set the region in the API instance using the `region` parameter, which takes a value from the `Region` enum (currently `Region.EU`, `Region.US` or `Region.CA`).
-
-For example, to specify the EU region:
+### Making a call to the API
 
 ```python
-import onfido
-from onfido.regions import Region
+  try:
+    applicant = onfido_api.create_applicant(
+        onfido.ApplicantBuilder(
+          first_name= 'First',
+          last_name= 'Last')
+      )
 
-api = onfido.Api("<YOUR_API_TOKEN>", region=Region.EU)
+    # To access the information access the desired property on the object, for example:
+    applicant.first_name
+
+    # ...
+
+  except OpenApiException:
+    # ...
+    pass
+  except Exception:
+    # ...
+    pass
 ```
 
-`region` does not take a default parameter. Failure to pass a correct region will raise an `OnfidoRegionError`.
+Specific exception types are defined into [exceptions.py](onfido/exceptions.py).
 
-See https://documentation.onfido.com/#regions for more information about our supported regions at a given time.
+### Webhook event verification
 
-### Timeouts
-
-You can optionally set a global timeout for all requests in the API
-constructor. This takes a floating number input and each whole integer
-increment corresponds to a second. 
-
-For example, to set a timeout of 1 second:
+Webhook events payload needs to be verified before it can be accessed. Library allows to easily decode the payload and verify its signature before returning it as an object for user convenience:
 
 ```python
-api = onfido.Api("<YOUR_API_TOKEN>", timeout=1)
+  try:
+    verifier = onfido.WebhookEventVerifier("_ABC123abc...3ABC123_")
+
+    signature = "a0...760e"
+
+    event = verifier.read_payload('{"payload":{"r...3"}}', signature)
+  except onfido.OnfidoInvalidSignatureError:
+    # Invalid webhook signature
+    pass
 ```
-
-The default value for `timeout` is `None`, meaning no timeout will be set on
-the client side.
-
-## Response format
-
-The Python library will return JSON requests directly from the API. Each request corresponds to a resource. 
-
-All resources share the same interface when making API calls. For example, use `.create` to create a resource, `.find` to find one, and `.all` to fetch all resources. 
-
-For example, to create an applicant:
-
-```python
-applicant_details = {
-  'first_name': 'Jane',
-  'last_name': 'Doe',
-  'dob': '1984-01-01',
-  'address': {
-    'street': 'Second Street',
-    'town': 'London',
-    'postcode': 'S2 2DF',
-    'country': 'GBR'
-  },
-  'location': {
-    'ip_address': '127.0.0.1',
-    'country_of_residence': 'GBR'
-  }
-}
-
-api.applicant.create(applicant_details)
-```
-
-```python
-{
-  'id': '<APPLICANT_ID>',
-  'created_at': '2019-10-09T16:52:42Z',
-  'sandbox': True,
-  'first_name': 'Jane',
-  'last_name': 'Doe',
-  'email': None,
-  'dob': '1990-01-01',
-  'delete_at': None,
-  'href': '/v3.1/applicants/<APPLICANT_ID>',
-  'id_numbers': [],
-  'address': {
-    'flat_number': None,
-    'building_number': None,
-    'building_name': None,
-    'street': 'Second Street',
-    'sub_street': None,
-    'town': 'London',
-    'state': None,
-    'postcode': 'S2 2DF',
-    'country': 'GBR',
-    'line1': None,
-    'line2': None,
-    'line3': None
-  },
-  'phone_number': None,
-  'location': {
-    'ip_address': '127.0.0.1',
-    'country_of_residence': 'GBR'
-  }
-}
-```
-
-See https://documentation.onfido.com/#request,-response-format for more
-information.
-
-### Resources
-
-Resource information and code examples can be found at https://documentation.onfido.com/.
-
-### Error Handling
-
-- `OnfidoServerError` is raised whenever Onfido returns a `5xx` response
-- `OnfidoRequestError` is raised whenever Onfido returns a `4xx` response
-- `OnfidoInvalidSignatureError` is raised whenever a signature from the header is not equal to the expected signature you compute for it
-- `OnfidoTimeoutError` is raised if a timeout occurs
-- `OnfidoConnectionError` is raised whenever any other network error occurs
-- `OnfidoUnknownError` is raised whenever something unexpected happens
 
 ## Contributing
 
-1. Fork it ( https://github.com/onfido/onfido-python/fork )
+This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) - version: 7.4.0;
+therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
+
+For contributions to the tests instead, please follow the steps below:
+
+1. [Fork](<https://github.com/onfido/onfido-python/fork>) repository
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Run the tests (`poetry run pytest tests/test_my_new_feature.py`)
+3. Make your changes
 4. Commit your changes (`git commit -am 'Add some feature'`)
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create a new Pull Request
 
+## More documentation
+
+More documentation and code examples can be found at <https://documentation.onfido.com>.
+
 ## Support
 
-Should you encounter any technical issues during integration, please contact Onfido’s Customer Support team
-via [email](mailto:support@onfido.com), including the word ISSUE: at the start of the subject line.
-
-Alternatively, you can search the support documentation available via the customer experience
-portal, [public.support.onfido.com](http://public.support.onfido.com).
-
+Should you encounter any technical issues during integration, please contact Onfido's Customer Support team
+via the [Customer Experience Portal](https://public.support.onfido.com/) which also include support documentation.

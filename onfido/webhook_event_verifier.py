@@ -1,7 +1,11 @@
 import hmac
 import hashlib
 import json
-from .exceptions import OnfidoInvalidSignatureError
+
+from .models import WebhookEvent
+
+class OnfidoInvalidSignatureError(Exception):
+    pass
 
 class WebhookEventVerifier:
     def __init__(self, webhook_token):
@@ -15,6 +19,6 @@ class WebhookEventVerifier:
 
         # Compare the signatures (prevent against timing attacks).
         if not hmac.compare_digest(signature, event_signature):
-            raise OnfidoInvalidSignatureError()
+            raise OnfidoInvalidSignatureError("Invalid signature for webhook event")
 
-        return json.loads(raw_event)["payload"]
+        return WebhookEvent.from_json(raw_event)

@@ -1,64 +1,41 @@
 import onfido
-from onfido.regions import Region
+import datetime
 
 
-api = onfido.Api("<AN_API_TOKEN>", region=Region.EU)
+def test_create_applicant(onfido_api):
+    applicant = onfido_api.create_applicant(
+        onfido.ApplicantBuilder(
+            first_name='Test',
+            last_name='Applicant',
+            dob=datetime.date(1980, 1, 22),
+            location=onfido.LocationBuilder(
+                ip_address='127.0.0.1',
+                country_of_residence=onfido.CountryCodes.ITA
+            ),
+            address=onfido.AddressBuilder(
+                building_number='100',
+                street='Main Street',
+                town='London',
+                postcode='SW4 6EH',
+                country=onfido.CountryCodes.FRA,
+                line1='My wonderful address')
+            )
+        )
 
-applicant_details = {
-  "first_name": "Jane",
-  "last_name": "Doe",
-  "dob": "1984-01-01",
-  "phone_number": "+44 7911 123456",
-  "address": {
-    "street": "Second Street",
-    "town": "London",
-    "postcode": "S2 2DF",
-    "country": "GBR"
-  },
-  "consents": [
-      {
-        "name": "privacy_notices_read",
-        "granted": True
-      }
-    ],
-  "location": {
-    "ip_address": "127.0.0.1",
-    "country_of_residence": "GBR"
-  }
-}
+    assert applicant.first_name == 'Test'
+    assert applicant.last_name == 'Applicant'
+    assert applicant.dob == datetime.date(1980, 1, 22)
 
-fake_uuid = "58a9c6d2-8661-4dbd-96dc-b9b9d344a7ce"
+    assert applicant.location.ip_address == '127.0.0.1'
+    assert applicant.location.country_of_residence == 'ITA'
 
-
-def test_create_applicant(requests_mock):
-    mock_create = requests_mock.post("https://api.eu.onfido.com/v3.6/applicants/", json=[])
-    api.applicant.create(applicant_details)
-    assert mock_create.called is True
-
-def test_find_applicant(requests_mock):
-    mock_find = requests_mock.get(f"https://api.eu.onfido.com/v3.6/applicants/{fake_uuid}", json=[])
-    api.applicant.find(fake_uuid)
-    assert mock_find.called is True
-
-def test_update_applicant(requests_mock):
-    mock_update = requests_mock.put(f"https://api.eu.onfido.com/v3.6/applicants/{fake_uuid}", json=[])
-    api.applicant.update(fake_uuid, applicant_details)
-    assert mock_update.called is True
-
-def test_delete_applicant(requests_mock):
-    mock_delete = requests_mock.delete(f"https://api.eu.onfido.com/v3.6/applicants/{fake_uuid}", json=[])
-    api.applicant.delete(fake_uuid)
-    assert mock_delete.called is True
-
-def test_restore_applicant(requests_mock):
-    mock_restore = requests_mock.post(f"https://api.eu.onfido.com/v3.6/applicants/{fake_uuid}/restore", json=[])
-    api.applicant.restore(fake_uuid)
-    assert mock_restore.called is True
-
-def test_list_applicants(requests_mock):
-    mock_list = requests_mock.get("https://api.eu.onfido.com/v3.6/applicants", json=[])
-    api.applicant.all(include_deleted=True, per_page=5, page=2)
-    history = mock_list.request_history
-    assert mock_list.called is True
-    assert history[0].method == 'GET'
-    assert history[0].url == "https://api.eu.onfido.com/v3.6/applicants?include_deleted=True&per_page=5&page=2"
+    assert applicant.address.to_dict() == {
+      'building_number': '100',
+      'street': 'Main Street',
+      'town': 'London',
+      'postcode': 'SW4 6EH',
+      'country': onfido.CountryCodes.FRA,
+      'line1': 'My wonderful address',
+      'line2': None,
+      'line3': None
+    }
