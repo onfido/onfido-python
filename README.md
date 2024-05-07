@@ -23,6 +23,7 @@ pip install onfido
 ```
 
 Then import the package:
+
 ```python
 import onfido
 ```
@@ -34,6 +35,7 @@ poetry add onfido
 ```
 
 Then import the package:
+
 ```python
 import onfido
 ```
@@ -108,12 +110,11 @@ Webhook events payload needs to be verified before it can be accessed. Library a
 
 ## Contributing
 
-This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) - version: 7.4.0;
-therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
+This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) - version: 7.5.0; therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
 
 For contributions to the tests instead, please follow the steps below:
 
-1. [Fork](<https://github.com/onfido/onfido-python/fork>) repository
+1. [Fork](https://github.com/onfido/onfido-python/fork) repository
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Make your changes
 4. Commit your changes (`git commit -am 'Add some feature'`)
@@ -127,4 +128,4 @@ More documentation and code examples can be found at <https://documentation.onfi
 ## Support
 
 Should you encounter any technical issues during integration, please contact Onfido's Customer Support team
-via the [Customer Experience Portal](https://public.support.onfido.com/) which also include support documentation.
+via the [Customer Experience Portal](https://public.support.onfido.com/) which also includes support documentation.
