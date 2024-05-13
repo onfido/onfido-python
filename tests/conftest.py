@@ -13,3 +13,12 @@ def onfido_api():
 
     with onfido.ApiClient(configuration) as api_client:
         yield onfido.DefaultApi(api_client)
+
+
+def create_applicant(onfido_api, applicant_builder=None):
+    if applicant_builder is None:
+        return onfido_api.create_applicant(
+            onfido.ApplicantBuilder(first_name="First", last_name="Last")
+        )
+
+    return onfido_api.create_applicant(applicant_builder)
