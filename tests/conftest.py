@@ -38,3 +38,19 @@ def create_applicant(onfido_api, applicant_builder=None):
         )
 
     return onfido_api.create_applicant(applicant_builder)
+
+
+def upload_document(onfido_api, applicant_id):
+    return onfido_api.upload_document(
+        applicant_id=applicant_id,
+        type="passport",
+        side="front",
+        file="tests/media/sample_driving_licence.png",
+    )
+
+
+def upload_live_photo(onfido_api, applicant_id):
+    return onfido_api.upload_live_photo(
+        applicant_id=applicant_id,
+        file="tests/media/sample_photo.png",
+    )
