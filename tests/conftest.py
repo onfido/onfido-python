@@ -54,3 +54,22 @@ def upload_live_photo(onfido_api, applicant_id):
         applicant_id=applicant_id,
         file="tests/media/sample_photo.png",
     )
+
+
+def create_check(
+    onfido_api,
+    check_builder=None,
+    applicant_id=None,
+    document_ids=None,
+    report_names=None,
+):
+    if check_builder is None:
+        return onfido_api.create_check(
+            onfido.CheckBuilder(
+                applicant_id=applicant_id,
+                document_ids=document_ids,
+                report_names=report_names,
+            )
+        )
+
+    return onfido_api.create_check(check_builder)
