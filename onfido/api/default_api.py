@@ -38,7 +38,7 @@ from onfido.models.id_photo import IdPhoto
 from onfido.models.live_photo import LivePhoto
 from onfido.models.live_photos_list import LivePhotosList
 from onfido.models.live_video import LiveVideo
-from onfido.models.liveo_videos_list import LiveoVideosList
+from onfido.models.live_videos_list import LiveVideosList
 from onfido.models.location_builder import LocationBuilder
 from onfido.models.motion_capture import MotionCapture
 from onfido.models.motion_captures_list import MotionCapturesList
@@ -5410,7 +5410,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Extraction",
+            '200': "Extraction",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5477,7 +5477,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Extraction",
+            '200': "Extraction",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -5544,7 +5544,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Extraction",
+            '200': "Extraction",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -10877,7 +10877,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> LiveoVideosList:
+    ) -> LiveVideosList:
         """List live videos
 
         Lists all the live videos that belong to an applicant. 
@@ -10915,7 +10915,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LiveoVideosList",
+            '200': "LiveVideosList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -10944,7 +10944,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[LiveoVideosList]:
+    ) -> ApiResponse[LiveVideosList]:
         """List live videos
 
         Lists all the live videos that belong to an applicant. 
@@ -10982,7 +10982,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LiveoVideosList",
+            '200': "LiveVideosList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -11049,7 +11049,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "LiveoVideosList",
+            '200': "LiveVideosList",
         }
         response_data = self.api_client.call_api(
             *_param,

@@ -1,13 +1,16 @@
 [tool.poetry]
-name = "onfido"
+name = "onfido-python"
 version = "2.10.0"
-description = "Onfido API v3.6"
-authors = ["Onfido <team@openapitools.org>"]
+description = "Python library for the Onfido API"
+authors = ["OpenAPI Generator Community <team@openapitools.org>"]
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/onfido/onfido-python"
-keywords = ["OpenAPI", "OpenAPI-Generator", "Onfido API v3.6"]
+keywords = ["OpenAPI", "OpenAPI-Generator", "onfido", "identity"]
 include = ["onfido/py.typed"]
+
+[tool.poetry.urls]
+"Onfido API documentation" = "https://documentation.onfido.com"
 
 [tool.poetry.dependencies]
 python = "^3.7"

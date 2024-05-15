@@ -23,9 +23,9 @@ from onfido.models.live_video import LiveVideo
 from typing import Optional, Set
 from typing_extensions import Self
 
-class LiveoVideosList(BaseModel):
+class LiveVideosList(BaseModel):
     """
-    LiveoVideosList
+    LiveVideosList
     """ # noqa: E501
     live_videos: List[LiveVideo]
     additional_properties: Dict[str, Any] = {}
@@ -49,7 +49,7 @@ class LiveoVideosList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of LiveoVideosList from a JSON string"""
+        """Create an instance of LiveVideosList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -88,7 +88,7 @@ class LiveoVideosList(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of LiveoVideosList from a dict"""
+        """Create an instance of LiveVideosList from a dict"""
         if obj is None:
             return None
 
