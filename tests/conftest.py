@@ -89,8 +89,13 @@ def create_workflow_run(
     return onfido_api.create_workflow_run(workflow_run_builder)
 
 
-def wait_until_status(function, instance_id, status, max_retries=10, sleep_time=1000):
+def wait_until_status(function, instance_id, status, max_retries=10, sleep_time=1):
     instance = function(instance_id)
+
+    is_instance_of_report = isinstance(instance, onfido.Report)
+    if is_instance_of_report:
+        instance = instance.actual_instance
+
     iteration = 0
     while instance.status != status:
         if iteration > max_retries:
@@ -98,6 +103,9 @@ def wait_until_status(function, instance_id, status, max_retries=10, sleep_time=
 
         iteration += 1
         sleep(sleep_time)
-        instance = function(instance_id)
+        if is_instance_of_report:
+            instance = function(instance_id).actual_instance
+        else:
+            instance = function(instance_id)
 
     return instance
