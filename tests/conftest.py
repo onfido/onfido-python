@@ -1,6 +1,7 @@
 import onfido
-from os import environ
 import pytest
+from os import environ
+from time import sleep
 
 
 @pytest.fixture(scope="session")
@@ -73,3 +74,30 @@ def create_check(
         )
 
     return onfido_api.create_check(check_builder)
+
+
+def create_workflow_run(
+    onfido_api, workflow_run_builder=None, applicant_id=None, workflow_id=None
+):
+    if workflow_run_builder is None:
+        return onfido_api.create_workflow_run(
+            onfido.WorkflowRunBuilder(
+                applicant_id=applicant_id, workflow_id=workflow_id
+            )
+        )
+
+    return onfido_api.create_workflow_run(workflow_run_builder)
+
+
+def wait_until_status(function, instance_id, status, max_retries=10, sleep_time=1000):
+    instance = function(instance_id)
+    iteration = 0
+    while instance.status != status:
+        if iteration > max_retries:
+            pytest.fail("Status did not change in time")
+
+        iteration += 1
+        sleep(sleep_time)
+        instance = function(instance_id)
+
+    return instance
