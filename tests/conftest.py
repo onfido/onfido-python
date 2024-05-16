@@ -27,7 +27,7 @@ def data_clean_up(onfido_api):
         if applicant.id != sample_applicant_id:
             try:
                 onfido_api.delete_applicant(applicant.id)
-            except onfido.ApiException as e:
+            except onfido.ApiException:
                 # Just ignore any failure during cleanup
                 pass
 
