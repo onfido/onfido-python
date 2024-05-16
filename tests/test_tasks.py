@@ -1,6 +1,6 @@
 import pytest
 
-from onfido import Task, CompleteTaskRequest
+from onfido import Task, CompleteTaskBuilder, CompleteTaskBuilderData
 from tests.conftest import create_applicant, create_workflow_run
 
 
@@ -43,14 +43,14 @@ def test_complete_task(onfido_api, workflow_run_id):
     tasks = onfido_api.list_tasks(workflow_run_id)
     profile_data_task_id = list(filter(lambda task: "profile" in task.id, tasks))[0].id
 
-    complete_task_request = CompleteTaskRequest(
-        data={"first_name": "Jane", "last_name": "Doe"}
+    complete_task_builder = CompleteTaskBuilder(
+        data=CompleteTaskBuilderData({"first_name": "Jane", "last_name": "Doe"})
     )
 
     onfido_api.complete_task(
         workflow_run_id=workflow_run_id,
         task_id=profile_data_task_id,
-        complete_task_request=complete_task_request,
+        complete_task_builder=complete_task_builder,
     )
 
     task_outputs = onfido_api.find_task(

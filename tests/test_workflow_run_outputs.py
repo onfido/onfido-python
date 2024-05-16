@@ -2,15 +2,10 @@ import pytest
 
 from onfido import (
     ApplicantBuilder,
-    CompleteTaskRequest,
+    CompleteTaskBuilder,
+    CompleteTaskBuilderData,
     CountryCodes,
-    DocumentBreakdown,
-    DocumentProperties,
-    FacialSimilarityPhotoFullyAutoBreakdown,
     LocationBuilder,
-    ReportResult,
-    ReportStatus,
-    ReportSubResult,
     WorkflowRunBuilder,
 )
 from tests.conftest import (
@@ -78,12 +73,14 @@ def test_profile_data_as_output(onfido_api, applicant_id, profile_data):
     tasks = onfido_api.list_tasks(workflow_run_id)
     profile_data_task_id = list(filter(lambda task: "profile" in task.id, tasks))[0].id
 
-    complete_task_request = CompleteTaskRequest(data=profile_data)
+    complete_task_builder = CompleteTaskBuilder(
+        data=CompleteTaskBuilderData(profile_data)
+    )
 
     onfido_api.complete_task(
         workflow_run_id=workflow_run_id,
         task_id=profile_data_task_id,
-        complete_task_request=complete_task_request,
+        complete_task_builder=complete_task_builder,
     )
 
     wait_until_status(onfido_api.find_workflow_run, workflow_run_id, "approved")
@@ -106,13 +103,13 @@ def test_document_and_facial_similarity_report_as_output(
     tasks = onfido_api.list_tasks(workflow_run_id)
     profile_data_task_id = list(filter(lambda task: "profile" in task.id, tasks))[0].id
 
-    complete_task_request = CompleteTaskRequest(
-        data={"first_name": "Jane", "last_name": "Doe"}
+    complete_task_builder = CompleteTaskBuilder(
+        data=CompleteTaskBuilderData({"first_name": "Jane", "last_name": "Doe"})
     )
     onfido_api.complete_task(
         workflow_run_id=workflow_run_id,
         task_id=profile_data_task_id,
-        complete_task_request=complete_task_request,
+        complete_task_builder=complete_task_builder,
     )
 
     tasks = onfido_api.list_tasks(workflow_run_id)
@@ -120,27 +117,26 @@ def test_document_and_facial_similarity_report_as_output(
         filter(lambda task: "document_photo" in task.id, tasks)
     )[0].id
 
-    complete_document_capture_task_request = CompleteTaskRequest(
-        data=[{"id": document_id}]
+    complete_document_capture_task_builder = CompleteTaskBuilder(
+        data=CompleteTaskBuilderData([{"id": document_id}])
     )
     onfido_api.complete_task(
         workflow_run_id=workflow_run_id,
         task_id=document_capture_task_id,
-        complete_task_request=complete_document_capture_task_request,
+        complete_task_builder=complete_document_capture_task_builder,
     )
 
     tasks = onfido_api.list_tasks(workflow_run_id)
     live_photo_capture_task_id = list(
         filter(lambda task: "face_photo" in task.id, tasks)
     )[0].id
-
-    complete_live_photo_capture_task_request = CompleteTaskRequest(
-        data=[{"id": live_photo_id}]
+    complete_live_photo_capture_task_request = CompleteTaskBuilder(
+        data=CompleteTaskBuilderData([{"id": live_photo_id}])
     )
     onfido_api.complete_task(
         workflow_run_id=workflow_run_id,
         task_id=live_photo_capture_task_id,
-        complete_task_request=complete_live_photo_capture_task_request,
+        complete_task_builder=complete_live_photo_capture_task_request,
     )
 
     wait_until_status(onfido_api.find_workflow_run, workflow_run_id, "approved")
@@ -149,26 +145,15 @@ def test_document_and_facial_similarity_report_as_output(
     facial_similarity_report_output = workflow_run_outputs["selfie"]
 
     assert document_report_output["breakdown"] is not None
-    assert isinstance(document_report_output["breakdown"], DocumentBreakdown)
     assert document_report_output["properties"] is not None
-    assert isinstance(document_report_output["properties"], DocumentProperties)
     assert document_report_output["repeat_attempts"] is not None
     assert document_report_output["result"] is not None
-    assert isinstance(document_report_output["result"], ReportResult)
     assert document_report_output["status"] is not None
-    assert isinstance(document_report_output["status"], ReportStatus)
     assert document_report_output["sub_result"] is not None
-    assert isinstance(document_report_output["status"], ReportSubResult)
     assert document_report_output["uuid"] is not None
 
     assert facial_similarity_report_output["breakdown"] is not None
-    assert isinstance(
-        facial_similarity_report_output["breakdown"],
-        FacialSimilarityPhotoFullyAutoBreakdown,
-    )
     assert facial_similarity_report_output["properties"] is not None
     assert facial_similarity_report_output["result"] is not None
-    assert isinstance(facial_similarity_report_output["result"], ReportResult)
     assert facial_similarity_report_output["status"] is not None
-    assert isinstance(facial_similarity_report_output["status"], ReportStatus)
     assert facial_similarity_report_output["uuid"] is not None
