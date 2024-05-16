@@ -194,7 +194,7 @@ from onfido.models.live_photo import LivePhoto
 from onfido.models.live_photo_response import LivePhotoResponse
 from onfido.models.live_photos_list import LivePhotosList
 from onfido.models.live_video import LiveVideo
-from onfido.models.liveo_videos_list import LiveoVideosList
+from onfido.models.live_videos_list import LiveVideosList
 from onfido.models.location import Location
 from onfido.models.location_builder import LocationBuilder
 from onfido.models.location_shared import LocationShared
