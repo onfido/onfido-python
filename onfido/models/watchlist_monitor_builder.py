@@ -17,19 +17,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UpdateMonitorMatchRequest(BaseModel):
+class WatchlistMonitorBuilder(BaseModel):
     """
-    UpdateMonitorMatchRequest
+    WatchlistMonitorBuilder
     """ # noqa: E501
-    enable: Optional[List[StrictStr]] = None
-    disable: Optional[List[StrictStr]] = None
+    applicant_id: StrictStr = Field(description="The ID for the applicant associated with the monitor.")
+    report_name: StrictStr = Field(description="The name of the report type the monitor creates.")
+    tags: Optional[List[StrictStr]] = Field(default=None, description="A list of tags associated with this monitor. These tags will be applied to each check this monitor creates.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["enable", "disable"]
+    __properties: ClassVar[List[str]] = ["applicant_id", "report_name", "tags"]
+
+    @field_validator('report_name')
+    def report_name_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['watchlist_standard', 'watchlist_aml']):
+            raise ValueError("must be one of enum values ('watchlist_standard', 'watchlist_aml')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +57,7 @@ class UpdateMonitorMatchRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateMonitorMatchRequest from a JSON string"""
+        """Create an instance of WatchlistMonitorBuilder from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -81,7 +89,7 @@ class UpdateMonitorMatchRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateMonitorMatchRequest from a dict"""
+        """Create an instance of WatchlistMonitorBuilder from a dict"""
         if obj is None:
             return None
 
@@ -89,8 +97,9 @@ class UpdateMonitorMatchRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "enable": obj.get("enable"),
-            "disable": obj.get("disable")
+            "applicant_id": obj.get("applicant_id"),
+            "report_name": obj.get("report_name"),
+            "tags": obj.get("tags")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

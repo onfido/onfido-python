@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "2.10.0"
+__version__ = "3.0.0"
 
 # import apis into sdk package
 from onfido.api.default_api import DefaultApi
@@ -50,7 +50,8 @@ from onfido.models.check_request import CheckRequest
 from onfido.models.check_response import CheckResponse
 from onfido.models.check_shared import CheckShared
 from onfido.models.checks_list import ChecksList
-from onfido.models.complete_task_request import CompleteTaskRequest
+from onfido.models.complete_task_builder import CompleteTaskBuilder
+from onfido.models.complete_task_builder_data import CompleteTaskBuilderData
 from onfido.models.consent_item import ConsentItem
 from onfido.models.consents_builder import ConsentsBuilder
 from onfido.models.country_codes import CountryCodes
@@ -244,7 +245,6 @@ from onfido.models.sdk_token_builder import SdkTokenBuilder
 from onfido.models.sdk_token_request import SdkTokenRequest
 from onfido.models.sdk_token_response import SdkTokenResponse
 from onfido.models.task import Task
-from onfido.models.update_monitor_match_request import UpdateMonitorMatchRequest
 from onfido.models.us_driving_licence_breakdown import UsDrivingLicenceBreakdown
 from onfido.models.us_driving_licence_breakdown_address import UsDrivingLicenceBreakdownAddress
 from onfido.models.us_driving_licence_breakdown_address_breakdown import UsDrivingLicenceBreakdownAddressBreakdown
@@ -267,7 +267,13 @@ from onfido.models.watchlist_enhanced_breakdown import WatchlistEnhancedBreakdow
 from onfido.models.watchlist_enhanced_properties import WatchlistEnhancedProperties
 from onfido.models.watchlist_enhanced_report import WatchlistEnhancedReport
 from onfido.models.watchlist_monitor import WatchlistMonitor
+from onfido.models.watchlist_monitor_builder import WatchlistMonitorBuilder
 from onfido.models.watchlist_monitor_match import WatchlistMonitorMatch
+from onfido.models.watchlist_monitor_matches_list import WatchlistMonitorMatchesList
+from onfido.models.watchlist_monitor_matches_updater import WatchlistMonitorMatchesUpdater
+from onfido.models.watchlist_monitor_response import WatchlistMonitorResponse
+from onfido.models.watchlist_monitor_shared import WatchlistMonitorShared
+from onfido.models.watchlist_monitors_list import WatchlistMonitorsList
 from onfido.models.watchlist_peps_only_report import WatchlistPepsOnlyReport
 from onfido.models.watchlist_sanctions_only_report import WatchlistSanctionsOnlyReport
 from onfido.models.watchlist_standard_breakdown import WatchlistStandardBreakdown
