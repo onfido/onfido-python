@@ -27,9 +27,9 @@ class WatchlistMonitorMatch(BaseModel):
     WatchlistMonitorMatch
     """ # noqa: E501
     id: Optional[StrictStr] = Field(default=None, description="Monitor ID")
-    status: Optional[StrictBool] = Field(default=None, description="Monitor status")
+    enabled: Optional[StrictBool] = Field(default=None, description="Monitor status")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "status"]
+    __properties: ClassVar[List[str]] = ["id", "enabled"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -90,7 +90,7 @@ class WatchlistMonitorMatch(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
-            "status": obj.get("status")
+            "enabled": obj.get("enabled")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

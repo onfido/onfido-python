@@ -28,7 +28,7 @@ from onfido.models.applicants_list import ApplicantsList
 from onfido.models.check import Check
 from onfido.models.check_builder import CheckBuilder
 from onfido.models.checks_list import ChecksList
-from onfido.models.complete_task_request import CompleteTaskRequest
+from onfido.models.complete_task_builder import CompleteTaskBuilder
 from onfido.models.document import Document
 from onfido.models.documents_list import DocumentsList
 from onfido.models.extract_request import ExtractRequest
@@ -49,9 +49,11 @@ from onfido.models.results_feedback import ResultsFeedback
 from onfido.models.sdk_token import SdkToken
 from onfido.models.sdk_token_builder import SdkTokenBuilder
 from onfido.models.task import Task
-from onfido.models.update_monitor_match_request import UpdateMonitorMatchRequest
 from onfido.models.watchlist_monitor import WatchlistMonitor
-from onfido.models.watchlist_monitor_match import WatchlistMonitorMatch
+from onfido.models.watchlist_monitor_builder import WatchlistMonitorBuilder
+from onfido.models.watchlist_monitor_matches_list import WatchlistMonitorMatchesList
+from onfido.models.watchlist_monitor_matches_updater import WatchlistMonitorMatchesUpdater
+from onfido.models.watchlist_monitors_list import WatchlistMonitorsList
 from onfido.models.webhook import Webhook
 from onfido.models.webhook_builder import WebhookBuilder
 from onfido.models.webhook_resend import WebhookResend
@@ -341,7 +343,7 @@ class DefaultApi:
         self,
         workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to complete.")],
-        complete_task_request: CompleteTaskRequest,
+        complete_task_builder: CompleteTaskBuilder,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -363,8 +365,8 @@ class DefaultApi:
         :type workflow_run_id: str
         :param task_id: The identifier of the Task you want to complete. (required)
         :type task_id: str
-        :param complete_task_request: (required)
-        :type complete_task_request: CompleteTaskRequest
+        :param complete_task_builder: (required)
+        :type complete_task_builder: CompleteTaskBuilder
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -390,7 +392,7 @@ class DefaultApi:
         _param = self._complete_task_serialize(
             workflow_run_id=workflow_run_id,
             task_id=task_id,
-            complete_task_request=complete_task_request,
+            complete_task_builder=complete_task_builder,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -416,7 +418,7 @@ class DefaultApi:
         self,
         workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to complete.")],
-        complete_task_request: CompleteTaskRequest,
+        complete_task_builder: CompleteTaskBuilder,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -438,8 +440,8 @@ class DefaultApi:
         :type workflow_run_id: str
         :param task_id: The identifier of the Task you want to complete. (required)
         :type task_id: str
-        :param complete_task_request: (required)
-        :type complete_task_request: CompleteTaskRequest
+        :param complete_task_builder: (required)
+        :type complete_task_builder: CompleteTaskBuilder
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -465,7 +467,7 @@ class DefaultApi:
         _param = self._complete_task_serialize(
             workflow_run_id=workflow_run_id,
             task_id=task_id,
-            complete_task_request=complete_task_request,
+            complete_task_builder=complete_task_builder,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -491,7 +493,7 @@ class DefaultApi:
         self,
         workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to complete.")],
-        complete_task_request: CompleteTaskRequest,
+        complete_task_builder: CompleteTaskBuilder,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -513,8 +515,8 @@ class DefaultApi:
         :type workflow_run_id: str
         :param task_id: The identifier of the Task you want to complete. (required)
         :type task_id: str
-        :param complete_task_request: (required)
-        :type complete_task_request: CompleteTaskRequest
+        :param complete_task_builder: (required)
+        :type complete_task_builder: CompleteTaskBuilder
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -540,7 +542,7 @@ class DefaultApi:
         _param = self._complete_task_serialize(
             workflow_run_id=workflow_run_id,
             task_id=task_id,
-            complete_task_request=complete_task_request,
+            complete_task_builder=complete_task_builder,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -561,7 +563,7 @@ class DefaultApi:
         self,
         workflow_run_id,
         task_id,
-        complete_task_request,
+        complete_task_builder,
         _request_auth,
         _content_type,
         _headers,
@@ -589,8 +591,8 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if complete_task_request is not None:
-            _body_params = complete_task_request
+        if complete_task_builder is not None:
+            _body_params = complete_task_builder
 
 
         # set the HTTP header `Accept`
@@ -1182,7 +1184,7 @@ class DefaultApi:
     @validate_call
     def create_watchlist_monitor(
         self,
-        watchlist_monitor: WatchlistMonitor,
+        watchlist_monitor_builder: WatchlistMonitorBuilder,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1200,8 +1202,8 @@ class DefaultApi:
 
         Creates a new monitor for the applicant 
 
-        :param watchlist_monitor: (required)
-        :type watchlist_monitor: WatchlistMonitor
+        :param watchlist_monitor_builder: (required)
+        :type watchlist_monitor_builder: WatchlistMonitorBuilder
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1225,7 +1227,7 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._create_watchlist_monitor_serialize(
-            watchlist_monitor=watchlist_monitor,
+            watchlist_monitor_builder=watchlist_monitor_builder,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1233,7 +1235,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "WatchlistMonitor",
+            '201': "WatchlistMonitor",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1249,7 +1251,7 @@ class DefaultApi:
     @validate_call
     def create_watchlist_monitor_with_http_info(
         self,
-        watchlist_monitor: WatchlistMonitor,
+        watchlist_monitor_builder: WatchlistMonitorBuilder,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1267,8 +1269,8 @@ class DefaultApi:
 
         Creates a new monitor for the applicant 
 
-        :param watchlist_monitor: (required)
-        :type watchlist_monitor: WatchlistMonitor
+        :param watchlist_monitor_builder: (required)
+        :type watchlist_monitor_builder: WatchlistMonitorBuilder
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1292,7 +1294,7 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._create_watchlist_monitor_serialize(
-            watchlist_monitor=watchlist_monitor,
+            watchlist_monitor_builder=watchlist_monitor_builder,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1300,7 +1302,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "WatchlistMonitor",
+            '201': "WatchlistMonitor",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1316,7 +1318,7 @@ class DefaultApi:
     @validate_call
     def create_watchlist_monitor_without_preload_content(
         self,
-        watchlist_monitor: WatchlistMonitor,
+        watchlist_monitor_builder: WatchlistMonitorBuilder,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1334,8 +1336,8 @@ class DefaultApi:
 
         Creates a new monitor for the applicant 
 
-        :param watchlist_monitor: (required)
-        :type watchlist_monitor: WatchlistMonitor
+        :param watchlist_monitor_builder: (required)
+        :type watchlist_monitor_builder: WatchlistMonitorBuilder
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1359,7 +1361,7 @@ class DefaultApi:
         """ # noqa: E501
 
         _param = self._create_watchlist_monitor_serialize(
-            watchlist_monitor=watchlist_monitor,
+            watchlist_monitor_builder=watchlist_monitor_builder,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1367,7 +1369,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "WatchlistMonitor",
+            '201': "WatchlistMonitor",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -1378,7 +1380,7 @@ class DefaultApi:
 
     def _create_watchlist_monitor_serialize(
         self,
-        watchlist_monitor,
+        watchlist_monitor_builder,
         _request_auth,
         _content_type,
         _headers,
@@ -1402,8 +1404,8 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if watchlist_monitor is not None:
-            _body_params = watchlist_monitor
+        if watchlist_monitor_builder is not None:
+            _body_params = watchlist_monitor_builder
 
 
         # set the HTTP header `Accept`
@@ -8999,7 +9001,7 @@ class DefaultApi:
 
 
     @validate_call
-    def force_new_record_creation(
+    def force_report_creation_from_watchlist_monitor(
         self,
         monitor_id: StrictStr,
         _request_timeout: Union[
@@ -9014,7 +9016,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Applicant:
+    ) -> None:
         """Force new report creation (BETA)
 
         Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
@@ -9043,7 +9045,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._force_new_record_creation_serialize(
+        _param = self._force_report_creation_from_watchlist_monitor_serialize(
             monitor_id=monitor_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -9052,7 +9054,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Applicant",
+            '201': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -9066,7 +9068,7 @@ class DefaultApi:
 
 
     @validate_call
-    def force_new_record_creation_with_http_info(
+    def force_report_creation_from_watchlist_monitor_with_http_info(
         self,
         monitor_id: StrictStr,
         _request_timeout: Union[
@@ -9081,7 +9083,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Applicant]:
+    ) -> ApiResponse[None]:
         """Force new report creation (BETA)
 
         Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
@@ -9110,7 +9112,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._force_new_record_creation_serialize(
+        _param = self._force_report_creation_from_watchlist_monitor_serialize(
             monitor_id=monitor_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -9119,7 +9121,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Applicant",
+            '201': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -9133,7 +9135,7 @@ class DefaultApi:
 
 
     @validate_call
-    def force_new_record_creation_without_preload_content(
+    def force_report_creation_from_watchlist_monitor_without_preload_content(
         self,
         monitor_id: StrictStr,
         _request_timeout: Union[
@@ -9177,7 +9179,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._force_new_record_creation_serialize(
+        _param = self._force_report_creation_from_watchlist_monitor_serialize(
             monitor_id=monitor_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -9186,7 +9188,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '201': "Applicant",
+            '201': None,
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -9195,7 +9197,7 @@ class DefaultApi:
         return response_data.response
 
 
-    def _force_new_record_creation_serialize(
+    def _force_report_creation_from_watchlist_monitor_serialize(
         self,
         monitor_id,
         _request_auth,
@@ -12173,7 +12175,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[WatchlistMonitorMatch]:
+    ) -> WatchlistMonitorMatchesList:
         """List matches (BETA)
 
         List match IDs on this monitor, as well as their enabled/disabled status 
@@ -12211,7 +12213,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistMonitorMatch]",
+            '200': "WatchlistMonitorMatchesList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -12240,7 +12242,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[WatchlistMonitorMatch]]:
+    ) -> ApiResponse[WatchlistMonitorMatchesList]:
         """List matches (BETA)
 
         List match IDs on this monitor, as well as their enabled/disabled status 
@@ -12278,7 +12280,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistMonitorMatch]",
+            '200': "WatchlistMonitorMatchesList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -12345,7 +12347,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistMonitorMatch]",
+            '200': "WatchlistMonitorMatchesList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -12432,7 +12434,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[WatchlistMonitor]:
+    ) -> WatchlistMonitorsList:
         """List monitors
 
         List all available monitors for an applicant 
@@ -12473,7 +12475,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistMonitor]",
+            '200': "WatchlistMonitorsList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -12503,7 +12505,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[WatchlistMonitor]]:
+    ) -> ApiResponse[WatchlistMonitorsList]:
         """List monitors
 
         List all available monitors for an applicant 
@@ -12544,7 +12546,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistMonitor]",
+            '200': "WatchlistMonitorsList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -12615,7 +12617,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistMonitor]",
+            '200': "WatchlistMonitorsList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -15131,10 +15133,10 @@ class DefaultApi:
 
 
     @validate_call
-    def update_monitor_match(
+    def update_watchlist_monitor_match(
         self,
         monitor_id: StrictStr,
-        update_monitor_match_request: UpdateMonitorMatchRequest,
+        watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15147,15 +15149,15 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
+    ) -> WatchlistMonitorMatchesList:
         """Set match status (BETA)
 
         Update the status of the given matches 
 
         :param monitor_id: (required)
         :type monitor_id: str
-        :param update_monitor_match_request: (required)
-        :type update_monitor_match_request: UpdateMonitorMatchRequest
+        :param watchlist_monitor_matches_updater: (required)
+        :type watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15178,9 +15180,9 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_monitor_match_serialize(
+        _param = self._update_watchlist_monitor_match_serialize(
             monitor_id=monitor_id,
-            update_monitor_match_request=update_monitor_match_request,
+            watchlist_monitor_matches_updater=watchlist_monitor_matches_updater,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15188,7 +15190,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "WatchlistMonitorMatchesList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -15202,10 +15204,10 @@ class DefaultApi:
 
 
     @validate_call
-    def update_monitor_match_with_http_info(
+    def update_watchlist_monitor_match_with_http_info(
         self,
         monitor_id: StrictStr,
-        update_monitor_match_request: UpdateMonitorMatchRequest,
+        watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15218,15 +15220,15 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
+    ) -> ApiResponse[WatchlistMonitorMatchesList]:
         """Set match status (BETA)
 
         Update the status of the given matches 
 
         :param monitor_id: (required)
         :type monitor_id: str
-        :param update_monitor_match_request: (required)
-        :type update_monitor_match_request: UpdateMonitorMatchRequest
+        :param watchlist_monitor_matches_updater: (required)
+        :type watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15249,9 +15251,9 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_monitor_match_serialize(
+        _param = self._update_watchlist_monitor_match_serialize(
             monitor_id=monitor_id,
-            update_monitor_match_request=update_monitor_match_request,
+            watchlist_monitor_matches_updater=watchlist_monitor_matches_updater,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15259,7 +15261,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "WatchlistMonitorMatchesList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -15273,10 +15275,10 @@ class DefaultApi:
 
 
     @validate_call
-    def update_monitor_match_without_preload_content(
+    def update_watchlist_monitor_match_without_preload_content(
         self,
         monitor_id: StrictStr,
-        update_monitor_match_request: UpdateMonitorMatchRequest,
+        watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15296,8 +15298,8 @@ class DefaultApi:
 
         :param monitor_id: (required)
         :type monitor_id: str
-        :param update_monitor_match_request: (required)
-        :type update_monitor_match_request: UpdateMonitorMatchRequest
+        :param watchlist_monitor_matches_updater: (required)
+        :type watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -15320,9 +15322,9 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._update_monitor_match_serialize(
+        _param = self._update_watchlist_monitor_match_serialize(
             monitor_id=monitor_id,
-            update_monitor_match_request=update_monitor_match_request,
+            watchlist_monitor_matches_updater=watchlist_monitor_matches_updater,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -15330,7 +15332,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '204': None,
+            '200': "WatchlistMonitorMatchesList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -15339,10 +15341,10 @@ class DefaultApi:
         return response_data.response
 
 
-    def _update_monitor_match_serialize(
+    def _update_watchlist_monitor_match_serialize(
         self,
         monitor_id,
-        update_monitor_match_request,
+        watchlist_monitor_matches_updater,
         _request_auth,
         _content_type,
         _headers,
@@ -15368,8 +15370,8 @@ class DefaultApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if update_monitor_match_request is not None:
-            _body_params = update_monitor_match_request
+        if watchlist_monitor_matches_updater is not None:
+            _body_params = watchlist_monitor_matches_updater
 
 
         # set the HTTP header `Accept`

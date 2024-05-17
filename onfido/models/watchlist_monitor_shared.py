@@ -17,18 +17,27 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class CompleteTaskRequest(BaseModel):
+class WatchlistMonitorShared(BaseModel):
     """
-    CompleteTaskRequest
+    WatchlistMonitorShared
     """ # noqa: E501
-    data: Optional[Dict[str, Any]] = Field(default=None, description="The Task completion payload.")
+    applicant_id: StrictStr = Field(description="The ID for the applicant associated with the monitor.")
+    report_name: StrictStr = Field(description="The name of the report type the monitor creates.")
+    tags: Optional[List[StrictStr]] = Field(default=None, description="A list of tags associated with this monitor. These tags will be applied to each check this monitor creates.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["data"]
+    __properties: ClassVar[List[str]] = ["applicant_id", "report_name", "tags"]
+
+    @field_validator('report_name')
+    def report_name_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(['watchlist_standard', 'watchlist_aml']):
+            raise ValueError("must be one of enum values ('watchlist_standard', 'watchlist_aml')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +57,7 @@ class CompleteTaskRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of CompleteTaskRequest from a JSON string"""
+        """Create an instance of WatchlistMonitorShared from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +89,7 @@ class CompleteTaskRequest(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of CompleteTaskRequest from a dict"""
+        """Create an instance of WatchlistMonitorShared from a dict"""
         if obj is None:
             return None
 
@@ -88,7 +97,9 @@ class CompleteTaskRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": obj.get("data")
+            "applicant_id": obj.get("applicant_id"),
+            "report_name": obj.get("report_name"),
+            "tags": obj.get("tags")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

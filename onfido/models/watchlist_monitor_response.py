@@ -18,31 +18,21 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WatchlistMonitor(BaseModel):
+class WatchlistMonitorResponse(BaseModel):
     """
-    WatchlistMonitor
+    WatchlistMonitorResponse
     """ # noqa: E501
-    applicant_id: StrictStr = Field(description="The ID for the applicant associated with the monitor.")
-    report_name: StrictStr = Field(description="The name of the report type the monitor creates.")
-    tags: Optional[List[StrictStr]] = Field(default=None, description="A list of tags associated with this monitor. These tags will be applied to each check this monitor creates.")
     id: StrictStr = Field(description="The unique identifier for the monitor.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the monitor was created.")
     deleted_at: Optional[datetime] = Field(default=None, description="The date and time at which the monitor was deleted. If the monitor is still active, this field will be null.")
     is_sandbox: Optional[StrictBool] = Field(default=False, description="Indicates whether the object was created in the sandbox or not.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["applicant_id", "report_name", "tags", "id", "created_at", "deleted_at", "is_sandbox"]
-
-    @field_validator('report_name')
-    def report_name_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(['watchlist_standard', 'watchlist_aml']):
-            raise ValueError("must be one of enum values ('watchlist_standard', 'watchlist_aml')")
-        return value
+    __properties: ClassVar[List[str]] = ["id", "created_at", "deleted_at", "is_sandbox"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -62,7 +52,7 @@ class WatchlistMonitor(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WatchlistMonitor from a JSON string"""
+        """Create an instance of WatchlistMonitorResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -94,7 +84,7 @@ class WatchlistMonitor(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WatchlistMonitor from a dict"""
+        """Create an instance of WatchlistMonitorResponse from a dict"""
         if obj is None:
             return None
 
@@ -102,9 +92,6 @@ class WatchlistMonitor(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "applicant_id": obj.get("applicant_id"),
-            "report_name": obj.get("report_name"),
-            "tags": obj.get("tags"),
             "id": obj.get("id"),
             "created_at": obj.get("created_at"),
             "deleted_at": obj.get("deleted_at"),
