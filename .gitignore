@@ -3,15 +3,3 @@
 dist/
 .DS_Store
 **/.DS_Store
-
-# VSCode
-bin/
-.vscode
-.settings
-.project
-.classpath
-.factorypath
-
-# IntelliJ
-.idea
-*.iml

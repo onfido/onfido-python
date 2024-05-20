@@ -63,6 +63,8 @@ def test_find_report(onfido_api, document_report_id, identity_report_id):
     assert get_identity_report.actual_instance.id == identity_report_id
     assert get_identity_report.actual_instance.name == ReportName.IDENTITY_ENHANCED
     assert get_identity_report.actual_instance.status == ReportStatus.COMPLETE
+    assert get_identity_report.actual_instance.breakdown.date_of_birth is None
+    assert get_identity_report.actual_instance.breakdown.address is None
 
 
 def test_resume_report(onfido_api, document_report_id):
