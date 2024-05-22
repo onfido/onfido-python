@@ -46,7 +46,7 @@ jobs:
           github.repository_owner == 'onfido' &&
           github.actor != 'dependabot[bot]' }}
         run: |
-          poetry run pytest
+          poetry run pytest --show-capture=no
         env:
           ONFIDO_API_TOKEN: ${{ secrets.ONFIDO_API_TOKEN }}
           ONFIDO_SAMPLE_APPLICANT_ID: ${{ secrets.ONFIDO_SAMPLE_APPLICANT_ID }}
