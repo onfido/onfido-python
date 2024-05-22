@@ -1,6 +1,6 @@
 import pytest
 
-from onfido import Task, CompleteTaskBuilder, CompleteTaskBuilderData
+from onfido import Task, TaskItem, CompleteTaskBuilder, CompleteTaskDataBuilder
 from tests.conftest import create_applicant, create_workflow_run
 
 
@@ -25,7 +25,7 @@ def test_list_tasks(onfido_api, workflow_run_id):
     tasks = onfido_api.list_tasks(workflow_run_id)
 
     assert tasks is not None
-    assert isinstance(tasks[0], Task)
+    assert isinstance(tasks[0], TaskItem)
     assert len(tasks) == 2
 
 
@@ -44,7 +44,7 @@ def test_complete_task(onfido_api, workflow_run_id):
     profile_data_task_id = list(filter(lambda task: "profile" in task.id, tasks))[0].id
 
     complete_task_builder = CompleteTaskBuilder(
-        data=CompleteTaskBuilderData({"first_name": "Jane", "last_name": "Doe"})
+        data=CompleteTaskDataBuilder({"first_name": "Jane", "last_name": "Doe"})
     )
 
     onfido_api.complete_task(
@@ -55,7 +55,7 @@ def test_complete_task(onfido_api, workflow_run_id):
 
     task_outputs = onfido_api.find_task(
         workflow_run_id, profile_data_task_id
-    ).additional_properties.get("output")
+    ).output
 
     assert task_outputs["first_name"] == "Jane"
     assert task_outputs["last_name"] == "Doe"
