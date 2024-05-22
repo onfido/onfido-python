@@ -51,7 +51,7 @@ from onfido.models.check_response import CheckResponse
 from onfido.models.check_shared import CheckShared
 from onfido.models.checks_list import ChecksList
 from onfido.models.complete_task_builder import CompleteTaskBuilder
-from onfido.models.complete_task_builder_data import CompleteTaskBuilderData
+from onfido.models.complete_task_data_builder import CompleteTaskDataBuilder
 from onfido.models.consent_item import ConsentItem
 from onfido.models.consents_builder import ConsentsBuilder
 from onfido.models.country_codes import CountryCodes
@@ -245,6 +245,7 @@ from onfido.models.sdk_token_builder import SdkTokenBuilder
 from onfido.models.sdk_token_request import SdkTokenRequest
 from onfido.models.sdk_token_response import SdkTokenResponse
 from onfido.models.task import Task
+from onfido.models.task_item import TaskItem
 from onfido.models.us_driving_licence_breakdown import UsDrivingLicenceBreakdown
 from onfido.models.us_driving_licence_breakdown_address import UsDrivingLicenceBreakdownAddress
 from onfido.models.us_driving_licence_breakdown_address_breakdown import UsDrivingLicenceBreakdownAddressBreakdown
