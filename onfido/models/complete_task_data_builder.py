@@ -21,16 +21,16 @@ from pydantic import StrictStr, Field
 from typing import Union, List, Set, Optional, Dict
 from typing_extensions import Literal, Self
 
-COMPLETETASKBUILDERDATA_ONE_OF_SCHEMAS = ["List[object]", "object"]
+COMPLETETASKDATABUILDER_ONE_OF_SCHEMAS = ["List[object]", "object"]
 
-class CompleteTaskBuilderData(BaseModel):
+class CompleteTaskDataBuilder(BaseModel):
     """
     The Task completion payload.
     """
-    # data type: object
-    oneof_schema_1_validator: Optional[Dict[str, Any]] = None
     # data type: List[object]
-    oneof_schema_2_validator: Optional[List[Dict[str, Any]]] = None
+    oneof_schema_1_validator: Optional[List[Dict[str, Any]]] = None
+    # data type: object
+    oneof_schema_2_validator: Optional[Dict[str, Any]] = None
     actual_instance: Optional[Union[List[object], object]] = None
     one_of_schemas: Set[str] = { "List[object]", "object" }
 
@@ -52,16 +52,16 @@ class CompleteTaskBuilderData(BaseModel):
 
     @field_validator('actual_instance')
     def actual_instance_must_validate_oneof(cls, v):
-        instance = CompleteTaskBuilderData.model_construct()
+        instance = CompleteTaskDataBuilder.model_construct()
         error_messages = []
         match = 0
-        # validate data type: object
+        # validate data type: List[object]
         try:
             instance.oneof_schema_1_validator = v
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # validate data type: List[object]
+        # validate data type: object
         try:
             instance.oneof_schema_2_validator = v
             match += 1
@@ -69,10 +69,10 @@ class CompleteTaskBuilderData(BaseModel):
             error_messages.append(str(e))
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when setting `actual_instance` in CompleteTaskBuilderData with oneOf schemas: List[object], object. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when setting `actual_instance` in CompleteTaskDataBuilder with oneOf schemas: List[object], object. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when setting `actual_instance` in CompleteTaskBuilderData with oneOf schemas: List[object], object. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting `actual_instance` in CompleteTaskDataBuilder with oneOf schemas: List[object], object. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -87,7 +87,7 @@ class CompleteTaskBuilderData(BaseModel):
         error_messages = []
         match = 0
 
-        # deserialize data into object
+        # deserialize data into List[object]
         try:
             # validation
             instance.oneof_schema_1_validator = json.loads(json_str)
@@ -96,7 +96,7 @@ class CompleteTaskBuilderData(BaseModel):
             match += 1
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into List[object]
+        # deserialize data into object
         try:
             # validation
             instance.oneof_schema_2_validator = json.loads(json_str)
@@ -108,10 +108,10 @@ class CompleteTaskBuilderData(BaseModel):
 
         if match > 1:
             # more than 1 match
-            raise ValueError("Multiple matches found when deserializing the JSON string into CompleteTaskBuilderData with oneOf schemas: List[object], object. Details: " + ", ".join(error_messages))
+            raise ValueError("Multiple matches found when deserializing the JSON string into CompleteTaskDataBuilder with oneOf schemas: List[object], object. Details: " + ", ".join(error_messages))
         elif match == 0:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into CompleteTaskBuilderData with oneOf schemas: List[object], object. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into CompleteTaskDataBuilder with oneOf schemas: List[object], object. Details: " + ", ".join(error_messages))
         else:
             return instance
 

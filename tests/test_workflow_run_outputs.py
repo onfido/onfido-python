@@ -3,7 +3,7 @@ import pytest
 from onfido import (
     ApplicantBuilder,
     CompleteTaskBuilder,
-    CompleteTaskBuilderData,
+    CompleteTaskDataBuilder,
     CountryCodes,
     LocationBuilder,
     WorkflowRunBuilder,
@@ -74,7 +74,7 @@ def test_profile_data_as_output(onfido_api, applicant_id, profile_data):
     profile_data_task_id = list(filter(lambda task: "profile" in task.id, tasks))[0].id
 
     complete_task_builder = CompleteTaskBuilder(
-        data=CompleteTaskBuilderData(profile_data)
+        data=CompleteTaskDataBuilder(profile_data)
     )
 
     onfido_api.complete_task(
@@ -104,7 +104,7 @@ def test_document_and_facial_similarity_report_as_output(
     profile_data_task_id = list(filter(lambda task: "profile" in task.id, tasks))[0].id
 
     complete_task_builder = CompleteTaskBuilder(
-        data=CompleteTaskBuilderData({"first_name": "Jane", "last_name": "Doe"})
+        data=CompleteTaskDataBuilder({"first_name": "Jane", "last_name": "Doe"})
     )
     onfido_api.complete_task(
         workflow_run_id=workflow_run_id,
@@ -118,7 +118,7 @@ def test_document_and_facial_similarity_report_as_output(
     )[0].id
 
     complete_document_capture_task_builder = CompleteTaskBuilder(
-        data=CompleteTaskBuilderData([{"id": document_id}])
+        data=CompleteTaskDataBuilder([{"id": document_id}])
     )
     onfido_api.complete_task(
         workflow_run_id=workflow_run_id,
@@ -131,7 +131,7 @@ def test_document_and_facial_similarity_report_as_output(
         filter(lambda task: "face_photo" in task.id, tasks)
     )[0].id
     complete_live_photo_capture_task_request = CompleteTaskBuilder(
-        data=CompleteTaskBuilderData([{"id": live_photo_id}])
+        data=CompleteTaskDataBuilder([{"id": live_photo_id}])
     )
     onfido_api.complete_task(
         workflow_run_id=workflow_run_id,

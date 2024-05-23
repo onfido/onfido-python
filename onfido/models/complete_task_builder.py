@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from onfido.models.complete_task_builder_data import CompleteTaskBuilderData
+from onfido.models.complete_task_data_builder import CompleteTaskDataBuilder
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class CompleteTaskBuilder(BaseModel):
     """
     CompleteTaskBuilder
     """ # noqa: E501
-    data: CompleteTaskBuilderData
+    data: CompleteTaskDataBuilder
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["data"]
 
@@ -92,7 +92,7 @@ class CompleteTaskBuilder(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "data": CompleteTaskBuilderData.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "data": CompleteTaskDataBuilder.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

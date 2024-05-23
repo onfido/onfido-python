@@ -49,6 +49,7 @@ from onfido.models.results_feedback import ResultsFeedback
 from onfido.models.sdk_token import SdkToken
 from onfido.models.sdk_token_builder import SdkTokenBuilder
 from onfido.models.task import Task
+from onfido.models.task_item import TaskItem
 from onfido.models.watchlist_monitor import WatchlistMonitor
 from onfido.models.watchlist_monitor_builder import WatchlistMonitorBuilder
 from onfido.models.watchlist_monitor_matches_list import WatchlistMonitorMatchesList
@@ -11917,7 +11918,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[Task]:
+    ) -> List[TaskItem]:
         """List Tasks
 
         The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
@@ -11955,7 +11956,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[Task]",
+            '200': "List[TaskItem]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -11984,7 +11985,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[Task]]:
+    ) -> ApiResponse[List[TaskItem]]:
         """List Tasks
 
         The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
@@ -12022,7 +12023,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[Task]",
+            '200': "List[TaskItem]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -12089,7 +12090,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[Task]",
+            '200': "List[TaskItem]",
         }
         response_data = self.api_client.call_api(
             *_param,
