@@ -1,7 +1,12 @@
 import pytest
 
-from onfido import WorkflowRun, WorkflowRunBuilder
-from tests.conftest import create_applicant, create_workflow_run
+from onfido import TimelineFileReference, WorkflowRun, WorkflowRunBuilder
+from tests.conftest import (
+    create_applicant,
+    create_workflow_run,
+    repeat_request_until_http_code_changes,
+    repeat_request_until_status_changes,
+)
 
 
 @pytest.fixture(scope="function")
@@ -34,9 +39,11 @@ def test_create_workflow_run_with_custom_inputs(onfido_api, applicant_id):
     workflow_run_builder = WorkflowRunBuilder(
         applicant_id=applicant_id,
         workflow_id=workflow_id,
-        custom_data={"age": 18, "is_employed": False}
+        custom_data={"age": 18, "is_employed": False},
     )
-    workflow_run = create_workflow_run(onfido_api, workflow_run_builder=workflow_run_builder)
+    workflow_run = create_workflow_run(
+        onfido_api, workflow_run_builder=workflow_run_builder
+    )
     assert isinstance(workflow_run, WorkflowRun)
     assert workflow_run.workflow_id == workflow_id
     assert workflow_run.status == "approved"
@@ -61,3 +68,38 @@ def test_download_evidence_file(onfido_api, workflow_run):
 
     assert len(file) > 0
     assert file[:4] == b"%PDF"
+
+
+def test_generate_timeline_file(onfido_api, applicant_id):
+    workflow_id = "221f9d24-cf72-4762-ac4a-01bf3ccc09dd"
+    workflow_run_id = create_workflow_run(
+        onfido_api, applicant_id=applicant_id, workflow_id=workflow_id
+    ).id
+    repeat_request_until_status_changes(
+        onfido_api.find_workflow_run, [workflow_run_id], "approved"
+    )
+
+    workflow_timeline_file_data = onfido_api.create_timeline_file(workflow_run_id)
+
+    assert isinstance(workflow_timeline_file_data, TimelineFileReference)
+    assert workflow_timeline_file_data.workflow_timeline_file_id is not None
+    assert workflow_timeline_file_data.href is not None
+
+
+def test_find_timeline_file(onfido_api, applicant_id):
+    workflow_id = "221f9d24-cf72-4762-ac4a-01bf3ccc09dd"
+    workflow_run_id = create_workflow_run(
+        onfido_api, applicant_id=applicant_id, workflow_id=workflow_id
+    ).id
+    repeat_request_until_status_changes(
+        onfido_api.find_workflow_run, [workflow_run_id], "approved"
+    )
+
+    timeline_file_id = onfido_api.create_timeline_file(
+        workflow_run_id
+    ).workflow_timeline_file_id
+    file = repeat_request_until_http_code_changes(
+        onfido_api.find_timeline_file, [workflow_run_id, timeline_file_id]
+    )
+
+    assert len(file) > 0

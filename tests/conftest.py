@@ -96,8 +96,8 @@ def create_workflow_run(
     return onfido_api.create_workflow_run(workflow_run_builder)
 
 
-def wait_until_status(function, instance_id, status, max_retries=10, sleep_time=1):
-    instance = function(instance_id)
+def repeat_request_until_status_changes(function, params, status, max_retries=10, sleep_time=1):
+    instance = function(*params)
 
     is_instance_of_report = isinstance(instance, onfido.Report)
     if is_instance_of_report:
@@ -111,8 +111,21 @@ def wait_until_status(function, instance_id, status, max_retries=10, sleep_time=
         iteration += 1
         sleep(sleep_time)
         if is_instance_of_report:
-            instance = function(instance_id).actual_instance
+            instance = function(*params).actual_instance
         else:
-            instance = function(instance_id)
+            instance = function(*params)
 
+    return instance
+
+
+def repeat_request_until_http_code_changes(function, params, max_retries=10, sleep_time=1):
+    iteration = 0
+    while iteration <= max_retries:
+        try:
+            instance = function(*params)
+            break
+        except onfido.ApiException:
+            sleep(sleep_time)
+            iteration += 1
+            print(iteration)
     return instance
