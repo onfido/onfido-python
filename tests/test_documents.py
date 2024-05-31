@@ -47,4 +47,4 @@ def test_download_inexistent_document(onfido_api):
     inexistent_document_id = "00000000-0000-0000-0000-000000000000"
 
     with pytest.raises(ApiException):
-        onfido_api.download_live_photo(inexistent_document_id)
+        onfido_api.download_document(inexistent_document_id)

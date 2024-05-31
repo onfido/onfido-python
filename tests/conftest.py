@@ -32,6 +32,17 @@ def data_clean_up(onfido_api):
                 pass
 
 
+@pytest.fixture(scope="session", autouse=True)
+def webhook_clean_up(onfido_api):
+    webhooks = onfido_api.list_webhooks().webhooks
+    for webhook in webhooks:
+        try:
+            onfido_api.delete_webhook(webhook.id)
+        except onfido.ApiException:
+            # Just ignore any failure during cleanup
+            pass
+
+
 def create_applicant(onfido_api, applicant_builder=None):
     if applicant_builder is None:
         return onfido_api.create_applicant(
