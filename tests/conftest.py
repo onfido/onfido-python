@@ -76,11 +76,11 @@ def upload_id_photo(onfido_api, applicant_id):
 
 
 def create_check(
-        onfido_api,
-        check_builder=None,
-        applicant_id=None,
-        document_ids=None,
-        report_names=None,
+    onfido_api,
+    check_builder=None,
+    applicant_id=None,
+    document_ids=None,
+    report_names=None,
 ):
     if check_builder is None:
         return onfido_api.create_check(
@@ -95,7 +95,7 @@ def create_check(
 
 
 def create_workflow_run(
-        onfido_api, workflow_run_builder=None, applicant_id=None, workflow_id=None
+    onfido_api, workflow_run_builder=None, applicant_id=None, workflow_id=None
 ):
     if workflow_run_builder is None:
         return onfido_api.create_workflow_run(
@@ -107,7 +107,9 @@ def create_workflow_run(
     return onfido_api.create_workflow_run(workflow_run_builder)
 
 
-def repeat_request_until_status_changes(function, params, status, max_retries=10, sleep_time=1):
+def repeat_request_until_status_changes(
+    function, params, status, max_retries=10, sleep_time=1
+):
     instance = function(*params)
 
     is_instance_of_report = isinstance(instance, onfido.Report)
@@ -129,7 +131,9 @@ def repeat_request_until_status_changes(function, params, status, max_retries=10
     return instance
 
 
-def repeat_request_until_http_code_changes(function, params, max_retries=10, sleep_time=1):
+def repeat_request_until_http_code_changes(
+    function, params, max_retries=10, sleep_time=1
+):
     iteration = 0
     while iteration <= max_retries:
         try:
@@ -138,5 +142,4 @@ def repeat_request_until_http_code_changes(function, params, max_retries=10, sle
         except onfido.ApiException:
             sleep(sleep_time)
             iteration += 1
-            print(iteration)
     return instance

@@ -16,7 +16,7 @@ def document(onfido_api, applicant_id):
 
 def test_create_document(applicant_id, document):
     assert document is not None
-    assert (document.applicant_id == applicant_id)
+    assert document.applicant_id == applicant_id
     assert document.type == "passport"
     assert document.side == "front"
     assert isinstance(document, Document)
