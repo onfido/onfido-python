@@ -98,7 +98,7 @@ Webhook events payload needs to be verified before it can be accessed. Library a
 
 ```python
   try:
-    verifier = onfido.WebhookEventVerifier("_ABC123abc...3ABC123_")
+    verifier = onfido.WebhookEventVerifier(os.environ["ONFIDO_WEBHOOK_SECRET_TOKEN"])
 
     signature = "a0...760e"
 

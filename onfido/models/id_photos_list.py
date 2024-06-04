@@ -23,9 +23,9 @@ from onfido.models.id_photo import IdPhoto
 from typing import Optional, Set
 from typing_extensions import Self
 
-class IDPhotosList(BaseModel):
+class IdPhotosList(BaseModel):
     """
-    IDPhotosList
+    IdPhotosList
     """ # noqa: E501
     id_photos: List[IdPhoto]
     additional_properties: Dict[str, Any] = {}
@@ -49,7 +49,7 @@ class IDPhotosList(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of IDPhotosList from a JSON string"""
+        """Create an instance of IdPhotosList from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -88,7 +88,7 @@ class IDPhotosList(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of IDPhotosList from a dict"""
+        """Create an instance of IdPhotosList from a dict"""
         if obj is None:
             return None
 

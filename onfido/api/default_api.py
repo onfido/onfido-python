@@ -33,8 +33,8 @@ from onfido.models.document import Document
 from onfido.models.documents_list import DocumentsList
 from onfido.models.extract_request import ExtractRequest
 from onfido.models.extraction import Extraction
-from onfido.models.id_photos_list import IDPhotosList
 from onfido.models.id_photo import IdPhoto
+from onfido.models.id_photos_list import IdPhotosList
 from onfido.models.live_photo import LivePhoto
 from onfido.models.live_photos_list import LivePhotosList
 from onfido.models.live_video import LiveVideo
@@ -50,6 +50,7 @@ from onfido.models.sdk_token import SdkToken
 from onfido.models.sdk_token_builder import SdkTokenBuilder
 from onfido.models.task import Task
 from onfido.models.task_item import TaskItem
+from onfido.models.timeline_file_reference import TimelineFileReference
 from onfido.models.watchlist_monitor import WatchlistMonitor
 from onfido.models.watchlist_monitor_builder import WatchlistMonitorBuilder
 from onfido.models.watchlist_monitor_matches_list import WatchlistMonitorMatchesList
@@ -1167,6 +1168,264 @@ class DefaultApi:
         return self.api_client.param_serialize(
             method='POST',
             resource_path='/checks',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
+    def create_timeline_file(
+        self,
+        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> TimelineFileReference:
+        """Create Timeline File for Workflow Run
+
+        Triggers the generation of the Timeline File for the designated Workflow Run. 
+
+        :param workflow_run_id: The unique identifier of the Workflow Run. (required)
+        :type workflow_run_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_timeline_file_serialize(
+            workflow_run_id=workflow_run_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "TimelineFileReference",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def create_timeline_file_with_http_info(
+        self,
+        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[TimelineFileReference]:
+        """Create Timeline File for Workflow Run
+
+        Triggers the generation of the Timeline File for the designated Workflow Run. 
+
+        :param workflow_run_id: The unique identifier of the Workflow Run. (required)
+        :type workflow_run_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_timeline_file_serialize(
+            workflow_run_id=workflow_run_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "TimelineFileReference",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def create_timeline_file_without_preload_content(
+        self,
+        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Create Timeline File for Workflow Run
+
+        Triggers the generation of the Timeline File for the designated Workflow Run. 
+
+        :param workflow_run_id: The unique identifier of the Workflow Run. (required)
+        :type workflow_run_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._create_timeline_file_serialize(
+            workflow_run_id=workflow_run_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '202': "TimelineFileReference",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _create_timeline_file_serialize(
+        self,
+        workflow_run_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow_run_id is not None:
+            _path_params['workflow_run_id'] = workflow_run_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/json'
+            ]
+        )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='POST',
+            resource_path='/workflow_runs/{workflow_run_id}/timeline_file',
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -5154,6 +5413,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
             '200': "bytearray",
         }
         response_data = self.api_client.call_api(
@@ -5221,6 +5481,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
             '200': "bytearray",
         }
         response_data = self.api_client.call_api(
@@ -5288,6 +5549,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
             '200': "bytearray",
         }
         response_data = self.api_client.call_api(
@@ -5330,7 +5592,7 @@ class DefaultApi:
         # set the HTTP header `Accept`
         _header_params['Accept'] = self.api_client.select_header_accept(
             [
-                'binary/octet-stream', 
+                'application/pdf', 
                 'application/json'
             ]
         )
@@ -8228,6 +8490,283 @@ class DefaultApi:
 
 
     @validate_call
+    def find_timeline_file(
+        self,
+        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        timeline_file_id: Annotated[StrictStr, Field(description="The unique identifier for the Timefile File.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> bytearray:
+        """Retrieve Timeline File for Workflow Run
+
+        Retrieves the Timeline File for the designated Workflow Run. 
+
+        :param workflow_run_id: The unique identifier of the Workflow Run. (required)
+        :type workflow_run_id: str
+        :param timeline_file_id: The unique identifier for the Timefile File. (required)
+        :type timeline_file_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._find_timeline_file_serialize(
+            workflow_run_id=workflow_run_id,
+            timeline_file_id=timeline_file_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+
+    @validate_call
+    def find_timeline_file_with_http_info(
+        self,
+        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        timeline_file_id: Annotated[StrictStr, Field(description="The unique identifier for the Timefile File.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[bytearray]:
+        """Retrieve Timeline File for Workflow Run
+
+        Retrieves the Timeline File for the designated Workflow Run. 
+
+        :param workflow_run_id: The unique identifier of the Workflow Run. (required)
+        :type workflow_run_id: str
+        :param timeline_file_id: The unique identifier for the Timefile File. (required)
+        :type timeline_file_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._find_timeline_file_serialize(
+            workflow_run_id=workflow_run_id,
+            timeline_file_id=timeline_file_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+
+    @validate_call
+    def find_timeline_file_without_preload_content(
+        self,
+        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        timeline_file_id: Annotated[StrictStr, Field(description="The unique identifier for the Timefile File.")],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)],
+                Annotated[StrictFloat, Field(gt=0)]
+            ]
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Retrieve Timeline File for Workflow Run
+
+        Retrieves the Timeline File for the designated Workflow Run. 
+
+        :param workflow_run_id: The unique identifier of the Workflow Run. (required)
+        :type workflow_run_id: str
+        :param timeline_file_id: The unique identifier for the Timefile File. (required)
+        :type timeline_file_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """ # noqa: E501
+
+        _param = self._find_timeline_file_serialize(
+            workflow_run_id=workflow_run_id,
+            timeline_file_id=timeline_file_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            '302': None,
+            '200': "bytearray",
+        }
+        response_data = self.api_client.call_api(
+            *_param,
+            _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+
+    def _find_timeline_file_serialize(
+        self,
+        workflow_run_id,
+        timeline_file_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {
+        }
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[str, Union[str, bytes]] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if workflow_run_id is not None:
+            _path_params['workflow_run_id'] = workflow_run_id
+        if timeline_file_id is not None:
+            _path_params['timeline_file_id'] = timeline_file_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+
+        # set the HTTP header `Accept`
+        _header_params['Accept'] = self.api_client.select_header_accept(
+            [
+                'application/pdf', 
+                'application/json'
+            ]
+        )
+
+
+        # authentication setting
+        _auth_settings: List[str] = [
+            'Token'
+        ]
+
+        return self.api_client.param_serialize(
+            method='GET',
+            resource_path='/workflow_runs/{workflow_run_id}/timeline_file/{timeline_file_id}',
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth
+        )
+
+
+
+
+    @validate_call
     def find_watchlist_monitor(
         self,
         monitor_id: Annotated[StrictStr, Field(description="The watchlist monitor's unique identifier.")],
@@ -10360,7 +10899,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> IDPhotosList:
+    ) -> IdPhotosList:
         """List ID photos
 
         Lists the ID photos that belong to an applicant. 
@@ -10398,7 +10937,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "IDPhotosList",
+            '200': "IdPhotosList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -10427,7 +10966,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[IDPhotosList]:
+    ) -> ApiResponse[IdPhotosList]:
         """List ID photos
 
         Lists the ID photos that belong to an applicant. 
@@ -10465,7 +11004,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "IDPhotosList",
+            '200': "IdPhotosList",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -10532,7 +11071,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "IDPhotosList",
+            '200': "IdPhotosList",
         }
         response_data = self.api_client.call_api(
             *_param,
