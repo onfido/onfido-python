@@ -17,43 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
-from typing_extensions import Annotated
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from typing import Any, ClassVar, Dict, List
 from typing import Optional, Set
 from typing_extensions import Self
 
-class TaskItem(BaseModel):
+class TimelineFileReference(BaseModel):
     """
-    TaskItem
+    TimelineFileReference
     """ # noqa: E501
-    id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task.")
-    task_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task Definition.")
-    created_at: Optional[datetime] = Field(default=None, description="The date and time when the Task was created.")
-    updated_at: Optional[datetime] = Field(default=None, description="The date and time when the Task was last updated.")
+    workflow_timeline_file_id: StrictStr = Field(description="The unique identifier for the Timefile File that will be created.")
+    href: StrictStr = Field(description="Link to access the Timefile File that will be created.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "task_def_id", "created_at", "updated_at"]
-
-    @field_validator('id')
-    def id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[0-9a-z_-]+$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9a-z_-]+$/")
-        return value
-
-    @field_validator('task_def_id')
-    def task_def_id_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if value is None:
-            return value
-
-        if not re.match(r"^[0-9a-z_-]+$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9a-z_-]+$/")
-        return value
+    __properties: ClassVar[List[str]] = ["workflow_timeline_file_id", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -73,7 +49,7 @@ class TaskItem(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of TaskItem from a JSON string"""
+        """Create an instance of TimelineFileReference from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -105,7 +81,7 @@ class TaskItem(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of TaskItem from a dict"""
+        """Create an instance of TimelineFileReference from a dict"""
         if obj is None:
             return None
 
@@ -113,10 +89,8 @@ class TaskItem(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "task_def_id": obj.get("task_def_id"),
-            "created_at": obj.get("created_at"),
-            "updated_at": obj.get("updated_at")
+            "workflow_timeline_file_id": obj.get("workflow_timeline_file_id"),
+            "href": obj.get("href")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

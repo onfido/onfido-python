@@ -45,8 +45,8 @@ class Task(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[0-9a-z-_]+$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9a-z-_]+$/")
+        if not re.match(r"^[0-9a-z_-]+$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-z_-]+$/")
         return value
 
     @field_validator('task_def_id')
@@ -55,8 +55,8 @@ class Task(BaseModel):
         if value is None:
             return value
 
-        if not re.match(r"^[0-9a-z-_]+$", value):
-            raise ValueError(r"must validate the regular expression /^[0-9a-z-_]+$/")
+        if not re.match(r"^[0-9a-z_-]+$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-z_-]+$/")
         return value
 
     model_config = ConfigDict(
