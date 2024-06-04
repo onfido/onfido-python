@@ -57,12 +57,19 @@ def upload_live_photo(onfido_api, applicant_id):
     )
 
 
+def upload_id_photo(onfido_api, applicant_id):
+    return onfido_api.upload_id_photo(
+        applicant_id=applicant_id,
+        file="tests/media/sample_photo.png",
+    )
+
+
 def create_check(
-    onfido_api,
-    check_builder=None,
-    applicant_id=None,
-    document_ids=None,
-    report_names=None,
+        onfido_api,
+        check_builder=None,
+        applicant_id=None,
+        document_ids=None,
+        report_names=None,
 ):
     if check_builder is None:
         return onfido_api.create_check(
@@ -77,7 +84,7 @@ def create_check(
 
 
 def create_workflow_run(
-    onfido_api, workflow_run_builder=None, applicant_id=None, workflow_id=None
+        onfido_api, workflow_run_builder=None, applicant_id=None, workflow_id=None
 ):
     if workflow_run_builder is None:
         return onfido_api.create_workflow_run(
