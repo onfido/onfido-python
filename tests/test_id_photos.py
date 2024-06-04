@@ -1,6 +1,6 @@
 import pytest
 
-from onfido import ApiException, IdPhoto, IDPhotosList
+from onfido import ApiException, IdPhoto, IdPhotosList
 from tests.conftest import create_applicant, upload_id_photo
 
 
@@ -24,7 +24,7 @@ def test_list_id_photos(onfido_api, applicant_id):
     id_photos = onfido_api.list_id_photos(applicant_id)
 
     assert len(id_photos.id_photos) > 0
-    assert isinstance(id_photos, IDPhotosList)
+    assert isinstance(id_photos, IdPhotosList)
 
 
 def test_retrieve_id_photo(onfido_api, id_photo):
