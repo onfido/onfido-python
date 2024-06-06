@@ -53,9 +53,7 @@ def test_complete_task(onfido_api, workflow_run_id):
         complete_task_builder=complete_task_builder,
     )
 
-    task_outputs = onfido_api.find_task(
-        workflow_run_id, profile_data_task_id
-    ).output
+    task_outputs = onfido_api.find_task(workflow_run_id, profile_data_task_id).output
 
     assert task_outputs["first_name"] == "Jane"
     assert task_outputs["last_name"] == "Doe"

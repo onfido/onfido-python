@@ -14,7 +14,7 @@ from tests.conftest import (
     create_check,
     upload_document,
     upload_live_photo,
-    wait_until_status,
+    repeat_request_until_status_changes,
 )
 
 
@@ -48,8 +48,8 @@ def test_schema_of_document_report_is_valid(onfido_api, applicant_id, document_i
         report_names=[ReportName.DOCUMENT],
     ).report_ids[0]
 
-    document_report = wait_until_status(
-        onfido_api.find_report, document_report_id, ReportStatus.COMPLETE
+    document_report = repeat_request_until_status_changes(
+        onfido_api.find_report, [document_report_id], ReportStatus.COMPLETE
     )
     assert isinstance(document_report, DocumentReport)
 
@@ -64,7 +64,7 @@ def test_schema_of_facial_similarity_report_id_valid(
         report_names=[ReportName.FACIAL_SIMILARITY_PHOTO],
     ).report_ids[0]
 
-    facial_similarity_report = wait_until_status(
-        onfido_api.find_report, facial_similarity_report_id, ReportStatus.COMPLETE
+    facial_similarity_report = repeat_request_until_status_changes(
+        onfido_api.find_report, [facial_similarity_report_id], ReportStatus.COMPLETE
     )
     assert isinstance(facial_similarity_report, FacialSimilarityPhotoReport)

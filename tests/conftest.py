@@ -32,6 +32,17 @@ def data_clean_up(onfido_api):
                 pass
 
 
+@pytest.fixture(scope="session", autouse=True)
+def webhook_clean_up(onfido_api):
+    webhooks = onfido_api.list_webhooks().webhooks
+    for webhook in webhooks:
+        try:
+            onfido_api.delete_webhook(webhook.id)
+        except onfido.ApiException:
+            # Just ignore any failure during cleanup
+            pass
+
+
 def create_applicant(onfido_api, applicant_builder=None):
     if applicant_builder is None:
         return onfido_api.create_applicant(
@@ -65,11 +76,11 @@ def upload_id_photo(onfido_api, applicant_id):
 
 
 def create_check(
-        onfido_api,
-        check_builder=None,
-        applicant_id=None,
-        document_ids=None,
-        report_names=None,
+    onfido_api,
+    check_builder=None,
+    applicant_id=None,
+    document_ids=None,
+    report_names=None,
 ):
     if check_builder is None:
         return onfido_api.create_check(
@@ -84,7 +95,7 @@ def create_check(
 
 
 def create_workflow_run(
-        onfido_api, workflow_run_builder=None, applicant_id=None, workflow_id=None
+    onfido_api, workflow_run_builder=None, applicant_id=None, workflow_id=None
 ):
     if workflow_run_builder is None:
         return onfido_api.create_workflow_run(
@@ -96,8 +107,10 @@ def create_workflow_run(
     return onfido_api.create_workflow_run(workflow_run_builder)
 
 
-def wait_until_status(function, instance_id, status, max_retries=10, sleep_time=1):
-    instance = function(instance_id)
+def repeat_request_until_status_changes(
+    function, params, status, max_retries=10, sleep_time=1
+):
+    instance = function(*params)
 
     is_instance_of_report = isinstance(instance, onfido.Report)
     if is_instance_of_report:
@@ -111,8 +124,22 @@ def wait_until_status(function, instance_id, status, max_retries=10, sleep_time=
         iteration += 1
         sleep(sleep_time)
         if is_instance_of_report:
-            instance = function(instance_id).actual_instance
+            instance = function(*params).actual_instance
         else:
-            instance = function(instance_id)
+            instance = function(*params)
 
+    return instance
+
+
+def repeat_request_until_http_code_changes(
+    function, params, max_retries=10, sleep_time=1
+):
+    iteration = 0
+    while iteration <= max_retries:
+        try:
+            instance = function(*params)
+            break
+        except onfido.ApiException:
+            sleep(sleep_time)
+            iteration += 1
     return instance

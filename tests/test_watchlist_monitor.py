@@ -2,11 +2,7 @@ from datetime import datetime
 
 import pytest
 
-from onfido import (
-    ApplicantBuilder,
-    ReportName,
-    WatchlistMonitorBuilder
-)
+from onfido import ApplicantBuilder, ReportName, WatchlistMonitorBuilder
 from tests.conftest import create_applicant
 
 

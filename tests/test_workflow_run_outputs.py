@@ -13,7 +13,7 @@ from tests.conftest import (
     create_workflow_run,
     upload_document,
     upload_live_photo,
-    wait_until_status,
+    repeat_request_until_status_changes,
 )
 
 
@@ -83,7 +83,9 @@ def test_profile_data_as_output(onfido_api, applicant_id, profile_data):
         complete_task_builder=complete_task_builder,
     )
 
-    wait_until_status(onfido_api.find_workflow_run, workflow_run_id, "approved")
+    repeat_request_until_status_changes(
+        onfido_api.find_workflow_run, [workflow_run_id], "approved"
+    )
     workflow_run_outputs = onfido_api.find_workflow_run(workflow_run_id).output
 
     assert workflow_run_outputs["profile_capture_data"] == profile_data
@@ -139,7 +141,9 @@ def test_document_and_facial_similarity_report_as_output(
         complete_task_builder=complete_live_photo_capture_task_request,
     )
 
-    wait_until_status(onfido_api.find_workflow_run, workflow_run_id, "approved")
+    repeat_request_until_status_changes(
+        onfido_api.find_workflow_run, [workflow_run_id], "approved"
+    )
     workflow_run_outputs = onfido_api.find_workflow_run(workflow_run_id).output
     document_report_output = workflow_run_outputs["doc"]
     facial_similarity_report_output = workflow_run_outputs["selfie"]
