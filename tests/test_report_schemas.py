@@ -68,3 +68,4 @@ def test_schema_of_facial_similarity_report_id_valid(
         onfido_api.find_report, [facial_similarity_report_id], ReportStatus.COMPLETE
     )
     assert isinstance(facial_similarity_report, FacialSimilarityPhotoReport)
+    assert facial_similarity_report.properties.score is None

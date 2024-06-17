@@ -108,9 +108,15 @@ Webhook events payload needs to be verified before it can be accessed. Library a
     pass
 ```
 
+### Recommendations
+
+#### Do not use additional properties
+
+Retain from using `additional_properties` dictionary to access not defined properties to avoid breaking changes when these fields will appear.
+
 ## Contributing
 
-This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) - version: 7.6.0; therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
+This library is automatically generated using [OpenAPI Generator](https://openapi-generator.tech) (version: 7.6.0); therefore all the contributions, except tests files, should target [Onfido OpenAPI specification repository](https://github.com/onfido/onfido-openapi-spec/tree/master) instead of this repository.
 
 For contributions to the tests instead, please follow the steps below:
 
@@ -121,11 +127,27 @@ For contributions to the tests instead, please follow the steps below:
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create a new Pull Request
 
+## Versioning policy
+
+[Semantic Versioning](https://semver.org) policy is used for library versioning, following guidelines and limitations below:
+
+- MAJOR versions (x.0.0) might:
+  - target a new API version
+  - include non-backward compatible change
+- MINOR versions (0.x.0) might:
+  - add a new functionality, non-mandatory parameter or property
+  - deprecate an old functionality
+  - include non-backward compatible change to a functionality which is:
+    - labelled as alpha or beta
+    - completely broken and not usable
+- PATCH version (0.0.x) might:
+  - fix a bug
+  - include backward compatible changes only
+
 ## More documentation
 
 More documentation and code examples can be found at <https://documentation.onfido.com>.
 
 ## Support
 
-Should you encounter any technical issues during integration, please contact Onfido's Customer Support team
-via the [Customer Experience Portal](https://public.support.onfido.com/) which also includes support documentation.
+Should you encounter any technical issues during integration, please contact Onfido's Customer Support team via the [Customer Experience Portal](https://public.support.onfido.com/) which also includes support documentation.

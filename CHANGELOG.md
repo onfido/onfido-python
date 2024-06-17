@@ -1,10 +1,5 @@
 # Changelog
 
-## v3.0.0 14th Jun 2024
-
-- Make library auto-generated and based on [Onfido OpenAPI spec](https://github.com/onfido/onfido-openapi-spec)
-- Refresh library up to commit: [62dc554](https://github.com/onfido/onfido-openapi-spec/commit/62dc5541a4a51e8de313fc99fb3dec496033a23e)
-
 ## v2.10.0 24th November 2023
 
 - Added core methods for [WorkflowRuns](https://documentation.onfido.com/#workflow-runs)

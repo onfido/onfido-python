@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.facial_similarity_video_breakdown import FacialSimilarityVideoBreakdown
+from onfido.models.facial_similarity_video_properties import FacialSimilarityVideoProperties
 from onfido.models.report_document import ReportDocument
 from onfido.models.report_name import ReportName
 from onfido.models.report_result import ReportResult
@@ -43,8 +44,9 @@ class FacialSimilarityVideoReport(BaseModel):
     documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]")
     name: ReportName
     breakdown: Optional[FacialSimilarityVideoBreakdown] = None
+    properties: Optional[FacialSimilarityVideoProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name", "breakdown"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name", "breakdown", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -97,6 +99,9 @@ class FacialSimilarityVideoReport(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of breakdown
         if self.breakdown:
             _dict['breakdown'] = self.breakdown.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of properties
+        if self.properties:
+            _dict['properties'] = self.properties.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -123,7 +128,8 @@ class FacialSimilarityVideoReport(BaseModel):
             "check_id": obj.get("check_id"),
             "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "name": obj.get("name"),
-            "breakdown": FacialSimilarityVideoBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None
+            "breakdown": FacialSimilarityVideoBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
+            "properties": FacialSimilarityVideoProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
