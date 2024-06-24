@@ -68,12 +68,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: integration-tests
-    environment: delivery
     if: github.event_name == 'release'
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GH_ACTION_ACCESS_TOKEN }}
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -89,31 +86,3 @@ jobs:
         with:
           user: __token__
           password: ${{ secrets.PYPI_API_TOKEN }}
-      - name: Update CHANGELOG.md
-        run: |
-          TMP_FILE=$(mktemp)
-
-          RELEASE_VERSION=$(jq -r '.release' .release.json)
-          RELEASE_DATE=`date +'%dth %B %Y' | sed -E 's/^0//;s/^([2,3]?)1th/\11st/;s/^([2]?)2th/\12nd/;s/^([2]?)3th/\13rd/'`
-
-          SPEC_COMMIT_SHA=$(jq -r '.source.short_sha' .release.json)
-          SPEC_COMMIT_URL=$(jq -r '.source.repo_url + "/commit/" + .source.long_sha' .release.json)
-          SPEC_RELEASE_VERSION=$(jq -r '.source.version' .release.json)
-          SPEC_RELEASE_URL=$(jq -r '.source.repo_url + "/releases/tag/" + .source.version' .release.json)
-
-          echo -e "# Changelog\n\n## $RELEASE_VERSION $RELEASE_DATE\n\n" >| $TMP_FILE
-          echo -en "${{ github.event.release.body }}\nBased on Onfido OpenAPI spec " >> $TMP_FILE
-
-          if [ -z $SPEC_RELEASE_VERSION ]; then
-            echo "up to commit [$SPEC_COMMIT_SHA](${SPEC_COMMIT_URL})." >> $TMP_FILE
-          else
-            echo "version [$SPEC_RELEASE_VERSION](${SPEC_RELEASE_URL})." >> $TMP_FILE
-          fi
-
-          grep -v "^# Changelog" CHANGELOG.md >> $TMP_FILE
-          mv $TMP_FILE CHANGELOG.md
-
-          git config user.name "GitHub Actions Bot"
-          git config user.email "<>"
-          git commit -m "Update CHANGELOG.md after library release" CHANGELOG.md
-          git push
