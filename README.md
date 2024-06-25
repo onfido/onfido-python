@@ -19,7 +19,7 @@ Python 3.7+
 If the python package is hosted on a repository, you can install directly using:
 
 ```sh
-pip install onfido
+pip install onfido-python
 ```
 
 Then import the package:
@@ -31,7 +31,7 @@ import onfido
 #### Poetry
 
 ```sh
-poetry add onfido
+poetry add onfido-python
 ```
 
 Then import the package:
