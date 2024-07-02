@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import date
-from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.document_properties_address_lines import DocumentPropertiesAddressLines
 from onfido.models.document_properties_barcode_inner import DocumentPropertiesBarcodeInner
@@ -36,6 +36,7 @@ class DocumentProperties(BaseModel):
     """ # noqa: E501
     date_of_birth: Optional[date] = None
     date_of_expiry: Optional[date] = None
+    personal_number: Optional[StrictStr] = None
     document_numbers: Optional[List[DocumentPropertiesDocumentNumbersInner]] = None
     document_type: Optional[StrictStr] = None
     first_name: Optional[StrictStr] = None
@@ -55,7 +56,22 @@ class DocumentProperties(BaseModel):
     widow_name: Optional[StrictStr] = None
     alias_name: Optional[StrictStr] = None
     issuing_authority: Optional[StrictStr] = None
+    remarks: Optional[StrictStr] = None
+    civil_state: Optional[StrictStr] = None
+    expatriation: Optional[StrictStr] = None
+    father_name: Optional[StrictStr] = None
+    mother_name: Optional[StrictStr] = None
+    religion: Optional[StrictStr] = None
+    type_of_permit: Optional[StrictStr] = None
+    version_number: Optional[StrictStr] = None
+    document_subtype: Optional[StrictStr] = None
+    profession: Optional[StrictStr] = None
+    security_document_number: Optional[StrictStr] = None
+    tax_number: Optional[StrictStr] = None
+    nist_identity_evidence_strength: Optional[StrictStr] = None
+    has_issuance_confirmation: Optional[StrictStr] = None
     real_id_compliance: Optional[StrictBool] = None
+    security_tier: Optional[StrictStr] = None
     address_lines: Optional[DocumentPropertiesAddressLines] = None
     barcode: Optional[List[DocumentPropertiesBarcodeInner]] = None
     nfc: Optional[DocumentPropertiesNfc] = None
@@ -63,7 +79,37 @@ class DocumentProperties(BaseModel):
     document_classification: Optional[DocumentPropertiesDocumentClassification] = None
     extracted_data: Optional[DocumentPropertiesExtractedData] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["date_of_birth", "date_of_expiry", "document_numbers", "document_type", "first_name", "gender", "issuing_country", "last_name", "nationality", "issuing_state", "issuing_date", "categorisation", "mrz_line1", "mrz_line2", "mrz_line3", "address", "place_of_birth", "spouse_name", "widow_name", "alias_name", "issuing_authority", "real_id_compliance", "address_lines", "barcode", "nfc", "driving_licence_information", "document_classification", "extracted_data"]
+    __properties: ClassVar[List[str]] = ["date_of_birth", "date_of_expiry", "personal_number", "document_numbers", "document_type", "first_name", "gender", "issuing_country", "last_name", "nationality", "issuing_state", "issuing_date", "categorisation", "mrz_line1", "mrz_line2", "mrz_line3", "address", "place_of_birth", "spouse_name", "widow_name", "alias_name", "issuing_authority", "remarks", "civil_state", "expatriation", "father_name", "mother_name", "religion", "type_of_permit", "version_number", "document_subtype", "profession", "security_document_number", "tax_number", "nist_identity_evidence_strength", "has_issuance_confirmation", "real_id_compliance", "security_tier", "address_lines", "barcode", "nfc", "driving_licence_information", "document_classification", "extracted_data"]
+
+    @field_validator('nist_identity_evidence_strength')
+    def nist_identity_evidence_strength_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['superior', 'strong', 'fair', 'weak', 'unacceptable', 'unspecified_identity_evidence_strength']):
+            raise ValueError("must be one of enum values ('superior', 'strong', 'fair', 'weak', 'unacceptable', 'unspecified_identity_evidence_strength')")
+        return value
+
+    @field_validator('has_issuance_confirmation')
+    def has_issuance_confirmation_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['true', 'false', 'unspecified']):
+            raise ValueError("must be one of enum values ('true', 'false', 'unspecified')")
+        return value
+
+    @field_validator('security_tier')
+    def security_tier_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(['tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'unspecified_security_tier']):
+            raise ValueError("must be one of enum values ('tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'unspecified_security_tier')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -154,6 +200,7 @@ class DocumentProperties(BaseModel):
         _obj = cls.model_validate({
             "date_of_birth": obj.get("date_of_birth"),
             "date_of_expiry": obj.get("date_of_expiry"),
+            "personal_number": obj.get("personal_number"),
             "document_numbers": [DocumentPropertiesDocumentNumbersInner.from_dict(_item) for _item in obj["document_numbers"]] if obj.get("document_numbers") is not None else None,
             "document_type": obj.get("document_type"),
             "first_name": obj.get("first_name"),
@@ -173,7 +220,22 @@ class DocumentProperties(BaseModel):
             "widow_name": obj.get("widow_name"),
             "alias_name": obj.get("alias_name"),
             "issuing_authority": obj.get("issuing_authority"),
+            "remarks": obj.get("remarks"),
+            "civil_state": obj.get("civil_state"),
+            "expatriation": obj.get("expatriation"),
+            "father_name": obj.get("father_name"),
+            "mother_name": obj.get("mother_name"),
+            "religion": obj.get("religion"),
+            "type_of_permit": obj.get("type_of_permit"),
+            "version_number": obj.get("version_number"),
+            "document_subtype": obj.get("document_subtype"),
+            "profession": obj.get("profession"),
+            "security_document_number": obj.get("security_document_number"),
+            "tax_number": obj.get("tax_number"),
+            "nist_identity_evidence_strength": obj.get("nist_identity_evidence_strength"),
+            "has_issuance_confirmation": obj.get("has_issuance_confirmation"),
             "real_id_compliance": obj.get("real_id_compliance"),
+            "security_tier": obj.get("security_tier"),
             "address_lines": DocumentPropertiesAddressLines.from_dict(obj["address_lines"]) if obj.get("address_lines") is not None else None,
             "barcode": [DocumentPropertiesBarcodeInner.from_dict(_item) for _item in obj["barcode"]] if obj.get("barcode") is not None else None,
             "nfc": DocumentPropertiesNfc.from_dict(obj["nfc"]) if obj.get("nfc") is not None else None,
