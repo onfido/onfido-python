@@ -6,6 +6,9 @@ Documentation can be found at <https://documentation.onfido.com>.
 
 This version uses Onfido API v3.6. Refer to our [API versioning guide](https://developers.onfido.com/guide/api-versioning-policy#client-libraries) for details of which client library versions use which versions of the API.
 
+[![PyPI version](https://badge.fury.io/py/onfido-python.svg)](https://badge.fury.io/py/onfido-python)
+![Build Status](https://github.com/onfido/onfido-python/actions/workflows/python.yml/badge.svg)
+
 ## Installation & Usage
 
 ### Requirements
