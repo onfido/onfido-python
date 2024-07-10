@@ -12,6 +12,7 @@ on:
     branches:
       - master
       - "release/**"
+      - release-upgrade
   workflow_dispatch:
   release:
     types:
