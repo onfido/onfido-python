@@ -1,5 +1,15 @@
 # Changelog
 
+## v3.3.0 17th July 2024
+
+- Release based on Onfido OpenAPI spec version [v3.2.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v3.2.0):
+  - [CAT-1289] Document report's properties: Add middle name
+  - chore(qes): add documents endpoint
+  - [CAT-1297] Webhook Event: remove uuid format from object.id
+  - fix(qes): fix download document http method
+  - Add started_at_iso8601 field in webhook event
+  - add jpeg file type for documents
+
 ## v3.2.0 2nd July 2024
 
 - Release based on Onfido OpenAPI spec version [v3.1.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v3.1.0):
