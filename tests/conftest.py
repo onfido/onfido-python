@@ -46,7 +46,12 @@ def webhook_clean_up(onfido_api):
 def create_applicant(onfido_api, applicant_builder=None):
     if applicant_builder is None:
         return onfido_api.create_applicant(
-            onfido.ApplicantBuilder(first_name="First", last_name="Last")
+            onfido.ApplicantBuilder(
+                first_name="First",
+                last_name="Last",
+                email="first.last@gmail.com",
+                phone_number="351911111111",
+            )
         )
 
     return onfido_api.create_applicant(applicant_builder)
@@ -127,6 +132,24 @@ def repeat_request_until_status_changes(
             instance = function(*params).actual_instance
         else:
             instance = function(*params)
+
+    return instance
+
+
+def repeat_request_until_task_output_changes(
+    function, params, max_retries=10, sleep_time=1
+):
+    instance = function(*params)
+
+    iteration = 0
+    while instance.output == None:
+        if iteration > max_retries:
+            pytest.fail("Task output did not change in time")
+
+        iteration += 1
+        sleep(sleep_time)
+        
+        instance = function(*params)
 
     return instance
 

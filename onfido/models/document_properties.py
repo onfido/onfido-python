@@ -40,9 +40,10 @@ class DocumentProperties(BaseModel):
     document_numbers: Optional[List[DocumentPropertiesDocumentNumbersInner]] = None
     document_type: Optional[StrictStr] = None
     first_name: Optional[StrictStr] = None
+    middle_name: Optional[StrictStr] = None
+    last_name: Optional[StrictStr] = None
     gender: Optional[StrictStr] = None
     issuing_country: Optional[StrictStr] = None
-    last_name: Optional[StrictStr] = None
     nationality: Optional[StrictStr] = None
     issuing_state: Optional[StrictStr] = None
     issuing_date: Optional[date] = None
@@ -79,7 +80,7 @@ class DocumentProperties(BaseModel):
     document_classification: Optional[DocumentPropertiesDocumentClassification] = None
     extracted_data: Optional[DocumentPropertiesExtractedData] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["date_of_birth", "date_of_expiry", "personal_number", "document_numbers", "document_type", "first_name", "gender", "issuing_country", "last_name", "nationality", "issuing_state", "issuing_date", "categorisation", "mrz_line1", "mrz_line2", "mrz_line3", "address", "place_of_birth", "spouse_name", "widow_name", "alias_name", "issuing_authority", "remarks", "civil_state", "expatriation", "father_name", "mother_name", "religion", "type_of_permit", "version_number", "document_subtype", "profession", "security_document_number", "tax_number", "nist_identity_evidence_strength", "has_issuance_confirmation", "real_id_compliance", "security_tier", "address_lines", "barcode", "nfc", "driving_licence_information", "document_classification", "extracted_data"]
+    __properties: ClassVar[List[str]] = ["date_of_birth", "date_of_expiry", "personal_number", "document_numbers", "document_type", "first_name", "middle_name", "last_name", "gender", "issuing_country", "nationality", "issuing_state", "issuing_date", "categorisation", "mrz_line1", "mrz_line2", "mrz_line3", "address", "place_of_birth", "spouse_name", "widow_name", "alias_name", "issuing_authority", "remarks", "civil_state", "expatriation", "father_name", "mother_name", "religion", "type_of_permit", "version_number", "document_subtype", "profession", "security_document_number", "tax_number", "nist_identity_evidence_strength", "has_issuance_confirmation", "real_id_compliance", "security_tier", "address_lines", "barcode", "nfc", "driving_licence_information", "document_classification", "extracted_data"]
 
     @field_validator('nist_identity_evidence_strength')
     def nist_identity_evidence_strength_validate_enum(cls, value):
@@ -204,9 +205,10 @@ class DocumentProperties(BaseModel):
             "document_numbers": [DocumentPropertiesDocumentNumbersInner.from_dict(_item) for _item in obj["document_numbers"]] if obj.get("document_numbers") is not None else None,
             "document_type": obj.get("document_type"),
             "first_name": obj.get("first_name"),
+            "middle_name": obj.get("middle_name"),
+            "last_name": obj.get("last_name"),
             "gender": obj.get("gender"),
             "issuing_country": obj.get("issuing_country"),
-            "last_name": obj.get("last_name"),
             "nationality": obj.get("nationality"),
             "issuing_state": obj.get("issuing_state"),
             "issuing_date": obj.get("issuing_date"),

@@ -29,10 +29,11 @@ class WebhookEventPayloadObject(BaseModel):
     """ # noqa: E501
     id: StrictStr = Field(description="The unique identifier of the resource.")
     status: Optional[StrictStr] = Field(default=None, description="The current state of the object, if available.")
+    started_at_iso8601: Optional[datetime] = Field(default=None, description="The date and time when the operation was started, if available.")
     completed_at_iso8601: Optional[datetime] = Field(default=None, description="The date and time when the operation was completed, if available.")
     href: StrictStr = Field(description="The uri of the resource.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "status", "completed_at_iso8601", "href"]
+    __properties: ClassVar[List[str]] = ["id", "status", "started_at_iso8601", "completed_at_iso8601", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -94,6 +95,7 @@ class WebhookEventPayloadObject(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "status": obj.get("status"),
+            "started_at_iso8601": obj.get("started_at_iso8601"),
             "completed_at_iso8601": obj.get("completed_at_iso8601"),
             "href": obj.get("href")
         })

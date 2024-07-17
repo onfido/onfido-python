@@ -41,8 +41,8 @@ class DocumentShared(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['jpg', 'png', 'pdf']):
-            raise ValueError("must be one of enum values ('jpg', 'png', 'pdf')")
+        if value not in set(['jpg', 'jpeg', 'png', 'pdf']):
+            raise ValueError("must be one of enum values ('jpg', 'jpeg', 'png', 'pdf')")
         return value
 
     @field_validator('side')
