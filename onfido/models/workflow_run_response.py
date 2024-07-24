@@ -34,8 +34,9 @@ class WorkflowRunResponse(BaseModel):
     output: Optional[Dict[str, Any]] = Field(default=None, description="Output object contains all of the properties configured on the Workflow version.")
     reasons: Optional[List[StrictStr]] = Field(default=None, description="The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow version.")
     error: Optional[WorkflowRunResponseError] = None
+    sdk_token: Optional[StrictStr] = Field(default=None, description="Client token to use when loading this workflow run in the Onfido SDK.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "workflow_version_id", "dashboard_url", "status", "output", "reasons", "error"]
+    __properties: ClassVar[List[str]] = ["id", "workflow_version_id", "dashboard_url", "status", "output", "reasons", "error", "sdk_token"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -96,6 +97,11 @@ class WorkflowRunResponse(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if sdk_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.sdk_token is None and "sdk_token" in self.model_fields_set:
+            _dict['sdk_token'] = None
+
         return _dict
 
     @classmethod
@@ -114,7 +120,8 @@ class WorkflowRunResponse(BaseModel):
             "status": obj.get("status"),
             "output": obj.get("output"),
             "reasons": obj.get("reasons"),
-            "error": WorkflowRunResponseError.from_dict(obj["error"]) if obj.get("error") is not None else None
+            "error": WorkflowRunResponseError.from_dict(obj["error"]) if obj.get("error") is not None else None,
+            "sdk_token": obj.get("sdk_token")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

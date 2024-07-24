@@ -32,12 +32,13 @@ class WorkflowRunBuilder(BaseModel):
     applicant_id: StrictStr = Field(description="The unique identifier for the Applicant.")
     workflow_id: StrictStr = Field(description="The unique identifier for the Workflow.")
     tags: Optional[Annotated[List[Annotated[str, Field(min_length=1, strict=True, max_length=128)]], Field(max_length=30)]] = Field(default=None, description="Tags or labels assigned to the workflow run.")
+    customer_user_id: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="Customer-provided user identifier.")
     link: Optional[WorkflowRunSharedLink] = None
     created_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was last updated.")
     custom_data: Optional[Dict[str, Any]] = Field(default=None, description="Object with Custom Input Data to be used in the Workflow Run.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["applicant_id", "workflow_id", "tags", "link", "created_at", "updated_at", "custom_data"]
+    __properties: ClassVar[List[str]] = ["applicant_id", "workflow_id", "tags", "customer_user_id", "link", "created_at", "updated_at", "custom_data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -108,6 +109,7 @@ class WorkflowRunBuilder(BaseModel):
             "applicant_id": obj.get("applicant_id"),
             "workflow_id": obj.get("workflow_id"),
             "tags": obj.get("tags"),
+            "customer_user_id": obj.get("customer_user_id"),
             "link": WorkflowRunSharedLink.from_dict(obj["link"]) if obj.get("link") is not None else None,
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),

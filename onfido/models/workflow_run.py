@@ -33,6 +33,7 @@ class WorkflowRun(BaseModel):
     applicant_id: StrictStr = Field(description="The unique identifier for the Applicant.")
     workflow_id: StrictStr = Field(description="The unique identifier for the Workflow.")
     tags: Optional[Annotated[List[Annotated[str, Field(min_length=1, strict=True, max_length=128)]], Field(max_length=30)]] = Field(default=None, description="Tags or labels assigned to the workflow run.")
+    customer_user_id: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="Customer-provided user identifier.")
     link: Optional[WorkflowRunSharedLink] = None
     created_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was last updated.")
@@ -43,8 +44,9 @@ class WorkflowRun(BaseModel):
     output: Optional[Dict[str, Any]] = Field(default=None, description="Output object contains all of the properties configured on the Workflow version.")
     reasons: Optional[List[StrictStr]] = Field(default=None, description="The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow version.")
     error: Optional[WorkflowRunResponseError] = None
+    sdk_token: Optional[StrictStr] = Field(default=None, description="Client token to use when loading this workflow run in the Onfido SDK.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["applicant_id", "workflow_id", "tags", "link", "created_at", "updated_at", "id", "workflow_version_id", "dashboard_url", "status", "output", "reasons", "error"]
+    __properties: ClassVar[List[str]] = ["applicant_id", "workflow_id", "tags", "customer_user_id", "link", "created_at", "updated_at", "id", "workflow_version_id", "dashboard_url", "status", "output", "reasons", "error", "sdk_token"]
 
     @field_validator('status')
     def status_validate_enum(cls, value):
@@ -113,6 +115,11 @@ class WorkflowRun(BaseModel):
         if self.tags is None and "tags" in self.model_fields_set:
             _dict['tags'] = None
 
+        # set to None if sdk_token (nullable) is None
+        # and model_fields_set contains the field
+        if self.sdk_token is None and "sdk_token" in self.model_fields_set:
+            _dict['sdk_token'] = None
+
         return _dict
 
     @classmethod
@@ -128,6 +135,7 @@ class WorkflowRun(BaseModel):
             "applicant_id": obj.get("applicant_id"),
             "workflow_id": obj.get("workflow_id"),
             "tags": obj.get("tags"),
+            "customer_user_id": obj.get("customer_user_id"),
             "link": WorkflowRunSharedLink.from_dict(obj["link"]) if obj.get("link") is not None else None,
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
@@ -137,7 +145,8 @@ class WorkflowRun(BaseModel):
             "status": obj.get("status"),
             "output": obj.get("output"),
             "reasons": obj.get("reasons"),
-            "error": WorkflowRunResponseError.from_dict(obj["error"]) if obj.get("error") is not None else None
+            "error": WorkflowRunResponseError.from_dict(obj["error"]) if obj.get("error") is not None else None,
+            "sdk_token": obj.get("sdk_token")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
