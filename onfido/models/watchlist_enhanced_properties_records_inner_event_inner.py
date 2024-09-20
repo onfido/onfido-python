@@ -17,19 +17,24 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from datetime import date
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.watchlist_enhanced_properties_records_inner import WatchlistEnhancedPropertiesRecordsInner
+from onfido.models.watchlist_enhanced_properties_records_inner_event_inner_source import WatchlistEnhancedPropertiesRecordsInnerEventInnerSource
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WatchlistEnhancedProperties(BaseModel):
+class WatchlistEnhancedPropertiesRecordsInnerEventInner(BaseModel):
     """
-    WatchlistEnhancedProperties
+    WatchlistEnhancedPropertiesRecordsInnerEventInner
     """ # noqa: E501
-    records: Optional[List[WatchlistEnhancedPropertiesRecordsInner]] = Field(default=None, description="Returns any matches including, but not limited to, name and date of birth of match, aliases and associates, and relevant events and sources.")
+    category: Optional[StrictStr] = None
+    event_date: Optional[date] = None
+    event_description: Optional[StrictStr] = None
+    source: Optional[WatchlistEnhancedPropertiesRecordsInnerEventInnerSource] = None
+    sub_category: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["records"]
+    __properties: ClassVar[List[str]] = ["category", "event_date", "event_description", "source", "sub_category"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +54,7 @@ class WatchlistEnhancedProperties(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WatchlistEnhancedProperties from a JSON string"""
+        """Create an instance of WatchlistEnhancedPropertiesRecordsInnerEventInner from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,13 +77,9 @@ class WatchlistEnhancedProperties(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in records (list)
-        _items = []
-        if self.records:
-            for _item in self.records:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['records'] = _items
+        # override the default output from pydantic by calling `to_dict()` of source
+        if self.source:
+            _dict['source'] = self.source.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -88,7 +89,7 @@ class WatchlistEnhancedProperties(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WatchlistEnhancedProperties from a dict"""
+        """Create an instance of WatchlistEnhancedPropertiesRecordsInnerEventInner from a dict"""
         if obj is None:
             return None
 
@@ -96,7 +97,11 @@ class WatchlistEnhancedProperties(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "records": [WatchlistEnhancedPropertiesRecordsInner.from_dict(_item) for _item in obj["records"]] if obj.get("records") is not None else None
+            "category": obj.get("category"),
+            "event_date": obj.get("event_date"),
+            "event_description": obj.get("event_description"),
+            "source": WatchlistEnhancedPropertiesRecordsInnerEventInnerSource.from_dict(obj["source"]) if obj.get("source") is not None else None,
+            "sub_category": obj.get("sub_category")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
