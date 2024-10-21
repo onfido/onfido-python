@@ -1,6 +1,6 @@
 import pytest
 
-from onfido import TimelineFileReference, WorkflowRun, WorkflowRunBuilder
+from onfido import TimelineFileReference, WorkflowRun, WorkflowRunBuilder, WorkflowRunStatus
 from tests.conftest import (
     create_applicant,
     create_workflow_run,
@@ -30,7 +30,7 @@ def test_create_workflow_run(workflow_run, workflow_id):
     assert workflow_run is not None
     assert isinstance(workflow_run, WorkflowRun)
     assert workflow_run.workflow_id == workflow_id
-    assert workflow_run.status == "awaiting_input"
+    assert workflow_run.status == WorkflowRunStatus.AWAITING_INPUT
 
 
 def test_create_workflow_run_with_custom_inputs(onfido_api, applicant_id):
@@ -46,7 +46,7 @@ def test_create_workflow_run_with_custom_inputs(onfido_api, applicant_id):
     )
     assert isinstance(workflow_run, WorkflowRun)
     assert workflow_run.workflow_id == workflow_id
-    assert workflow_run.status == "approved"
+    assert workflow_run.status == WorkflowRunStatus.APPROVED
 
 
 def test_list_workflow_runs(onfido_api):
@@ -76,7 +76,7 @@ def test_generate_timeline_file(onfido_api, applicant_id):
         onfido_api, applicant_id=applicant_id, workflow_id=workflow_id
     ).id
     repeat_request_until_status_changes(
-        onfido_api.find_workflow_run, [workflow_run_id], "approved"
+        onfido_api.find_workflow_run, [workflow_run_id], WorkflowRunStatus.APPROVED
     )
 
     workflow_timeline_file_data = onfido_api.create_timeline_file(workflow_run_id)
@@ -92,7 +92,7 @@ def test_find_timeline_file(onfido_api, applicant_id):
         onfido_api, applicant_id=applicant_id, workflow_id=workflow_id
     ).id
     repeat_request_until_status_changes(
-        onfido_api.find_workflow_run, [workflow_run_id], "approved"
+        onfido_api.find_workflow_run, [workflow_run_id], WorkflowRunStatus.APPROVED
     )
 
     timeline_file_id = onfido_api.create_timeline_file(

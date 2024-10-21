@@ -1,5 +1,6 @@
 import pytest
-from onfido import Check, ChecksList, ReportName, CheckBuilder, UsDrivingLicenceBuilder
+from onfido import (Check, ChecksList, ReportName, CheckBuilder,
+                    UsDrivingLicenceBuilder, CheckStatus)
 from tests.conftest import create_applicant, create_check, upload_document
 
 
@@ -28,7 +29,7 @@ def test_create_check(check, applicant_id):
     assert isinstance(check, Check)
     assert check.applicant_id == applicant_id
     assert len(check.report_ids) == 2
-    assert check.status == "in_progress"
+    assert check.status == CheckStatus.IN_PROGRESS
 
 
 def test_create_consider_check(onfido_api, applicant_id, document_id):
