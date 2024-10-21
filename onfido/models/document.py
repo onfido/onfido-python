@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.country_codes import CountryCodes
+from onfido.models.document_types import DocumentTypes
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +30,7 @@ class Document(BaseModel):
     Document
     """ # noqa: E501
     file_type: Optional[StrictStr] = Field(default=None, description="The file type of the uploaded file")
-    type: Optional[StrictStr] = Field(default=None, description="The type of document")
+    type: Optional[DocumentTypes] = Field(default=None, description="The type of document")
     side: Optional[StrictStr] = Field(default=None, description="The side of the document, if applicable. The possible values are front and back")
     issuing_country: Optional[CountryCodes] = Field(default=None, description="The issuing country of the document, a 3-letter ISO code.")
     applicant_id: Optional[StrictStr] = Field(default=None, description="The ID of the applicant whose document is being uploaded.")

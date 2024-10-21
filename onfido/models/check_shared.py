@@ -31,8 +31,9 @@ class CheckShared(BaseModel):
     applicant_provides_data: Optional[StrictBool] = Field(default=None, description="Send an applicant form to applicant to complete to proceed with check. Defaults to false. ")
     tags: Optional[List[StrictStr]] = Field(default=None, description="Array of tags being assigned to this check.")
     redirect_uri: Optional[StrictStr] = Field(default=None, description="For checks where `applicant_provides_data` is `true`, redirect to this URI when the applicant has submitted their data.")
+    privacy_notices_read_consent_given: Optional[StrictBool] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["webhook_ids", "applicant_id", "applicant_provides_data", "tags", "redirect_uri"]
+    __properties: ClassVar[List[str]] = ["webhook_ids", "applicant_id", "applicant_provides_data", "tags", "redirect_uri", "privacy_notices_read_consent_given"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,7 +97,8 @@ class CheckShared(BaseModel):
             "applicant_id": obj.get("applicant_id"),
             "applicant_provides_data": obj.get("applicant_provides_data"),
             "tags": obj.get("tags"),
-            "redirect_uri": obj.get("redirect_uri")
+            "redirect_uri": obj.get("redirect_uri"),
+            "privacy_notices_read_consent_given": obj.get("privacy_notices_read_consent_given")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

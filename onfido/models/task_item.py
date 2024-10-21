@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from typing import Optional, Set
@@ -29,11 +29,13 @@ class TaskItem(BaseModel):
     TaskItem
     """ # noqa: E501
     id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task.")
+    workflow_run_id: Optional[StrictStr] = Field(default=None, description="The workflow run id the task belongs to.")
     task_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task Definition.")
+    task_def_version: Optional[StrictStr] = Field(default=None, description="The task definition version.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when the Task was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date and time when the Task was last updated.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "task_def_id", "created_at", "updated_at"]
+    __properties: ClassVar[List[str]] = ["id", "workflow_run_id", "task_def_id", "task_def_version", "created_at", "updated_at"]
 
     @field_validator('id')
     def id_validate_regular_expression(cls, value):
@@ -101,6 +103,11 @@ class TaskItem(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if task_def_version (nullable) is None
+        # and model_fields_set contains the field
+        if self.task_def_version is None and "task_def_version" in self.model_fields_set:
+            _dict['task_def_version'] = None
+
         return _dict
 
     @classmethod
@@ -114,7 +121,9 @@ class TaskItem(BaseModel):
 
         _obj = cls.model_validate({
             "id": obj.get("id"),
+            "workflow_run_id": obj.get("workflow_run_id"),
             "task_def_id": obj.get("task_def_id"),
+            "task_def_version": obj.get("task_def_version"),
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at")
         })

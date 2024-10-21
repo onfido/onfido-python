@@ -17,9 +17,11 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.webhook_event_payload_object import WebhookEventPayloadObject
+from onfido.models.webhook_event_payload_resource import WebhookEventPayloadResource
+from onfido.models.webhook_event_resource_type import WebhookEventResourceType
 from onfido.models.webhook_event_type import WebhookEventType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,10 +30,10 @@ class WebhookEventPayload(BaseModel):
     """
     WebhookEventPayload
     """ # noqa: E501
-    resource_type: StrictStr = Field(description="Indicates the resource affected by this event.")
+    resource_type: WebhookEventResourceType = Field(description="Indicates the resource affected by this event.")
     action: Optional[WebhookEventType] = Field(default=None, description="The event that triggered this webhook.")
     object: Optional[WebhookEventPayloadObject] = None
-    resource: Optional[Dict[str, Any]] = Field(default=None, description="The resource affected by this event.")
+    resource: Optional[WebhookEventPayloadResource] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["resource_type", "action", "object", "resource"]
 
@@ -79,6 +81,9 @@ class WebhookEventPayload(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of object
         if self.object:
             _dict['object'] = self.object.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of resource
+        if self.resource:
+            _dict['resource'] = self.resource.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -99,7 +104,7 @@ class WebhookEventPayload(BaseModel):
             "resource_type": obj.get("resource_type"),
             "action": obj.get("action"),
             "object": WebhookEventPayloadObject.from_dict(obj["object"]) if obj.get("object") is not None else None,
-            "resource": obj.get("resource")
+            "resource": WebhookEventPayloadResource.from_dict(obj["resource"]) if obj.get("resource") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

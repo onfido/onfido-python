@@ -37,6 +37,8 @@ from onfido.models.address_shared import AddressShared
 from onfido.models.addresses_list import AddressesList
 from onfido.models.applicant import Applicant
 from onfido.models.applicant_builder import ApplicantBuilder
+from onfido.models.applicant_consent_builder import ApplicantConsentBuilder
+from onfido.models.applicant_consent_name import ApplicantConsentName
 from onfido.models.applicant_create import ApplicantCreate
 from onfido.models.applicant_request import ApplicantRequest
 from onfido.models.applicant_response import ApplicantResponse
@@ -49,11 +51,10 @@ from onfido.models.check_builder import CheckBuilder
 from onfido.models.check_request import CheckRequest
 from onfido.models.check_response import CheckResponse
 from onfido.models.check_shared import CheckShared
+from onfido.models.check_status import CheckStatus
 from onfido.models.checks_list import ChecksList
 from onfido.models.complete_task_builder import CompleteTaskBuilder
 from onfido.models.complete_task_data_builder import CompleteTaskDataBuilder
-from onfido.models.consent_item import ConsentItem
-from onfido.models.consents_builder import ConsentsBuilder
 from onfido.models.country_codes import CountryCodes
 from onfido.models.device_intelligence_breakdown import DeviceIntelligenceBreakdown
 from onfido.models.device_intelligence_breakdown_breakdown import DeviceIntelligenceBreakdownBreakdown
@@ -297,8 +298,11 @@ from onfido.models.webhook import Webhook
 from onfido.models.webhook_builder import WebhookBuilder
 from onfido.models.webhook_create import WebhookCreate
 from onfido.models.webhook_event import WebhookEvent
+from onfido.models.webhook_event_object_status import WebhookEventObjectStatus
 from onfido.models.webhook_event_payload import WebhookEventPayload
 from onfido.models.webhook_event_payload_object import WebhookEventPayloadObject
+from onfido.models.webhook_event_payload_resource import WebhookEventPayloadResource
+from onfido.models.webhook_event_resource_type import WebhookEventResourceType
 from onfido.models.webhook_event_type import WebhookEventType
 from onfido.models.webhook_resend import WebhookResend
 from onfido.models.webhook_response import WebhookResponse
@@ -309,11 +313,12 @@ from onfido.models.webhooks_list import WebhooksList
 from onfido.models.webhooks_resend_item import WebhooksResendItem
 from onfido.models.workflow_run import WorkflowRun
 from onfido.models.workflow_run_builder import WorkflowRunBuilder
+from onfido.models.workflow_run_error import WorkflowRunError
+from onfido.models.workflow_run_link import WorkflowRunLink
 from onfido.models.workflow_run_request import WorkflowRunRequest
 from onfido.models.workflow_run_response import WorkflowRunResponse
-from onfido.models.workflow_run_response_error import WorkflowRunResponseError
 from onfido.models.workflow_run_shared import WorkflowRunShared
-from onfido.models.workflow_run_shared_link import WorkflowRunSharedLink
+from onfido.models.workflow_run_status import WorkflowRunStatus
 
 from onfido.webhook_event_verifier import OnfidoInvalidSignatureError
 from onfido.webhook_event_verifier import WebhookEventVerifier
