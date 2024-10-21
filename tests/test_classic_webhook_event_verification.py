@@ -1,5 +1,8 @@
 from onfido.webhook_event_verifier import WebhookEventVerifier, OnfidoInvalidSignatureError
-from onfido import WebhookEvent, WebhookEventPayload, WebhookEventPayloadObject
+from onfido import (
+    WebhookEvent, WebhookEventPayload, WebhookEventPayloadObject,
+    WebhookEventResourceType, WebhookEventType, WebhookEventObjectStatus
+)
 
 import pytest
 
@@ -12,12 +15,12 @@ secret_token = "wU99mE6jJ7nXOLFwZ0tJymM1lpI15pZh"
 
 expected_event = WebhookEvent(
     payload=WebhookEventPayload(
-        action="check.completed",
-        resource_type="check",
+        action=WebhookEventType.CHECK_DOT_COMPLETED,
+        resource_type=WebhookEventResourceType.CHECK,
         object=WebhookEventPayloadObject(
             id='f2302f45-227d-413d-ad61-09ec077a086a',
             href='https://api.onfido.com/v3.6/checks/f2302f45-227d-413d-ad61-09ec077a086a',
-            status="complete",
+            status=WebhookEventObjectStatus.COMPLETE,
             completed_at_iso8601='2024-04-04T09:21:21Z'
         )
     )

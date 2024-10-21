@@ -22,7 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from onfido.models.address_builder import AddressBuilder
-from onfido.models.consents_builder import ConsentsBuilder
+from onfido.models.applicant_consent_builder import ApplicantConsentBuilder
 from onfido.models.id_number import IdNumber
 from onfido.models.location_builder import LocationBuilder
 from typing import Optional, Set
@@ -36,7 +36,7 @@ class ApplicantBuilder(BaseModel):
     dob: Optional[date] = Field(default=None, description="The applicant's date of birth")
     id_numbers: Optional[List[IdNumber]] = None
     phone_number: Optional[StrictStr] = Field(default=None, description="The applicant's phone number")
-    consents: Optional[ConsentsBuilder] = None
+    consents: Optional[List[ApplicantConsentBuilder]] = Field(default=None, description="The applicant's consents")
     address: Optional[AddressBuilder] = None
     location: Optional[LocationBuilder] = None
     first_name: Annotated[str, Field(strict=True)] = Field(description="The applicant's first name")
@@ -106,9 +106,13 @@ class ApplicantBuilder(BaseModel):
                 if _item:
                     _items.append(_item.to_dict())
             _dict['id_numbers'] = _items
-        # override the default output from pydantic by calling `to_dict()` of consents
+        # override the default output from pydantic by calling `to_dict()` of each item in consents (list)
+        _items = []
         if self.consents:
-            _dict['consents'] = self.consents.to_dict()
+            for _item in self.consents:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['consents'] = _items
         # override the default output from pydantic by calling `to_dict()` of address
         if self.address:
             _dict['address'] = self.address.to_dict()
@@ -136,7 +140,7 @@ class ApplicantBuilder(BaseModel):
             "dob": obj.get("dob"),
             "id_numbers": [IdNumber.from_dict(_item) for _item in obj["id_numbers"]] if obj.get("id_numbers") is not None else None,
             "phone_number": obj.get("phone_number"),
-            "consents": ConsentsBuilder.from_dict(obj["consents"]) if obj.get("consents") is not None else None,
+            "consents": [ApplicantConsentBuilder.from_dict(_item) for _item in obj["consents"]] if obj.get("consents") is not None else None,
             "address": AddressBuilder.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "location": LocationBuilder.from_dict(obj["location"]) if obj.get("location") is not None else None,
             "first_name": obj.get("first_name"),

@@ -17,33 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, StrictBool
+from typing import Any, ClassVar, Dict, List
+from onfido.models.applicant_consent_name import ApplicantConsentName
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WorkflowRunSharedLink(BaseModel):
+class ApplicantConsentBuilder(BaseModel):
     """
-    Object for the configuration of the Workflow Run link.
+    ApplicantConsentBuilder
     """ # noqa: E501
-    url: Optional[StrictStr] = Field(default=None, description="Link to access the Workflow Run without the need to integrate with Onfido's SDKs.")
-    completed_redirect_url: Optional[StrictStr] = Field(default=None, description="When the interactive section of the Workflow Run has completed successfully, the user will be redirected to this URL instead of seeing the default Onfido 'thank you' page.")
-    expired_redirect_url: Optional[StrictStr] = Field(default=None, description="When the link has expired, the user will be immediately redirected to this URL instead of seeing the default Onfido error message.")
-    expires_at: Optional[datetime] = Field(default=None, description="Date and time when the link will expire.")
-    language: Optional[StrictStr] = Field(default=None, description="The code for the language when the workflow run is acessed using the link.")
+    name: ApplicantConsentName
+    granted: StrictBool
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["url", "completed_redirect_url", "expired_redirect_url", "expires_at", "language"]
-
-    @field_validator('language')
-    def language_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['en_US', 'de_DE', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL']):
-            raise ValueError("must be one of enum values ('en_US', 'de_DE', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL')")
-        return value
+    __properties: ClassVar[List[str]] = ["name", "granted"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -63,7 +50,7 @@ class WorkflowRunSharedLink(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WorkflowRunSharedLink from a JSON string"""
+        """Create an instance of ApplicantConsentBuilder from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -95,7 +82,7 @@ class WorkflowRunSharedLink(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WorkflowRunSharedLink from a dict"""
+        """Create an instance of ApplicantConsentBuilder from a dict"""
         if obj is None:
             return None
 
@@ -103,11 +90,8 @@ class WorkflowRunSharedLink(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "url": obj.get("url"),
-            "completed_redirect_url": obj.get("completed_redirect_url"),
-            "expired_redirect_url": obj.get("expired_redirect_url"),
-            "expires_at": obj.get("expires_at"),
-            "language": obj.get("language")
+            "name": obj.get("name"),
+            "granted": obj.get("granted")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

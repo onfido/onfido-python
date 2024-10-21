@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from onfido.models.check_status import CheckStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,27 +33,20 @@ class Check(BaseModel):
     applicant_provides_data: Optional[StrictBool] = Field(default=None, description="Send an applicant form to applicant to complete to proceed with check. Defaults to false. ")
     tags: Optional[List[StrictStr]] = Field(default=None, description="Array of tags being assigned to this check.")
     redirect_uri: Optional[StrictStr] = Field(default=None, description="For checks where `applicant_provides_data` is `true`, redirect to this URI when the applicant has submitted their data.")
+    privacy_notices_read_consent_given: Optional[StrictBool] = None
     id: StrictStr = Field(description="The unique identifier for the check.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when this check was created.")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource.")
-    status: Optional[StrictStr] = Field(default=None, description="The current state of the check in the checking process.")
+    status: Optional[StrictStr] = None
     result: Optional[StrictStr] = Field(default=None, description="The overall result of the check, based on the results of the constituent reports.")
     form_uri: Optional[StrictStr] = Field(default=None, description="A link to the applicant form, if `applicant_provides_data` is `true`.")
     results_uri: Optional[StrictStr] = Field(default=None, description="A link to the corresponding results page on the Onfido dashboard.")
     report_ids: Optional[List[StrictStr]] = Field(default=None, description="An array of report ids.")
     sandbox: Optional[StrictBool] = Field(default=None, description="Indicates whether the object was created in the sandbox or not.")
+    paused: Optional[StrictBool] = None
+    version: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["webhook_ids", "applicant_id", "applicant_provides_data", "tags", "redirect_uri", "id", "created_at", "href", "status", "result", "form_uri", "results_uri", "report_ids", "sandbox"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['in_progress', 'awaiting_applicant', 'complete', 'withdrawn', 'paused', 'reopened']):
-            raise ValueError("must be one of enum values ('in_progress', 'awaiting_applicant', 'complete', 'withdrawn', 'paused', 'reopened')")
-        return value
+    __properties: ClassVar[List[str]] = ["webhook_ids", "applicant_id", "applicant_provides_data", "tags", "redirect_uri", "privacy_notices_read_consent_given", "id", "created_at", "href", "status", "result", "form_uri", "results_uri", "report_ids", "sandbox", "paused", "version"]
 
     @field_validator('result')
     def result_validate_enum(cls, value):
@@ -127,6 +121,7 @@ class Check(BaseModel):
             "applicant_provides_data": obj.get("applicant_provides_data"),
             "tags": obj.get("tags"),
             "redirect_uri": obj.get("redirect_uri"),
+            "privacy_notices_read_consent_given": obj.get("privacy_notices_read_consent_given"),
             "id": obj.get("id"),
             "created_at": obj.get("created_at"),
             "href": obj.get("href"),
@@ -135,7 +130,9 @@ class Check(BaseModel):
             "form_uri": obj.get("form_uri"),
             "results_uri": obj.get("results_uri"),
             "report_ids": obj.get("report_ids"),
-            "sandbox": obj.get("sandbox")
+            "sandbox": obj.get("sandbox"),
+            "paused": obj.get("paused"),
+            "version": obj.get("version")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

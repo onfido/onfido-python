@@ -60,7 +60,7 @@ def create_applicant(onfido_api, applicant_builder=None):
 def upload_document(onfido_api, applicant_id):
     return onfido_api.upload_document(
         applicant_id=applicant_id,
-        type="passport",
+        type=onfido.DocumentTypes.PASSPORT,
         side="front",
         file="tests/media/sample_driving_licence.png",
     )
@@ -93,6 +93,7 @@ def create_check(
                 applicant_id=applicant_id,
                 document_ids=document_ids,
                 report_names=report_names,
+                privacy_notices_read_consent_given=True,
             )
         )
 
@@ -142,13 +143,13 @@ def repeat_request_until_task_output_changes(
     instance = function(*params)
 
     iteration = 0
-    while instance.output == None:
+    while instance.output is None:
         if iteration > max_retries:
             pytest.fail("Task output did not change in time")
 
         iteration += 1
         sleep(sleep_time)
-        
+
         instance = function(*params)
 
     return instance

@@ -26,6 +26,12 @@ def test_create_applicant(onfido_api):
             country=onfido.CountryCodes.FRA,
             line1="My wonderful address",
         ),
+        consents=[
+            onfido.ApplicantConsentBuilder(
+                name=onfido.ApplicantConsentName.PRIVACY_NOTICES_READ,
+                granted=True
+            )
+        ]
     )
 
     applicant = create_applicant(onfido_api, applicant_builder)

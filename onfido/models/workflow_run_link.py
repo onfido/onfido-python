@@ -17,43 +17,32 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.country_codes import CountryCodes
-from onfido.models.document_types import DocumentTypes
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DocumentShared(BaseModel):
+class WorkflowRunLink(BaseModel):
     """
-    DocumentShared
+    WorkflowRunLink
     """ # noqa: E501
-    file_type: Optional[StrictStr] = Field(default=None, description="The file type of the uploaded file")
-    type: Optional[DocumentTypes] = Field(default=None, description="The type of document")
-    side: Optional[StrictStr] = Field(default=None, description="The side of the document, if applicable. The possible values are front and back")
-    issuing_country: Optional[CountryCodes] = Field(default=None, description="The issuing country of the document, a 3-letter ISO code.")
-    applicant_id: Optional[StrictStr] = Field(default=None, description="The ID of the applicant whose document is being uploaded.")
+    url: Optional[StrictStr] = Field(default=None, description="Link to access the Workflow Run without the need to integrate with Onfido's SDKs.")
+    completed_redirect_url: Optional[StrictStr] = Field(default=None, description="When the interactive section of the Workflow Run has completed successfully, the user will be redirected to this URL instead of seeing the default Onfido 'thank you' page.")
+    expired_redirect_url: Optional[StrictStr] = Field(default=None, description="When the link has expired, the user will be immediately redirected to this URL instead of seeing the default Onfido error message.")
+    expires_at: Optional[datetime] = Field(default=None, description="Date and time when the link will expire.")
+    language: Optional[StrictStr] = Field(default=None, description="The code for the language when the workflow run is acessed using the link.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["file_type", "type", "side", "issuing_country", "applicant_id"]
+    __properties: ClassVar[List[str]] = ["url", "completed_redirect_url", "expired_redirect_url", "expires_at", "language"]
 
-    @field_validator('file_type')
-    def file_type_validate_enum(cls, value):
+    @field_validator('language')
+    def language_validate_enum(cls, value):
         """Validates the enum"""
         if value is None:
             return value
 
-        if value not in set(['jpg', 'jpeg', 'png', 'pdf']):
-            raise ValueError("must be one of enum values ('jpg', 'jpeg', 'png', 'pdf')")
-        return value
-
-    @field_validator('side')
-    def side_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['front', 'back']):
-            raise ValueError("must be one of enum values ('front', 'back')")
+        if value not in set(['en_US', 'de_DE', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL']):
+            raise ValueError("must be one of enum values ('en_US', 'de_DE', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL')")
         return value
 
     model_config = ConfigDict(
@@ -74,7 +63,7 @@ class DocumentShared(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DocumentShared from a JSON string"""
+        """Create an instance of WorkflowRunLink from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -102,11 +91,31 @@ class DocumentShared(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
+        # set to None if completed_redirect_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.completed_redirect_url is None and "completed_redirect_url" in self.model_fields_set:
+            _dict['completed_redirect_url'] = None
+
+        # set to None if expired_redirect_url (nullable) is None
+        # and model_fields_set contains the field
+        if self.expired_redirect_url is None and "expired_redirect_url" in self.model_fields_set:
+            _dict['expired_redirect_url'] = None
+
+        # set to None if expires_at (nullable) is None
+        # and model_fields_set contains the field
+        if self.expires_at is None and "expires_at" in self.model_fields_set:
+            _dict['expires_at'] = None
+
+        # set to None if language (nullable) is None
+        # and model_fields_set contains the field
+        if self.language is None and "language" in self.model_fields_set:
+            _dict['language'] = None
+
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DocumentShared from a dict"""
+        """Create an instance of WorkflowRunLink from a dict"""
         if obj is None:
             return None
 
@@ -114,11 +123,11 @@ class DocumentShared(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "file_type": obj.get("file_type"),
-            "type": obj.get("type"),
-            "side": obj.get("side"),
-            "issuing_country": obj.get("issuing_country"),
-            "applicant_id": obj.get("applicant_id")
+            "url": obj.get("url"),
+            "completed_redirect_url": obj.get("completed_redirect_url"),
+            "expired_redirect_url": obj.get("expired_redirect_url"),
+            "expires_at": obj.get("expires_at"),
+            "language": obj.get("language")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

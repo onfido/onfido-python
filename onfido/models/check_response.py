@@ -30,24 +30,16 @@ class CheckResponse(BaseModel):
     id: StrictStr = Field(description="The unique identifier for the check.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when this check was created.")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource.")
-    status: Optional[StrictStr] = Field(default=None, description="The current state of the check in the checking process.")
+    status: Optional[StrictStr] = None
     result: Optional[StrictStr] = Field(default=None, description="The overall result of the check, based on the results of the constituent reports.")
     form_uri: Optional[StrictStr] = Field(default=None, description="A link to the applicant form, if `applicant_provides_data` is `true`.")
     results_uri: Optional[StrictStr] = Field(default=None, description="A link to the corresponding results page on the Onfido dashboard.")
     report_ids: Optional[List[StrictStr]] = Field(default=None, description="An array of report ids.")
     sandbox: Optional[StrictBool] = Field(default=None, description="Indicates whether the object was created in the sandbox or not.")
+    paused: Optional[StrictBool] = None
+    version: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "form_uri", "results_uri", "report_ids", "sandbox"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['in_progress', 'awaiting_applicant', 'complete', 'withdrawn', 'paused', 'reopened']):
-            raise ValueError("must be one of enum values ('in_progress', 'awaiting_applicant', 'complete', 'withdrawn', 'paused', 'reopened')")
-        return value
+    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "form_uri", "results_uri", "report_ids", "sandbox", "paused", "version"]
 
     @field_validator('result')
     def result_validate_enum(cls, value):
@@ -125,7 +117,9 @@ class CheckResponse(BaseModel):
             "form_uri": obj.get("form_uri"),
             "results_uri": obj.get("results_uri"),
             "report_ids": obj.get("report_ids"),
-            "sandbox": obj.get("sandbox")
+            "sandbox": obj.get("sandbox"),
+            "paused": obj.get("paused"),
+            "version": obj.get("version")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

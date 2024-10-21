@@ -41,8 +41,7 @@ def workflow_run(onfido_api, applicant_id, workflow_id):
 
 @pytest.fixture(scope="function")
 def file_id(onfido_api, workflow_run):
-    
-    task = onfido_api.list_tasks(workflow_run.id)[0]
+    task = onfido_api.list_tasks(workflow_run.id)[1]
 
     output = repeat_request_until_task_output_changes(
         onfido_api.find_task, [workflow_run.id, task.id], max_retries=10, sleep_time=3

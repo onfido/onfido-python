@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from onfido.models.webhook_event_object_status import WebhookEventObjectStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -28,7 +29,7 @@ class WebhookEventPayloadObject(BaseModel):
     The object affected by this event.
     """ # noqa: E501
     id: StrictStr = Field(description="The unique identifier of the resource.")
-    status: Optional[StrictStr] = Field(default=None, description="The current state of the object, if available.")
+    status: Optional[WebhookEventObjectStatus] = None
     started_at_iso8601: Optional[datetime] = Field(default=None, description="The date and time when the operation was started, if available.")
     completed_at_iso8601: Optional[datetime] = Field(default=None, description="The date and time when the operation was completed, if available.")
     href: StrictStr = Field(description="The uri of the resource.")

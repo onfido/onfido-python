@@ -16554,7 +16554,7 @@ class DefaultApi:
         Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
 
         :param type: The type of document (required)
-        :type type: str
+        :type type: DocumentTypes
         :param applicant_id: The ID of the applicant whose document is being uploaded. (required)
         :type applicant_id: str
         :param file: The file to be uploaded. (required)
@@ -16649,7 +16649,7 @@ class DefaultApi:
         Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
 
         :param type: The type of document (required)
-        :type type: str
+        :type type: DocumentTypes
         :param applicant_id: The ID of the applicant whose document is being uploaded. (required)
         :type applicant_id: str
         :param file: The file to be uploaded. (required)
@@ -16744,7 +16744,7 @@ class DefaultApi:
         Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
 
         :param type: The type of document (required)
-        :type type: str
+        :type type: DocumentTypes
         :param applicant_id: The ID of the applicant whose document is being uploaded. (required)
         :type applicant_id: str
         :param file: The file to be uploaded. (required)
