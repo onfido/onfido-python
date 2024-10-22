@@ -21,7 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
-from onfido.models.workflow_run_shared_link import WorkflowRunSharedLink
+from onfido.models.workflow_run_link import WorkflowRunLink
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,7 +33,7 @@ class WorkflowRunBuilder(BaseModel):
     workflow_id: StrictStr = Field(description="The unique identifier for the Workflow.")
     tags: Optional[Annotated[List[Annotated[str, Field(min_length=1, strict=True, max_length=128)]], Field(max_length=30)]] = Field(default=None, description="Tags or labels assigned to the workflow run.")
     customer_user_id: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="Customer-provided user identifier.")
-    link: Optional[WorkflowRunSharedLink] = None
+    link: Optional[WorkflowRunLink] = Field(default=None, description="Object for the configuration of the Workflow Run link.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was last updated.")
     custom_data: Optional[Dict[str, Any]] = Field(default=None, description="Object with Custom Input Data to be used in the Workflow Run.")
@@ -110,7 +110,7 @@ class WorkflowRunBuilder(BaseModel):
             "workflow_id": obj.get("workflow_id"),
             "tags": obj.get("tags"),
             "customer_user_id": obj.get("customer_user_id"),
-            "link": WorkflowRunSharedLink.from_dict(obj["link"]) if obj.get("link") is not None else None,
+            "link": WorkflowRunLink.from_dict(obj["link"]) if obj.get("link") is not None else None,
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
             "custom_data": obj.get("custom_data")

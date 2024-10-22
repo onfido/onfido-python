@@ -33,6 +33,7 @@ class CheckBuilder(BaseModel):
     applicant_provides_data: Optional[StrictBool] = Field(default=False, description="Send an applicant form to applicant to complete to proceed with check. Defaults to false.")
     tags: Optional[List[StrictStr]] = Field(default=None, description="Array of tags being assigned to this check.")
     redirect_uri: Optional[StrictStr] = Field(default=None, description="For checks where `applicant_provides_data` is `true`, redirect to this URI when the applicant has submitted their data.")
+    privacy_notices_read_consent_given: Optional[StrictBool] = None
     report_names: List[ReportName] = Field(description="An array of report names (strings).")
     document_ids: Optional[List[StrictStr]] = Field(default=None, description="Optional. An array of document ids, for use with Document reports only. If omitted, the Document report will use the most recently uploaded document by default.")
     asynchronous: Optional[StrictBool] = Field(default=True, description="Defaults to `true`. If set to `false`, you will only receive a response when all reports in your check have completed. ")
@@ -41,7 +42,7 @@ class CheckBuilder(BaseModel):
     consider: Optional[List[ReportName]] = Field(default=None, description="Array of names of particular reports to return consider as their results. This is a feature available in sandbox testing")
     us_driving_licence: Optional[UsDrivingLicenceBuilder] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["webhook_ids", "applicant_id", "applicant_provides_data", "tags", "redirect_uri", "report_names", "document_ids", "asynchronous", "suppress_form_emails", "sub_result", "consider", "us_driving_licence"]
+    __properties: ClassVar[List[str]] = ["webhook_ids", "applicant_id", "applicant_provides_data", "tags", "redirect_uri", "privacy_notices_read_consent_given", "report_names", "document_ids", "asynchronous", "suppress_form_emails", "sub_result", "consider", "us_driving_licence"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -109,6 +110,7 @@ class CheckBuilder(BaseModel):
             "applicant_provides_data": obj.get("applicant_provides_data") if obj.get("applicant_provides_data") is not None else False,
             "tags": obj.get("tags"),
             "redirect_uri": obj.get("redirect_uri"),
+            "privacy_notices_read_consent_given": obj.get("privacy_notices_read_consent_given"),
             "report_names": obj.get("report_names"),
             "document_ids": obj.get("document_ids"),
             "asynchronous": obj.get("asynchronous") if obj.get("asynchronous") is not None else True,

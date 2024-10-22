@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.workflow_run_response_error import WorkflowRunResponseError
+from onfido.models.workflow_run_error import WorkflowRunError
+from onfido.models.workflow_run_status import WorkflowRunStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -30,23 +31,13 @@ class WorkflowRunResponse(BaseModel):
     id: StrictStr = Field(description="The unique identifier for the Workflow Run.")
     workflow_version_id: Optional[StrictInt] = Field(default=None, description="The identifier for the Workflow version.")
     dashboard_url: Optional[StrictStr] = Field(default=None, description="The URL for viewing the Workflow Run results on your Onfido Dashboard.")
-    status: Optional[StrictStr] = Field(default=None, description="The status of the Workflow Run.")
+    status: Optional[WorkflowRunStatus] = Field(default=None, description="The status of the Workflow Run.")
     output: Optional[Dict[str, Any]] = Field(default=None, description="Output object contains all of the properties configured on the Workflow version.")
     reasons: Optional[List[StrictStr]] = Field(default=None, description="The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow version.")
-    error: Optional[WorkflowRunResponseError] = None
+    error: Optional[WorkflowRunError] = Field(default=None, description="Error object. Only set when the Workflow Run status is 'error'.")
     sdk_token: Optional[StrictStr] = Field(default=None, description="Client token to use when loading this workflow run in the Onfido SDK.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "workflow_version_id", "dashboard_url", "status", "output", "reasons", "error", "sdk_token"]
-
-    @field_validator('status')
-    def status_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['awaiting_input', 'processing', 'abandoned', 'error', 'approved', 'review', 'declined']):
-            raise ValueError("must be one of enum values ('awaiting_input', 'processing', 'abandoned', 'error', 'approved', 'review', 'declined')")
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -120,7 +111,7 @@ class WorkflowRunResponse(BaseModel):
             "status": obj.get("status"),
             "output": obj.get("output"),
             "reasons": obj.get("reasons"),
-            "error": WorkflowRunResponseError.from_dict(obj["error"]) if obj.get("error") is not None else None,
+            "error": WorkflowRunError.from_dict(obj["error"]) if obj.get("error") is not None else None,
             "sdk_token": obj.get("sdk_token")
         })
         # store additional fields in additional_properties

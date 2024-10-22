@@ -35,17 +35,13 @@ class DeviceIntelligenceBreakdownPropertiesDevice(BaseModel):
     emulator: Optional[StrictBool] = Field(default=None, description="Whether the device is an emulator.")
     randomized_device: Optional[StrictBool] = Field(default=None, description="Whether the device is providing false randomized device and network information.")
     fake_network_request: Optional[StrictBool] = Field(default=None, description="Whether device is using stolen security tokens to send the network information.")
-    true_os: Optional[StrictStr] = Field(default=None, description="The true operating system of the device.")
-    os_anomaly: Optional[StrictStr] = Field(default=None, description="The likelihood of an operating system anomaly between the true OS and the OS sent by the device.")
-    rooted: Optional[StrictBool] = Field(default=None, description="Whether the device is rooted.")
-    remote_software: Optional[StrictBool] = Field(default=None, description="Whether the device is controlled via remote software.")
     ip_reputation: Optional[StrictStr] = Field(default=None, description="Whether there is highly suspicious traffic related to the IP address. The risk depends on the overall ratio of clear checks on a given IP.")
     device_fingerprint_reuse: Optional[StrictInt] = Field(default=None, description="The number of times the device was used to create a report for a new applicant. A value greater than 1 indicates potential device reuse.")
     single_device_used: Optional[StrictBool] = Field(default=None, description="Whether the document or biometric media were uploaded from a single device.")
     document_capture: Optional[StrictStr] = Field(default=None, description="Whether the document media were live captured from the device camera.")
     biometric_capture: Optional[StrictStr] = Field(default=None, description="Whether the biometric media were live captured from the device camera.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["sdk_version", "sdk_source", "authentication_type", "raw_model", "os", "browser", "emulator", "randomized_device", "fake_network_request", "true_os", "os_anomaly", "rooted", "remote_software", "ip_reputation", "device_fingerprint_reuse", "single_device_used", "document_capture", "biometric_capture"]
+    __properties: ClassVar[List[str]] = ["sdk_version", "sdk_source", "authentication_type", "raw_model", "os", "browser", "emulator", "randomized_device", "fake_network_request", "ip_reputation", "device_fingerprint_reuse", "single_device_used", "document_capture", "biometric_capture"]
 
     @field_validator('sdk_source')
     def sdk_source_validate_enum(cls, value):
@@ -169,10 +165,6 @@ class DeviceIntelligenceBreakdownPropertiesDevice(BaseModel):
             "emulator": obj.get("emulator"),
             "randomized_device": obj.get("randomized_device"),
             "fake_network_request": obj.get("fake_network_request"),
-            "true_os": obj.get("true_os"),
-            "os_anomaly": obj.get("os_anomaly"),
-            "rooted": obj.get("rooted"),
-            "remote_software": obj.get("remote_software"),
             "ip_reputation": obj.get("ip_reputation"),
             "device_fingerprint_reuse": obj.get("device_fingerprint_reuse"),
             "single_device_used": obj.get("single_device_used"),

@@ -17,10 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.address_builder import AddressBuilder
-from onfido.models.consents_builder import ConsentsBuilder
+from onfido.models.applicant_consent_builder import ApplicantConsentBuilder
 from onfido.models.location_builder import LocationBuilder
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,7 +29,7 @@ class ApplicantRequest(BaseModel):
     """
     ApplicantRequest
     """ # noqa: E501
-    consents: Optional[ConsentsBuilder] = None
+    consents: Optional[List[ApplicantConsentBuilder]] = Field(default=None, description="The applicant's consents")
     address: Optional[AddressBuilder] = None
     location: Optional[LocationBuilder] = None
     additional_properties: Dict[str, Any] = {}
@@ -76,9 +76,13 @@ class ApplicantRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of consents
+        # override the default output from pydantic by calling `to_dict()` of each item in consents (list)
+        _items = []
         if self.consents:
-            _dict['consents'] = self.consents.to_dict()
+            for _item in self.consents:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['consents'] = _items
         # override the default output from pydantic by calling `to_dict()` of address
         if self.address:
             _dict['address'] = self.address.to_dict()
@@ -102,7 +106,7 @@ class ApplicantRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "consents": ConsentsBuilder.from_dict(obj["consents"]) if obj.get("consents") is not None else None,
+            "consents": [ApplicantConsentBuilder.from_dict(_item) for _item in obj["consents"]] if obj.get("consents") is not None else None,
             "address": AddressBuilder.from_dict(obj["address"]) if obj.get("address") is not None else None,
             "location": LocationBuilder.from_dict(obj["location"]) if obj.get("location") is not None else None
         })

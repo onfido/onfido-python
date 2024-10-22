@@ -18,36 +18,45 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from onfido.models.workflow_run_error import WorkflowRunError
 from onfido.models.workflow_run_link import WorkflowRunLink
-from onfido.models.workflow_run_status import WorkflowRunStatus
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WorkflowRun(BaseModel):
+class WebhookEventPayloadResource(BaseModel):
     """
-    WorkflowRun
+    The resource affected by this event.
     """ # noqa: E501
-    applicant_id: StrictStr = Field(description="The unique identifier for the Applicant.")
-    workflow_id: StrictStr = Field(description="The unique identifier for the Workflow.")
-    tags: Optional[Annotated[List[Annotated[str, Field(min_length=1, strict=True, max_length=128)]], Field(max_length=30)]] = Field(default=None, description="Tags or labels assigned to the workflow run.")
-    customer_user_id: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="Customer-provided user identifier.")
-    link: Optional[WorkflowRunLink] = Field(default=None, description="Object for the configuration of the Workflow Run link.")
-    created_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was created.")
-    updated_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was last updated.")
-    id: StrictStr = Field(description="The unique identifier for the Workflow Run.")
+    id: Optional[StrictStr] = Field(default=None, description="The identifier of the resource.")
+    applicant_id: Optional[StrictStr] = Field(default=None, description="The unique identifier for the Applicant.")
+    created_at: Optional[datetime] = Field(default=None, description="The date and time when the resource was created.")
+    updated_at: Optional[datetime] = Field(default=None, description="The date and time when the resource was last updated.")
+    dashboard_url: Optional[StrictStr] = Field(default=None, description="The URL for viewing the resource on Onfido Dashboard.")
+    workflow_id: Optional[StrictStr] = Field(default=None, description="The unique identifier for the Workflow.")
+    workflow_run_id: Optional[StrictStr] = None
     workflow_version_id: Optional[StrictInt] = Field(default=None, description="The identifier for the Workflow version.")
-    dashboard_url: Optional[StrictStr] = Field(default=None, description="The URL for viewing the Workflow Run results on your Onfido Dashboard.")
-    status: Optional[WorkflowRunStatus] = Field(default=None, description="The status of the Workflow Run.")
-    output: Optional[Dict[str, Any]] = Field(default=None, description="Output object contains all of the properties configured on the Workflow version.")
-    reasons: Optional[List[StrictStr]] = Field(default=None, description="The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow version.")
-    error: Optional[WorkflowRunError] = Field(default=None, description="Error object. Only set when the Workflow Run status is 'error'.")
-    sdk_token: Optional[StrictStr] = Field(default=None, description="Client token to use when loading this workflow run in the Onfido SDK.")
+    task_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task Definition.")
+    task_def_version: Optional[StrictStr] = Field(default=None, description="The task definition version.")
+    input: Optional[Dict[str, Any]] = Field(default=None, description="Input object with the fields used by the Task execution.")
+    output: Optional[Dict[str, Any]] = Field(default=None, description="Output object with the fields produced by the Task execution.")
+    reasons: Optional[List[StrictStr]] = Field(default=None, description="The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow Version.")
+    link: Optional[WorkflowRunLink] = Field(default=None, description="Object for the configuration of the Workflow Run link.")
+    error: Optional[WorkflowRunError] = Field(default=None, description="Error object that details why a Workflow Run is in Error status.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["applicant_id", "workflow_id", "tags", "customer_user_id", "link", "created_at", "updated_at", "id", "workflow_version_id", "dashboard_url", "status", "output", "reasons", "error", "sdk_token"]
+    __properties: ClassVar[List[str]] = ["id", "applicant_id", "created_at", "updated_at", "dashboard_url", "workflow_id", "workflow_run_id", "workflow_version_id", "task_def_id", "task_def_version", "input", "output", "reasons", "link", "error"]
+
+    @field_validator('task_def_id')
+    def task_def_id_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if value is None:
+            return value
+
+        if not re.match(r"^[0-9a-z_-]+$", value):
+            raise ValueError(r"must validate the regular expression /^[0-9a-z_-]+$/")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -67,7 +76,7 @@ class WorkflowRun(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WorkflowRun from a JSON string"""
+        """Create an instance of WebhookEventPayloadResource from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -101,21 +110,21 @@ class WorkflowRun(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if tags (nullable) is None
+        # set to None if task_def_version (nullable) is None
         # and model_fields_set contains the field
-        if self.tags is None and "tags" in self.model_fields_set:
-            _dict['tags'] = None
+        if self.task_def_version is None and "task_def_version" in self.model_fields_set:
+            _dict['task_def_version'] = None
 
-        # set to None if sdk_token (nullable) is None
+        # set to None if output (nullable) is None
         # and model_fields_set contains the field
-        if self.sdk_token is None and "sdk_token" in self.model_fields_set:
-            _dict['sdk_token'] = None
+        if self.output is None and "output" in self.model_fields_set:
+            _dict['output'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WorkflowRun from a dict"""
+        """Create an instance of WebhookEventPayloadResource from a dict"""
         if obj is None:
             return None
 
@@ -123,21 +132,21 @@ class WorkflowRun(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "id": obj.get("id"),
             "applicant_id": obj.get("applicant_id"),
-            "workflow_id": obj.get("workflow_id"),
-            "tags": obj.get("tags"),
-            "customer_user_id": obj.get("customer_user_id"),
-            "link": WorkflowRunLink.from_dict(obj["link"]) if obj.get("link") is not None else None,
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
-            "id": obj.get("id"),
-            "workflow_version_id": obj.get("workflow_version_id"),
             "dashboard_url": obj.get("dashboard_url"),
-            "status": obj.get("status"),
+            "workflow_id": obj.get("workflow_id"),
+            "workflow_run_id": obj.get("workflow_run_id"),
+            "workflow_version_id": obj.get("workflow_version_id"),
+            "task_def_id": obj.get("task_def_id"),
+            "task_def_version": obj.get("task_def_version"),
+            "input": obj.get("input"),
             "output": obj.get("output"),
             "reasons": obj.get("reasons"),
-            "error": WorkflowRunError.from_dict(obj["error"]) if obj.get("error") is not None else None,
-            "sdk_token": obj.get("sdk_token")
+            "link": WorkflowRunLink.from_dict(obj["link"]) if obj.get("link") is not None else None,
+            "error": WorkflowRunError.from_dict(obj["error"]) if obj.get("error") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

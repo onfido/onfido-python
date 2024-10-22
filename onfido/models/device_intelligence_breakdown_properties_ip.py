@@ -27,11 +27,8 @@ class DeviceIntelligenceBreakdownPropertiesIp(BaseModel):
     DeviceIntelligenceBreakdownPropertiesIp
     """ # noqa: E501
     address: Optional[StrictStr] = Field(default=None, description="The IP address that uploaded the media.")
-    vpn_detection: Optional[StrictStr] = Field(default=None, description="The likelihood of the network connection being a VPN.")
-    proxy_detection: Optional[StrictStr] = Field(default=None, description="The likelihood of the network connection being a Proxy.")
-    type: Optional[StrictStr] = Field(default=None, description="The type of organization that owns this IP address.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["address", "vpn_detection", "proxy_detection", "type"]
+    __properties: ClassVar[List[str]] = ["address"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -91,10 +88,7 @@ class DeviceIntelligenceBreakdownPropertiesIp(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "address": obj.get("address"),
-            "vpn_detection": obj.get("vpn_detection"),
-            "proxy_detection": obj.get("proxy_detection"),
-            "type": obj.get("type")
+            "address": obj.get("address")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

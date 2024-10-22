@@ -16,6 +16,8 @@ on:
   release:
     types:
       - published
+  schedule:
+    - cron: "0 14 * * 0"   # Every Sunday, 2 hours after midday
 
 jobs:
   integration-tests:
