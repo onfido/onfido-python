@@ -75,9 +75,9 @@ class WatchlistMonitorMatchesList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in matches (list)
         _items = []
         if self.matches:
-            for _item in self.matches:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_matches in self.matches:
+                if _item_matches:
+                    _items.append(_item_matches.to_dict())
             _dict['matches'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

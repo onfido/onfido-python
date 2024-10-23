@@ -75,9 +75,9 @@ class WatchlistMonitorsList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in monitors (list)
         _items = []
         if self.monitors:
-            for _item in self.monitors:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_monitors in self.monitors:
+                if _item_monitors:
+                    _items.append(_item_monitors.to_dict())
             _dict['monitors'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

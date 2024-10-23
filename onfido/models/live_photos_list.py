@@ -75,9 +75,9 @@ class LivePhotosList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in live_photos (list)
         _items = []
         if self.live_photos:
-            for _item in self.live_photos:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_live_photos in self.live_photos:
+                if _item_live_photos:
+                    _items.append(_item_live_photos.to_dict())
             _dict['live_photos'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

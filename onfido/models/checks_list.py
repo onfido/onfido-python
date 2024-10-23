@@ -75,9 +75,9 @@ class ChecksList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in checks (list)
         _items = []
         if self.checks:
-            for _item in self.checks:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_checks in self.checks:
+                if _item_checks:
+                    _items.append(_item_checks.to_dict())
             _dict['checks'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

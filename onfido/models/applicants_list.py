@@ -75,9 +75,9 @@ class ApplicantsList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in applicants (list)
         _items = []
         if self.applicants:
-            for _item in self.applicants:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_applicants in self.applicants:
+                if _item_applicants:
+                    _items.append(_item_applicants.to_dict())
             _dict['applicants'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

@@ -75,9 +75,9 @@ class MotionCapturesList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in motion_captures (list)
         _items = []
         if self.motion_captures:
-            for _item in self.motion_captures:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_motion_captures in self.motion_captures:
+                if _item_motion_captures:
+                    _items.append(_item_motion_captures.to_dict())
             _dict['motion_captures'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

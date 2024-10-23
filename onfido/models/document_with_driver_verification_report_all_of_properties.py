@@ -164,9 +164,9 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in document_numbers (list)
         _items = []
         if self.document_numbers:
-            for _item in self.document_numbers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_document_numbers in self.document_numbers:
+                if _item_document_numbers:
+                    _items.append(_item_document_numbers.to_dict())
             _dict['document_numbers'] = _items
         # override the default output from pydantic by calling `to_dict()` of address_lines
         if self.address_lines:
@@ -174,9 +174,9 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in barcode (list)
         _items = []
         if self.barcode:
-            for _item in self.barcode:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_barcode in self.barcode:
+                if _item_barcode:
+                    _items.append(_item_barcode.to_dict())
             _dict['barcode'] = _items
         # override the default output from pydantic by calling `to_dict()` of nfc
         if self.nfc:
@@ -193,9 +193,9 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in vehicle_class_details (list)
         _items = []
         if self.vehicle_class_details:
-            for _item in self.vehicle_class_details:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_vehicle_class_details in self.vehicle_class_details:
+                if _item_vehicle_class_details:
+                    _items.append(_item_vehicle_class_details.to_dict())
             _dict['vehicle_class_details'] = _items
         # override the default output from pydantic by calling `to_dict()` of passenger_vehicle
         if self.passenger_vehicle:

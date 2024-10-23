@@ -88,44 +88,44 @@ class WatchlistEnhancedPropertiesRecordsInner(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in address (list)
         _items = []
         if self.address:
-            for _item in self.address:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_address in self.address:
+                if _item_address:
+                    _items.append(_item_address.to_dict())
             _dict['address'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in alias (list)
         _items = []
         if self.alias:
-            for _item in self.alias:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_alias in self.alias:
+                if _item_alias:
+                    _items.append(_item_alias.to_dict())
             _dict['alias'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in associate (list)
         _items = []
         if self.associate:
-            for _item in self.associate:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_associate in self.associate:
+                if _item_associate:
+                    _items.append(_item_associate.to_dict())
             _dict['associate'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in attribute (list)
         _items = []
         if self.attribute:
-            for _item in self.attribute:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_attribute in self.attribute:
+                if _item_attribute:
+                    _items.append(_item_attribute.to_dict())
             _dict['attribute'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in event (list)
         _items = []
         if self.event:
-            for _item in self.event:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_event in self.event:
+                if _item_event:
+                    _items.append(_item_event.to_dict())
             _dict['event'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in source (list)
         _items = []
         if self.source:
-            for _item in self.source:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_source in self.source:
+                if _item_source:
+                    _items.append(_item_source.to_dict())
             _dict['source'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

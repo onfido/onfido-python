@@ -156,9 +156,9 @@ class DocumentProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in document_numbers (list)
         _items = []
         if self.document_numbers:
-            for _item in self.document_numbers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_document_numbers in self.document_numbers:
+                if _item_document_numbers:
+                    _items.append(_item_document_numbers.to_dict())
             _dict['document_numbers'] = _items
         # override the default output from pydantic by calling `to_dict()` of address_lines
         if self.address_lines:
@@ -166,9 +166,9 @@ class DocumentProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in barcode (list)
         _items = []
         if self.barcode:
-            for _item in self.barcode:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_barcode in self.barcode:
+                if _item_barcode:
+                    _items.append(_item_barcode.to_dict())
             _dict['barcode'] = _items
         # override the default output from pydantic by calling `to_dict()` of nfc
         if self.nfc:
