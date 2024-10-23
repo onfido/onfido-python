@@ -80,9 +80,9 @@ class RepeatAttemptsList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in repeat_attempts (list)
         _items = []
         if self.repeat_attempts:
-            for _item in self.repeat_attempts:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_repeat_attempts in self.repeat_attempts:
+                if _item_repeat_attempts:
+                    _items.append(_item_repeat_attempts.to_dict())
             _dict['repeat_attempts'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

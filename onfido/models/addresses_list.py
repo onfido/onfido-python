@@ -75,9 +75,9 @@ class AddressesList(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in addresses (list)
         _items = []
         if self.addresses:
-            for _item in self.addresses:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_addresses in self.addresses:
+                if _item_addresses:
+                    _items.append(_item_addresses.to_dict())
             _dict['addresses'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

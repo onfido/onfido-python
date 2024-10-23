@@ -76,9 +76,9 @@ class IdentityEnhancedProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in matched_addresses (list)
         _items = []
         if self.matched_addresses:
-            for _item in self.matched_addresses:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_matched_addresses in self.matched_addresses:
+                if _item_matched_addresses:
+                    _items.append(_item_matched_addresses.to_dict())
             _dict['matched_addresses'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

@@ -79,9 +79,9 @@ class ApplicantShared(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in id_numbers (list)
         _items = []
         if self.id_numbers:
-            for _item in self.id_numbers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_id_numbers in self.id_numbers:
+                if _item_id_numbers:
+                    _items.append(_item_id_numbers.to_dict())
             _dict['id_numbers'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:

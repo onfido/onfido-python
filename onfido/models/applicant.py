@@ -111,9 +111,9 @@ class Applicant(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of each item in id_numbers (list)
         _items = []
         if self.id_numbers:
-            for _item in self.id_numbers:
-                if _item:
-                    _items.append(_item.to_dict())
+            for _item_id_numbers in self.id_numbers:
+                if _item_id_numbers:
+                    _items.append(_item_id_numbers.to_dict())
             _dict['id_numbers'] = _items
         # override the default output from pydantic by calling `to_dict()` of address
         if self.address:

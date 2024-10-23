@@ -52,6 +52,7 @@ class Configuration:
       values before.
     :param ssl_ca_cert: str - the path to a file of concatenated CA certificates
       in PEM format.
+    :param retries: Number of retries for API requests.
 
     :Example:
 
@@ -83,7 +84,11 @@ conf = onfido.Configuration(
                  timeout=None,
                  server_index=None,
                  server_operation_index=None, server_operation_variables=None,
+                 ignore_operation_servers=False,
                  ssl_ca_cert=None,
+                 retries=None,
+                 *,
+                 debug: Optional[bool] = None
                  ) -> None:
         """Constructor
         """
@@ -98,6 +103,9 @@ conf = onfido.Configuration(
         self.server_variables = {'region': region.value}
         self.server_operation_variables = server_operation_variables or {}
         """Default server variables
+        """
+        self.ignore_operation_servers = ignore_operation_servers
+        """Ignore operation servers
         """
         self.temp_folder_path = None
         """Temp file folder for downloading files
@@ -127,7 +135,10 @@ conf = onfido.Configuration(
         self.logger_file = None
         """Debug file location
         """
-        self.debug = False
+        if debug is not None:
+            self.debug = debug
+        else:
+            self.__debug = False
         """Debug switch
         """
 
@@ -170,7 +181,7 @@ conf = onfido.Configuration(
         self.safe_chars_for_path_param = ''
         """Safe chars for path_param
         """
-        self.retries = None
+        self.retries = retries
         """Adding retries to override urllib3 default value 3
         """
         # Enable client side validation
@@ -383,7 +394,7 @@ conf = onfido.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: v3.6\n"\
-               "SDK Package Version: 3.5.0".\
+               "SDK Package Version: 4.0.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):
