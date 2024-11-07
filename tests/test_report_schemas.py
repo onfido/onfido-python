@@ -4,6 +4,7 @@ from onfido import (
     ApplicantBuilder,
     CountryCodes,
     DocumentReport,
+    DocumentWithAddressInformationReport,
     FacialSimilarityPhotoReport,
     LocationBuilder,
     ReportName,
@@ -69,3 +70,21 @@ def test_schema_of_facial_similarity_report_id_valid(
     )
     assert isinstance(facial_similarity_report, FacialSimilarityPhotoReport)
     assert facial_similarity_report.properties.score is None
+
+
+def test_schema_of_document_with_address_information_report_id_valid(
+    onfido_api, applicant_id, document_id
+):
+    report_id = create_check(
+        onfido_api,
+        applicant_id=applicant_id,
+        document_ids=[document_id],
+        report_names=[ReportName.DOCUMENT_WITH_ADDRESS_INFORMATION],
+    ).report_ids[0]
+
+    report = repeat_request_until_status_changes(
+        onfido_api.find_report, [report_id], ReportStatus.COMPLETE
+    )
+
+    assert isinstance(report, DocumentWithAddressInformationReport)
+    assert report.properties.barcode.document_type == 'driving_licence'
