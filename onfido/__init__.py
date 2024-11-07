@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "4.0.0"
+__version__ = "4.1.0"
 
 # import apis into sdk package
 from onfido.api.default_api import DefaultApi
@@ -106,7 +106,7 @@ from onfido.models.document_iq_reasons import DocumentIQReasons
 from onfido.models.document_odp_reasons import DocumentODPReasons
 from onfido.models.document_properties import DocumentProperties
 from onfido.models.document_properties_address_lines import DocumentPropertiesAddressLines
-from onfido.models.document_properties_barcode_inner import DocumentPropertiesBarcodeInner
+from onfido.models.document_properties_barcode import DocumentPropertiesBarcode
 from onfido.models.document_properties_document_classification import DocumentPropertiesDocumentClassification
 from onfido.models.document_properties_document_numbers_inner import DocumentPropertiesDocumentNumbersInner
 from onfido.models.document_properties_driving_licence_information import DocumentPropertiesDrivingLicenceInformation
