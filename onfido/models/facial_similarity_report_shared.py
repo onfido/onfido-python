@@ -17,41 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.facial_similarity_motion_breakdown import FacialSimilarityMotionBreakdown
-from onfido.models.facial_similarity_motion_properties import FacialSimilarityMotionProperties
 from onfido.models.facial_similarity_report_media import FacialSimilarityReportMedia
-from onfido.models.report_document import ReportDocument
-from onfido.models.report_name import ReportName
-from onfido.models.report_result import ReportResult
-from onfido.models.report_status import ReportStatus
-from onfido.models.report_sub_result import ReportSubResult
 from typing import Optional, Set
 from typing_extensions import Self
 
-class FacialSimilarityMotionReport(BaseModel):
+class FacialSimilarityReportShared(BaseModel):
     """
-    FacialSimilarityMotionReport
+    FacialSimilarityReportShared
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier for the report. Read-only.")
-    created_at: Optional[datetime] = Field(default=None, description="The date and time at which the report was first initiated. Read-only.")
-    href: Optional[StrictStr] = Field(default=None, description="The API endpoint to retrieve the report. Read-only.")
-    status: Optional[ReportStatus] = None
-    result: Optional[ReportResult] = None
-    sub_result: Optional[ReportSubResult] = None
-    check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
-    documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]")
-    name: ReportName
     live_photos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with live photo ids that were used in the Onfido engine.")
     live_videos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with live video ids that were used in the Onfido engine.")
     motion_captures: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with motion capture ids that were used in the Onfido engine.")
     id_photos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with id photo ids that were used in the Onfido engine.")
-    breakdown: Optional[FacialSimilarityMotionBreakdown] = None
-    properties: Optional[FacialSimilarityMotionProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name", "live_photos", "live_videos", "motion_captures", "id_photos", "breakdown", "properties"]
+    __properties: ClassVar[List[str]] = ["live_photos", "live_videos", "motion_captures", "id_photos"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,7 +52,7 @@ class FacialSimilarityMotionReport(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of FacialSimilarityMotionReport from a JSON string"""
+        """Create an instance of FacialSimilarityReportShared from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -94,13 +75,6 @@ class FacialSimilarityMotionReport(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in documents (list)
-        _items = []
-        if self.documents:
-            for _item_documents in self.documents:
-                if _item_documents:
-                    _items.append(_item_documents.to_dict())
-            _dict['documents'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in live_photos (list)
         _items = []
         if self.live_photos:
@@ -129,12 +103,6 @@ class FacialSimilarityMotionReport(BaseModel):
                 if _item_id_photos:
                     _items.append(_item_id_photos.to_dict())
             _dict['id_photos'] = _items
-        # override the default output from pydantic by calling `to_dict()` of breakdown
-        if self.breakdown:
-            _dict['breakdown'] = self.breakdown.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of properties
-        if self.properties:
-            _dict['properties'] = self.properties.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -144,7 +112,7 @@ class FacialSimilarityMotionReport(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of FacialSimilarityMotionReport from a dict"""
+        """Create an instance of FacialSimilarityReportShared from a dict"""
         if obj is None:
             return None
 
@@ -152,21 +120,10 @@ class FacialSimilarityMotionReport(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "created_at": obj.get("created_at"),
-            "href": obj.get("href"),
-            "status": obj.get("status"),
-            "result": obj.get("result"),
-            "sub_result": obj.get("sub_result"),
-            "check_id": obj.get("check_id"),
-            "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
-            "name": obj.get("name"),
             "live_photos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["live_photos"]] if obj.get("live_photos") is not None else None,
             "live_videos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["live_videos"]] if obj.get("live_videos") is not None else None,
             "motion_captures": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["motion_captures"]] if obj.get("motion_captures") is not None else None,
-            "id_photos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["id_photos"]] if obj.get("id_photos") is not None else None,
-            "breakdown": FacialSimilarityMotionBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
-            "properties": FacialSimilarityMotionProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
+            "id_photos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["id_photos"]] if obj.get("id_photos") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "4.1.0"
+__version__ = "4.2.0"
 
 # import apis into sdk package
 from onfido.api.default_api import DefaultApi
@@ -165,6 +165,8 @@ from onfido.models.facial_similarity_photo_fully_auto_properties import FacialSi
 from onfido.models.facial_similarity_photo_fully_auto_report import FacialSimilarityPhotoFullyAutoReport
 from onfido.models.facial_similarity_photo_properties import FacialSimilarityPhotoProperties
 from onfido.models.facial_similarity_photo_report import FacialSimilarityPhotoReport
+from onfido.models.facial_similarity_report_media import FacialSimilarityReportMedia
+from onfido.models.facial_similarity_report_shared import FacialSimilarityReportShared
 from onfido.models.facial_similarity_video_breakdown import FacialSimilarityVideoBreakdown
 from onfido.models.facial_similarity_video_breakdown_face_comparison import FacialSimilarityVideoBreakdownFaceComparison
 from onfido.models.facial_similarity_video_breakdown_image_integrity import FacialSimilarityVideoBreakdownImageIntegrity

@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.facial_similarity_photo_fully_auto_breakdown import FacialSimilarityPhotoFullyAutoBreakdown
 from onfido.models.facial_similarity_photo_fully_auto_properties import FacialSimilarityPhotoFullyAutoProperties
+from onfido.models.facial_similarity_report_media import FacialSimilarityReportMedia
 from onfido.models.report_document import ReportDocument
 from onfido.models.report_name import ReportName
 from onfido.models.report_result import ReportResult
@@ -43,10 +44,14 @@ class FacialSimilarityPhotoFullyAutoReport(BaseModel):
     check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
     documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]")
     name: ReportName
+    live_photos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with live photo ids that were used in the Onfido engine.")
+    live_videos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with live video ids that were used in the Onfido engine.")
+    motion_captures: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with motion capture ids that were used in the Onfido engine.")
+    id_photos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with id photo ids that were used in the Onfido engine.")
     breakdown: Optional[FacialSimilarityPhotoFullyAutoBreakdown] = None
     properties: Optional[FacialSimilarityPhotoFullyAutoProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name", "breakdown", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name", "live_photos", "live_videos", "motion_captures", "id_photos", "breakdown", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -96,6 +101,34 @@ class FacialSimilarityPhotoFullyAutoReport(BaseModel):
                 if _item_documents:
                     _items.append(_item_documents.to_dict())
             _dict['documents'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in live_photos (list)
+        _items = []
+        if self.live_photos:
+            for _item_live_photos in self.live_photos:
+                if _item_live_photos:
+                    _items.append(_item_live_photos.to_dict())
+            _dict['live_photos'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in live_videos (list)
+        _items = []
+        if self.live_videos:
+            for _item_live_videos in self.live_videos:
+                if _item_live_videos:
+                    _items.append(_item_live_videos.to_dict())
+            _dict['live_videos'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in motion_captures (list)
+        _items = []
+        if self.motion_captures:
+            for _item_motion_captures in self.motion_captures:
+                if _item_motion_captures:
+                    _items.append(_item_motion_captures.to_dict())
+            _dict['motion_captures'] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in id_photos (list)
+        _items = []
+        if self.id_photos:
+            for _item_id_photos in self.id_photos:
+                if _item_id_photos:
+                    _items.append(_item_id_photos.to_dict())
+            _dict['id_photos'] = _items
         # override the default output from pydantic by calling `to_dict()` of breakdown
         if self.breakdown:
             _dict['breakdown'] = self.breakdown.to_dict()
@@ -128,6 +161,10 @@ class FacialSimilarityPhotoFullyAutoReport(BaseModel):
             "check_id": obj.get("check_id"),
             "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "name": obj.get("name"),
+            "live_photos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["live_photos"]] if obj.get("live_photos") is not None else None,
+            "live_videos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["live_videos"]] if obj.get("live_videos") is not None else None,
+            "motion_captures": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["motion_captures"]] if obj.get("motion_captures") is not None else None,
+            "id_photos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["id_photos"]] if obj.get("id_photos") is not None else None,
             "breakdown": FacialSimilarityPhotoFullyAutoBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
             "properties": FacialSimilarityPhotoFullyAutoProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
         })
