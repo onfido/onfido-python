@@ -87,4 +87,4 @@ def test_schema_of_document_with_address_information_report_id_valid(
     )
 
     assert isinstance(report, DocumentWithAddressInformationReport)
-    assert report.properties.barcode.document_type == 'driving_licence'
+    assert report.properties.barcode[0].document_type == 'driving_licence'

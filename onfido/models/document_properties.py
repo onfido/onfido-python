@@ -21,7 +21,7 @@ from datetime import date
 from pydantic import BaseModel, ConfigDict, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.document_properties_address_lines import DocumentPropertiesAddressLines
-from onfido.models.document_properties_barcode import DocumentPropertiesBarcode
+from onfido.models.document_properties_barcode_inner import DocumentPropertiesBarcodeInner
 from onfido.models.document_properties_document_classification import DocumentPropertiesDocumentClassification
 from onfido.models.document_properties_document_numbers_inner import DocumentPropertiesDocumentNumbersInner
 from onfido.models.document_properties_driving_licence_information import DocumentPropertiesDrivingLicenceInformation
@@ -74,7 +74,7 @@ class DocumentProperties(BaseModel):
     real_id_compliance: Optional[StrictBool] = None
     security_tier: Optional[StrictStr] = None
     address_lines: Optional[DocumentPropertiesAddressLines] = None
-    barcode: Optional[DocumentPropertiesBarcode] = None
+    barcode: Optional[List[DocumentPropertiesBarcodeInner]] = None
     nfc: Optional[DocumentPropertiesNfc] = None
     driving_licence_information: Optional[DocumentPropertiesDrivingLicenceInformation] = None
     document_classification: Optional[DocumentPropertiesDocumentClassification] = None
@@ -163,9 +163,13 @@ class DocumentProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of address_lines
         if self.address_lines:
             _dict['address_lines'] = self.address_lines.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of barcode
+        # override the default output from pydantic by calling `to_dict()` of each item in barcode (list)
+        _items = []
         if self.barcode:
-            _dict['barcode'] = self.barcode.to_dict()
+            for _item_barcode in self.barcode:
+                if _item_barcode:
+                    _items.append(_item_barcode.to_dict())
+            _dict['barcode'] = _items
         # override the default output from pydantic by calling `to_dict()` of nfc
         if self.nfc:
             _dict['nfc'] = self.nfc.to_dict()
@@ -235,7 +239,7 @@ class DocumentProperties(BaseModel):
             "real_id_compliance": obj.get("real_id_compliance"),
             "security_tier": obj.get("security_tier"),
             "address_lines": DocumentPropertiesAddressLines.from_dict(obj["address_lines"]) if obj.get("address_lines") is not None else None,
-            "barcode": DocumentPropertiesBarcode.from_dict(obj["barcode"]) if obj.get("barcode") is not None else None,
+            "barcode": [DocumentPropertiesBarcodeInner.from_dict(_item) for _item in obj["barcode"]] if obj.get("barcode") is not None else None,
             "nfc": DocumentPropertiesNfc.from_dict(obj["nfc"]) if obj.get("nfc") is not None else None,
             "driving_licence_information": DocumentPropertiesDrivingLicenceInformation.from_dict(obj["driving_licence_information"]) if obj.get("driving_licence_information") is not None else None,
             "document_classification": DocumentPropertiesDocumentClassification.from_dict(obj["document_classification"]) if obj.get("document_classification") is not None else None,
