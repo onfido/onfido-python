@@ -1,5 +1,10 @@
 # Changelog
 
+## v4.3.0 27th November 2024
+
+- Release based on Onfido OpenAPI spec version [v4.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.3.0):
+  - [CAT-1581] Revert "[CAT-1528] Fix barcode field in document properties object"
+
 ## v4.2.0 19th November 2024
 
 - Release based on Onfido OpenAPI spec version [v4.2.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.2.0):
