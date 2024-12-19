@@ -41,7 +41,7 @@ class WebhookEventPayloadResource(BaseModel):
     task_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task Definition.")
     task_def_version: Optional[StrictStr] = Field(default=None, description="The task definition version.")
     input: Optional[Dict[str, Any]] = Field(default=None, description="Input object with the fields used by the Task execution.")
-    output: Optional[Dict[str, Any]] = Field(default=None, description="Output object with the fields produced by the Task execution.")
+    output: Any = Field(default=None, description="Value field (it can be an Object, List, etc.) with the fields produced by the Task execution.")
     reasons: Optional[List[StrictStr]] = Field(default=None, description="The reasons the Workflow Run outcome was reached. Configurable when creating the Workflow Version.")
     link: Optional[WorkflowRunLink] = Field(default=None, description="Object for the configuration of the Workflow Run link.")
     error: Optional[WorkflowRunError] = Field(default=None, description="Error object that details why a Workflow Run is in Error status.")
