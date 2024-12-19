@@ -32,6 +32,8 @@ class WebhookEventResourceType(str, Enum):
     WORKFLOW_RUN = 'workflow_run'
     WORKFLOW_TASK = 'workflow_task'
     WATCHLIST_MONITOR = 'watchlist_monitor'
+    WORKFLOW_TIMELINE_FILE = 'workflow_timeline_file'
+    WORKFLOW_RUN_EVIDENCE_FOLDER = 'workflow_run_evidence_folder'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

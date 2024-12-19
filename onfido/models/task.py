@@ -33,7 +33,7 @@ class Task(BaseModel):
     task_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task Definition.")
     task_def_version: Optional[StrictStr] = Field(default=None, description="The task definition version.")
     input: Optional[Dict[str, Any]] = Field(default=None, description="Input object with the fields used by the Task to execute.")
-    output: Optional[Dict[str, Any]] = Field(default=None, description="Output object with the fields produced by the Task execution.")
+    output: Any = Field(default=None, description="Value field (it can be an Object, List, etc.) with the fields produced by the Task execution.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when the Task was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date and time when the Task was last updated.")
     additional_properties: Dict[str, Any] = {}
