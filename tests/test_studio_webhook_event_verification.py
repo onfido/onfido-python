@@ -61,3 +61,41 @@ def test_webhook_verification_invalid_signature():
 
     with pytest.raises(OnfidoInvalidSignatureError):
         verifier.read_payload(raw_event, signature)
+
+
+def test_webhook_verification_with_object_in_output():
+    signature = "e3e5565647f5ccf07b2fd8ac22eab94a0a0619413d981fb768295c820523f7d7"
+
+    with open('tests/media/studio_webhook_event_with_object_in_output.json', 'r') as file:
+        event = verifier.read_payload(file.read(), signature)
+
+    assert event.payload.resource.output['properties'] == {
+        'date_of_birth': '1990-01-01',
+        'date_of_expiry': '2031-05-28',
+        'document_number': '999999999',
+        'document_numbers': [
+            {
+                'type': 'document_number',
+                'value': '999999999'
+            }
+        ],
+       'document_type': 'passport',
+       'first_name': 'Jane',
+       'issuing_country': 'GBR',
+       'last_name': 'Doe',
+    }
+
+
+def test_webhook_verification_with_list_in_output():
+    signature = "f3a5170acfcecf8c1bf6d9cb9995c0d9dec941af83056a721530f8de7af2c293"
+
+    with open('tests/media/studio_webhook_event_with_list_in_output.json', 'r') as file:
+        event = verifier.read_payload(file.read(), signature)
+
+    assert event.payload.resource.output == [
+        {
+          'checksum_sha256': 'hiwV2PLmeQZzeySPGGwVL48sxVXcyfpXy9LDl1u3lWU=',
+          'id': '7af75a3a-ba34-4aa5-9e3e-096c9f56256b',
+          'type': 'document_photo'
+        }
+    ]
