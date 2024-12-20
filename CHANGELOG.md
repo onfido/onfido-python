@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.4.0 20th December 2024
+
+- Release based on Onfido OpenAPI spec version [v4.4.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.4.0):
+  - [CAT-1593] Fix missing webhook type and evidence folder webhook
+  - [CAT-1590] Allow any type for the workflow task output
+
 ## v4.3.0 27th November 2024
 
 - Release based on Onfido OpenAPI spec version [v4.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.3.0):
