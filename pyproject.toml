@@ -8,6 +8,7 @@ readme = "README.md"
 repository = "https://github.com/onfido/onfido-python"
 keywords = ["OpenAPI", "OpenAPI-Generator", "onfido", "identity"]
 include = ["onfido/py.typed"]
+package-mode = false
 
 [tool.poetry.urls]
 "Onfido API documentation" = "https://documentation.onfido.com"
