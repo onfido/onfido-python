@@ -1,5 +1,10 @@
 # Changelog
 
+## v4.5.0 8th January 2025
+
+- Release based on Onfido OpenAPI spec version [v4.5.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.5.0):
+  - [STUDIO-4305] Add download evidence folder path
+
 ## v4.4.0 20th December 2024
 
 - Release based on Onfido OpenAPI spec version [v4.4.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.4.0):
