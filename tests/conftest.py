@@ -114,7 +114,7 @@ def create_workflow_run(
 
 
 def repeat_request_until_status_changes(
-    function, params, status, max_retries=10, sleep_time=1
+    function, params, status, max_retries=15, sleep_time=1
 ):
     instance = function(*params)
 
@@ -138,7 +138,7 @@ def repeat_request_until_status_changes(
 
 
 def repeat_request_until_task_output_changes(
-    function, params, max_retries=10, sleep_time=1
+    function, params, max_retries=15, sleep_time=1
 ):
     instance = function(*params)
 
@@ -156,7 +156,7 @@ def repeat_request_until_task_output_changes(
 
 
 def repeat_request_until_http_code_changes(
-    function, params, max_retries=10, sleep_time=1
+    function, params, max_retries=15, sleep_time=1
 ):
     iteration = 0
     while iteration <= max_retries:
