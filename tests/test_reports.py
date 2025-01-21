@@ -1,7 +1,12 @@
 import pytest
 
 from onfido import Report, ReportName, ReportStatus
-from tests.conftest import create_applicant, create_check, upload_document
+from tests.conftest import (
+    create_applicant,
+    create_check,
+    upload_document,
+    repeat_request_until_status_changes,
+)
 from typing import List
 
 
@@ -51,13 +56,17 @@ def test_list_reports(sorted_reports):
 
 
 def test_find_report(onfido_api, document_report_id, identity_report_id):
-    get_document_report = onfido_api.find_report(document_report_id)
+    get_document_report = Report(
+        repeat_request_until_status_changes(
+            onfido_api.find_report, [document_report_id], ReportStatus.COMPLETE
+        )
+    )
     get_identity_report = onfido_api.find_report(identity_report_id)
 
     assert isinstance(get_document_report, Report)
     assert get_document_report.actual_instance.id == document_report_id
     assert get_document_report.actual_instance.name == ReportName.DOCUMENT
-    assert get_document_report.actual_instance.status == ReportStatus.AWAITING_DATA
+    assert get_document_report.actual_instance.status == ReportStatus.COMPLETE
 
     assert isinstance(get_identity_report, Report)
     assert get_identity_report.actual_instance.id == identity_report_id
