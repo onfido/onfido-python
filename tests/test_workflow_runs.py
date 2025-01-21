@@ -2,7 +2,12 @@ import tempfile
 import zipfile
 import pytest
 
-from onfido import TimelineFileReference, WorkflowRun, WorkflowRunBuilder, WorkflowRunStatus
+from onfido import (
+    TimelineFileReference,
+    WorkflowRun,
+    WorkflowRunBuilder,
+    WorkflowRunStatus,
+)
 from tests.conftest import (
     create_applicant,
     create_workflow_run,
@@ -81,7 +86,9 @@ def test_download_evidence_folder(onfido_api, applicant_id):
         onfido_api.find_workflow_run, [workflow_run_id], WorkflowRunStatus.APPROVED
     )
 
-    file = onfido_api.download_evidence_folder(workflow_run_id)
+    file = repeat_request_until_http_code_changes(
+        onfido_api.download_evidence_folder, [workflow_run_id]
+    )
 
     assert len(file) > 0
     with tempfile.NamedTemporaryFile() as tmp_file:
