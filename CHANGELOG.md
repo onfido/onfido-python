@@ -1,5 +1,15 @@
 # Changelog
 
+## v4.6.0 24th January 2025
+
+- Release based on Onfido OpenAPI spec version [v4.6.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.6.0):
+  - (Python) Use Poetry only for dependency management
+  - [STUDIO-4308] Add driving_license to id_number enum
+  - [CAT-1634] Add proxy configuration support to Java client library
+  - Update README files (including templated ones)
+  - Add customer_user_id in the webhook event resource
+- test: wait for evidence folder to be available
+
 ## v4.5.0 8th January 2025
 
 - Release based on Onfido OpenAPI spec version [v4.5.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v4.5.0):
