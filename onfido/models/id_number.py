@@ -38,8 +38,8 @@ class IdNumber(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['ssn', 'social_insurance', 'tax_id', 'identity_card', 'driving_licence', 'share_code', 'voter_id', 'passport', 'other']):
-            raise ValueError("must be one of enum values ('ssn', 'social_insurance', 'tax_id', 'identity_card', 'driving_licence', 'share_code', 'voter_id', 'passport', 'other')")
+        if value not in set(['ssn', 'social_insurance', 'tax_id', 'identity_card', 'driving_license', 'driving_licence', 'share_code', 'voter_id', 'passport', 'other']):
+            raise ValueError("must be one of enum values ('ssn', 'social_insurance', 'tax_id', 'identity_card', 'driving_license', 'driving_licence', 'share_code', 'voter_id', 'passport', 'other')")
         return value
 
     model_config = ConfigDict(
