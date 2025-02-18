@@ -36,16 +36,6 @@ class DocumentShared(BaseModel):
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["file_type", "type", "side", "issuing_country", "applicant_id"]
 
-    @field_validator('file_type')
-    def file_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(['jpg', 'jpeg', 'png', 'pdf']):
-            raise ValueError("must be one of enum values ('jpg', 'jpeg', 'png', 'pdf')")
-        return value
-
     @field_validator('side')
     def side_validate_enum(cls, value):
         """Validates the enum"""

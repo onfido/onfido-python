@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,7 +26,7 @@ class WatchlistStandardProperties(BaseModel):
     """
     WatchlistStandardProperties
     """ # noqa: E501
-    records: Optional[List[StrictStr]] = Field(default=None, description="Returns any matches including, but not limited to, name and date of birth of match, aliases and associates, and relevant events and sources.")
+    records: Optional[List[Dict[str, Any]]] = Field(default=None, description="Returns any matches including, but not limited to, name and date of birth of match, aliases and associates, and relevant events and sources.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["records"]
 

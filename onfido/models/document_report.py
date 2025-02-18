@@ -41,12 +41,12 @@ class DocumentReport(BaseModel):
     result: Optional[ReportResult] = None
     sub_result: Optional[ReportSubResult] = None
     check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
-    documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]")
     name: ReportName
+    documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine.")
     breakdown: Optional[DocumentBreakdown] = None
     properties: Optional[DocumentProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name", "breakdown", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "name", "documents", "breakdown", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -126,8 +126,8 @@ class DocumentReport(BaseModel):
             "result": obj.get("result"),
             "sub_result": obj.get("sub_result"),
             "check_id": obj.get("check_id"),
-            "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "name": obj.get("name"),
+            "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "breakdown": DocumentBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
             "properties": DocumentProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
         })

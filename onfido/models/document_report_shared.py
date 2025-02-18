@@ -17,34 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.report_name import ReportName
-from onfido.models.report_result import ReportResult
-from onfido.models.report_status import ReportStatus
-from onfido.models.report_sub_result import ReportSubResult
-from onfido.models.watchlist_standard_breakdown import WatchlistStandardBreakdown
-from onfido.models.watchlist_standard_properties import WatchlistStandardProperties
+from onfido.models.report_document import ReportDocument
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WatchlistPepsOnlyReport(BaseModel):
+class DocumentReportShared(BaseModel):
     """
-    WatchlistPepsOnlyReport
+    DocumentReportShared
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier for the report. Read-only.")
-    created_at: Optional[datetime] = Field(default=None, description="The date and time at which the report was first initiated. Read-only.")
-    href: Optional[StrictStr] = Field(default=None, description="The API endpoint to retrieve the report. Read-only.")
-    status: Optional[ReportStatus] = None
-    result: Optional[ReportResult] = None
-    sub_result: Optional[ReportSubResult] = None
-    check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
-    name: ReportName
-    breakdown: Optional[WatchlistStandardBreakdown] = None
-    properties: Optional[WatchlistStandardProperties] = None
+    documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "name", "breakdown", "properties"]
+    __properties: ClassVar[List[str]] = ["documents"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -64,7 +49,7 @@ class WatchlistPepsOnlyReport(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WatchlistPepsOnlyReport from a JSON string"""
+        """Create an instance of DocumentReportShared from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -87,12 +72,13 @@ class WatchlistPepsOnlyReport(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of breakdown
-        if self.breakdown:
-            _dict['breakdown'] = self.breakdown.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of properties
-        if self.properties:
-            _dict['properties'] = self.properties.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in documents (list)
+        _items = []
+        if self.documents:
+            for _item_documents in self.documents:
+                if _item_documents:
+                    _items.append(_item_documents.to_dict())
+            _dict['documents'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -102,7 +88,7 @@ class WatchlistPepsOnlyReport(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WatchlistPepsOnlyReport from a dict"""
+        """Create an instance of DocumentReportShared from a dict"""
         if obj is None:
             return None
 
@@ -110,16 +96,7 @@ class WatchlistPepsOnlyReport(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "created_at": obj.get("created_at"),
-            "href": obj.get("href"),
-            "status": obj.get("status"),
-            "result": obj.get("result"),
-            "sub_result": obj.get("sub_result"),
-            "check_id": obj.get("check_id"),
-            "name": obj.get("name"),
-            "breakdown": WatchlistStandardBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
-            "properties": WatchlistStandardProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
+            "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

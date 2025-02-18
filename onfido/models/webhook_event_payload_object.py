@@ -32,7 +32,7 @@ class WebhookEventPayloadObject(BaseModel):
     status: Optional[WebhookEventObjectStatus] = None
     started_at_iso8601: Optional[datetime] = Field(default=None, description="The date and time when the operation was started, if available.")
     completed_at_iso8601: Optional[datetime] = Field(default=None, description="The date and time when the operation was completed, if available.")
-    href: StrictStr = Field(description="The uri of the resource.")
+    href: Optional[StrictStr] = Field(default=None, description="The uri of the resource.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "status", "started_at_iso8601", "completed_at_iso8601", "href"]
 

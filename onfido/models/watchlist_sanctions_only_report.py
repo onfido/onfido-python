@@ -20,7 +20,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.report_document import ReportDocument
 from onfido.models.report_name import ReportName
 from onfido.models.report_result import ReportResult
 from onfido.models.report_status import ReportStatus
@@ -41,12 +40,11 @@ class WatchlistSanctionsOnlyReport(BaseModel):
     result: Optional[ReportResult] = None
     sub_result: Optional[ReportSubResult] = None
     check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
-    documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]")
     name: ReportName
     breakdown: Optional[WatchlistStandardBreakdown] = None
     properties: Optional[WatchlistStandardProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name", "breakdown", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "name", "breakdown", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,13 +87,6 @@ class WatchlistSanctionsOnlyReport(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in documents (list)
-        _items = []
-        if self.documents:
-            for _item_documents in self.documents:
-                if _item_documents:
-                    _items.append(_item_documents.to_dict())
-            _dict['documents'] = _items
         # override the default output from pydantic by calling `to_dict()` of breakdown
         if self.breakdown:
             _dict['breakdown'] = self.breakdown.to_dict()
@@ -126,7 +117,6 @@ class WatchlistSanctionsOnlyReport(BaseModel):
             "result": obj.get("result"),
             "sub_result": obj.get("sub_result"),
             "check_id": obj.get("check_id"),
-            "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "name": obj.get("name"),
             "breakdown": WatchlistStandardBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
             "properties": WatchlistStandardProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None

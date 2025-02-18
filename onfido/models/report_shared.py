@@ -20,7 +20,6 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.report_document import ReportDocument
 from onfido.models.report_name import ReportName
 from onfido.models.report_result import ReportResult
 from onfido.models.report_status import ReportStatus
@@ -39,10 +38,9 @@ class ReportShared(BaseModel):
     result: Optional[ReportResult] = None
     sub_result: Optional[ReportSubResult] = None
     check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
-    documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]")
     name: ReportName
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "name"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -85,13 +83,6 @@ class ReportShared(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in documents (list)
-        _items = []
-        if self.documents:
-            for _item_documents in self.documents:
-                if _item_documents:
-                    _items.append(_item_documents.to_dict())
-            _dict['documents'] = _items
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -116,7 +107,6 @@ class ReportShared(BaseModel):
             "result": obj.get("result"),
             "sub_result": obj.get("sub_result"),
             "check_id": obj.get("check_id"),
-            "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "name": obj.get("name")
         })
         # store additional fields in additional_properties
