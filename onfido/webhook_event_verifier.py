@@ -1,5 +1,6 @@
 import hmac
 import hashlib
+from typing import Optional
 
 from .models import WebhookEvent
 
@@ -9,10 +10,10 @@ class OnfidoInvalidSignatureError(Exception):
 
 
 class WebhookEventVerifier:
-    def __init__(self, webhook_token):
+    def __init__(self, webhook_token: str) -> None:
         self.webhook_token = webhook_token
 
-    def read_payload(self, raw_event, signature):
+    def read_payload(self, raw_event: str, signature: str) -> Optional[WebhookEvent]:
         # Compute the the actual HMAC signature from the raw request body.
         event_signature = hmac.new(
             key=self.webhook_token.encode("utf-8"),

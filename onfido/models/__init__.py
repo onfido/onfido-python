@@ -96,6 +96,7 @@ from onfido.models.document_properties_driving_licence_information import Docume
 from onfido.models.document_properties_extracted_data import DocumentPropertiesExtractedData
 from onfido.models.document_properties_nfc import DocumentPropertiesNfc
 from onfido.models.document_report import DocumentReport
+from onfido.models.document_report_shared import DocumentReportShared
 from onfido.models.document_response import DocumentResponse
 from onfido.models.document_shared import DocumentShared
 from onfido.models.document_types import DocumentTypes

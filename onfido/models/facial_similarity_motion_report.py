@@ -42,8 +42,8 @@ class FacialSimilarityMotionReport(BaseModel):
     result: Optional[ReportResult] = None
     sub_result: Optional[ReportSubResult] = None
     check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
-    documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine. [ONLY POPULATED FOR DOCUMENT AND FACIAL SIMILARITY REPORTS]")
     name: ReportName
+    documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine.")
     live_photos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with live photo ids that were used in the Onfido engine.")
     live_videos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with live video ids that were used in the Onfido engine.")
     motion_captures: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with motion capture ids that were used in the Onfido engine.")
@@ -51,7 +51,7 @@ class FacialSimilarityMotionReport(BaseModel):
     breakdown: Optional[FacialSimilarityMotionBreakdown] = None
     properties: Optional[FacialSimilarityMotionProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "documents", "name", "live_photos", "live_videos", "motion_captures", "id_photos", "breakdown", "properties"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "name", "documents", "live_photos", "live_videos", "motion_captures", "id_photos", "breakdown", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -159,8 +159,8 @@ class FacialSimilarityMotionReport(BaseModel):
             "result": obj.get("result"),
             "sub_result": obj.get("sub_result"),
             "check_id": obj.get("check_id"),
-            "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "name": obj.get("name"),
+            "documents": [ReportDocument.from_dict(_item) for _item in obj["documents"]] if obj.get("documents") is not None else None,
             "live_photos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["live_photos"]] if obj.get("live_photos") is not None else None,
             "live_videos": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["live_videos"]] if obj.get("live_videos") is not None else None,
             "motion_captures": [FacialSimilarityReportMedia.from_dict(_item) for _item in obj["motion_captures"]] if obj.get("motion_captures") is not None else None,

@@ -42,7 +42,6 @@ class WebhookEventType(str, Enum):
     REPORT_DOT_AWAITING_APPROVAL = 'report.awaiting_approval'
     REPORT_DOT_COMPLETED = 'report.completed'
     WORKFLOW_TIMELINE_FILE_DOT_CREATED = 'workflow_timeline_file.created'
-    WORKFLOW_SIGNED_EVIDENCE_FILE_DOT_CREATED = 'workflow_signed_evidence_file.created'
     WORKFLOW_RUN_EVIDENCE_FOLDER_DOT_CREATED = 'workflow_run_evidence_folder.created'
 
     @classmethod
