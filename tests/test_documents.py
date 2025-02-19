@@ -3,6 +3,7 @@ import pytest
 from onfido import ApiException, Document, DocumentsList, DocumentTypes
 from tests.conftest import create_applicant, upload_document
 
+INEXISTENT_DOCUMENT_ID = "00000000-0000-0000-0000-000000000000"
 
 @pytest.fixture(scope="function")
 def applicant_id(onfido_api):
@@ -44,7 +45,17 @@ def test_download_document(onfido_api, document):
 
 
 def test_download_inexistent_document(onfido_api):
-    inexistent_document_id = "00000000-0000-0000-0000-000000000000"
-
     with pytest.raises(ApiException):
-        onfido_api.download_document(inexistent_document_id)
+        onfido_api.download_document(INEXISTENT_DOCUMENT_ID)
+
+def test_download_nfc_face(onfido_api, document, applicant_id):
+    nfc_face = upload_document(onfido_api, applicant_id, "tests/media/nfc_data.json")
+
+    file = onfido_api.download_nfc_face(nfc_face.id)
+
+    assert len(file) > 0
+
+
+def test_download_nfc_face_not_found(onfido_api):
+    with pytest.raises(ApiException):
+        onfido_api.download_nfc_face(INEXISTENT_DOCUMENT_ID)
