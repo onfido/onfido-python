@@ -57,12 +57,12 @@ def create_applicant(onfido_api, applicant_builder=None):
     return onfido_api.create_applicant(applicant_builder)
 
 
-def upload_document(onfido_api, applicant_id):
+def upload_document(onfido_api, applicant_id, file_path="tests/media/sample_driving_licence.png"):
     return onfido_api.upload_document(
         applicant_id=applicant_id,
         type=onfido.DocumentTypes.PASSPORT,
         side="front",
-        file="tests/media/sample_driving_licence.png",
+        file=file_path,
     )
 
 
