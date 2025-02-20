@@ -7,9 +7,9 @@ exampleAddress = Address.from_dict({
   'flat_number': "",
   'building_number': "2",
   'building_name': "",
-  'street': "RAWSON CLOSE",
-  'sub_street': "",
-  'town': "SHEFFIELD"
+  'street': "Rawson Close",
+  'sub_street': None,
+  'town': "Sheffield"
 })
 
 exampleAddress2 = deepcopy(exampleAddress)
