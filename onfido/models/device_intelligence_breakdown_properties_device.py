@@ -49,8 +49,8 @@ class DeviceIntelligenceBreakdownPropertiesDevice(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['onfido-android-sdk', 'onfido-ios-sdk', 'onfido-web-sdk']):
-            raise ValueError("must be one of enum values ('onfido-android-sdk', 'onfido-ios-sdk', 'onfido-web-sdk')")
+        if value not in set(['onfido-android-sdk', 'onfido-ios-sdk', 'onfido-web-sdk', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('onfido-android-sdk', 'onfido-ios-sdk', 'onfido-web-sdk', 'unknown_default_open_api')")
         return value
 
     @field_validator('authentication_type')
@@ -59,8 +59,8 @@ class DeviceIntelligenceBreakdownPropertiesDevice(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['sdk_token', 'mobile_token', 'api_token']):
-            raise ValueError("must be one of enum values ('sdk_token', 'mobile_token', 'api_token')")
+        if value not in set(['sdk_token', 'mobile_token', 'api_token', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('sdk_token', 'mobile_token', 'api_token', 'unknown_default_open_api')")
         return value
 
     @field_validator('ip_reputation')
@@ -69,8 +69,8 @@ class DeviceIntelligenceBreakdownPropertiesDevice(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['NOT_ENOUGH_DATA', 'HIGH_RISK', 'LOW_RISK']):
-            raise ValueError("must be one of enum values ('NOT_ENOUGH_DATA', 'HIGH_RISK', 'LOW_RISK')")
+        if value not in set(['NOT_ENOUGH_DATA', 'HIGH_RISK', 'LOW_RISK', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('NOT_ENOUGH_DATA', 'HIGH_RISK', 'LOW_RISK', 'unknown_default_open_api')")
         return value
 
     @field_validator('document_capture')
@@ -79,8 +79,8 @@ class DeviceIntelligenceBreakdownPropertiesDevice(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['live', 'unknown_method']):
-            raise ValueError("must be one of enum values ('live', 'unknown_method')")
+        if value not in set(['live', 'unknown_method', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('live', 'unknown_method', 'unknown_default_open_api')")
         return value
 
     @field_validator('biometric_capture')
@@ -89,8 +89,8 @@ class DeviceIntelligenceBreakdownPropertiesDevice(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['live', 'unknown_method']):
-            raise ValueError("must be one of enum values ('live', 'unknown_method')")
+        if value not in set(['live', 'unknown_method', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('live', 'unknown_method', 'unknown_default_open_api')")
         return value
 
     model_config = ConfigDict(

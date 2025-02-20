@@ -66,8 +66,8 @@ class ExtractionExtractedData(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Male', 'Female']):
-            raise ValueError("must be one of enum values ('Male', 'Female')")
+        if value not in set(['Male', 'Female', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('Male', 'Female', 'unknown_default_open_api')")
         return value
 
     @field_validator('nationality')

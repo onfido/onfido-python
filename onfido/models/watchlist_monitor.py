@@ -40,8 +40,8 @@ class WatchlistMonitor(BaseModel):
     @field_validator('report_name')
     def report_name_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['watchlist_standard', 'watchlist_aml']):
-            raise ValueError("must be one of enum values ('watchlist_standard', 'watchlist_aml')")
+        if value not in set(['watchlist_standard', 'watchlist_aml', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('watchlist_standard', 'watchlist_aml', 'unknown_default_open_api')")
         return value
 
     model_config = ConfigDict(

@@ -30,6 +30,7 @@ class ReportSubResult(str, Enum):
     REJECTED = 'rejected'
     SUSPECTED = 'suspected'
     CAUTION = 'caution'
+    UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

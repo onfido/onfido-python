@@ -47,6 +47,7 @@ class ReportName(str, Enum):
     US_DRIVING_LICENCE = 'us_driving_licence'
     DEVICE_INTELLIGENCE = 'device_intelligence'
     INDIA_PAN = 'india_pan'
+    UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

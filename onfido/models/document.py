@@ -49,8 +49,8 @@ class Document(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['front', 'back']):
-            raise ValueError("must be one of enum values ('front', 'back')")
+        if value not in set(['front', 'back', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('front', 'back', 'unknown_default_open_api')")
         return value
 
     model_config = ConfigDict(

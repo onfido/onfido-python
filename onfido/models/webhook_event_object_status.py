@@ -45,6 +45,7 @@ class WebhookEventObjectStatus(str, Enum):
     AWAITING_APPLICANT = 'awaiting_applicant'
     PAUSED = 'paused'
     REOPENED = 'reopened'
+    UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

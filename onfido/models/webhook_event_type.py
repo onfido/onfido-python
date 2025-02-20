@@ -43,6 +43,7 @@ class WebhookEventType(str, Enum):
     REPORT_DOT_COMPLETED = 'report.completed'
     WORKFLOW_TIMELINE_FILE_DOT_CREATED = 'workflow_timeline_file.created'
     WORKFLOW_RUN_EVIDENCE_FOLDER_DOT_CREATED = 'workflow_run_evidence_folder.created'
+    UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
