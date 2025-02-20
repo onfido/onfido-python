@@ -34,6 +34,7 @@ class WebhookEventResourceType(str, Enum):
     WATCHLIST_MONITOR = 'watchlist_monitor'
     WORKFLOW_TIMELINE_FILE = 'workflow_timeline_file'
     WORKFLOW_RUN_EVIDENCE_FOLDER = 'workflow_run_evidence_folder'
+    UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

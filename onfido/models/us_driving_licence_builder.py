@@ -62,8 +62,8 @@ class UsDrivingLicenceBuilder(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['driver license', 'driver permit', 'id card']):
-            raise ValueError("must be one of enum values ('driver license', 'driver permit', 'id card')")
+        if value not in set(['driver license', 'driver permit', 'id card', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('driver license', 'driver permit', 'id card', 'unknown_default_open_api')")
         return value
 
     @field_validator('eye_color_code')
@@ -72,8 +72,8 @@ class UsDrivingLicenceBuilder(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['BLK', 'BLU', 'BRO', 'DIC', 'GRY', 'GRN', 'HAZ', 'MAR', 'PNK']):
-            raise ValueError("must be one of enum values ('BLK', 'BLU', 'BRO', 'DIC', 'GRY', 'GRN', 'HAZ', 'MAR', 'PNK')")
+        if value not in set(['BLK', 'BLU', 'BRO', 'DIC', 'GRY', 'GRN', 'HAZ', 'MAR', 'PNK', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('BLK', 'BLU', 'BRO', 'DIC', 'GRY', 'GRN', 'HAZ', 'MAR', 'PNK', 'unknown_default_open_api')")
         return value
 
     @field_validator('gender')
@@ -82,8 +82,8 @@ class UsDrivingLicenceBuilder(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['Male', 'Female']):
-            raise ValueError("must be one of enum values ('Male', 'Female')")
+        if value not in set(['Male', 'Female', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('Male', 'Female', 'unknown_default_open_api')")
         return value
 
     @field_validator('state')

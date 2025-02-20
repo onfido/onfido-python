@@ -96,8 +96,8 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['superior', 'strong', 'fair', 'weak', 'unacceptable', 'unspecified_identity_evidence_strength']):
-            raise ValueError("must be one of enum values ('superior', 'strong', 'fair', 'weak', 'unacceptable', 'unspecified_identity_evidence_strength')")
+        if value not in set(['superior', 'strong', 'fair', 'weak', 'unacceptable', 'unspecified_identity_evidence_strength', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('superior', 'strong', 'fair', 'weak', 'unacceptable', 'unspecified_identity_evidence_strength', 'unknown_default_open_api')")
         return value
 
     @field_validator('has_issuance_confirmation')
@@ -106,8 +106,8 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['true', 'false', 'unspecified']):
-            raise ValueError("must be one of enum values ('true', 'false', 'unspecified')")
+        if value not in set(['true', 'false', 'unspecified', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('true', 'false', 'unspecified', 'unknown_default_open_api')")
         return value
 
     @field_validator('security_tier')
@@ -116,8 +116,8 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'unspecified_security_tier']):
-            raise ValueError("must be one of enum values ('tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'unspecified_security_tier')")
+        if value not in set(['tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'unspecified_security_tier', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('tier_1', 'tier_2', 'tier_3', 'tier_4', 'tier_5', 'unspecified_security_tier', 'unknown_default_open_api')")
         return value
 
     model_config = ConfigDict(

@@ -41,8 +41,8 @@ class WorkflowRunLink(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['en_US', 'de_DE', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL']):
-            raise ValueError("must be one of enum values ('en_US', 'de_DE', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL')")
+        if value not in set(['en_US', 'de_DE', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('en_US', 'de_DE', 'es_ES', 'fr_FR', 'it_IT', 'pt_PT', 'nl_NL', 'unknown_default_open_api')")
         return value
 
     model_config = ConfigDict(

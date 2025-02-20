@@ -43,8 +43,8 @@ class RepeatAttemptsListRepeatAttemptsInner(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['match', 'mismatch']):
-            raise ValueError("must be one of enum values ('match', 'mismatch')")
+        if value not in set(['match', 'mismatch', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('match', 'mismatch', 'unknown_default_open_api')")
         return value
 
     @field_validator('names')
@@ -53,8 +53,8 @@ class RepeatAttemptsListRepeatAttemptsInner(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['match', 'mismatch']):
-            raise ValueError("must be one of enum values ('match', 'mismatch')")
+        if value not in set(['match', 'mismatch', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('match', 'mismatch', 'unknown_default_open_api')")
         return value
 
     @field_validator('result')
@@ -63,8 +63,8 @@ class RepeatAttemptsListRepeatAttemptsInner(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['clear', 'consider']):
-            raise ValueError("must be one of enum values ('clear', 'consider')")
+        if value not in set(['clear', 'consider', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('clear', 'consider', 'unknown_default_open_api')")
         return value
 
     model_config = ConfigDict(

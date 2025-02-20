@@ -29,6 +29,7 @@ class ApplicantConsentName(str, Enum):
     PRIVACY_NOTICES_READ = 'privacy_notices_read'
     SSN_VERIFICATION = 'ssn_verification'
     PHONE_NUMBER_VERIFICATION = 'phone_number_verification'
+    UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api'
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
