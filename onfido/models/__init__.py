@@ -20,6 +20,7 @@ from onfido.models.address_shared import AddressShared
 from onfido.models.addresses_list import AddressesList
 from onfido.models.applicant import Applicant
 from onfido.models.applicant_builder import ApplicantBuilder
+from onfido.models.applicant_consent import ApplicantConsent
 from onfido.models.applicant_consent_builder import ApplicantConsentBuilder
 from onfido.models.applicant_consent_name import ApplicantConsentName
 from onfido.models.applicant_create import ApplicantCreate
