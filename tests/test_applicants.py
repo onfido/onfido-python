@@ -84,6 +84,36 @@ def test_update_applicant(onfido_api, applicant_id):
     assert updated_applicant.dob == datetime.date(1990, 1, 22)
 
 
+def test_list_applicant_consents(onfido_api, applicant_id):
+    
+    consents = [
+        onfido.ApplicantConsentBuilder(
+            name=onfido.ApplicantConsentName.PHONE_NUMBER_VERIFICATION,
+            granted=True,
+            granted_at=datetime.date(1990, 1, 22)
+        ),
+        onfido.ApplicantConsentBuilder(
+            name=onfido.ApplicantConsentName.PRIVACY_NOTICES_READ,
+            granted=True,
+            granted_at=datetime.date(1990, 1, 22)
+        ),
+        onfido.ApplicantConsentBuilder(
+            name=onfido.ApplicantConsentName.SSN_VERIFICATION,
+            granted=True,
+            granted_at=datetime.date(1990, 1, 22)
+        )
+    ]
+
+    new_applicant_data = onfido.ApplicantUpdater(consents=consents)
+
+    onfido_api.update_applicant(applicant_id, new_applicant_data)
+
+    actual_consents = onfido_api.find_applicant_consents(applicant_id)
+
+    for actual, expected in zip(actual_consents, consents):
+        assert actual.name == expected.name
+        assert actual.granted == expected.granted
+
 def test_delete_applicant(onfido_api, applicant_id):
     onfido_api.delete_applicant(applicant_id)
 
