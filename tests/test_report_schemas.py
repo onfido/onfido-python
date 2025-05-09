@@ -1,15 +1,21 @@
 import pytest
 
+import datetime
+
 from onfido import (
     ApplicantBuilder,
     CountryCodes,
+    DeviceIntelligenceReport,
     DocumentReport,
     DocumentWithAddressInformationReport,
+    DocumentWithDrivingLicenceInformationReport,
+    DocumentPropertiesDrivingLicenceInformationItem,
     FacialSimilarityPhotoReport,
     LocationBuilder,
     ReportName,
     ReportStatus,
 )
+
 from tests.conftest import (
     create_applicant,
     create_check,
@@ -55,7 +61,7 @@ def test_schema_of_document_report_is_valid(onfido_api, applicant_id, document_i
     assert isinstance(document_report, DocumentReport)
 
 
-def test_schema_of_facial_similarity_report_id_valid(
+def test_schema_of_facial_similarity_report_is_valid(
     onfido_api, applicant_id, document_id, live_photo_id
 ):
     facial_similarity_report_id = create_check(
@@ -72,7 +78,7 @@ def test_schema_of_facial_similarity_report_id_valid(
     assert facial_similarity_report.properties.score is None
 
 
-def test_schema_of_document_with_address_information_report_id_valid(
+def test_schema_of_document_with_address_information_report_is_valid(
     onfido_api, applicant_id, document_id
 ):
     report_id = create_check(
@@ -88,3 +94,50 @@ def test_schema_of_document_with_address_information_report_id_valid(
 
     assert isinstance(report, DocumentWithAddressInformationReport)
     assert report.properties.barcode[0].document_type == 'driving_licence'
+
+
+def test_schema_of_document_with_driving_licence_information_report_is_valid(
+    onfido_api, applicant_id, document_id
+):
+    report_id = create_check(
+        onfido_api,
+        applicant_id=applicant_id,
+        document_ids=[document_id],
+        report_names=[ReportName.DOCUMENT_WITH_DRIVING_LICENCE_INFORMATION],
+    ).report_ids[0]
+
+    report = repeat_request_until_status_changes(
+        onfido_api.find_report, [report_id], ReportStatus.COMPLETE
+    )
+
+    assert isinstance(report, DocumentWithDrivingLicenceInformationReport)
+
+    assert DocumentPropertiesDrivingLicenceInformationItem(
+                category='AM',
+                obtainment_date=datetime.date(2013, 1, 19),
+                expiry_date=datetime.date(2050, 1, 1),
+                codes='01') in report.properties.driving_licence_information
+
+
+def test_schema_of_device_intelligence_report_is_valid(
+    onfido_api, applicant_id, document_id
+):
+    report_id = create_check(
+        onfido_api,
+        applicant_id=applicant_id,
+        document_ids=[document_id],
+        report_names=[ReportName.DEVICE_INTELLIGENCE],
+    ).report_ids[0]
+
+    report = repeat_request_until_status_changes(
+        onfido_api.find_report, [report_id], ReportStatus.COMPLETE
+    )
+
+    assert isinstance(report, DeviceIntelligenceReport)
+
+    assert report.name == ReportName.DEVICE_INTELLIGENCE
+    assert report.status == ReportStatus.COMPLETE
+
+    assert report.breakdown is not None
+    assert report.properties.device.ip_reputation == "NOT_ENOUGH_DATA"
+    assert report.properties.device.raw_model == "SM-G991B"

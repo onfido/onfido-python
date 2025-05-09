@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.device_intelligence_breakdown_breakdown_device import DeviceIntelligenceBreakdownBreakdownDevice
+from onfido.models.device_intelligence_breakdown_device import DeviceIntelligenceBreakdownDevice
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +27,7 @@ class DeviceIntelligenceBreakdownBreakdown(BaseModel):
     """
     DeviceIntelligenceBreakdownBreakdown
     """ # noqa: E501
-    device: Optional[DeviceIntelligenceBreakdownBreakdownDevice] = None
+    device: Optional[DeviceIntelligenceBreakdownDevice] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["device"]
 
@@ -92,7 +92,7 @@ class DeviceIntelligenceBreakdownBreakdown(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "device": DeviceIntelligenceBreakdownBreakdownDevice.from_dict(obj["device"]) if obj.get("device") is not None else None
+            "device": DeviceIntelligenceBreakdownDevice.from_dict(obj["device"]) if obj.get("device") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

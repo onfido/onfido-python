@@ -17,22 +17,23 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import date
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
+from onfido.models.device_intelligence_breakdown_properties_device import DeviceIntelligenceBreakdownPropertiesDevice
+from onfido.models.device_intelligence_breakdown_properties_geolocation import DeviceIntelligenceBreakdownPropertiesGeolocation
+from onfido.models.device_intelligence_breakdown_properties_ip import DeviceIntelligenceBreakdownPropertiesIp
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DocumentPropertiesDrivingLicenceInformation(BaseModel):
+class DeviceIntelligenceProperties(BaseModel):
     """
-    DocumentPropertiesDrivingLicenceInformation
+    DeviceIntelligenceProperties
     """ # noqa: E501
-    category: Optional[StrictStr] = None
-    obtainment_date: Optional[date] = None
-    expiry_date: Optional[date] = None
-    codes: Optional[StrictStr] = None
+    device: Optional[DeviceIntelligenceBreakdownPropertiesDevice] = None
+    ip: Optional[DeviceIntelligenceBreakdownPropertiesIp] = None
+    geolocation: Optional[DeviceIntelligenceBreakdownPropertiesGeolocation] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["category", "obtainment_date", "expiry_date", "codes"]
+    __properties: ClassVar[List[str]] = ["device", "ip", "geolocation"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +53,7 @@ class DocumentPropertiesDrivingLicenceInformation(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DocumentPropertiesDrivingLicenceInformation from a JSON string"""
+        """Create an instance of DeviceIntelligenceProperties from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,6 +76,15 @@ class DocumentPropertiesDrivingLicenceInformation(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of device
+        if self.device:
+            _dict['device'] = self.device.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of ip
+        if self.ip:
+            _dict['ip'] = self.ip.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of geolocation
+        if self.geolocation:
+            _dict['geolocation'] = self.geolocation.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -84,7 +94,7 @@ class DocumentPropertiesDrivingLicenceInformation(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DocumentPropertiesDrivingLicenceInformation from a dict"""
+        """Create an instance of DeviceIntelligenceProperties from a dict"""
         if obj is None:
             return None
 
@@ -92,10 +102,9 @@ class DocumentPropertiesDrivingLicenceInformation(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "category": obj.get("category"),
-            "obtainment_date": obj.get("obtainment_date"),
-            "expiry_date": obj.get("expiry_date"),
-            "codes": obj.get("codes")
+            "device": DeviceIntelligenceBreakdownPropertiesDevice.from_dict(obj["device"]) if obj.get("device") is not None else None,
+            "ip": DeviceIntelligenceBreakdownPropertiesIp.from_dict(obj["ip"]) if obj.get("ip") is not None else None,
+            "geolocation": DeviceIntelligenceBreakdownPropertiesGeolocation.from_dict(obj["geolocation"]) if obj.get("geolocation") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
