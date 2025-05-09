@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.device_intelligence_breakdown import DeviceIntelligenceBreakdown
+from onfido.models.device_intelligence_properties import DeviceIntelligenceProperties
 from onfido.models.report_name import ReportName
 from onfido.models.report_result import ReportResult
 from onfido.models.report_status import ReportStatus
@@ -41,8 +42,9 @@ class DeviceIntelligenceReport(BaseModel):
     check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
     name: ReportName
     breakdown: Optional[DeviceIntelligenceBreakdown] = None
+    properties: Optional[DeviceIntelligenceProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "name", "breakdown"]
+    __properties: ClassVar[List[str]] = ["id", "created_at", "href", "status", "result", "sub_result", "check_id", "name", "breakdown", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +90,9 @@ class DeviceIntelligenceReport(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of breakdown
         if self.breakdown:
             _dict['breakdown'] = self.breakdown.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of properties
+        if self.properties:
+            _dict['properties'] = self.properties.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -113,7 +118,8 @@ class DeviceIntelligenceReport(BaseModel):
             "sub_result": obj.get("sub_result"),
             "check_id": obj.get("check_id"),
             "name": obj.get("name"),
-            "breakdown": DeviceIntelligenceBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None
+            "breakdown": DeviceIntelligenceBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
+            "properties": DeviceIntelligenceProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

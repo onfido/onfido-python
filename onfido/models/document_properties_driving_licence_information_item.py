@@ -17,21 +17,22 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from datetime import date
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.document_breakdown_data_comparison_breakdown_issuing_country import DocumentBreakdownDataComparisonBreakdownIssuingCountry
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeviceIntelligenceBreakdownBreakdownDeviceBreakdown(BaseModel):
+class DocumentPropertiesDrivingLicenceInformationItem(BaseModel):
     """
-    DeviceIntelligenceBreakdownBreakdownDeviceBreakdown
+    DocumentPropertiesDrivingLicenceInformationItem
     """ # noqa: E501
-    application_authenticity: Optional[DocumentBreakdownDataComparisonBreakdownIssuingCountry] = None
-    device_integrity: Optional[DocumentBreakdownDataComparisonBreakdownIssuingCountry] = None
-    device_reputation: Optional[DocumentBreakdownDataComparisonBreakdownIssuingCountry] = None
+    category: Optional[StrictStr] = None
+    obtainment_date: Optional[date] = None
+    expiry_date: Optional[date] = None
+    codes: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["application_authenticity", "device_integrity", "device_reputation"]
+    __properties: ClassVar[List[str]] = ["category", "obtainment_date", "expiry_date", "codes"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +52,7 @@ class DeviceIntelligenceBreakdownBreakdownDeviceBreakdown(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeviceIntelligenceBreakdownBreakdownDeviceBreakdown from a JSON string"""
+        """Create an instance of DocumentPropertiesDrivingLicenceInformationItem from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,15 +75,6 @@ class DeviceIntelligenceBreakdownBreakdownDeviceBreakdown(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of application_authenticity
-        if self.application_authenticity:
-            _dict['application_authenticity'] = self.application_authenticity.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of device_integrity
-        if self.device_integrity:
-            _dict['device_integrity'] = self.device_integrity.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of device_reputation
-        if self.device_reputation:
-            _dict['device_reputation'] = self.device_reputation.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -92,7 +84,7 @@ class DeviceIntelligenceBreakdownBreakdownDeviceBreakdown(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeviceIntelligenceBreakdownBreakdownDeviceBreakdown from a dict"""
+        """Create an instance of DocumentPropertiesDrivingLicenceInformationItem from a dict"""
         if obj is None:
             return None
 
@@ -100,9 +92,10 @@ class DeviceIntelligenceBreakdownBreakdownDeviceBreakdown(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "application_authenticity": DocumentBreakdownDataComparisonBreakdownIssuingCountry.from_dict(obj["application_authenticity"]) if obj.get("application_authenticity") is not None else None,
-            "device_integrity": DocumentBreakdownDataComparisonBreakdownIssuingCountry.from_dict(obj["device_integrity"]) if obj.get("device_integrity") is not None else None,
-            "device_reputation": DocumentBreakdownDataComparisonBreakdownIssuingCountry.from_dict(obj["device_reputation"]) if obj.get("device_reputation") is not None else None
+            "category": obj.get("category"),
+            "obtainment_date": obj.get("obtainment_date"),
+            "expiry_date": obj.get("expiry_date"),
+            "codes": obj.get("codes")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

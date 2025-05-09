@@ -17,8 +17,8 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr, field_validator
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr, field_validator
+from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -36,7 +36,7 @@ class DeviceIntelligenceBreakdownPropertiesDevice(BaseModel):
     randomized_device: Optional[StrictBool] = Field(default=None, description="Whether the device is providing false randomized device and network information.")
     fake_network_request: Optional[StrictBool] = Field(default=None, description="Whether device is using stolen security tokens to send the network information.")
     ip_reputation: Optional[StrictStr] = Field(default=None, description="Whether there is highly suspicious traffic related to the IP address. The risk depends on the overall ratio of clear checks on a given IP.")
-    device_fingerprint_reuse: Optional[StrictInt] = Field(default=None, description="The number of times the device was used to create a report for a new applicant. A value greater than 1 indicates potential device reuse.")
+    device_fingerprint_reuse: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of times the device was used to create a report for a new applicant. A value greater than 1 indicates potential device reuse.")
     single_device_used: Optional[StrictBool] = Field(default=None, description="Whether the document or biometric media were uploaded from a single device.")
     document_capture: Optional[StrictStr] = Field(default=None, description="Whether the document media were live captured from the device camera.")
     biometric_capture: Optional[StrictStr] = Field(default=None, description="Whether the biometric media were live captured from the device camera.")

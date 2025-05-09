@@ -24,7 +24,7 @@ from onfido.models.document_properties_address_lines import DocumentPropertiesAd
 from onfido.models.document_properties_barcode_inner import DocumentPropertiesBarcodeInner
 from onfido.models.document_properties_document_classification import DocumentPropertiesDocumentClassification
 from onfido.models.document_properties_document_numbers_inner import DocumentPropertiesDocumentNumbersInner
-from onfido.models.document_properties_driving_licence_information import DocumentPropertiesDrivingLicenceInformation
+from onfido.models.document_properties_driving_licence_information_item import DocumentPropertiesDrivingLicenceInformationItem
 from onfido.models.document_properties_extracted_data import DocumentPropertiesExtractedData
 from onfido.models.document_properties_nfc import DocumentPropertiesNfc
 from onfido.models.document_with_driver_verification_report_all_of_properties_all_of_passenger_vehicle import DocumentWithDriverVerificationReportAllOfPropertiesAllOfPassengerVehicle
@@ -78,7 +78,7 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
     address_lines: Optional[DocumentPropertiesAddressLines] = None
     barcode: Optional[List[DocumentPropertiesBarcodeInner]] = None
     nfc: Optional[DocumentPropertiesNfc] = None
-    driving_licence_information: Optional[DocumentPropertiesDrivingLicenceInformation] = None
+    driving_licence_information: Optional[List[DocumentPropertiesDrivingLicenceInformationItem]] = None
     document_classification: Optional[DocumentPropertiesDocumentClassification] = None
     extracted_data: Optional[DocumentPropertiesExtractedData] = None
     drivers_licence: Optional[StrictBool] = Field(default=None, description="True for **non-restricted** driving licences")
@@ -181,9 +181,13 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of nfc
         if self.nfc:
             _dict['nfc'] = self.nfc.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of driving_licence_information
+        # override the default output from pydantic by calling `to_dict()` of each item in driving_licence_information (list)
+        _items = []
         if self.driving_licence_information:
-            _dict['driving_licence_information'] = self.driving_licence_information.to_dict()
+            for _item_driving_licence_information in self.driving_licence_information:
+                if _item_driving_licence_information:
+                    _items.append(_item_driving_licence_information.to_dict())
+            _dict['driving_licence_information'] = _items
         # override the default output from pydantic by calling `to_dict()` of document_classification
         if self.document_classification:
             _dict['document_classification'] = self.document_classification.to_dict()
@@ -259,7 +263,7 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
             "address_lines": DocumentPropertiesAddressLines.from_dict(obj["address_lines"]) if obj.get("address_lines") is not None else None,
             "barcode": [DocumentPropertiesBarcodeInner.from_dict(_item) for _item in obj["barcode"]] if obj.get("barcode") is not None else None,
             "nfc": DocumentPropertiesNfc.from_dict(obj["nfc"]) if obj.get("nfc") is not None else None,
-            "driving_licence_information": DocumentPropertiesDrivingLicenceInformation.from_dict(obj["driving_licence_information"]) if obj.get("driving_licence_information") is not None else None,
+            "driving_licence_information": [DocumentPropertiesDrivingLicenceInformationItem.from_dict(_item) for _item in obj["driving_licence_information"]] if obj.get("driving_licence_information") is not None else None,
             "document_classification": DocumentPropertiesDocumentClassification.from_dict(obj["document_classification"]) if obj.get("document_classification") is not None else None,
             "extracted_data": DocumentPropertiesExtractedData.from_dict(obj["extracted_data"]) if obj.get("extracted_data") is not None else None,
             "drivers_licence": obj.get("drivers_licence"),

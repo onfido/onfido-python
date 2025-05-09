@@ -19,21 +19,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.device_intelligence_breakdown_breakdown import DeviceIntelligenceBreakdownBreakdown
-from onfido.models.device_intelligence_breakdown_device import DeviceIntelligenceBreakdownDevice
-from onfido.models.device_intelligence_breakdown_properties import DeviceIntelligenceBreakdownProperties
+from onfido.models.device_intelligence_breakdown_device_breakdown import DeviceIntelligenceBreakdownDeviceBreakdown
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeviceIntelligenceBreakdown(BaseModel):
+class DeviceIntelligenceBreakdownDevice(BaseModel):
     """
-    DeviceIntelligenceBreakdown
+    Asserts whether the device used to upload the media is trustworthy, i.e. it is a real, physical device.
     """ # noqa: E501
-    device: Optional[DeviceIntelligenceBreakdownDevice] = None
-    breakdown: Optional[DeviceIntelligenceBreakdownBreakdown] = None
-    properties: Optional[DeviceIntelligenceBreakdownProperties] = None
+    breakdown: Optional[DeviceIntelligenceBreakdownDeviceBreakdown] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["device", "breakdown", "properties"]
+    __properties: ClassVar[List[str]] = ["breakdown"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +49,7 @@ class DeviceIntelligenceBreakdown(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeviceIntelligenceBreakdown from a JSON string"""
+        """Create an instance of DeviceIntelligenceBreakdownDevice from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,15 +72,9 @@ class DeviceIntelligenceBreakdown(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of device
-        if self.device:
-            _dict['device'] = self.device.to_dict()
         # override the default output from pydantic by calling `to_dict()` of breakdown
         if self.breakdown:
             _dict['breakdown'] = self.breakdown.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of properties
-        if self.properties:
-            _dict['properties'] = self.properties.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -94,7 +84,7 @@ class DeviceIntelligenceBreakdown(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeviceIntelligenceBreakdown from a dict"""
+        """Create an instance of DeviceIntelligenceBreakdownDevice from a dict"""
         if obj is None:
             return None
 
@@ -102,9 +92,7 @@ class DeviceIntelligenceBreakdown(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "device": DeviceIntelligenceBreakdownDevice.from_dict(obj["device"]) if obj.get("device") is not None else None,
-            "breakdown": DeviceIntelligenceBreakdownBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
-            "properties": DeviceIntelligenceBreakdownProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
+            "breakdown": DeviceIntelligenceBreakdownDeviceBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
