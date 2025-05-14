@@ -1,5 +1,15 @@
 # Changelog
 
+## v5.1.0 14th May 2025
+
+- Release based on Onfido OpenAPI spec version [v5.1.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.1.0):
+  - CAT-1760: create get applicant consents endpoint
+  - [CAT-1911] Fix document_with_driving_licence_information to be a list of objects
+  - [AF-1390] Fix: Device Intelligence Report Schema
+  - [CAT-1944] Add OAuth fields for Webhook authentication
+  - Fix storage of device_fingerprint_reuse breakdown and properties as float
+  - Add .markdownlint.json to templates
+
 ## v5.0.0 21st February 2025
 
 - Release based on Onfido OpenAPI spec version [v5.0.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.0.0):
