@@ -86,6 +86,7 @@ def create_check(
     applicant_id=None,
     document_ids=None,
     report_names=None,
+    report_configuration=None
 ):
     if check_builder is None:
         return onfido_api.create_check(
@@ -94,6 +95,7 @@ def create_check(
                 document_ids=document_ids,
                 report_names=report_names,
                 privacy_notices_read_consent_given=True,
+                report_configuration=report_configuration,
             )
         )
 
