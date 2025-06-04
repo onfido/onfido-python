@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from onfido.models.report_configuration import ReportConfiguration
 from onfido.models.report_name import ReportName
 from onfido.models.us_driving_licence_builder import UsDrivingLicenceBuilder
 from typing import Optional, Set
@@ -36,8 +37,9 @@ class CheckRequest(BaseModel):
     sub_result: Optional[StrictStr] = Field(default=None, description="Triggers responses for particular sub-results for sandbox Document reports.")
     consider: Optional[List[ReportName]] = Field(default=None, description="Array of names of particular reports to return consider as their results. This is a feature available in sandbox testing")
     us_driving_licence: Optional[UsDrivingLicenceBuilder] = None
+    report_configuration: Optional[ReportConfiguration] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["report_names", "document_ids", "applicant_provides_data", "asynchronous", "suppress_form_emails", "sub_result", "consider", "us_driving_licence"]
+    __properties: ClassVar[List[str]] = ["report_names", "document_ids", "applicant_provides_data", "asynchronous", "suppress_form_emails", "sub_result", "consider", "us_driving_licence", "report_configuration"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,6 +85,9 @@ class CheckRequest(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of us_driving_licence
         if self.us_driving_licence:
             _dict['us_driving_licence'] = self.us_driving_licence.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of report_configuration
+        if self.report_configuration:
+            _dict['report_configuration'] = self.report_configuration.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -107,7 +112,8 @@ class CheckRequest(BaseModel):
             "suppress_form_emails": obj.get("suppress_form_emails"),
             "sub_result": obj.get("sub_result"),
             "consider": obj.get("consider"),
-            "us_driving_licence": UsDrivingLicenceBuilder.from_dict(obj["us_driving_licence"]) if obj.get("us_driving_licence") is not None else None
+            "us_driving_licence": UsDrivingLicenceBuilder.from_dict(obj["us_driving_licence"]) if obj.get("us_driving_licence") is not None else None,
+            "report_configuration": ReportConfiguration.from_dict(obj["report_configuration"]) if obj.get("report_configuration") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

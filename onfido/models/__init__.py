@@ -225,6 +225,8 @@ from onfido.models.proof_of_address_report import ProofOfAddressReport
 from onfido.models.repeat_attempts_list import RepeatAttemptsList
 from onfido.models.repeat_attempts_list_repeat_attempts_inner import RepeatAttemptsListRepeatAttemptsInner
 from onfido.models.report import Report
+from onfido.models.report_configuration import ReportConfiguration
+from onfido.models.report_configuration_facial_similarity import ReportConfigurationFacialSimilarity
 from onfido.models.report_document import ReportDocument
 from onfido.models.report_name import ReportName
 from onfido.models.report_result import ReportResult
