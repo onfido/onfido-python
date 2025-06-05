@@ -69,6 +69,11 @@ def test_schema_of_facial_similarity_report_is_valid(
         applicant_id=applicant_id,
         document_ids=[document_id],
         report_names=[ReportName.FACIAL_SIMILARITY_PHOTO],
+        report_configuration={
+            'facial_similarity_photo': {
+                'use_case': 'reverification'
+            }
+        },
     ).report_ids[0]
 
     facial_similarity_report = repeat_request_until_status_changes(
