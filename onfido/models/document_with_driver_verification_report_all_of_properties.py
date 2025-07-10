@@ -85,10 +85,11 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
     restricted_licence: Optional[StrictBool] = Field(default=None, description="True for **limited/restricted** driving license, including learner's permits")
     raw_licence_category: Optional[StrictStr] = Field(default=None, description="Underlying, non-normalised, licence category (e.g. \"Junior operators license\")")
     raw_vehicle_classes: Optional[StrictStr] = Field(default=None, description="Comma-separated vehicle classes that the user is qualified for")
+    manual_transmission_restriction: Optional[StrictBool] = Field(default=None, description="True if the user is not qualified to drive a manual transmission")
     vehicle_class_details: Optional[List[DocumentWithDriverVerificationReportAllOfPropertiesAllOfVehicleClassDetailsInner]] = Field(default=None, description="Detailed classes/categories information")
     passenger_vehicle: Optional[DocumentWithDriverVerificationReportAllOfPropertiesAllOfPassengerVehicle] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["date_of_birth", "date_of_expiry", "personal_number", "document_numbers", "document_type", "first_name", "middle_name", "last_name", "gender", "issuing_country", "nationality", "issuing_state", "issuing_date", "categorisation", "mrz_line1", "mrz_line2", "mrz_line3", "address", "place_of_birth", "spouse_name", "widow_name", "alias_name", "issuing_authority", "remarks", "civil_state", "expatriation", "father_name", "mother_name", "religion", "type_of_permit", "version_number", "document_subtype", "profession", "security_document_number", "tax_number", "nist_identity_evidence_strength", "has_issuance_confirmation", "real_id_compliance", "security_tier", "address_lines", "barcode", "nfc", "driving_licence_information", "document_classification", "extracted_data", "drivers_licence", "restricted_licence", "raw_licence_category", "raw_vehicle_classes", "vehicle_class_details", "passenger_vehicle"]
+    __properties: ClassVar[List[str]] = ["date_of_birth", "date_of_expiry", "personal_number", "document_numbers", "document_type", "first_name", "middle_name", "last_name", "gender", "issuing_country", "nationality", "issuing_state", "issuing_date", "categorisation", "mrz_line1", "mrz_line2", "mrz_line3", "address", "place_of_birth", "spouse_name", "widow_name", "alias_name", "issuing_authority", "remarks", "civil_state", "expatriation", "father_name", "mother_name", "religion", "type_of_permit", "version_number", "document_subtype", "profession", "security_document_number", "tax_number", "nist_identity_evidence_strength", "has_issuance_confirmation", "real_id_compliance", "security_tier", "address_lines", "barcode", "nfc", "driving_licence_information", "document_classification", "extracted_data", "drivers_licence", "restricted_licence", "raw_licence_category", "raw_vehicle_classes", "manual_transmission_restriction", "vehicle_class_details", "passenger_vehicle"]
 
     @field_validator('nist_identity_evidence_strength')
     def nist_identity_evidence_strength_validate_enum(cls, value):
@@ -270,6 +271,7 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
             "restricted_licence": obj.get("restricted_licence"),
             "raw_licence_category": obj.get("raw_licence_category"),
             "raw_vehicle_classes": obj.get("raw_vehicle_classes"),
+            "manual_transmission_restriction": obj.get("manual_transmission_restriction"),
             "vehicle_class_details": [DocumentWithDriverVerificationReportAllOfPropertiesAllOfVehicleClassDetailsInner.from_dict(_item) for _item in obj["vehicle_class_details"]] if obj.get("vehicle_class_details") is not None else None,
             "passenger_vehicle": DocumentWithDriverVerificationReportAllOfPropertiesAllOfPassengerVehicle.from_dict(obj["passenger_vehicle"]) if obj.get("passenger_vehicle") is not None else None
         })
