@@ -1,5 +1,11 @@
 # Changelog
 
+## v5.3.0 11th July 2025
+
+- Release based on Onfido OpenAPI spec version [v5.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.3.0):
+- Release based on Onfido OpenAPI spec version [v5.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.3.0):
+  - [DEXTV2-9494] Add manual_transmission_restriction to document with driver verification report
+
 ## v5.2.0 5th June 2025
 
 - Release based on Onfido OpenAPI spec version [v5.2.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.2.0):
