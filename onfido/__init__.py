@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "5.3.0"
+__version__ = "5.4.0"
 
 # import apis into sdk package
 from onfido.api.default_api import DefaultApi
