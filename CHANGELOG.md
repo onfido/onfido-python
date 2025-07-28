@@ -5,10 +5,10 @@
 - Release based on Onfido OpenAPI spec version [v5.4.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.4.0):
   - [ENT-26] Add AES document download endpoint
 - Fix dependabot error, add support for python 3.13 (and drop 3.8)
+- [ENT-26] Add AES documents test
 
 ## v5.3.0 11th July 2025
 
-- Release based on Onfido OpenAPI spec version [v5.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.3.0):
 - Release based on Onfido OpenAPI spec version [v5.3.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.3.0):
   - [DEXTV2-9494] Add manual_transmission_restriction to document with driver verification report
 
