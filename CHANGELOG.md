@@ -1,5 +1,10 @@
 # Changelog
 
+## v5.5.0 22nd September 2025
+
+- Release based on Onfido OpenAPI spec version [v5.5.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.5.0):
+  - [SIG-3128] Add ssn breakdowns to IDR enhanced report
+
 ## v5.4.0 28th July 2025
 
 - Release based on Onfido OpenAPI spec version [v5.4.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.4.0):
