@@ -44,8 +44,8 @@ class ProofOfAddressProperties(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['bank_building_society_statement', 'utility_bill', 'council_tax', 'benefit_letters', 'mortgage_statement', 'mobile_phone_bill', 'general_letter', 'insurance_statement', 'pension_property_statement_letter', 'identity_document_with_address', 'exchange_house_statement', 'unknown_default_open_api']):
-            raise ValueError("must be one of enum values ('bank_building_society_statement', 'utility_bill', 'council_tax', 'benefit_letters', 'mortgage_statement', 'mobile_phone_bill', 'general_letter', 'insurance_statement', 'pension_property_statement_letter', 'identity_document_with_address', 'exchange_house_statement', 'unknown_default_open_api')")
+        if value not in set(['bank_building_society_statement', 'utility_bill', 'council_tax', 'benefit_letters', 'mortgage_statement', 'mobile_phone_bill', 'general_letter', 'insurance_statement', 'pension_property_statement_letter', 'identity_document_with_address', 'exchange_house_statement', 'accommodation_tenancy_certificate', 'address_certificate', 'electricity_bill', 'gas_bill', 'internet_bill', 'phone_bill', 'water_bill', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('bank_building_society_statement', 'utility_bill', 'council_tax', 'benefit_letters', 'mortgage_statement', 'mobile_phone_bill', 'general_letter', 'insurance_statement', 'pension_property_statement_letter', 'identity_document_with_address', 'exchange_house_statement', 'accommodation_tenancy_certificate', 'address_certificate', 'electricity_bill', 'gas_bill', 'internet_bill', 'phone_bill', 'water_bill', 'unknown_default_open_api')")
         return value
 
     model_config = ConfigDict(

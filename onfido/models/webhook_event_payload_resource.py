@@ -46,8 +46,9 @@ class WebhookEventPayloadResource(BaseModel):
     link: Optional[WorkflowRunLink] = Field(default=None, description="Object for the configuration of the Workflow Run link.")
     error: Optional[WorkflowRunError] = Field(default=None, description="Error object that details why a Workflow Run is in Error status.")
     customer_user_id: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="Customer-provided user identifier.")
+    timeline_file_download_url: Optional[StrictStr] = Field(default=None, description="Pre-signed URL to download the timeline file for the Workflow Run.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "applicant_id", "created_at", "updated_at", "dashboard_url", "workflow_id", "workflow_run_id", "workflow_version_id", "task_def_id", "task_def_version", "input", "output", "reasons", "link", "error", "customer_user_id"]
+    __properties: ClassVar[List[str]] = ["id", "applicant_id", "created_at", "updated_at", "dashboard_url", "workflow_id", "workflow_run_id", "workflow_version_id", "task_def_id", "task_def_version", "input", "output", "reasons", "link", "error", "customer_user_id", "timeline_file_download_url"]
 
     @field_validator('task_def_id')
     def task_def_id_validate_regular_expression(cls, value):
@@ -148,7 +149,8 @@ class WebhookEventPayloadResource(BaseModel):
             "reasons": obj.get("reasons"),
             "link": WorkflowRunLink.from_dict(obj["link"]) if obj.get("link") is not None else None,
             "error": WorkflowRunError.from_dict(obj["error"]) if obj.get("error") is not None else None,
-            "customer_user_id": obj.get("customer_user_id")
+            "customer_user_id": obj.get("customer_user_id"),
+            "timeline_file_download_url": obj.get("timeline_file_download_url")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
