@@ -42,8 +42,8 @@ class ExtractionDocumentClassification(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['full', 'not_full', 'provisional', 'unknown_default_open_api']):
-            raise ValueError("must be one of enum values ('full', 'not_full', 'provisional', 'unknown_default_open_api')")
+        if value not in set(['SPE', 'ali', 'alien', 'com', 'commercial', 'dom', 'domestic', 'full', 'not_full', 'full driving licence', 'heavy_vehicle', 'learner', 'minor (u21 or u18)', 'mot', 'mul', 'provisional', 'provisional driving licence', 'ser', 'spe', 'special', 'standard', 'tem', 'u21', 'unknown_default_open_api']):
+            raise ValueError("must be one of enum values ('SPE', 'ali', 'alien', 'com', 'commercial', 'dom', 'domestic', 'full', 'not_full', 'full driving licence', 'heavy_vehicle', 'learner', 'minor (u21 or u18)', 'mot', 'mul', 'provisional', 'provisional driving licence', 'ser', 'spe', 'special', 'standard', 'tem', 'u21', 'unknown_default_open_api')")
         return value
 
     model_config = ConfigDict(
