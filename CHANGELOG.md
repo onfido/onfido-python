@@ -1,5 +1,12 @@
 # Changelog
 
+## v5.6.0 15th January 2026
+
+- Release based on Onfido OpenAPI spec version [v5.6.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.6.0):
+  - [SIG-3270] Update document_type supported by PoA
+  - [DEXTV2-9337] Update list of document subtypes for extraction
+  - [STUDIO-5634] Add timeline_file_download_url to the webhook event resource
+
 ## v5.5.0 22nd September 2025
 
 - Release based on Onfido OpenAPI spec version [v5.5.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.5.0):
