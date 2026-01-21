@@ -80,6 +80,13 @@ def upload_id_photo(onfido_api, applicant_id):
     )
 
 
+def upload_signing_document(onfido_api, applicant_id, file_path="tests/media/sample_signing_document.pdf"):
+    return onfido_api.upload_signing_document(
+        applicant_id=applicant_id,
+        file=file_path,
+    )
+
+
 def create_check(
     onfido_api,
     check_builder=None,
