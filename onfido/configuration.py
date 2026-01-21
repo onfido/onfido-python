@@ -501,7 +501,7 @@ conf = onfido.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: v3.6\n"\
-               "SDK Package Version: 5.6.0".\
+               "SDK Package Version: 5.7.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self) -> List[HostSetting]:
