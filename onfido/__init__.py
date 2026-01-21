@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "5.6.0"
+__version__ = "5.7.0"
 
 # import apis into sdk package
 from onfido.api.default_api import DefaultApi
@@ -232,6 +232,9 @@ from onfido.models.location_builder import LocationBuilder
 from onfido.models.location_shared import LocationShared
 from onfido.models.motion_capture import MotionCapture
 from onfido.models.motion_captures_list import MotionCapturesList
+from onfido.models.passkey import Passkey
+from onfido.models.passkey_updater import PasskeyUpdater
+from onfido.models.passkeys_list import PasskeysList
 from onfido.models.photo_auto_reasons import PhotoAutoReasons
 from onfido.models.photo_reasons import PhotoReasons
 from onfido.models.proof_of_address_breakdown import ProofOfAddressBreakdown
@@ -260,6 +263,10 @@ from onfido.models.sdk_token import SdkToken
 from onfido.models.sdk_token_builder import SdkTokenBuilder
 from onfido.models.sdk_token_request import SdkTokenRequest
 from onfido.models.sdk_token_response import SdkTokenResponse
+from onfido.models.signing_document import SigningDocument
+from onfido.models.signing_document_response import SigningDocumentResponse
+from onfido.models.signing_document_shared import SigningDocumentShared
+from onfido.models.signing_documents_list import SigningDocumentsList
 from onfido.models.task import Task
 from onfido.models.task_item import TaskItem
 from onfido.models.timeline_file_reference import TimelineFileReference
