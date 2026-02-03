@@ -85,8 +85,7 @@ def test_update_applicant(onfido_api, applicant_id):
 
 
 def test_list_applicant_consents(onfido_api, applicant_id):
-    
-    consents = [
+    consents = sorted([
         onfido.ApplicantConsentBuilder(
             name=onfido.ApplicantConsentName.PHONE_NUMBER_VERIFICATION,
             granted=True,
@@ -102,13 +101,15 @@ def test_list_applicant_consents(onfido_api, applicant_id):
             granted=True,
             granted_at=datetime.date(1990, 1, 22)
         )
-    ]
+    ], key=lambda x: x.name)
 
     new_applicant_data = onfido.ApplicantUpdater(consents=consents)
 
     onfido_api.update_applicant(applicant_id, new_applicant_data)
 
-    actual_consents = onfido_api.find_applicant_consents(applicant_id)
+    actual_consents = sorted(
+        onfido_api.find_applicant_consents(applicant_id),
+        key=lambda x: x.name)
 
     for actual, expected in zip(actual_consents, consents):
         assert actual.name == expected.name
