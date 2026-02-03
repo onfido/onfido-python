@@ -1,5 +1,13 @@
 # Changelog
 
+## v5.7.0 3rd February 2026
+
+- Release based on Onfido OpenAPI spec version [v5.7.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.7.0):
+  - [ENT-129] Add new passkey management endpoints
+  - [ENT-114] Add signing document endpoints
+  - Python: solve virtualenv vulnerability by pinning virtualenv lower bound version
+  - [DEXTV2-10857] Add valid_from field to open API spec for document report properties
+
 ## v5.6.0 15th January 2026
 
 - Release based on Onfido OpenAPI spec version [v5.6.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.6.0):
