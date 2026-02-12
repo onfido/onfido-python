@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,7 +26,7 @@ class IdentityEnhancedBreakdownAddressBreakdownCreditAgenciesProperties(BaseMode
     """
     IdentityEnhancedBreakdownAddressBreakdownCreditAgenciesProperties
     """ # noqa: E501
-    number_of_matches: Optional[StrictInt] = None
+    number_of_matches: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["number_of_matches"]
 

@@ -16,7 +16,7 @@ from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
 from typing import Any, Dict, List, Optional, Tuple, Union
 from typing_extensions import Annotated
 
-from datetime import datetime
+from datetime import date
 from pydantic import Field, StrictBool, StrictBytes, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Tuple, Union
 from typing_extensions import Annotated
@@ -17153,10 +17153,11 @@ class DefaultApi:
         self,
         page: Annotated[Optional[StrictInt], Field(description="The number of the page to be retrieved. If not specified, defaults to 1.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="A list of comma separated status values to filter the results. Possible values are 'processing', 'awaiting_input', 'approved', 'declined', 'review', 'abandoned' and 'error'.")] = None,
-        created_at_gt: Annotated[Optional[datetime], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
-        created_at_lt: Annotated[Optional[datetime], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
+        created_at_gt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
+        created_at_lt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.")] = None,
         applicant_id: Annotated[Optional[StrictStr], Field(description="the applicant's id.")] = None,
+        tags: Annotated[Optional[List[StrictStr]], Field(description="A list of tags to filter the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17179,13 +17180,15 @@ class DefaultApi:
         :param status: A list of comma separated status values to filter the results. Possible values are 'processing', 'awaiting_input', 'approved', 'declined', 'review', 'abandoned' and 'error'.
         :type status: str
         :param created_at_gt: A ISO-8601 date to filter results with a created date greater than (after) the one provided.
-        :type created_at_gt: datetime
+        :type created_at_gt: date
         :param created_at_lt: A ISO-8601 date to filter results with a created date less than (before) the one provided.
-        :type created_at_lt: datetime
+        :type created_at_lt: date
         :param sort: A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.
         :type sort: str
         :param applicant_id: the applicant's id.
         :type applicant_id: str
+        :param tags: A list of tags to filter the results.
+        :type tags: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17215,6 +17218,7 @@ class DefaultApi:
             created_at_lt=created_at_lt,
             sort=sort,
             applicant_id=applicant_id,
+            tags=tags,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -17240,10 +17244,11 @@ class DefaultApi:
         self,
         page: Annotated[Optional[StrictInt], Field(description="The number of the page to be retrieved. If not specified, defaults to 1.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="A list of comma separated status values to filter the results. Possible values are 'processing', 'awaiting_input', 'approved', 'declined', 'review', 'abandoned' and 'error'.")] = None,
-        created_at_gt: Annotated[Optional[datetime], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
-        created_at_lt: Annotated[Optional[datetime], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
+        created_at_gt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
+        created_at_lt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.")] = None,
         applicant_id: Annotated[Optional[StrictStr], Field(description="the applicant's id.")] = None,
+        tags: Annotated[Optional[List[StrictStr]], Field(description="A list of tags to filter the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17266,13 +17271,15 @@ class DefaultApi:
         :param status: A list of comma separated status values to filter the results. Possible values are 'processing', 'awaiting_input', 'approved', 'declined', 'review', 'abandoned' and 'error'.
         :type status: str
         :param created_at_gt: A ISO-8601 date to filter results with a created date greater than (after) the one provided.
-        :type created_at_gt: datetime
+        :type created_at_gt: date
         :param created_at_lt: A ISO-8601 date to filter results with a created date less than (before) the one provided.
-        :type created_at_lt: datetime
+        :type created_at_lt: date
         :param sort: A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.
         :type sort: str
         :param applicant_id: the applicant's id.
         :type applicant_id: str
+        :param tags: A list of tags to filter the results.
+        :type tags: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17302,6 +17309,7 @@ class DefaultApi:
             created_at_lt=created_at_lt,
             sort=sort,
             applicant_id=applicant_id,
+            tags=tags,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -17327,10 +17335,11 @@ class DefaultApi:
         self,
         page: Annotated[Optional[StrictInt], Field(description="The number of the page to be retrieved. If not specified, defaults to 1.")] = None,
         status: Annotated[Optional[StrictStr], Field(description="A list of comma separated status values to filter the results. Possible values are 'processing', 'awaiting_input', 'approved', 'declined', 'review', 'abandoned' and 'error'.")] = None,
-        created_at_gt: Annotated[Optional[datetime], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
-        created_at_lt: Annotated[Optional[datetime], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
+        created_at_gt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
+        created_at_lt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.")] = None,
         applicant_id: Annotated[Optional[StrictStr], Field(description="the applicant's id.")] = None,
+        tags: Annotated[Optional[List[StrictStr]], Field(description="A list of tags to filter the results.")] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -17353,13 +17362,15 @@ class DefaultApi:
         :param status: A list of comma separated status values to filter the results. Possible values are 'processing', 'awaiting_input', 'approved', 'declined', 'review', 'abandoned' and 'error'.
         :type status: str
         :param created_at_gt: A ISO-8601 date to filter results with a created date greater than (after) the one provided.
-        :type created_at_gt: datetime
+        :type created_at_gt: date
         :param created_at_lt: A ISO-8601 date to filter results with a created date less than (before) the one provided.
-        :type created_at_lt: datetime
+        :type created_at_lt: date
         :param sort: A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.
         :type sort: str
         :param applicant_id: the applicant's id.
         :type applicant_id: str
+        :param tags: A list of tags to filter the results.
+        :type tags: List[str]
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -17389,6 +17400,7 @@ class DefaultApi:
             created_at_lt=created_at_lt,
             sort=sort,
             applicant_id=applicant_id,
+            tags=tags,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -17413,6 +17425,7 @@ class DefaultApi:
         created_at_lt,
         sort,
         applicant_id,
+        tags,
         _request_auth,
         _content_type,
         _headers,
@@ -17422,6 +17435,7 @@ class DefaultApi:
         _host = None
 
         _collection_formats: Dict[str, str] = {
+            'tags': 'csv',
         }
 
         _path_params: Dict[str, str] = {}
@@ -17444,12 +17458,12 @@ class DefaultApi:
             _query_params.append(('status', status))
             
         if created_at_gt is not None:
-            if isinstance(created_at_gt, datetime):
+            if isinstance(created_at_gt, date):
                 _query_params.append(
                     (
                         'created_at_gt',
                         created_at_gt.strftime(
-                            self.api_client.configuration.datetime_format
+                            self.api_client.configuration.date_format
                         )
                     )
                 )
@@ -17457,12 +17471,12 @@ class DefaultApi:
                 _query_params.append(('created_at_gt', created_at_gt))
             
         if created_at_lt is not None:
-            if isinstance(created_at_lt, datetime):
+            if isinstance(created_at_lt, date):
                 _query_params.append(
                     (
                         'created_at_lt',
                         created_at_lt.strftime(
-                            self.api_client.configuration.datetime_format
+                            self.api_client.configuration.date_format
                         )
                     )
                 )
@@ -17476,6 +17490,10 @@ class DefaultApi:
         if applicant_id is not None:
             
             _query_params.append(('applicant_id', applicant_id))
+            
+        if tags is not None:
+            
+            _query_params.append(('tags', tags))
             
         # process the header parameters
         # process the form parameters

@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "5.7.0"
+__version__ = "6.0.0"
 
 # import apis into sdk package
 from onfido.api.default_api import DefaultApi
@@ -58,7 +58,6 @@ from onfido.models.complete_task_builder import CompleteTaskBuilder
 from onfido.models.complete_task_data_builder import CompleteTaskDataBuilder
 from onfido.models.country_codes import CountryCodes
 from onfido.models.device_intelligence_breakdown import DeviceIntelligenceBreakdown
-from onfido.models.device_intelligence_breakdown_breakdown import DeviceIntelligenceBreakdownBreakdown
 from onfido.models.device_intelligence_breakdown_device import DeviceIntelligenceBreakdownDevice
 from onfido.models.device_intelligence_breakdown_device_breakdown import DeviceIntelligenceBreakdownDeviceBreakdown
 from onfido.models.device_intelligence_breakdown_properties import DeviceIntelligenceBreakdownProperties
@@ -114,6 +113,7 @@ from onfido.models.document_properties_document_numbers_inner import DocumentPro
 from onfido.models.document_properties_driving_licence_information_item import DocumentPropertiesDrivingLicenceInformationItem
 from onfido.models.document_properties_extracted_data import DocumentPropertiesExtractedData
 from onfido.models.document_properties_nfc import DocumentPropertiesNfc
+from onfido.models.document_properties_with_driving_licence_information import DocumentPropertiesWithDrivingLicenceInformation
 from onfido.models.document_report import DocumentReport
 from onfido.models.document_report_shared import DocumentReportShared
 from onfido.models.document_response import DocumentResponse
