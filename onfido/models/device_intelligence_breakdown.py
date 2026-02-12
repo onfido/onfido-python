@@ -19,7 +19,6 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.device_intelligence_breakdown_breakdown import DeviceIntelligenceBreakdownBreakdown
 from onfido.models.device_intelligence_breakdown_device import DeviceIntelligenceBreakdownDevice
 from onfido.models.device_intelligence_breakdown_properties import DeviceIntelligenceBreakdownProperties
 from typing import Optional, Set
@@ -30,10 +29,9 @@ class DeviceIntelligenceBreakdown(BaseModel):
     DeviceIntelligenceBreakdown
     """ # noqa: E501
     device: Optional[DeviceIntelligenceBreakdownDevice] = None
-    breakdown: Optional[DeviceIntelligenceBreakdownBreakdown] = None
     properties: Optional[DeviceIntelligenceBreakdownProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["device", "breakdown", "properties"]
+    __properties: ClassVar[List[str]] = ["device", "properties"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -79,9 +77,6 @@ class DeviceIntelligenceBreakdown(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of device
         if self.device:
             _dict['device'] = self.device.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of breakdown
-        if self.breakdown:
-            _dict['breakdown'] = self.breakdown.to_dict()
         # override the default output from pydantic by calling `to_dict()` of properties
         if self.properties:
             _dict['properties'] = self.properties.to_dict()
@@ -103,7 +98,6 @@ class DeviceIntelligenceBreakdown(BaseModel):
 
         _obj = cls.model_validate({
             "device": DeviceIntelligenceBreakdownDevice.from_dict(obj["device"]) if obj.get("device") is not None else None,
-            "breakdown": DeviceIntelligenceBreakdownBreakdown.from_dict(obj["breakdown"]) if obj.get("breakdown") is not None else None,
             "properties": DeviceIntelligenceBreakdownProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
         })
         # store additional fields in additional_properties

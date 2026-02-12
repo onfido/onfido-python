@@ -24,7 +24,6 @@ from onfido.models.document_properties_address_lines import DocumentPropertiesAd
 from onfido.models.document_properties_barcode_inner import DocumentPropertiesBarcodeInner
 from onfido.models.document_properties_document_classification import DocumentPropertiesDocumentClassification
 from onfido.models.document_properties_document_numbers_inner import DocumentPropertiesDocumentNumbersInner
-from onfido.models.document_properties_driving_licence_information_item import DocumentPropertiesDrivingLicenceInformationItem
 from onfido.models.document_properties_extracted_data import DocumentPropertiesExtractedData
 from onfido.models.document_properties_nfc import DocumentPropertiesNfc
 from onfido.models.document_with_driver_verification_report_all_of_properties_all_of_passenger_vehicle import DocumentWithDriverVerificationReportAllOfPropertiesAllOfPassengerVehicle
@@ -79,7 +78,6 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
     address_lines: Optional[DocumentPropertiesAddressLines] = None
     barcode: Optional[List[DocumentPropertiesBarcodeInner]] = None
     nfc: Optional[DocumentPropertiesNfc] = None
-    driving_licence_information: Optional[List[DocumentPropertiesDrivingLicenceInformationItem]] = None
     document_classification: Optional[DocumentPropertiesDocumentClassification] = None
     extracted_data: Optional[DocumentPropertiesExtractedData] = None
     drivers_licence: Optional[StrictBool] = Field(default=None, description="True for **non-restricted** driving licences")
@@ -90,7 +88,7 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
     vehicle_class_details: Optional[List[DocumentWithDriverVerificationReportAllOfPropertiesAllOfVehicleClassDetailsInner]] = Field(default=None, description="Detailed classes/categories information")
     passenger_vehicle: Optional[DocumentWithDriverVerificationReportAllOfPropertiesAllOfPassengerVehicle] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["date_of_birth", "date_of_expiry", "personal_number", "document_numbers", "document_type", "first_name", "middle_name", "last_name", "gender", "issuing_country", "nationality", "issuing_state", "issuing_date", "valid_from", "categorisation", "mrz_line1", "mrz_line2", "mrz_line3", "address", "place_of_birth", "spouse_name", "widow_name", "alias_name", "issuing_authority", "remarks", "civil_state", "expatriation", "father_name", "mother_name", "religion", "type_of_permit", "version_number", "document_subtype", "profession", "security_document_number", "tax_number", "nist_identity_evidence_strength", "has_issuance_confirmation", "real_id_compliance", "security_tier", "address_lines", "barcode", "nfc", "driving_licence_information", "document_classification", "extracted_data", "drivers_licence", "restricted_licence", "raw_licence_category", "raw_vehicle_classes", "manual_transmission_restriction", "vehicle_class_details", "passenger_vehicle"]
+    __properties: ClassVar[List[str]] = ["date_of_birth", "date_of_expiry", "personal_number", "document_numbers", "document_type", "first_name", "middle_name", "last_name", "gender", "issuing_country", "nationality", "issuing_state", "issuing_date", "valid_from", "categorisation", "mrz_line1", "mrz_line2", "mrz_line3", "address", "place_of_birth", "spouse_name", "widow_name", "alias_name", "issuing_authority", "remarks", "civil_state", "expatriation", "father_name", "mother_name", "religion", "type_of_permit", "version_number", "document_subtype", "profession", "security_document_number", "tax_number", "nist_identity_evidence_strength", "has_issuance_confirmation", "real_id_compliance", "security_tier", "address_lines", "barcode", "nfc", "document_classification", "extracted_data", "drivers_licence", "restricted_licence", "raw_licence_category", "raw_vehicle_classes", "manual_transmission_restriction", "vehicle_class_details", "passenger_vehicle"]
 
     @field_validator('nist_identity_evidence_strength')
     def nist_identity_evidence_strength_validate_enum(cls, value):
@@ -183,13 +181,6 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of nfc
         if self.nfc:
             _dict['nfc'] = self.nfc.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in driving_licence_information (list)
-        _items = []
-        if self.driving_licence_information:
-            for _item_driving_licence_information in self.driving_licence_information:
-                if _item_driving_licence_information:
-                    _items.append(_item_driving_licence_information.to_dict())
-            _dict['driving_licence_information'] = _items
         # override the default output from pydantic by calling `to_dict()` of document_classification
         if self.document_classification:
             _dict['document_classification'] = self.document_classification.to_dict()
@@ -266,7 +257,6 @@ class DocumentWithDriverVerificationReportAllOfProperties(BaseModel):
             "address_lines": DocumentPropertiesAddressLines.from_dict(obj["address_lines"]) if obj.get("address_lines") is not None else None,
             "barcode": [DocumentPropertiesBarcodeInner.from_dict(_item) for _item in obj["barcode"]] if obj.get("barcode") is not None else None,
             "nfc": DocumentPropertiesNfc.from_dict(obj["nfc"]) if obj.get("nfc") is not None else None,
-            "driving_licence_information": [DocumentPropertiesDrivingLicenceInformationItem.from_dict(_item) for _item in obj["driving_licence_information"]] if obj.get("driving_licence_information") is not None else None,
             "document_classification": DocumentPropertiesDocumentClassification.from_dict(obj["document_classification"]) if obj.get("document_classification") is not None else None,
             "extracted_data": DocumentPropertiesExtractedData.from_dict(obj["extracted_data"]) if obj.get("extracted_data") is not None else None,
             "drivers_licence": obj.get("drivers_licence"),

@@ -17,7 +17,7 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
@@ -26,7 +26,7 @@ class IdentityEnhancedBreakdownSourcesBreakdownTotalSourcesProperties(BaseModel)
     """
     IdentityEnhancedBreakdownSourcesBreakdownTotalSourcesProperties
     """ # noqa: E501
-    total_number_of_sources: Optional[StrictInt] = None
+    total_number_of_sources: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["total_number_of_sources"]
 
