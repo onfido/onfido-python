@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class WatchlistMonitorMatch(BaseModel):
     """
     WatchlistMonitorMatch
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="Monitor ID")
+    id: Optional[UUID] = Field(default=None, description="Monitor ID")
     enabled: Optional[StrictBool] = Field(default=None, description="Monitor status")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["id", "enabled"]

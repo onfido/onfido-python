@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +28,8 @@ class SigningDocument(BaseModel):
     """
     SigningDocument
     """ # noqa: E501
-    applicant_id: Optional[StrictStr] = Field(default=None, description="The ID of the applicant whose signing document is being uploaded.")
-    id: StrictStr = Field(description="The unique identifier for the signing document")
+    applicant_id: Optional[UUID] = Field(default=None, description="The ID of the applicant whose signing document is being uploaded.")
+    id: UUID = Field(description="The unique identifier for the signing document")
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the signing document was uploaded")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource")
     download_href: Optional[StrictStr] = Field(default=None, description="The uri that can be used to download the signing document")

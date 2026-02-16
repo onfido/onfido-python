@@ -20,6 +20,7 @@ from datetime import date
 from pydantic import Field, StrictBool, StrictBytes, StrictInt, StrictStr, field_validator
 from typing import List, Optional, Tuple, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from onfido.models.addresses_list import AddressesList
 from onfido.models.applicant import Applicant
 from onfido.models.applicant_builder import ApplicantBuilder
@@ -91,7 +92,7 @@ class DefaultApi:
     @validate_call
     def cancel_report(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -158,7 +159,7 @@ class DefaultApi:
     @validate_call
     def cancel_report_with_http_info(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -225,7 +226,7 @@ class DefaultApi:
     @validate_call
     def cancel_report_without_preload_content(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -352,7 +353,7 @@ class DefaultApi:
     @validate_call
     def complete_task(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to complete.")],
         complete_task_builder: CompleteTaskBuilder,
         _request_timeout: Union[
@@ -427,7 +428,7 @@ class DefaultApi:
     @validate_call
     def complete_task_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to complete.")],
         complete_task_builder: CompleteTaskBuilder,
         _request_timeout: Union[
@@ -502,7 +503,7 @@ class DefaultApi:
     @validate_call
     def complete_task_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to complete.")],
         complete_task_builder: CompleteTaskBuilder,
         _request_timeout: Union[
@@ -1204,7 +1205,7 @@ class DefaultApi:
     @validate_call
     def create_timeline_file(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1271,7 +1272,7 @@ class DefaultApi:
     @validate_call
     def create_timeline_file_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1338,7 +1339,7 @@ class DefaultApi:
     @validate_call
     def create_timeline_file_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2287,7 +2288,7 @@ class DefaultApi:
     @validate_call
     def delete_applicant(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2354,7 +2355,7 @@ class DefaultApi:
     @validate_call
     def delete_applicant_with_http_info(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2421,7 +2422,7 @@ class DefaultApi:
     @validate_call
     def delete_applicant_without_preload_content(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3091,7 +3092,7 @@ class DefaultApi:
     @validate_call
     def delete_watchlist_monitor(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3158,7 +3159,7 @@ class DefaultApi:
     @validate_call
     def delete_watchlist_monitor_with_http_info(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3225,7 +3226,7 @@ class DefaultApi:
     @validate_call
     def delete_watchlist_monitor_without_preload_content(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3352,7 +3353,7 @@ class DefaultApi:
     @validate_call
     def delete_webhook(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3419,7 +3420,7 @@ class DefaultApi:
     @validate_call
     def delete_webhook_with_http_info(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3486,7 +3487,7 @@ class DefaultApi:
     @validate_call
     def delete_webhook_without_preload_content(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3613,8 +3614,8 @@ class DefaultApi:
     @validate_call
     def download_aes_document(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3685,8 +3686,8 @@ class DefaultApi:
     @validate_call
     def download_aes_document_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3757,8 +3758,8 @@ class DefaultApi:
     @validate_call
     def download_aes_document_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3897,7 +3898,7 @@ class DefaultApi:
     @validate_call
     def download_check(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -3964,7 +3965,7 @@ class DefaultApi:
     @validate_call
     def download_check_with_http_info(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4031,7 +4032,7 @@ class DefaultApi:
     @validate_call
     def download_check_without_preload_content(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4159,7 +4160,7 @@ class DefaultApi:
     @validate_call
     def download_document(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4226,7 +4227,7 @@ class DefaultApi:
     @validate_call
     def download_document_with_http_info(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4293,7 +4294,7 @@ class DefaultApi:
     @validate_call
     def download_document_without_preload_content(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4683,7 +4684,7 @@ class DefaultApi:
     @validate_call
     def download_evidence_folder(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="Workflow Run ID")],
+        workflow_run_id: Annotated[UUID, Field(description="Workflow Run ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4751,7 +4752,7 @@ class DefaultApi:
     @validate_call
     def download_evidence_folder_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="Workflow Run ID")],
+        workflow_run_id: Annotated[UUID, Field(description="Workflow Run ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4819,7 +4820,7 @@ class DefaultApi:
     @validate_call
     def download_evidence_folder_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="Workflow Run ID")],
+        workflow_run_id: Annotated[UUID, Field(description="Workflow Run ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -4948,7 +4949,7 @@ class DefaultApi:
     @validate_call
     def download_id_photo(
         self,
-        id_photo_id: Annotated[StrictStr, Field(description="The ID photo's unique identifier.")],
+        id_photo_id: Annotated[UUID, Field(description="The ID photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5015,7 +5016,7 @@ class DefaultApi:
     @validate_call
     def download_id_photo_with_http_info(
         self,
-        id_photo_id: Annotated[StrictStr, Field(description="The ID photo's unique identifier.")],
+        id_photo_id: Annotated[UUID, Field(description="The ID photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5082,7 +5083,7 @@ class DefaultApi:
     @validate_call
     def download_id_photo_without_preload_content(
         self,
-        id_photo_id: Annotated[StrictStr, Field(description="The ID photo's unique identifier.")],
+        id_photo_id: Annotated[UUID, Field(description="The ID photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5210,7 +5211,7 @@ class DefaultApi:
     @validate_call
     def download_live_photo(
         self,
-        live_photo_id: Annotated[StrictStr, Field(description="The live photo's unique identifier.")],
+        live_photo_id: Annotated[UUID, Field(description="The live photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5277,7 +5278,7 @@ class DefaultApi:
     @validate_call
     def download_live_photo_with_http_info(
         self,
-        live_photo_id: Annotated[StrictStr, Field(description="The live photo's unique identifier.")],
+        live_photo_id: Annotated[UUID, Field(description="The live photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5344,7 +5345,7 @@ class DefaultApi:
     @validate_call
     def download_live_photo_without_preload_content(
         self,
-        live_photo_id: Annotated[StrictStr, Field(description="The live photo's unique identifier.")],
+        live_photo_id: Annotated[UUID, Field(description="The live photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5472,7 +5473,7 @@ class DefaultApi:
     @validate_call
     def download_live_video(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5539,7 +5540,7 @@ class DefaultApi:
     @validate_call
     def download_live_video_with_http_info(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5606,7 +5607,7 @@ class DefaultApi:
     @validate_call
     def download_live_video_without_preload_content(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5734,7 +5735,7 @@ class DefaultApi:
     @validate_call
     def download_live_video_frame(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5801,7 +5802,7 @@ class DefaultApi:
     @validate_call
     def download_live_video_frame_with_http_info(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5868,7 +5869,7 @@ class DefaultApi:
     @validate_call
     def download_live_video_frame_without_preload_content(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -5996,7 +5997,7 @@ class DefaultApi:
     @validate_call
     def download_motion_capture(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6063,7 +6064,7 @@ class DefaultApi:
     @validate_call
     def download_motion_capture_with_http_info(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6130,7 +6131,7 @@ class DefaultApi:
     @validate_call
     def download_motion_capture_without_preload_content(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6258,7 +6259,7 @@ class DefaultApi:
     @validate_call
     def download_motion_capture_frame(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6325,7 +6326,7 @@ class DefaultApi:
     @validate_call
     def download_motion_capture_frame_with_http_info(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6392,7 +6393,7 @@ class DefaultApi:
     @validate_call
     def download_motion_capture_frame_without_preload_content(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6520,7 +6521,7 @@ class DefaultApi:
     @validate_call
     def download_nfc_face(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6587,7 +6588,7 @@ class DefaultApi:
     @validate_call
     def download_nfc_face_with_http_info(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6654,7 +6655,7 @@ class DefaultApi:
     @validate_call
     def download_nfc_face_without_preload_content(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6782,8 +6783,8 @@ class DefaultApi:
     @validate_call
     def download_qes_document(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        file_id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        file_id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6854,8 +6855,8 @@ class DefaultApi:
     @validate_call
     def download_qes_document_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        file_id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        file_id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -6926,8 +6927,8 @@ class DefaultApi:
     @validate_call
     def download_qes_document_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        file_id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        file_id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7066,8 +7067,8 @@ class DefaultApi:
     @validate_call
     def download_ses_document(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7138,8 +7139,8 @@ class DefaultApi:
     @validate_call
     def download_ses_document_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7210,8 +7211,8 @@ class DefaultApi:
     @validate_call
     def download_ses_document_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
-        id: Annotated[StrictStr, Field(description="The unique identifier of the file which you want to retrieve.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run for which you want to retrieve the signed document.")],
+        id: Annotated[UUID, Field(description="The unique identifier of the file which you want to retrieve.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7350,7 +7351,7 @@ class DefaultApi:
     @validate_call
     def download_signed_evidence_file(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="Workflow Run ID")],
+        workflow_run_id: Annotated[UUID, Field(description="Workflow Run ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7418,7 +7419,7 @@ class DefaultApi:
     @validate_call
     def download_signed_evidence_file_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="Workflow Run ID")],
+        workflow_run_id: Annotated[UUID, Field(description="Workflow Run ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7486,7 +7487,7 @@ class DefaultApi:
     @validate_call
     def download_signed_evidence_file_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="Workflow Run ID")],
+        workflow_run_id: Annotated[UUID, Field(description="Workflow Run ID")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7615,7 +7616,7 @@ class DefaultApi:
     @validate_call
     def download_signing_document(
         self,
-        signing_document_id: StrictStr,
+        signing_document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7682,7 +7683,7 @@ class DefaultApi:
     @validate_call
     def download_signing_document_with_http_info(
         self,
-        signing_document_id: StrictStr,
+        signing_document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -7749,7 +7750,7 @@ class DefaultApi:
     @validate_call
     def download_signing_document_without_preload_content(
         self,
-        signing_document_id: StrictStr,
+        signing_document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8414,7 +8415,7 @@ class DefaultApi:
     @validate_call
     def find_applicant(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8481,7 +8482,7 @@ class DefaultApi:
     @validate_call
     def find_applicant_with_http_info(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8548,7 +8549,7 @@ class DefaultApi:
     @validate_call
     def find_applicant_without_preload_content(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8675,7 +8676,7 @@ class DefaultApi:
     @validate_call
     def find_applicant_consents(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8742,7 +8743,7 @@ class DefaultApi:
     @validate_call
     def find_applicant_consents_with_http_info(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8809,7 +8810,7 @@ class DefaultApi:
     @validate_call
     def find_applicant_consents_without_preload_content(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -8936,7 +8937,7 @@ class DefaultApi:
     @validate_call
     def find_check(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9003,7 +9004,7 @@ class DefaultApi:
     @validate_call
     def find_check_with_http_info(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9070,7 +9071,7 @@ class DefaultApi:
     @validate_call
     def find_check_without_preload_content(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9197,7 +9198,7 @@ class DefaultApi:
     @validate_call
     def find_document(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9264,7 +9265,7 @@ class DefaultApi:
     @validate_call
     def find_document_with_http_info(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9331,7 +9332,7 @@ class DefaultApi:
     @validate_call
     def find_document_without_preload_content(
         self,
-        document_id: StrictStr,
+        document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9458,7 +9459,7 @@ class DefaultApi:
     @validate_call
     def find_id_photo(
         self,
-        id_photo_id: Annotated[StrictStr, Field(description="The ID photo's unique identifier.")],
+        id_photo_id: Annotated[UUID, Field(description="The ID photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9525,7 +9526,7 @@ class DefaultApi:
     @validate_call
     def find_id_photo_with_http_info(
         self,
-        id_photo_id: Annotated[StrictStr, Field(description="The ID photo's unique identifier.")],
+        id_photo_id: Annotated[UUID, Field(description="The ID photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9592,7 +9593,7 @@ class DefaultApi:
     @validate_call
     def find_id_photo_without_preload_content(
         self,
-        id_photo_id: Annotated[StrictStr, Field(description="The ID photo's unique identifier.")],
+        id_photo_id: Annotated[UUID, Field(description="The ID photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9719,7 +9720,7 @@ class DefaultApi:
     @validate_call
     def find_live_photo(
         self,
-        live_photo_id: Annotated[StrictStr, Field(description="The live photo's unique identifier.")],
+        live_photo_id: Annotated[UUID, Field(description="The live photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9786,7 +9787,7 @@ class DefaultApi:
     @validate_call
     def find_live_photo_with_http_info(
         self,
-        live_photo_id: Annotated[StrictStr, Field(description="The live photo's unique identifier.")],
+        live_photo_id: Annotated[UUID, Field(description="The live photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9853,7 +9854,7 @@ class DefaultApi:
     @validate_call
     def find_live_photo_without_preload_content(
         self,
-        live_photo_id: Annotated[StrictStr, Field(description="The live photo's unique identifier.")],
+        live_photo_id: Annotated[UUID, Field(description="The live photo's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -9980,7 +9981,7 @@ class DefaultApi:
     @validate_call
     def find_live_video(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10047,7 +10048,7 @@ class DefaultApi:
     @validate_call
     def find_live_video_with_http_info(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10114,7 +10115,7 @@ class DefaultApi:
     @validate_call
     def find_live_video_without_preload_content(
         self,
-        live_video_id: Annotated[StrictStr, Field(description="The live video's unique identifier.")],
+        live_video_id: Annotated[UUID, Field(description="The live video's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10241,7 +10242,7 @@ class DefaultApi:
     @validate_call
     def find_motion_capture(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10308,7 +10309,7 @@ class DefaultApi:
     @validate_call
     def find_motion_capture_with_http_info(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10375,7 +10376,7 @@ class DefaultApi:
     @validate_call
     def find_motion_capture_without_preload_content(
         self,
-        motion_capture_id: Annotated[StrictStr, Field(description="The motion capture's unique identifier.")],
+        motion_capture_id: Annotated[UUID, Field(description="The motion capture's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10781,7 +10782,7 @@ class DefaultApi:
     @validate_call
     def find_report(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10848,7 +10849,7 @@ class DefaultApi:
     @validate_call
     def find_report_with_http_info(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -10915,7 +10916,7 @@ class DefaultApi:
     @validate_call
     def find_report_without_preload_content(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11042,7 +11043,7 @@ class DefaultApi:
     @validate_call
     def find_signing_document(
         self,
-        signing_document_id: StrictStr,
+        signing_document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11109,7 +11110,7 @@ class DefaultApi:
     @validate_call
     def find_signing_document_with_http_info(
         self,
-        signing_document_id: StrictStr,
+        signing_document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11176,7 +11177,7 @@ class DefaultApi:
     @validate_call
     def find_signing_document_without_preload_content(
         self,
-        signing_document_id: StrictStr,
+        signing_document_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11303,7 +11304,7 @@ class DefaultApi:
     @validate_call
     def find_task(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to retrieve.")],
         _request_timeout: Union[
             None,
@@ -11374,7 +11375,7 @@ class DefaultApi:
     @validate_call
     def find_task_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to retrieve.")],
         _request_timeout: Union[
             None,
@@ -11445,7 +11446,7 @@ class DefaultApi:
     @validate_call
     def find_task_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Task belongs.")],
         task_id: Annotated[StrictStr, Field(description="The identifier of the Task you want to retrieve.")],
         _request_timeout: Union[
             None,
@@ -11579,8 +11580,8 @@ class DefaultApi:
     @validate_call
     def find_timeline_file(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
-        timeline_file_id: Annotated[StrictStr, Field(description="The unique identifier for the Timefile File.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
+        timeline_file_id: Annotated[UUID, Field(description="The unique identifier for the Timefile File.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11651,8 +11652,8 @@ class DefaultApi:
     @validate_call
     def find_timeline_file_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
-        timeline_file_id: Annotated[StrictStr, Field(description="The unique identifier for the Timefile File.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
+        timeline_file_id: Annotated[UUID, Field(description="The unique identifier for the Timefile File.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11723,8 +11724,8 @@ class DefaultApi:
     @validate_call
     def find_timeline_file_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
-        timeline_file_id: Annotated[StrictStr, Field(description="The unique identifier for the Timefile File.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
+        timeline_file_id: Annotated[UUID, Field(description="The unique identifier for the Timefile File.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11859,7 +11860,7 @@ class DefaultApi:
     @validate_call
     def find_watchlist_monitor(
         self,
-        monitor_id: Annotated[StrictStr, Field(description="The watchlist monitor's unique identifier.")],
+        monitor_id: Annotated[UUID, Field(description="The watchlist monitor's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11926,7 +11927,7 @@ class DefaultApi:
     @validate_call
     def find_watchlist_monitor_with_http_info(
         self,
-        monitor_id: Annotated[StrictStr, Field(description="The watchlist monitor's unique identifier.")],
+        monitor_id: Annotated[UUID, Field(description="The watchlist monitor's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -11993,7 +11994,7 @@ class DefaultApi:
     @validate_call
     def find_watchlist_monitor_without_preload_content(
         self,
-        monitor_id: Annotated[StrictStr, Field(description="The watchlist monitor's unique identifier.")],
+        monitor_id: Annotated[UUID, Field(description="The watchlist monitor's unique identifier.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12120,7 +12121,7 @@ class DefaultApi:
     @validate_call
     def find_webhook(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12187,7 +12188,7 @@ class DefaultApi:
     @validate_call
     def find_webhook_with_http_info(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12254,7 +12255,7 @@ class DefaultApi:
     @validate_call
     def find_webhook_without_preload_content(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12381,7 +12382,7 @@ class DefaultApi:
     @validate_call
     def find_workflow_run(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12448,7 +12449,7 @@ class DefaultApi:
     @validate_call
     def find_workflow_run_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12515,7 +12516,7 @@ class DefaultApi:
     @validate_call
     def find_workflow_run_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12642,7 +12643,7 @@ class DefaultApi:
     @validate_call
     def force_report_creation_from_watchlist_monitor(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12709,7 +12710,7 @@ class DefaultApi:
     @validate_call
     def force_report_creation_from_watchlist_monitor_with_http_info(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -12776,7 +12777,7 @@ class DefaultApi:
     @validate_call
     def force_report_creation_from_watchlist_monitor_without_preload_content(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13474,7 +13475,7 @@ class DefaultApi:
     @validate_call
     def list_checks(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13541,7 +13542,7 @@ class DefaultApi:
     @validate_call
     def list_checks_with_http_info(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13608,7 +13609,7 @@ class DefaultApi:
     @validate_call
     def list_checks_without_preload_content(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13737,7 +13738,7 @@ class DefaultApi:
     @validate_call
     def list_documents(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13804,7 +13805,7 @@ class DefaultApi:
     @validate_call
     def list_documents_with_http_info(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -13871,7 +13872,7 @@ class DefaultApi:
     @validate_call
     def list_documents_without_preload_content(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14000,7 +14001,7 @@ class DefaultApi:
     @validate_call
     def list_id_photos(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the ID photos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the ID photos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14067,7 +14068,7 @@ class DefaultApi:
     @validate_call
     def list_id_photos_with_http_info(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the ID photos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the ID photos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14134,7 +14135,7 @@ class DefaultApi:
     @validate_call
     def list_id_photos_without_preload_content(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the ID photos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the ID photos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14263,7 +14264,7 @@ class DefaultApi:
     @validate_call
     def list_live_photos(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the live photos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the live photos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14330,7 +14331,7 @@ class DefaultApi:
     @validate_call
     def list_live_photos_with_http_info(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the live photos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the live photos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14397,7 +14398,7 @@ class DefaultApi:
     @validate_call
     def list_live_photos_without_preload_content(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the live photos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the live photos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14526,7 +14527,7 @@ class DefaultApi:
     @validate_call
     def list_live_videos(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the live videos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the live videos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14593,7 +14594,7 @@ class DefaultApi:
     @validate_call
     def list_live_videos_with_http_info(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the live videos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the live videos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14660,7 +14661,7 @@ class DefaultApi:
     @validate_call
     def list_live_videos_without_preload_content(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the live videos belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the live videos belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14789,7 +14790,7 @@ class DefaultApi:
     @validate_call
     def list_motion_captures(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the motion captures belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the motion captures belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14856,7 +14857,7 @@ class DefaultApi:
     @validate_call
     def list_motion_captures_with_http_info(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the motion captures belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the motion captures belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -14923,7 +14924,7 @@ class DefaultApi:
     @validate_call
     def list_motion_captures_without_preload_content(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the motion captures belong to.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the motion captures belong to.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15316,7 +15317,7 @@ class DefaultApi:
     @validate_call
     def list_repeat_attempts(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15383,7 +15384,7 @@ class DefaultApi:
     @validate_call
     def list_repeat_attempts_with_http_info(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15450,7 +15451,7 @@ class DefaultApi:
     @validate_call
     def list_repeat_attempts_without_preload_content(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15577,7 +15578,7 @@ class DefaultApi:
     @validate_call
     def list_reports(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15644,7 +15645,7 @@ class DefaultApi:
     @validate_call
     def list_reports_with_http_info(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15711,7 +15712,7 @@ class DefaultApi:
     @validate_call
     def list_reports_without_preload_content(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15840,7 +15841,7 @@ class DefaultApi:
     @validate_call
     def list_signing_documents(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15907,7 +15908,7 @@ class DefaultApi:
     @validate_call
     def list_signing_documents_with_http_info(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -15974,7 +15975,7 @@ class DefaultApi:
     @validate_call
     def list_signing_documents_without_preload_content(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16103,7 +16104,7 @@ class DefaultApi:
     @validate_call
     def list_tasks(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Tasks belong.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Tasks belong.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16170,7 +16171,7 @@ class DefaultApi:
     @validate_call
     def list_tasks_with_http_info(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Tasks belong.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Tasks belong.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16237,7 +16238,7 @@ class DefaultApi:
     @validate_call
     def list_tasks_without_preload_content(
         self,
-        workflow_run_id: Annotated[StrictStr, Field(description="The unique identifier of the Workflow Run to which the Tasks belong.")],
+        workflow_run_id: Annotated[UUID, Field(description="The unique identifier of the Workflow Run to which the Tasks belong.")],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16364,7 +16365,7 @@ class DefaultApi:
     @validate_call
     def list_watchlist_monitor_matches(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16431,7 +16432,7 @@ class DefaultApi:
     @validate_call
     def list_watchlist_monitor_matches_with_http_info(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16498,7 +16499,7 @@ class DefaultApi:
     @validate_call
     def list_watchlist_monitor_matches_without_preload_content(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -16625,7 +16626,7 @@ class DefaultApi:
     @validate_call
     def list_watchlist_monitors(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.")],
         include_deleted: Annotated[Optional[StrictBool], Field(description="Whether to also include deleted (inactive) monitors.")] = None,
         _request_timeout: Union[
             None,
@@ -16696,7 +16697,7 @@ class DefaultApi:
     @validate_call
     def list_watchlist_monitors_with_http_info(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.")],
         include_deleted: Annotated[Optional[StrictBool], Field(description="Whether to also include deleted (inactive) monitors.")] = None,
         _request_timeout: Union[
             None,
@@ -16767,7 +16768,7 @@ class DefaultApi:
     @validate_call
     def list_watchlist_monitors_without_preload_content(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.")],
+        applicant_id: Annotated[UUID, Field(description="The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed.")],
         include_deleted: Annotated[Optional[StrictBool], Field(description="Whether to also include deleted (inactive) monitors.")] = None,
         _request_timeout: Union[
             None,
@@ -17156,7 +17157,7 @@ class DefaultApi:
         created_at_gt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
         created_at_lt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.")] = None,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="the applicant's id.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="the applicant's id.")] = None,
         tags: Annotated[Optional[List[StrictStr]], Field(description="A list of tags to filter the results.")] = None,
         _request_timeout: Union[
             None,
@@ -17247,7 +17248,7 @@ class DefaultApi:
         created_at_gt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
         created_at_lt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.")] = None,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="the applicant's id.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="the applicant's id.")] = None,
         tags: Annotated[Optional[List[StrictStr]], Field(description="A list of tags to filter the results.")] = None,
         _request_timeout: Union[
             None,
@@ -17338,7 +17339,7 @@ class DefaultApi:
         created_at_gt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date greater than (after) the one provided.")] = None,
         created_at_lt: Annotated[Optional[date], Field(description="A ISO-8601 date to filter results with a created date less than (before) the one provided.")] = None,
         sort: Annotated[Optional[StrictStr], Field(description="A string with the value 'desc' or 'asc' that allows to sort the returned list by the completed datetime either descending or ascending, respectively. If not specified, defaults to 'desc'.")] = None,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="the applicant's id.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="the applicant's id.")] = None,
         tags: Annotated[Optional[List[StrictStr]], Field(description="A list of tags to filter the results.")] = None,
         _request_timeout: Union[
             None,
@@ -18333,7 +18334,7 @@ class DefaultApi:
     @validate_call
     def restore_applicant(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18400,7 +18401,7 @@ class DefaultApi:
     @validate_call
     def restore_applicant_with_http_info(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18467,7 +18468,7 @@ class DefaultApi:
     @validate_call
     def restore_applicant_without_preload_content(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18594,7 +18595,7 @@ class DefaultApi:
     @validate_call
     def resume_check(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18661,7 +18662,7 @@ class DefaultApi:
     @validate_call
     def resume_check_with_http_info(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18728,7 +18729,7 @@ class DefaultApi:
     @validate_call
     def resume_check_without_preload_content(
         self,
-        check_id: StrictStr,
+        check_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18855,7 +18856,7 @@ class DefaultApi:
     @validate_call
     def resume_report(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18922,7 +18923,7 @@ class DefaultApi:
     @validate_call
     def resume_report_with_http_info(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -18989,7 +18990,7 @@ class DefaultApi:
     @validate_call
     def resume_report_without_preload_content(
         self,
-        report_id: StrictStr,
+        report_id: UUID,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -19116,7 +19117,7 @@ class DefaultApi:
     @validate_call
     def update_applicant(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         applicant_updater: ApplicantUpdater,
         _request_timeout: Union[
             None,
@@ -19187,7 +19188,7 @@ class DefaultApi:
     @validate_call
     def update_applicant_with_http_info(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         applicant_updater: ApplicantUpdater,
         _request_timeout: Union[
             None,
@@ -19258,7 +19259,7 @@ class DefaultApi:
     @validate_call
     def update_applicant_without_preload_content(
         self,
-        applicant_id: StrictStr,
+        applicant_id: UUID,
         applicant_updater: ApplicantUpdater,
         _request_timeout: Union[
             None,
@@ -19715,7 +19716,7 @@ class DefaultApi:
     @validate_call
     def update_watchlist_monitor_match(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater,
         _request_timeout: Union[
             None,
@@ -19786,7 +19787,7 @@ class DefaultApi:
     @validate_call
     def update_watchlist_monitor_match_with_http_info(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater,
         _request_timeout: Union[
             None,
@@ -19857,7 +19858,7 @@ class DefaultApi:
     @validate_call
     def update_watchlist_monitor_match_without_preload_content(
         self,
-        monitor_id: StrictStr,
+        monitor_id: UUID,
         watchlist_monitor_matches_updater: WatchlistMonitorMatchesUpdater,
         _request_timeout: Union[
             None,
@@ -20004,7 +20005,7 @@ class DefaultApi:
     @validate_call
     def update_webhook(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         webhook_updater: WebhookUpdater,
         _request_timeout: Union[
             None,
@@ -20075,7 +20076,7 @@ class DefaultApi:
     @validate_call
     def update_webhook_with_http_info(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         webhook_updater: WebhookUpdater,
         _request_timeout: Union[
             None,
@@ -20146,7 +20147,7 @@ class DefaultApi:
     @validate_call
     def update_webhook_without_preload_content(
         self,
-        webhook_id: StrictStr,
+        webhook_id: UUID,
         webhook_updater: WebhookUpdater,
         _request_timeout: Union[
             None,
@@ -20294,7 +20295,7 @@ class DefaultApi:
     def upload_document(
         self,
         type: Annotated[StrictStr, Field(description="The type of document")],
-        applicant_id: Annotated[StrictStr, Field(description="The ID of the applicant whose document is being uploaded.")],
+        applicant_id: Annotated[UUID, Field(description="The ID of the applicant whose document is being uploaded.")],
         file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The file to be uploaded.")],
         file_type: Annotated[Optional[StrictStr], Field(description="The file type of the uploaded file")] = None,
         side: Annotated[Optional[StrictStr], Field(description="The side of the document, if applicable. The possible values are front and back")] = None,
@@ -20389,7 +20390,7 @@ class DefaultApi:
     def upload_document_with_http_info(
         self,
         type: Annotated[StrictStr, Field(description="The type of document")],
-        applicant_id: Annotated[StrictStr, Field(description="The ID of the applicant whose document is being uploaded.")],
+        applicant_id: Annotated[UUID, Field(description="The ID of the applicant whose document is being uploaded.")],
         file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The file to be uploaded.")],
         file_type: Annotated[Optional[StrictStr], Field(description="The file type of the uploaded file")] = None,
         side: Annotated[Optional[StrictStr], Field(description="The side of the document, if applicable. The possible values are front and back")] = None,
@@ -20484,7 +20485,7 @@ class DefaultApi:
     def upload_document_without_preload_content(
         self,
         type: Annotated[StrictStr, Field(description="The type of document")],
-        applicant_id: Annotated[StrictStr, Field(description="The ID of the applicant whose document is being uploaded.")],
+        applicant_id: Annotated[UUID, Field(description="The ID of the applicant whose document is being uploaded.")],
         file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The file to be uploaded.")],
         file_type: Annotated[Optional[StrictStr], Field(description="The file type of the uploaded file")] = None,
         side: Annotated[Optional[StrictStr], Field(description="The side of the document, if applicable. The possible values are front and back")] = None,
@@ -20672,7 +20673,7 @@ class DefaultApi:
     @validate_call
     def upload_id_photo(
         self,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="The ID of the applicant whose ID photo is being uploaded.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="The ID of the applicant whose ID photo is being uploaded.")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The file to be uploaded.")] = None,
         _request_timeout: Union[
             None,
@@ -20743,7 +20744,7 @@ class DefaultApi:
     @validate_call
     def upload_id_photo_with_http_info(
         self,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="The ID of the applicant whose ID photo is being uploaded.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="The ID of the applicant whose ID photo is being uploaded.")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The file to be uploaded.")] = None,
         _request_timeout: Union[
             None,
@@ -20814,7 +20815,7 @@ class DefaultApi:
     @validate_call
     def upload_id_photo_without_preload_content(
         self,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="The ID of the applicant whose ID photo is being uploaded.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="The ID of the applicant whose ID photo is being uploaded.")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The file to be uploaded.")] = None,
         _request_timeout: Union[
             None,
@@ -20961,7 +20962,7 @@ class DefaultApi:
     @validate_call
     def upload_live_photo(
         self,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="The ID of the applicant whose live photo is being uploaded.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="The ID of the applicant whose live photo is being uploaded.")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The file to be uploaded.")] = None,
         advanced_validation: Annotated[Optional[StrictBool], Field(description="Validates that the live photo contains exactly one face.")] = None,
         _request_timeout: Union[
@@ -21036,7 +21037,7 @@ class DefaultApi:
     @validate_call
     def upload_live_photo_with_http_info(
         self,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="The ID of the applicant whose live photo is being uploaded.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="The ID of the applicant whose live photo is being uploaded.")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The file to be uploaded.")] = None,
         advanced_validation: Annotated[Optional[StrictBool], Field(description="Validates that the live photo contains exactly one face.")] = None,
         _request_timeout: Union[
@@ -21111,7 +21112,7 @@ class DefaultApi:
     @validate_call
     def upload_live_photo_without_preload_content(
         self,
-        applicant_id: Annotated[Optional[StrictStr], Field(description="The ID of the applicant whose live photo is being uploaded.")] = None,
+        applicant_id: Annotated[Optional[UUID], Field(description="The ID of the applicant whose live photo is being uploaded.")] = None,
         file: Annotated[Optional[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]]], Field(description="The file to be uploaded.")] = None,
         advanced_validation: Annotated[Optional[StrictBool], Field(description="Validates that the live photo contains exactly one face.")] = None,
         _request_timeout: Union[
@@ -21265,7 +21266,7 @@ class DefaultApi:
     @validate_call
     def upload_signing_document(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The ID of the applicant whose signing document is being uploaded.")],
+        applicant_id: Annotated[UUID, Field(description="The ID of the applicant whose signing document is being uploaded.")],
         file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The file to be uploaded.")],
         _request_timeout: Union[
             None,
@@ -21336,7 +21337,7 @@ class DefaultApi:
     @validate_call
     def upload_signing_document_with_http_info(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The ID of the applicant whose signing document is being uploaded.")],
+        applicant_id: Annotated[UUID, Field(description="The ID of the applicant whose signing document is being uploaded.")],
         file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The file to be uploaded.")],
         _request_timeout: Union[
             None,
@@ -21407,7 +21408,7 @@ class DefaultApi:
     @validate_call
     def upload_signing_document_without_preload_content(
         self,
-        applicant_id: Annotated[StrictStr, Field(description="The ID of the applicant whose signing document is being uploaded.")],
+        applicant_id: Annotated[UUID, Field(description="The ID of the applicant whose signing document is being uploaded.")],
         file: Annotated[Union[StrictBytes, StrictStr, Tuple[StrictStr, StrictBytes]], Field(description="The file to be uploaded.")],
         _request_timeout: Union[
             None,

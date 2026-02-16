@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.webhook_event_type import WebhookEventType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -36,7 +37,7 @@ class Webhook(BaseModel):
     oauth_server_client_id: Optional[StrictStr] = Field(default=None, description="The client id to authenticate the client credentials grant.")
     oauth_server_client_secret: Optional[StrictStr] = Field(default=None, description="The client secret to authenticate the client credentials grant.")
     oauth_server_scope: Optional[StrictStr] = Field(default=None, description="The scopes to be sent when requesting the access token.")
-    id: StrictStr = Field(description="The unique identifier of the webhook.")
+    id: UUID = Field(description="The unique identifier of the webhook.")
     url: Optional[StrictStr] = Field(default=None, description="The url that will listen to notifications (must be https).")
     token: Optional[StrictStr] = Field(default=None, description="Webhook secret token used to sign the webhook's payload.")
     href: Optional[StrictStr] = Field(default=None, description="The API endpoint to retrieve the webhook.")

@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.india_pan_report_all_of_breakdown import IndiaPanReportAllOfBreakdown
 from onfido.models.india_pan_report_all_of_properties import IndiaPanReportAllOfProperties
 from onfido.models.report_name import ReportName
@@ -33,13 +34,13 @@ class IndiaPanReport(BaseModel):
     """
     IndiaPanReport
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier for the report. Read-only.")
+    id: UUID = Field(description="The unique identifier for the report. Read-only.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the report was first initiated. Read-only.")
     href: Optional[StrictStr] = Field(default=None, description="The API endpoint to retrieve the report. Read-only.")
     status: Optional[ReportStatus] = None
     result: Optional[ReportResult] = None
     sub_result: Optional[ReportSubResult] = None
-    check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
+    check_id: Optional[UUID] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
     name: ReportName
     breakdown: Optional[IndiaPanReportAllOfBreakdown] = None
     properties: Optional[IndiaPanReportAllOfProperties] = None

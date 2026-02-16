@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class LivePhoto(BaseModel):
     """
     LivePhoto
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier for the photo.")
+    id: UUID = Field(description="The unique identifier for the photo.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the photo was uploaded.")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource.")
     download_href: Optional[StrictStr] = Field(default=None, description="The uri that can be used to download the photo.")

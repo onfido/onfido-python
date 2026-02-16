@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.check_status import CheckStatus
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,19 +30,19 @@ class Check(BaseModel):
     Check
     """ # noqa: E501
     webhook_ids: Optional[List[StrictStr]] = Field(default=None, description="An array of webhook ids describing which webhooks to trigger for this check.")
-    applicant_id: StrictStr = Field(description="The ID of the applicant to do the check on.")
+    applicant_id: UUID = Field(description="The ID of the applicant to do the check on.")
     applicant_provides_data: Optional[StrictBool] = Field(default=None, description="Send an applicant form to applicant to complete to proceed with check. Defaults to false. ")
     tags: Optional[List[StrictStr]] = Field(default=None, description="Array of tags being assigned to this check.")
     redirect_uri: Optional[StrictStr] = Field(default=None, description="For checks where `applicant_provides_data` is `true`, redirect to this URI when the applicant has submitted their data.")
     privacy_notices_read_consent_given: Optional[StrictBool] = None
-    id: StrictStr = Field(description="The unique identifier for the check.")
+    id: UUID = Field(description="The unique identifier for the check.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when this check was created.")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource.")
     status: Optional[StrictStr] = None
     result: Optional[StrictStr] = Field(default=None, description="The overall result of the check, based on the results of the constituent reports.")
     form_uri: Optional[StrictStr] = Field(default=None, description="A link to the applicant form, if `applicant_provides_data` is `true`.")
     results_uri: Optional[StrictStr] = Field(default=None, description="A link to the corresponding results page on the Onfido dashboard.")
-    report_ids: Optional[List[StrictStr]] = Field(default=None, description="An array of report ids.")
+    report_ids: Optional[List[UUID]] = Field(default=None, description="An array of report ids.")
     sandbox: Optional[StrictBool] = Field(default=None, description="Indicates whether the object was created in the sandbox or not.")
     paused: Optional[StrictBool] = None
     version: Optional[StrictStr] = None

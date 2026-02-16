@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from onfido.models.workflow_run_error import WorkflowRunError
 from onfido.models.workflow_run_link import WorkflowRunLink
 from onfido.models.workflow_run_status import WorkflowRunStatus
@@ -31,14 +32,14 @@ class WorkflowRun(BaseModel):
     """
     WorkflowRun
     """ # noqa: E501
-    applicant_id: StrictStr = Field(description="The unique identifier for the Applicant.")
-    workflow_id: StrictStr = Field(description="The unique identifier for the Workflow.")
+    applicant_id: UUID = Field(description="The unique identifier for the Applicant.")
+    workflow_id: UUID = Field(description="The unique identifier for the Workflow.")
     tags: Optional[Annotated[List[Annotated[str, Field(min_length=1, strict=True, max_length=128)]], Field(max_length=30)]] = Field(default=None, description="Tags or labels assigned to the workflow run.")
     customer_user_id: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="Customer-provided user identifier.")
     link: Optional[WorkflowRunLink] = Field(default=None, description="Object for the configuration of the Workflow Run link.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date and time when the Workflow Run was last updated.")
-    id: StrictStr = Field(description="The unique identifier for the Workflow Run.")
+    id: UUID = Field(description="The unique identifier for the Workflow Run.")
     workflow_version_id: Optional[StrictInt] = Field(default=None, description="The identifier for the Workflow version.")
     dashboard_url: Optional[StrictStr] = Field(default=None, description="The URL for viewing the Workflow Run results on your Onfido Dashboard.")
     status: Optional[WorkflowRunStatus] = Field(default=None, description="The status of the Workflow Run.")

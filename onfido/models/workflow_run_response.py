@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.workflow_run_error import WorkflowRunError
 from onfido.models.workflow_run_status import WorkflowRunStatus
 from typing import Optional, Set
@@ -28,7 +29,7 @@ class WorkflowRunResponse(BaseModel):
     """
     WorkflowRunResponse
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier for the Workflow Run.")
+    id: UUID = Field(description="The unique identifier for the Workflow Run.")
     workflow_version_id: Optional[StrictInt] = Field(default=None, description="The identifier for the Workflow version.")
     dashboard_url: Optional[StrictStr] = Field(default=None, description="The URL for viewing the Workflow Run results on your Onfido Dashboard.")
     status: Optional[WorkflowRunStatus] = Field(default=None, description="The status of the Workflow Run.")

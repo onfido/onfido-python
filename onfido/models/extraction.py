@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.extraction_document_classification import ExtractionDocumentClassification
 from onfido.models.extraction_extracted_data import ExtractionExtractedData
 from typing import Optional, Set
@@ -28,7 +29,7 @@ class Extraction(BaseModel):
     """
     Extraction
     """ # noqa: E501
-    document_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the uploaded document.")
+    document_id: Optional[UUID] = Field(default=None, description="The unique identifier of the uploaded document.")
     document_classification: Optional[ExtractionDocumentClassification] = None
     extracted_data: Optional[ExtractionExtractedData] = None
     additional_properties: Dict[str, Any] = {}

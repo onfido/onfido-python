@@ -18,9 +18,10 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from onfido.models.workflow_run_link import WorkflowRunLink
 from typing import Optional, Set
 from typing_extensions import Self
@@ -29,8 +30,8 @@ class WorkflowRunShared(BaseModel):
     """
     WorkflowRunShared
     """ # noqa: E501
-    applicant_id: StrictStr = Field(description="The unique identifier for the Applicant.")
-    workflow_id: StrictStr = Field(description="The unique identifier for the Workflow.")
+    applicant_id: UUID = Field(description="The unique identifier for the Applicant.")
+    workflow_id: UUID = Field(description="The unique identifier for the Workflow.")
     tags: Optional[Annotated[List[Annotated[str, Field(min_length=1, strict=True, max_length=128)]], Field(max_length=30)]] = Field(default=None, description="Tags or labels assigned to the workflow run.")
     customer_user_id: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="Customer-provided user identifier.")
     link: Optional[WorkflowRunLink] = Field(default=None, description="Object for the configuration of the Workflow Run link.")

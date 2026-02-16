@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.facial_similarity_motion_breakdown import FacialSimilarityMotionBreakdown
 from onfido.models.facial_similarity_motion_properties import FacialSimilarityMotionProperties
 from onfido.models.facial_similarity_report_media import FacialSimilarityReportMedia
@@ -35,13 +36,13 @@ class FacialSimilarityMotionReport(BaseModel):
     """
     FacialSimilarityMotionReport
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier for the report. Read-only.")
+    id: UUID = Field(description="The unique identifier for the report. Read-only.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the report was first initiated. Read-only.")
     href: Optional[StrictStr] = Field(default=None, description="The API endpoint to retrieve the report. Read-only.")
     status: Optional[ReportStatus] = None
     result: Optional[ReportResult] = None
     sub_result: Optional[ReportSubResult] = None
-    check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
+    check_id: Optional[UUID] = Field(default=None, description="The ID of the check to which the report belongs. Read-only.")
     name: ReportName
     documents: Optional[List[ReportDocument]] = Field(default=None, description="Array of objects with document ids that were used in the Onfido engine.")
     live_photos: Optional[List[FacialSimilarityReportMedia]] = Field(default=None, description="Array of objects with live photo ids that were used in the Onfido engine.")

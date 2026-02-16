@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class CheckShared(BaseModel):
     CheckShared
     """ # noqa: E501
     webhook_ids: Optional[List[StrictStr]] = Field(default=None, description="An array of webhook ids describing which webhooks to trigger for this check.")
-    applicant_id: StrictStr = Field(description="The ID of the applicant to do the check on.")
+    applicant_id: UUID = Field(description="The ID of the applicant to do the check on.")
     applicant_provides_data: Optional[StrictBool] = Field(default=None, description="Send an applicant form to applicant to complete to proceed with check. Defaults to false. ")
     tags: Optional[List[StrictStr]] = Field(default=None, description="Array of tags being assigned to this check.")
     redirect_uri: Optional[StrictStr] = Field(default=None, description="For checks where `applicant_provides_data` is `true`, redirect to this URI when the applicant has submitted their data.")

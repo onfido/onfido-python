@@ -21,6 +21,7 @@ from datetime import date, datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from onfido.models.address import Address
 from onfido.models.id_number import IdNumber
 from onfido.models.location import Location
@@ -37,7 +38,7 @@ class Applicant(BaseModel):
     phone_number: Optional[StrictStr] = Field(default=None, description="The applicant's phone number")
     first_name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The applicant's first name")
     last_name: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The applicant's surname")
-    id: StrictStr = Field(description="The unique identifier for the applicant.")
+    id: UUID = Field(description="The unique identifier for the applicant.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when this applicant was created.")
     delete_at: Optional[datetime] = Field(default=None, description="The date and time when this applicant is scheduled to be deleted.")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource.")

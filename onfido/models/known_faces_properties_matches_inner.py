@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictFloat, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,9 +27,9 @@ class KnownFacesPropertiesMatchesInner(BaseModel):
     """
     KnownFacesPropertiesMatchesInner
     """ # noqa: E501
-    applicant_id: Optional[StrictStr] = Field(default=None, description="The applicant ID of the matched applicant.")
+    applicant_id: Optional[UUID] = Field(default=None, description="The applicant ID of the matched applicant.")
     score: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A floating point number between 0 and 1 that expresses how similar the two faces are, where 1 is a perfect match.")
-    media_id: Optional[StrictStr] = Field(default=None, description="The corresponding UUID for the media type.")
+    media_id: Optional[UUID] = Field(default=None, description="The corresponding UUID for the media type.")
     media_type: Optional[StrictStr] = Field(default=None, description="The media type (for example live_photos or live_videos).")
     suspected: Optional[StrictBool] = Field(default=None, description="Indicates if match is suspected based on fuzzy name matching feature. Dependent on feature being active for account, otherwise defaults to true.")
     additional_properties: Dict[str, Any] = {}
