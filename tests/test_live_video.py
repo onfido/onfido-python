@@ -2,6 +2,17 @@ import pytest
 
 from onfido import ApiException, LiveVideo, LiveVideosList
 from os import environ
+from uuid import UUID
+
+
+@pytest.fixture(scope="module", autouse=True)
+def restore_test_applicant(onfido_api):
+    """Restore the test applicant before running live video tests in case it's scheduled for deletion."""
+    try:
+        onfido_api.restore_applicant(environ["ONFIDO_SAMPLE_APPLICANT_ID"])
+    except ApiException:
+        # Applicant may not be deleted, ignore the error
+        pass
 
 
 @pytest.fixture(scope="function")
@@ -11,7 +22,7 @@ def applicant_id(onfido_api):
 
 @pytest.fixture(scope="function")
 def live_video_id(onfido_api):
-    return environ["ONFIDO_SAMPLE_VIDEO_ID_1"]
+    return UUID(environ["ONFIDO_SAMPLE_VIDEO_ID_1"])
 
 
 def test_list_live_videos(onfido_api, applicant_id):

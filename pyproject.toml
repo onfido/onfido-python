@@ -8,9 +8,6 @@ authors = [
 license = { text = "MIT" }
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "onfido", "identity"]
-packages = [
-    { include = "onfido" }
-]
 requires-python = ">=3.9"
 
 dependencies = [
@@ -26,6 +23,9 @@ Repository = "https://github.com/onfido/onfido-python"
 
 [tool.poetry]
 requires-poetry = ">=2.0"
+packages = [
+    { include = "onfido" }
+]
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">= 7.2.1"
