@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,7 +30,7 @@ class Task(BaseModel):
     Task
     """ # noqa: E501
     id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task.")
-    workflow_run_id: Optional[StrictStr] = Field(default=None, description="The workflow run id the task belongs to.")
+    workflow_run_id: Optional[UUID] = Field(default=None, description="The workflow run id the task belongs to.")
     task_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task Definition.")
     task_def_version: Optional[StrictStr] = Field(default=None, description="The task definition version.")
     input: Optional[Dict[str, Any]] = Field(default=None, description="Input object with the fields used by the Task to execute.")

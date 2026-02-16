@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from onfido.models.address import Address
 from onfido.models.address_builder import AddressBuilder
@@ -320,3 +319,4 @@ from onfido.models.workflow_run_request import WorkflowRunRequest
 from onfido.models.workflow_run_response import WorkflowRunResponse
 from onfido.models.workflow_run_shared import WorkflowRunShared
 from onfido.models.workflow_run_status import WorkflowRunStatus
+

@@ -21,6 +21,7 @@ from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
+from uuid import UUID
 from onfido.models.workflow_run_error import WorkflowRunError
 from onfido.models.workflow_run_link import WorkflowRunLink
 from typing import Optional, Set
@@ -31,12 +32,12 @@ class WebhookEventPayloadResource(BaseModel):
     The resource affected by this event.
     """ # noqa: E501
     id: Optional[StrictStr] = Field(default=None, description="The identifier of the resource.")
-    applicant_id: Optional[StrictStr] = Field(default=None, description="The unique identifier for the Applicant.")
+    applicant_id: Optional[UUID] = Field(default=None, description="The unique identifier for the Applicant.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when the resource was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date and time when the resource was last updated.")
     dashboard_url: Optional[StrictStr] = Field(default=None, description="The URL for viewing the resource on Onfido Dashboard.")
-    workflow_id: Optional[StrictStr] = Field(default=None, description="The unique identifier for the Workflow.")
-    workflow_run_id: Optional[StrictStr] = None
+    workflow_id: Optional[UUID] = Field(default=None, description="The unique identifier for the Workflow.")
+    workflow_run_id: Optional[UUID] = None
     workflow_version_id: Optional[StrictInt] = Field(default=None, description="The identifier for the Workflow version.")
     task_def_id: Optional[Annotated[str, Field(strict=True)]] = Field(default=None, description="The identifier for the Task Definition.")
     task_def_version: Optional[StrictStr] = Field(default=None, description="The task definition version.")

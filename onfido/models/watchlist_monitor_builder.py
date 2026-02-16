@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class WatchlistMonitorBuilder(BaseModel):
     """
     WatchlistMonitorBuilder
     """ # noqa: E501
-    applicant_id: StrictStr = Field(description="The ID for the applicant associated with the monitor.")
+    applicant_id: UUID = Field(description="The ID for the applicant associated with the monitor.")
     report_name: StrictStr = Field(description="The name of the report type the monitor creates.")
     tags: Optional[List[StrictStr]] = Field(default=None, description="A list of tags associated with this monitor. These tags will be applied to each check this monitor creates.")
     additional_properties: Dict[str, Any] = {}

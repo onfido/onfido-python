@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.country_codes import CountryCodes
 from onfido.models.document_types import DocumentTypes
 from typing import Optional, Set
@@ -33,8 +34,8 @@ class Document(BaseModel):
     type: Optional[DocumentTypes] = Field(default=None, description="The type of document")
     side: Optional[StrictStr] = Field(default=None, description="The side of the document, if applicable. The possible values are front and back")
     issuing_country: Optional[CountryCodes] = Field(default=None, description="The issuing country of the document, a 3-letter ISO code.")
-    applicant_id: Optional[StrictStr] = Field(default=None, description="The ID of the applicant whose document is being uploaded.")
-    id: StrictStr = Field(description="The unique identifier for the document")
+    applicant_id: Optional[UUID] = Field(default=None, description="The ID of the applicant whose document is being uploaded.")
+    id: UUID = Field(description="The unique identifier for the document")
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the document was uploaded")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource")
     download_href: Optional[StrictStr] = Field(default=None, description="The uri that can be used to download the document")

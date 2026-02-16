@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,14 +28,14 @@ class CheckResponse(BaseModel):
     """
     CheckResponse
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier for the check.")
+    id: UUID = Field(description="The unique identifier for the check.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time when this check was created.")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource.")
     status: Optional[StrictStr] = None
     result: Optional[StrictStr] = Field(default=None, description="The overall result of the check, based on the results of the constituent reports.")
     form_uri: Optional[StrictStr] = Field(default=None, description="A link to the applicant form, if `applicant_provides_data` is `true`.")
     results_uri: Optional[StrictStr] = Field(default=None, description="A link to the corresponding results page on the Onfido dashboard.")
-    report_ids: Optional[List[StrictStr]] = Field(default=None, description="An array of report ids.")
+    report_ids: Optional[List[UUID]] = Field(default=None, description="An array of report ids.")
     sandbox: Optional[StrictBool] = Field(default=None, description="Indicates whether the object was created in the sandbox or not.")
     paused: Optional[StrictBool] = None
     version: Optional[StrictStr] = None

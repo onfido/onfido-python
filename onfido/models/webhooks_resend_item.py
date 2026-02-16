@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from onfido.models.webhook_event_type import WebhookEventType
 from typing import Optional, Set
 from typing_extensions import Self
@@ -27,7 +28,7 @@ class WebhooksResendItem(BaseModel):
     """
     WebhooksResendItem
     """ # noqa: E501
-    resource_id: StrictStr = Field(description="ID of the resource whose webhooks are to be retriggered.")
+    resource_id: UUID = Field(description="ID of the resource whose webhooks are to be retriggered.")
     event: WebhookEventType = Field(description="The events that should retrigger webhooks. Accepts values check.completed.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["resource_id", "event"]

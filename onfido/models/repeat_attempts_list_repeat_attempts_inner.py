@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +28,8 @@ class RepeatAttemptsListRepeatAttemptsInner(BaseModel):
     """
     RepeatAttemptsListRepeatAttemptsInner
     """ # noqa: E501
-    report_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the matching Document report.")
-    applicant_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the applicant for the matching Document report.")
+    report_id: Optional[UUID] = Field(default=None, description="The unique identifier of the matching Document report.")
+    applicant_id: Optional[UUID] = Field(default=None, description="The unique identifier of the applicant for the matching Document report.")
     date_of_birth: Optional[StrictStr] = Field(default=None, description="Whether the dates of birth are exactly the same or are different.")
     names: Optional[StrictStr] = Field(default=None, description="Whether the names are exactly the same or are different.")
     result: Optional[StrictStr] = Field(default=None, description="The report result of this attempt.")

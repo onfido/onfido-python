@@ -1,28 +1,31 @@
-[tool.poetry]
+[project]
 name = "onfido-python"
 version = "6.0.0"
 description = "Python library for the Onfido API"
-authors = ["OpenAPI Generator Community <team@openapitools.org>"]
-license = "MIT"
+authors = [
+  {name = "OpenAPI Generator Community",email = "team@openapitools.org"},
+]
+license = { text = "MIT" }
 readme = "README.md"
-repository = "https://github.com/onfido/onfido-python"
 keywords = ["OpenAPI", "OpenAPI-Generator", "onfido", "identity"]
-include = ["onfido/py.typed"]
+requires-python = ">=3.9"
+
+dependencies = [
+  "urllib3 (>=2.5.0,<3.0.0)",
+  "python-dateutil (>=2.8.2)",
+  "pydantic (>=2)",
+  "typing-extensions (>=4.7.1)",
+  "virtualenv (>=20.36.1)",
+]
+
+[project.urls]
+Repository = "https://github.com/onfido/onfido-python"
+
+[tool.poetry]
+requires-poetry = ">=2.0"
 packages = [
     { include = "onfido" }
 ]
-
-[tool.poetry.urls]
-"Onfido API documentation" = "https://documentation.onfido.com"
-
-[tool.poetry.dependencies]
-python = "^3.9"
-
-urllib3 = ">= 2.5.0, < 3.0.0"
-python-dateutil = ">= 2.8.2"
-pydantic = ">= 2"
-typing-extensions = ">= 4.7.1"
-virtualenv = ">= 20.36.1"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">= 7.2.1"

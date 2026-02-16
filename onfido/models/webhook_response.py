@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class WebhookResponse(BaseModel):
     """
     WebhookResponse
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier of the webhook.")
+    id: UUID = Field(description="The unique identifier of the webhook.")
     url: Optional[StrictStr] = Field(default=None, description="The url that will listen to notifications (must be https).")
     token: Optional[StrictStr] = Field(default=None, description="Webhook secret token used to sign the webhook's payload.")
     href: Optional[StrictStr] = Field(default=None, description="The API endpoint to retrieve the webhook.")

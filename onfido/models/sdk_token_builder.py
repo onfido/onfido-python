@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class SdkTokenBuilder(BaseModel):
     """
     SdkTokenBuilder
     """ # noqa: E501
-    applicant_id: StrictStr = Field(description="The unique identifier of the applicant")
+    applicant_id: UUID = Field(description="The unique identifier of the applicant")
     referrer: Optional[StrictStr] = Field(default=None, description="The referrer URL pattern")
     application_id: Optional[StrictStr] = Field(default=None, description="The application ID (iOS or Android)")
     cross_device_url: Optional[StrictStr] = Field(default=None, description="The URL to be used by the Web SDK for the cross device flow.")

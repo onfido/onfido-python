@@ -17,9 +17,10 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
 from typing_extensions import Annotated
+from uuid import UUID
 from onfido.models.repeat_attempts_list_repeat_attempts_inner import RepeatAttemptsListRepeatAttemptsInner
 from typing import Optional, Set
 from typing_extensions import Self
@@ -28,7 +29,7 @@ class RepeatAttemptsList(BaseModel):
     """
     RepeatAttemptsList
     """ # noqa: E501
-    report_id: Optional[StrictStr] = Field(default=None, description="The unique identifier of the completed Document report.")
+    report_id: Optional[UUID] = Field(default=None, description="The unique identifier of the completed Document report.")
     repeat_attempts: List[RepeatAttemptsListRepeatAttemptsInner] = Field(description="An array of repeat attempt objects. If no repeat attempts were found, the array will be empty. The number of objects returned can increase over time if more matches are received. ")
     attempts_count: Optional[StrictInt] = Field(default=None, description="The total number of attempts using the same document, including the current report under assessment.")
     attempts_clear_rate: Optional[Union[Annotated[float, Field(le=1, strict=True, ge=0)], Annotated[int, Field(le=1, strict=True, ge=0)]]] = Field(default=None, description="A number between 0 and 1 which indicates the proportion of attempts that have been cleared, including the current report under assessment.")

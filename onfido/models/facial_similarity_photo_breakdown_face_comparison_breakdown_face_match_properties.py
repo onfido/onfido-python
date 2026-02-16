@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt
 from typing import Any, ClassVar, Dict, List, Optional, Union
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class FacialSimilarityPhotoBreakdownFaceComparisonBreakdownFaceMatchProperties(B
     FacialSimilarityPhotoBreakdownFaceComparisonBreakdownFaceMatchProperties
     """ # noqa: E501
     score: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="A floating point number between 0 and 1 that expresses how similar the two faces are, where 1 is a perfect match.")
-    document_id: Optional[StrictStr] = Field(default=None, description="The UUID for the document containing the extracted face that was used for face matching.")
+    document_id: Optional[UUID] = Field(default=None, description="The UUID for the document containing the extracted face that was used for face matching.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["score", "document_id"]
 

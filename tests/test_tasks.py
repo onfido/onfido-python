@@ -86,5 +86,5 @@ def test_complete_task(onfido_api, workflow_run_id, document_id):
         workflow_run_id,
         document_photo_task_id).output
 
-    assert document_photo_task_outputs == [{"id": document_id,
+    assert document_photo_task_outputs == [{"id": str(document_id),
                                             "type": "document"}]

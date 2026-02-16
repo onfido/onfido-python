@@ -17,8 +17,9 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class ExtractRequest(BaseModel):
     """
     ExtractRequest
     """ # noqa: E501
-    document_id: StrictStr = Field(description="The unique identifier of the uploaded document to run extraction on")
+    document_id: UUID = Field(description="The unique identifier of the uploaded document to run extraction on")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["document_id"]
 

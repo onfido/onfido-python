@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,8 +28,8 @@ class ResultsFeedback(BaseModel):
     ResultsFeedback
     """ # noqa: E501
     expected_result: Optional[StrictStr] = Field(default=None, description="The expected result for the check or report.")
-    check_id: Optional[StrictStr] = Field(default=None, description="The ID of the check (only if report_id is not provided).")
-    report_id: Optional[StrictStr] = Field(default=None, description="The ID of the check (only if check_id is not provided).")
+    check_id: Optional[UUID] = Field(default=None, description="The ID of the check (only if report_id is not provided).")
+    report_id: Optional[UUID] = Field(default=None, description="The ID of the check (only if check_id is not provided).")
     feedback_notes: Optional[StrictStr] = Field(default=None, description="Any additional information or feedback.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["expected_result", "check_id", "report_id", "feedback_notes"]

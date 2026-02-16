@@ -20,6 +20,7 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class LiveVideo(BaseModel):
     """
     LiveVideo
     """ # noqa: E501
-    id: Optional[StrictStr] = Field(default=None, description="The unique identifier for the video.")
+    id: Optional[UUID] = Field(default=None, description="The unique identifier for the video.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the video was uploaded.")
     href: Optional[StrictStr] = Field(default=None, description="The uri of this resource.")
     download_href: Optional[StrictStr] = Field(default=None, description="The uri that can be used to download the video.")

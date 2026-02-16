@@ -2,6 +2,7 @@ import pytest
 
 from onfido import ApiException, MotionCapture, MotionCapturesList
 from os import environ
+from uuid import UUID
 
 
 @pytest.fixture(scope="function")
@@ -11,7 +12,7 @@ def applicant_id(onfido_api):
 
 @pytest.fixture(scope="function")
 def motion_id(onfido_api):
-    return environ["ONFIDO_SAMPLE_MOTION_ID_1"]
+    return UUID(environ["ONFIDO_SAMPLE_MOTION_ID_1"])
 
 
 def test_list_motion_captures(onfido_api, applicant_id):

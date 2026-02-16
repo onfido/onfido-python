@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,7 +27,7 @@ class TimelineFileReference(BaseModel):
     """
     TimelineFileReference
     """ # noqa: E501
-    workflow_timeline_file_id: StrictStr = Field(description="The unique identifier for the Timefile File that will be created.")
+    workflow_timeline_file_id: UUID = Field(description="The unique identifier for the Timefile File that will be created.")
     href: StrictStr = Field(description="Link to access the Timefile File that will be created.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["workflow_timeline_file_id", "href"]

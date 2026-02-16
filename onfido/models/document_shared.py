@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.country_codes import CountryCodes
 from onfido.models.document_types import DocumentTypes
 from typing import Optional, Set
@@ -32,7 +33,7 @@ class DocumentShared(BaseModel):
     type: Optional[DocumentTypes] = Field(default=None, description="The type of document")
     side: Optional[StrictStr] = Field(default=None, description="The side of the document, if applicable. The possible values are front and back")
     issuing_country: Optional[CountryCodes] = Field(default=None, description="The issuing country of the document, a 3-letter ISO code.")
-    applicant_id: Optional[StrictStr] = Field(default=None, description="The ID of the applicant whose document is being uploaded.")
+    applicant_id: Optional[UUID] = Field(default=None, description="The ID of the applicant whose document is being uploaded.")
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["file_type", "type", "side", "issuing_country", "applicant_id"]
 

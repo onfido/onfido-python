@@ -19,6 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from onfido.models.report_configuration import ReportConfiguration
 from onfido.models.report_name import ReportName
 from onfido.models.us_driving_licence_builder import UsDrivingLicenceBuilder
@@ -30,13 +31,13 @@ class CheckBuilder(BaseModel):
     CheckBuilder
     """ # noqa: E501
     webhook_ids: Optional[List[StrictStr]] = Field(default=None, description="An array of webhook ids describing which webhooks to trigger for this check.")
-    applicant_id: StrictStr = Field(description="The ID of the applicant to do the check on.")
+    applicant_id: UUID = Field(description="The ID of the applicant to do the check on.")
     applicant_provides_data: Optional[StrictBool] = Field(default=False, description="Send an applicant form to applicant to complete to proceed with check. Defaults to false.")
     tags: Optional[List[StrictStr]] = Field(default=None, description="Array of tags being assigned to this check.")
     redirect_uri: Optional[StrictStr] = Field(default=None, description="For checks where `applicant_provides_data` is `true`, redirect to this URI when the applicant has submitted their data.")
     privacy_notices_read_consent_given: Optional[StrictBool] = None
     report_names: List[ReportName] = Field(description="An array of report names (strings).")
-    document_ids: Optional[List[StrictStr]] = Field(default=None, description="Optional. An array of document ids, for use with Document reports only. If omitted, the Document report will use the most recently uploaded document by default.")
+    document_ids: Optional[List[UUID]] = Field(default=None, description="Optional. An array of document ids, for use with Document reports only. If omitted, the Document report will use the most recently uploaded document by default.")
     asynchronous: Optional[StrictBool] = Field(default=True, description="Defaults to `true`. If set to `false`, you will only receive a response when all reports in your check have completed. ")
     suppress_form_emails: Optional[StrictBool] = Field(default=None, description="For checks where `applicant_provides_data` is `true`, applicant form will not be automatically sent if `suppress_form_emails` is set to `true`. You can manually send the form at any time after the check has been created, using the link found in the form_uri attribute of the check object. Write-only. Defaults to false. ")
     sub_result: Optional[StrictStr] = Field(default=None, description="Triggers responses for particular sub-results for sandbox Document reports.")

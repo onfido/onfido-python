@@ -18,8 +18,9 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool
 from typing import Any, ClassVar, Dict, List, Optional
+from uuid import UUID
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -27,7 +28,7 @@ class WatchlistMonitorResponse(BaseModel):
     """
     WatchlistMonitorResponse
     """ # noqa: E501
-    id: StrictStr = Field(description="The unique identifier for the monitor.")
+    id: UUID = Field(description="The unique identifier for the monitor.")
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the monitor was created.")
     deleted_at: Optional[datetime] = Field(default=None, description="The date and time at which the monitor was deleted. If the monitor is still active, this field will be null.")
     is_sandbox: Optional[StrictBool] = Field(default=False, description="Indicates whether the object was created in the sandbox or not.")
