@@ -6,6 +6,34 @@ major versions of the client library.
 It covers changes in core resources, other endpoints, and the OpenAPI generator,
 ensuring a smooth transition between versions.
 
+## Upgrading from 5.x to 6.x
+
+### Core Resources
+
+- Documents
+  - Driving licence information properties removed from general `DocumentProperties`
+    and moved to new `DocumentPropertiesWithDrivingLicenceInformation` class
+- Workflow Runs
+  - `created_at_gt` and `created_at_lt` parameters in `list_workflow_runs` changed from
+    date-time format to date format (YYYY-MM-DD)
+
+### Other Endpoints
+
+- Reports
+  - Device Intelligence: Removed deprecated `breakdown` property and related
+    breakdown classes:
+    - `DeviceIntelligenceBreakdownBreakdown` removed
+    - `DeviceIntelligenceBreakdownProperties` → `DeviceIntelligenceProperties`
+    - `DeviceIntelligenceBreakdownPropertiesDevice` → `DeviceIntelligencePropertiesDevice`
+    - `DeviceIntelligenceBreakdownPropertiesGeolocation` → `DeviceIntelligencePropertiesGeolocation`
+    - `DeviceIntelligenceBreakdownPropertiesIp` → `DeviceIntelligencePropertiesIp`
+  - Identity Enhanced: Changed `total_number_of_sources` and `number_of_matches` from
+    number to string type
+
+### OpenAPI generator
+
+- Version upgraded from `7.11.0` to `7.16.0`
+
 ## Upgrading from 4.x to 5.x
 
 ### Core Resources
