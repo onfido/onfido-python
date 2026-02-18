@@ -19,9 +19,9 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.device_intelligence_breakdown_properties_device import DeviceIntelligenceBreakdownPropertiesDevice
-from onfido.models.device_intelligence_breakdown_properties_geolocation import DeviceIntelligenceBreakdownPropertiesGeolocation
-from onfido.models.device_intelligence_breakdown_properties_ip import DeviceIntelligenceBreakdownPropertiesIp
+from onfido.models.device_intelligence_properties_device import DeviceIntelligencePropertiesDevice
+from onfido.models.device_intelligence_properties_geolocation import DeviceIntelligencePropertiesGeolocation
+from onfido.models.device_intelligence_properties_ip import DeviceIntelligencePropertiesIp
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,9 +29,9 @@ class DeviceIntelligenceProperties(BaseModel):
     """
     DeviceIntelligenceProperties
     """ # noqa: E501
-    device: Optional[DeviceIntelligenceBreakdownPropertiesDevice] = None
-    ip: Optional[DeviceIntelligenceBreakdownPropertiesIp] = None
-    geolocation: Optional[DeviceIntelligenceBreakdownPropertiesGeolocation] = None
+    device: Optional[DeviceIntelligencePropertiesDevice] = None
+    ip: Optional[DeviceIntelligencePropertiesIp] = None
+    geolocation: Optional[DeviceIntelligencePropertiesGeolocation] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["device", "ip", "geolocation"]
 
@@ -102,9 +102,9 @@ class DeviceIntelligenceProperties(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "device": DeviceIntelligenceBreakdownPropertiesDevice.from_dict(obj["device"]) if obj.get("device") is not None else None,
-            "ip": DeviceIntelligenceBreakdownPropertiesIp.from_dict(obj["ip"]) if obj.get("ip") is not None else None,
-            "geolocation": DeviceIntelligenceBreakdownPropertiesGeolocation.from_dict(obj["geolocation"]) if obj.get("geolocation") is not None else None
+            "device": DeviceIntelligencePropertiesDevice.from_dict(obj["device"]) if obj.get("device") is not None else None,
+            "ip": DeviceIntelligencePropertiesIp.from_dict(obj["ip"]) if obj.get("ip") is not None else None,
+            "geolocation": DeviceIntelligencePropertiesGeolocation.from_dict(obj["geolocation"]) if obj.get("geolocation") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

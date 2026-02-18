@@ -20,7 +20,6 @@ import json
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List, Optional
 from onfido.models.device_intelligence_breakdown_device import DeviceIntelligenceBreakdownDevice
-from onfido.models.device_intelligence_breakdown_properties import DeviceIntelligenceBreakdownProperties
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -29,9 +28,8 @@ class DeviceIntelligenceBreakdown(BaseModel):
     DeviceIntelligenceBreakdown
     """ # noqa: E501
     device: Optional[DeviceIntelligenceBreakdownDevice] = None
-    properties: Optional[DeviceIntelligenceBreakdownProperties] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["device", "properties"]
+    __properties: ClassVar[List[str]] = ["device"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -77,9 +75,6 @@ class DeviceIntelligenceBreakdown(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of device
         if self.device:
             _dict['device'] = self.device.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of properties
-        if self.properties:
-            _dict['properties'] = self.properties.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -97,8 +92,7 @@ class DeviceIntelligenceBreakdown(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "device": DeviceIntelligenceBreakdownDevice.from_dict(obj["device"]) if obj.get("device") is not None else None,
-            "properties": DeviceIntelligenceBreakdownProperties.from_dict(obj["properties"]) if obj.get("properties") is not None else None
+            "device": DeviceIntelligenceBreakdownDevice.from_dict(obj["device"]) if obj.get("device") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
