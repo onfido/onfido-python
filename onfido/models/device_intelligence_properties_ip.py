@@ -17,23 +17,18 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.device_intelligence_breakdown_properties_device import DeviceIntelligenceBreakdownPropertiesDevice
-from onfido.models.device_intelligence_breakdown_properties_geolocation import DeviceIntelligenceBreakdownPropertiesGeolocation
-from onfido.models.device_intelligence_breakdown_properties_ip import DeviceIntelligenceBreakdownPropertiesIp
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeviceIntelligenceBreakdownProperties(BaseModel):
+class DeviceIntelligencePropertiesIp(BaseModel):
     """
-    DeviceIntelligenceBreakdownProperties
+    DeviceIntelligencePropertiesIp
     """ # noqa: E501
-    device: Optional[DeviceIntelligenceBreakdownPropertiesDevice] = None
-    ip: Optional[DeviceIntelligenceBreakdownPropertiesIp] = None
-    geolocation: Optional[DeviceIntelligenceBreakdownPropertiesGeolocation] = None
+    address: Optional[StrictStr] = Field(default=None, description="The IP address that uploaded the media.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["device", "ip", "geolocation"]
+    __properties: ClassVar[List[str]] = ["address"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -53,7 +48,7 @@ class DeviceIntelligenceBreakdownProperties(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeviceIntelligenceBreakdownProperties from a JSON string"""
+        """Create an instance of DeviceIntelligencePropertiesIp from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -76,15 +71,6 @@ class DeviceIntelligenceBreakdownProperties(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of device
-        if self.device:
-            _dict['device'] = self.device.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of ip
-        if self.ip:
-            _dict['ip'] = self.ip.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of geolocation
-        if self.geolocation:
-            _dict['geolocation'] = self.geolocation.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -94,7 +80,7 @@ class DeviceIntelligenceBreakdownProperties(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeviceIntelligenceBreakdownProperties from a dict"""
+        """Create an instance of DeviceIntelligencePropertiesIp from a dict"""
         if obj is None:
             return None
 
@@ -102,9 +88,7 @@ class DeviceIntelligenceBreakdownProperties(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "device": DeviceIntelligenceBreakdownPropertiesDevice.from_dict(obj["device"]) if obj.get("device") is not None else None,
-            "ip": DeviceIntelligenceBreakdownPropertiesIp.from_dict(obj["ip"]) if obj.get("ip") is not None else None,
-            "geolocation": DeviceIntelligenceBreakdownPropertiesGeolocation.from_dict(obj["geolocation"]) if obj.get("geolocation") is not None else None
+            "address": obj.get("address")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

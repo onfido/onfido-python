@@ -22,6 +22,7 @@ from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr, field_v
 from typing import Any, ClassVar, Dict, List, Optional
 from typing_extensions import Annotated
 from uuid import UUID
+from onfido.models.webhook_event_resource_status import WebhookEventResourceStatus
 from onfido.models.workflow_run_error import WorkflowRunError
 from onfido.models.workflow_run_link import WorkflowRunLink
 from typing import Optional, Set
@@ -33,6 +34,7 @@ class WebhookEventPayloadResource(BaseModel):
     """ # noqa: E501
     id: Optional[StrictStr] = Field(default=None, description="The identifier of the resource.")
     applicant_id: Optional[UUID] = Field(default=None, description="The unique identifier for the Applicant.")
+    status: Optional[WebhookEventResourceStatus] = None
     created_at: Optional[datetime] = Field(default=None, description="The date and time when the resource was created.")
     updated_at: Optional[datetime] = Field(default=None, description="The date and time when the resource was last updated.")
     dashboard_url: Optional[StrictStr] = Field(default=None, description="The URL for viewing the resource on Onfido Dashboard.")
@@ -50,7 +52,7 @@ class WebhookEventPayloadResource(BaseModel):
     customer_user_id: Optional[Annotated[str, Field(strict=True, max_length=256)]] = Field(default=None, description="Customer-provided user identifier.")
     timeline_file_download_url: Optional[StrictStr] = Field(default=None, description="Pre-signed URL to download the timeline file for the Workflow Run.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["id", "applicant_id", "created_at", "updated_at", "dashboard_url", "workflow_id", "workflow_run_id", "workflow_version_id", "task_def_id", "task_def_version", "input", "output", "reasons", "tags", "link", "error", "customer_user_id", "timeline_file_download_url"]
+    __properties: ClassVar[List[str]] = ["id", "applicant_id", "status", "created_at", "updated_at", "dashboard_url", "workflow_id", "workflow_run_id", "workflow_version_id", "task_def_id", "task_def_version", "input", "output", "reasons", "tags", "link", "error", "customer_user_id", "timeline_file_download_url"]
 
     @field_validator('task_def_id')
     def task_def_id_validate_regular_expression(cls, value):
@@ -138,6 +140,7 @@ class WebhookEventPayloadResource(BaseModel):
         _obj = cls.model_validate({
             "id": obj.get("id"),
             "applicant_id": obj.get("applicant_id"),
+            "status": obj.get("status"),
             "created_at": obj.get("created_at"),
             "updated_at": obj.get("updated_at"),
             "dashboard_url": obj.get("dashboard_url"),

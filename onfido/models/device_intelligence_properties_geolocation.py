@@ -19,16 +19,19 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
+from onfido.models.country_codes import CountryCodes
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DeviceIntelligenceBreakdownPropertiesIp(BaseModel):
+class DeviceIntelligencePropertiesGeolocation(BaseModel):
     """
-    DeviceIntelligenceBreakdownPropertiesIp
+    DeviceIntelligencePropertiesGeolocation
     """ # noqa: E501
-    address: Optional[StrictStr] = Field(default=None, description="The IP address that uploaded the media.")
+    city: Optional[StrictStr] = Field(default=None, description="City location of the IP address.")
+    region: Optional[StrictStr] = Field(default=None, description="Region location of the IP address.")
+    country: Optional[CountryCodes] = Field(default=None, description="Country location of the IP address in a three letter format.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["address"]
+    __properties: ClassVar[List[str]] = ["city", "region", "country"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -48,7 +51,7 @@ class DeviceIntelligenceBreakdownPropertiesIp(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DeviceIntelligenceBreakdownPropertiesIp from a JSON string"""
+        """Create an instance of DeviceIntelligencePropertiesGeolocation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -80,7 +83,7 @@ class DeviceIntelligenceBreakdownPropertiesIp(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DeviceIntelligenceBreakdownPropertiesIp from a dict"""
+        """Create an instance of DeviceIntelligencePropertiesGeolocation from a dict"""
         if obj is None:
             return None
 
@@ -88,7 +91,9 @@ class DeviceIntelligenceBreakdownPropertiesIp(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "address": obj.get("address")
+            "city": obj.get("city"),
+            "region": obj.get("region"),
+            "country": obj.get("country")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

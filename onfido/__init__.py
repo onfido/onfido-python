@@ -57,11 +57,10 @@ __all__ = [
     "DeviceIntelligenceBreakdown",
     "DeviceIntelligenceBreakdownDevice",
     "DeviceIntelligenceBreakdownDeviceBreakdown",
-    "DeviceIntelligenceBreakdownProperties",
-    "DeviceIntelligenceBreakdownPropertiesDevice",
-    "DeviceIntelligenceBreakdownPropertiesGeolocation",
-    "DeviceIntelligenceBreakdownPropertiesIp",
     "DeviceIntelligenceProperties",
+    "DeviceIntelligencePropertiesDevice",
+    "DeviceIntelligencePropertiesGeolocation",
+    "DeviceIntelligencePropertiesIp",
     "DeviceIntelligenceReport",
     "Document",
     "DocumentBreakdown",
@@ -317,6 +316,7 @@ __all__ = [
     "WebhookEventPayload",
     "WebhookEventPayloadObject",
     "WebhookEventPayloadResource",
+    "WebhookEventResourceStatus",
     "WebhookEventResourceType",
     "WebhookEventType",
     "WebhookResend",
@@ -382,11 +382,10 @@ from onfido.models.country_codes import CountryCodes as CountryCodes
 from onfido.models.device_intelligence_breakdown import DeviceIntelligenceBreakdown as DeviceIntelligenceBreakdown
 from onfido.models.device_intelligence_breakdown_device import DeviceIntelligenceBreakdownDevice as DeviceIntelligenceBreakdownDevice
 from onfido.models.device_intelligence_breakdown_device_breakdown import DeviceIntelligenceBreakdownDeviceBreakdown as DeviceIntelligenceBreakdownDeviceBreakdown
-from onfido.models.device_intelligence_breakdown_properties import DeviceIntelligenceBreakdownProperties as DeviceIntelligenceBreakdownProperties
-from onfido.models.device_intelligence_breakdown_properties_device import DeviceIntelligenceBreakdownPropertiesDevice as DeviceIntelligenceBreakdownPropertiesDevice
-from onfido.models.device_intelligence_breakdown_properties_geolocation import DeviceIntelligenceBreakdownPropertiesGeolocation as DeviceIntelligenceBreakdownPropertiesGeolocation
-from onfido.models.device_intelligence_breakdown_properties_ip import DeviceIntelligenceBreakdownPropertiesIp as DeviceIntelligenceBreakdownPropertiesIp
 from onfido.models.device_intelligence_properties import DeviceIntelligenceProperties as DeviceIntelligenceProperties
+from onfido.models.device_intelligence_properties_device import DeviceIntelligencePropertiesDevice as DeviceIntelligencePropertiesDevice
+from onfido.models.device_intelligence_properties_geolocation import DeviceIntelligencePropertiesGeolocation as DeviceIntelligencePropertiesGeolocation
+from onfido.models.device_intelligence_properties_ip import DeviceIntelligencePropertiesIp as DeviceIntelligencePropertiesIp
 from onfido.models.device_intelligence_report import DeviceIntelligenceReport as DeviceIntelligenceReport
 from onfido.models.document import Document as Document
 from onfido.models.document_breakdown import DocumentBreakdown as DocumentBreakdown
@@ -642,6 +641,7 @@ from onfido.models.webhook_event_object_status import WebhookEventObjectStatus a
 from onfido.models.webhook_event_payload import WebhookEventPayload as WebhookEventPayload
 from onfido.models.webhook_event_payload_object import WebhookEventPayloadObject as WebhookEventPayloadObject
 from onfido.models.webhook_event_payload_resource import WebhookEventPayloadResource as WebhookEventPayloadResource
+from onfido.models.webhook_event_resource_status import WebhookEventResourceStatus as WebhookEventResourceStatus
 from onfido.models.webhook_event_resource_type import WebhookEventResourceType as WebhookEventResourceType
 from onfido.models.webhook_event_type import WebhookEventType as WebhookEventType
 from onfido.models.webhook_resend import WebhookResend as WebhookResend
