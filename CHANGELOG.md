@@ -1,5 +1,17 @@
 # Changelog
 
+## v6.0.0 19th February 2026
+
+- Release based on Onfido OpenAPI spec version [v6.0.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v6.0.0):
+  - [CAT-1911] Remove driving licence information properties where not needed
+  - [AF-1390] Remove deprecated breakdown.breakdown property
+  - [SIG-3390] IDR: change total_number_of_sources and number_of_matches to string
+  - Add missing tags field for workflow run listing and webhook
+  - [STUDIO-5708] Fix workflow_runs date filter parameters format
+  - Remove deprecated properties object from device_intelligence_breakdown
+  - [STUDIO-5734] Add status to webhook event resource
+  - Bump openapi-generator-cli from v7.11.0 to v7.16.0
+
 ## v5.7.0 3rd February 2026
 
 - Release based on Onfido OpenAPI spec version [v5.7.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v5.7.0):
