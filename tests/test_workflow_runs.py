@@ -72,7 +72,9 @@ def test_find_workflow_run(onfido_api, workflow_run):
 
 
 def test_download_evidence_file(onfido_api, workflow_run):
-    file = onfido_api.download_signed_evidence_file(workflow_run.id)
+    file = repeat_request_until_http_code_changes(
+        onfido_api.download_signed_evidence_file, [workflow_run.id], sleep_time=2
+    )
 
     assert len(file) > 0
     assert file[:4] == b"%PDF"
@@ -88,7 +90,7 @@ def test_download_evidence_folder(onfido_api, applicant_id):
     )
 
     file = repeat_request_until_http_code_changes(
-        onfido_api.download_evidence_folder, [workflow_run_id]
+        onfido_api.download_evidence_folder, [workflow_run_id], sleep_time=2
     )
 
     assert len(file) > 0
