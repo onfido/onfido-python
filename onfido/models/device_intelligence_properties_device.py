@@ -34,6 +34,8 @@ class DeviceIntelligencePropertiesDevice(BaseModel):
     browser: Optional[StrictStr] = Field(default=None, description="The browser name reported by the browser's user agent.")
     emulator: Optional[StrictBool] = Field(default=None, description="Whether the device is an emulator.")
     randomized_device: Optional[StrictBool] = Field(default=None, description="Whether the device is providing false randomized device and network information.")
+    number_of_ip_reuse_reports: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Counts the number of distinct document reports submitted in the last 24 hours that are associated with the applicant’s IP address.")
+    number_of_suspected_ip_reuse_reports: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="Counts the number of distinct document reports from the last 24 hours associated with the applicant’s IP address that have a result of suspected and other document integrity or authenticity signals have been flagged.")
     fake_network_request: Optional[StrictBool] = Field(default=None, description="Whether device is using stolen security tokens to send the network information.")
     ip_reputation: Optional[StrictStr] = Field(default=None, description="Whether there is highly suspicious traffic related to the IP address. The risk depends on the overall ratio of clear checks on a given IP.")
     device_fingerprint_reuse: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The number of times the device was used to create a report for a new applicant. A value greater than 1 indicates potential device reuse.")
@@ -41,7 +43,7 @@ class DeviceIntelligencePropertiesDevice(BaseModel):
     document_capture: Optional[StrictStr] = Field(default=None, description="Whether the document media were live captured from the device camera.")
     biometric_capture: Optional[StrictStr] = Field(default=None, description="Whether the biometric media were live captured from the device camera.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["sdk_version", "sdk_source", "authentication_type", "raw_model", "os", "browser", "emulator", "randomized_device", "fake_network_request", "ip_reputation", "device_fingerprint_reuse", "single_device_used", "document_capture", "biometric_capture"]
+    __properties: ClassVar[List[str]] = ["sdk_version", "sdk_source", "authentication_type", "raw_model", "os", "browser", "emulator", "randomized_device", "number_of_ip_reuse_reports", "number_of_suspected_ip_reuse_reports", "fake_network_request", "ip_reputation", "device_fingerprint_reuse", "single_device_used", "document_capture", "biometric_capture"]
 
     @field_validator('sdk_source')
     def sdk_source_validate_enum(cls, value):
@@ -164,6 +166,8 @@ class DeviceIntelligencePropertiesDevice(BaseModel):
             "browser": obj.get("browser"),
             "emulator": obj.get("emulator"),
             "randomized_device": obj.get("randomized_device"),
+            "number_of_ip_reuse_reports": obj.get("number_of_ip_reuse_reports"),
+            "number_of_suspected_ip_reuse_reports": obj.get("number_of_suspected_ip_reuse_reports"),
             "fake_network_request": obj.get("fake_network_request"),
             "ip_reputation": obj.get("ip_reputation"),
             "device_fingerprint_reuse": obj.get("device_fingerprint_reuse"),
