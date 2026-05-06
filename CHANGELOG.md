@@ -1,5 +1,10 @@
 # Changelog
 
+## v6.1.0 6th May 2026
+
+- Release based on Onfido OpenAPI spec version [v6.0.1](https://github.com/onfido/onfido-openapi-spec/releases/tag/v6.0.1):
+  - [BIO-8421] Document two new number_of_ip_reuse_reports fields
+
 ## v6.0.0 19th February 2026
 
 - Release based on Onfido OpenAPI spec version [v6.0.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v6.0.0):
