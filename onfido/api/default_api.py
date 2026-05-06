@@ -108,7 +108,7 @@ class DefaultApi:
     ) -> None:
         """Cancel report
 
-        Cancels single paused reports. 
+        Cancels single paused reports.
 
         :param report_id: (required)
         :type report_id: str
@@ -175,7 +175,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Cancel report
 
-        Cancels single paused reports. 
+        Cancels single paused reports.
 
         :param report_id: (required)
         :type report_id: str
@@ -242,7 +242,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Cancel report
 
-        Cancels single paused reports. 
+        Cancels single paused reports.
 
         :param report_id: (required)
         :type report_id: str
@@ -329,7 +329,8 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
-            'Token'
+            'Token',
+            'OAuth2ClientCredentials'
         ]
 
         return self.api_client.param_serialize(
@@ -371,7 +372,7 @@ class DefaultApi:
     ) -> None:
         """Complete Task
 
-        Completes a Send / Receive Data Task. 
+        Completes a Send / Receive Data Task.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Task belongs. (required)
         :type workflow_run_id: str
@@ -446,7 +447,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Complete Task
 
-        Completes a Send / Receive Data Task. 
+        Completes a Send / Receive Data Task.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Task belongs. (required)
         :type workflow_run_id: str
@@ -521,7 +522,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Complete Task
 
-        Completes a Send / Receive Data Task. 
+        Completes a Send / Receive Data Task.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Task belongs. (required)
         :type workflow_run_id: str
@@ -633,6 +634,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -673,7 +675,7 @@ class DefaultApi:
     ) -> Applicant:
         """Create Applicant
 
-        Creates a single applicant. Returns an applicant object. 
+        Creates a single applicant. Returns an applicant object.
 
         :param applicant_builder: (required)
         :type applicant_builder: ApplicantBuilder
@@ -740,7 +742,7 @@ class DefaultApi:
     ) -> ApiResponse[Applicant]:
         """Create Applicant
 
-        Creates a single applicant. Returns an applicant object. 
+        Creates a single applicant. Returns an applicant object.
 
         :param applicant_builder: (required)
         :type applicant_builder: ApplicantBuilder
@@ -807,7 +809,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create Applicant
 
-        Creates a single applicant. Returns an applicant object. 
+        Creates a single applicant. Returns an applicant object.
 
         :param applicant_builder: (required)
         :type applicant_builder: ApplicantBuilder
@@ -907,6 +909,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -947,7 +950,7 @@ class DefaultApi:
     ) -> Check:
         """Create a check
 
-        Initiates a check for an applicant, which can contain one or more reports. Returns a check object. 
+        Initiates a check for an applicant, which can contain one or more reports. Returns a check object.
 
         :param check_builder: (required)
         :type check_builder: CheckBuilder
@@ -1014,7 +1017,7 @@ class DefaultApi:
     ) -> ApiResponse[Check]:
         """Create a check
 
-        Initiates a check for an applicant, which can contain one or more reports. Returns a check object. 
+        Initiates a check for an applicant, which can contain one or more reports. Returns a check object.
 
         :param check_builder: (required)
         :type check_builder: CheckBuilder
@@ -1081,7 +1084,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create a check
 
-        Initiates a check for an applicant, which can contain one or more reports. Returns a check object. 
+        Initiates a check for an applicant, which can contain one or more reports. Returns a check object.
 
         :param check_builder: (required)
         :type check_builder: CheckBuilder
@@ -1181,6 +1184,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -1221,7 +1225,7 @@ class DefaultApi:
     ) -> TimelineFileReference:
         """Create Timeline File for Workflow Run
 
-        Triggers the generation of the Timeline File for the designated Workflow Run. 
+        Triggers the generation of the Timeline File for the designated Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -1288,7 +1292,7 @@ class DefaultApi:
     ) -> ApiResponse[TimelineFileReference]:
         """Create Timeline File for Workflow Run
 
-        Triggers the generation of the Timeline File for the designated Workflow Run. 
+        Triggers the generation of the Timeline File for the designated Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -1355,7 +1359,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create Timeline File for Workflow Run
 
-        Triggers the generation of the Timeline File for the designated Workflow Run. 
+        Triggers the generation of the Timeline File for the designated Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -1442,6 +1446,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -1482,7 +1487,7 @@ class DefaultApi:
     ) -> WatchlistMonitor:
         """Create monitor
 
-        Creates a new monitor for the applicant 
+        Creates a new monitor for the applicant
 
         :param watchlist_monitor_builder: (required)
         :type watchlist_monitor_builder: WatchlistMonitorBuilder
@@ -1549,7 +1554,7 @@ class DefaultApi:
     ) -> ApiResponse[WatchlistMonitor]:
         """Create monitor
 
-        Creates a new monitor for the applicant 
+        Creates a new monitor for the applicant
 
         :param watchlist_monitor_builder: (required)
         :type watchlist_monitor_builder: WatchlistMonitorBuilder
@@ -1616,7 +1621,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create monitor
 
-        Creates a new monitor for the applicant 
+        Creates a new monitor for the applicant
 
         :param watchlist_monitor_builder: (required)
         :type watchlist_monitor_builder: WatchlistMonitorBuilder
@@ -1716,6 +1721,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -1756,7 +1762,7 @@ class DefaultApi:
     ) -> Webhook:
         """Register webhook
 
-        Registers a webhook. Returns a webhook object. 
+        Registers a webhook. Returns a webhook object.
 
         :param webhook_builder: (required)
         :type webhook_builder: WebhookBuilder
@@ -1823,7 +1829,7 @@ class DefaultApi:
     ) -> ApiResponse[Webhook]:
         """Register webhook
 
-        Registers a webhook. Returns a webhook object. 
+        Registers a webhook. Returns a webhook object.
 
         :param webhook_builder: (required)
         :type webhook_builder: WebhookBuilder
@@ -1890,7 +1896,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Register webhook
 
-        Registers a webhook. Returns a webhook object. 
+        Registers a webhook. Returns a webhook object.
 
         :param webhook_builder: (required)
         :type webhook_builder: WebhookBuilder
@@ -1990,6 +1996,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -2030,7 +2037,7 @@ class DefaultApi:
     ) -> WorkflowRun:
         """Create a Workflow Run
 
-        Creates and starts a Workflow Run. Returns a Workflow Run object. 
+        Creates and starts a Workflow Run. Returns a Workflow Run object.
 
         :param workflow_run_builder: (required)
         :type workflow_run_builder: WorkflowRunBuilder
@@ -2097,7 +2104,7 @@ class DefaultApi:
     ) -> ApiResponse[WorkflowRun]:
         """Create a Workflow Run
 
-        Creates and starts a Workflow Run. Returns a Workflow Run object. 
+        Creates and starts a Workflow Run. Returns a Workflow Run object.
 
         :param workflow_run_builder: (required)
         :type workflow_run_builder: WorkflowRunBuilder
@@ -2164,7 +2171,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Create a Workflow Run
 
-        Creates and starts a Workflow Run. Returns a Workflow Run object. 
+        Creates and starts a Workflow Run. Returns a Workflow Run object.
 
         :param workflow_run_builder: (required)
         :type workflow_run_builder: WorkflowRunBuilder
@@ -2264,6 +2271,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -2304,7 +2312,7 @@ class DefaultApi:
     ) -> None:
         """Delete Applicant
 
-        Deletes a single applicant. 
+        Deletes a single applicant.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -2371,7 +2379,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete Applicant
 
-        Deletes a single applicant. 
+        Deletes a single applicant.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -2438,7 +2446,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete Applicant
 
-        Deletes a single applicant. 
+        Deletes a single applicant.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -2525,6 +2533,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -2566,7 +2575,7 @@ class DefaultApi:
     ) -> None:
         """Delete passkey
 
-        Deletes a passkey. 
+        Deletes a passkey.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -2638,7 +2647,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete passkey
 
-        Deletes a passkey. 
+        Deletes a passkey.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -2710,7 +2719,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete passkey
 
-        Deletes a passkey. 
+        Deletes a passkey.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -2804,6 +2813,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -2844,7 +2854,7 @@ class DefaultApi:
     ) -> None:
         """Delete passkeys
 
-        Removes every passkey for the username. 
+        Removes every passkey for the username.
 
         :param username: Username whose passkeys will be deleted. (required)
         :type username: str
@@ -2912,7 +2922,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete passkeys
 
-        Removes every passkey for the username. 
+        Removes every passkey for the username.
 
         :param username: Username whose passkeys will be deleted. (required)
         :type username: str
@@ -2980,7 +2990,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete passkeys
 
-        Removes every passkey for the username. 
+        Removes every passkey for the username.
 
         :param username: Username whose passkeys will be deleted. (required)
         :type username: str
@@ -3068,6 +3078,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -3108,7 +3119,7 @@ class DefaultApi:
     ) -> None:
         """Delete monitor
 
-        Deactivates the given monitor 
+        Deactivates the given monitor
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -3175,7 +3186,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete monitor
 
-        Deactivates the given monitor 
+        Deactivates the given monitor
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -3242,7 +3253,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete monitor
 
-        Deactivates the given monitor 
+        Deactivates the given monitor
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -3329,6 +3340,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -3369,7 +3381,7 @@ class DefaultApi:
     ) -> None:
         """Delete a webhook
 
-        Deletes a webhook. 
+        Deletes a webhook.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -3436,7 +3448,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Delete a webhook
 
-        Deletes a webhook. 
+        Deletes a webhook.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -3503,7 +3515,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Delete a webhook
 
-        Deletes a webhook. 
+        Deletes a webhook.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -3590,6 +3602,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -3631,7 +3644,7 @@ class DefaultApi:
     ) -> bytearray:
         """Retrieves the signed document or signing transaction receipt
 
-        Retrieves the signed document or signing transaction receipt depending on the id provided. 
+        Retrieves the signed document or signing transaction receipt depending on the id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -3703,7 +3716,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Retrieves the signed document or signing transaction receipt
 
-        Retrieves the signed document or signing transaction receipt depending on the id provided. 
+        Retrieves the signed document or signing transaction receipt depending on the id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -3775,7 +3788,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieves the signed document or signing transaction receipt
 
-        Retrieves the signed document or signing transaction receipt depending on the id provided. 
+        Retrieves the signed document or signing transaction receipt depending on the id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -3850,13 +3863,13 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if workflow_run_id is not None:
-            
+
             _query_params.append(('workflow_run_id', workflow_run_id))
-            
+
         if id is not None:
-            
+
             _query_params.append(('id', id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -3866,7 +3879,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/pdf', 
+                    'application/pdf',
                     'application/json'
                 ]
             )
@@ -3874,6 +3887,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -3914,7 +3928,7 @@ class DefaultApi:
     ) -> bytearray:
         """Download check
 
-        Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF. 
+        Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF.
 
         :param check_id: (required)
         :type check_id: str
@@ -3981,7 +3995,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Download check
 
-        Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF. 
+        Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF.
 
         :param check_id: (required)
         :type check_id: str
@@ -4048,7 +4062,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Download check
 
-        Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF. 
+        Downloads a PDF of a check with a given check ID. Returns the binary data representing the PDF.
 
         :param check_id: (required)
         :type check_id: str
@@ -4128,7 +4142,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/pdf', 
+                    'application/pdf',
                     'application/json'
                 ]
             )
@@ -4136,6 +4150,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -4176,7 +4191,7 @@ class DefaultApi:
     ) -> bytearray:
         """Download document
 
-        Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
+        Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
 
         :param document_id: (required)
         :type document_id: str
@@ -4243,7 +4258,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Download document
 
-        Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
+        Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
 
         :param document_id: (required)
         :type document_id: str
@@ -4310,7 +4325,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Download document
 
-        Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
+        Downloads specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
 
         :param document_id: (required)
         :type document_id: str
@@ -4390,7 +4405,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -4398,6 +4413,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -4438,7 +4454,7 @@ class DefaultApi:
     ) -> bytearray:
         """Download document video
 
-        Downloads a document video. If successful, the response will be the binary data representing the video. 
+        Downloads a document video. If successful, the response will be the binary data representing the video.
 
         :param document_id: (required)
         :type document_id: str
@@ -4505,7 +4521,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Download document video
 
-        Downloads a document video. If successful, the response will be the binary data representing the video. 
+        Downloads a document video. If successful, the response will be the binary data representing the video.
 
         :param document_id: (required)
         :type document_id: str
@@ -4572,7 +4588,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Download document video
 
-        Downloads a document video. If successful, the response will be the binary data representing the video. 
+        Downloads a document video. If successful, the response will be the binary data representing the video.
 
         :param document_id: (required)
         :type document_id: str
@@ -4652,7 +4668,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -4660,6 +4676,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -4700,7 +4717,7 @@ class DefaultApi:
     ) -> bytearray:
         """Retrieve Workflow Run Evidence Folder
 
-        Retrieves the evidence folder for the designated Workflow Run 
+        Retrieves the evidence folder for the designated Workflow Run
 
         :param workflow_run_id: Workflow Run ID (required)
         :type workflow_run_id: str
@@ -4768,7 +4785,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Retrieve Workflow Run Evidence Folder
 
-        Retrieves the evidence folder for the designated Workflow Run 
+        Retrieves the evidence folder for the designated Workflow Run
 
         :param workflow_run_id: Workflow Run ID (required)
         :type workflow_run_id: str
@@ -4836,7 +4853,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve Workflow Run Evidence Folder
 
-        Retrieves the evidence folder for the designated Workflow Run 
+        Retrieves the evidence folder for the designated Workflow Run
 
         :param workflow_run_id: Workflow Run ID (required)
         :type workflow_run_id: str
@@ -4917,7 +4934,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/zip', 
+                    'application/zip',
                     'application/json'
                 ]
             )
@@ -4925,6 +4942,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -5179,7 +5197,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -5187,6 +5205,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -5441,7 +5460,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -5449,6 +5468,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -5703,7 +5723,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -5711,6 +5731,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -5965,7 +5986,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -5973,6 +5994,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -6227,7 +6249,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -6235,6 +6257,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -6489,7 +6512,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -6497,6 +6520,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -6537,7 +6561,7 @@ class DefaultApi:
     ) -> bytearray:
         """Download NFC face
 
-        Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
+        Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
 
         :param document_id: (required)
         :type document_id: str
@@ -6604,7 +6628,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Download NFC face
 
-        Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
+        Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
 
         :param document_id: (required)
         :type document_id: str
@@ -6671,7 +6695,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Download NFC face
 
-        Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image. 
+        Downloads digital photos extracted from specific documents belonging to an applicant. If successful, the response will be the binary data representing the image.
 
         :param document_id: (required)
         :type document_id: str
@@ -6751,7 +6775,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -6759,6 +6783,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -6800,7 +6825,7 @@ class DefaultApi:
     ) -> bytearray:
         """Retrieves the signed document or application form
 
-        Retrieves the signed document or application form depending on the file_id provided. 
+        Retrieves the signed document or application form depending on the file_id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -6872,7 +6897,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Retrieves the signed document or application form
 
-        Retrieves the signed document or application form depending on the file_id provided. 
+        Retrieves the signed document or application form depending on the file_id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -6944,7 +6969,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieves the signed document or application form
 
-        Retrieves the signed document or application form depending on the file_id provided. 
+        Retrieves the signed document or application form depending on the file_id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -7019,13 +7044,13 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if workflow_run_id is not None:
-            
+
             _query_params.append(('workflow_run_id', workflow_run_id))
-            
+
         if file_id is not None:
-            
+
             _query_params.append(('file_id', file_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -7035,7 +7060,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/pdf', 
+                    'application/pdf',
                     'application/json'
                 ]
             )
@@ -7043,6 +7068,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -7084,7 +7110,7 @@ class DefaultApi:
     ) -> bytearray:
         """Retrieves the signed document or signing transaction receipt
 
-        Retrieves the signed document or signing transaction receipt depending on the id provided. 
+        Retrieves the signed document or signing transaction receipt depending on the id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -7156,7 +7182,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Retrieves the signed document or signing transaction receipt
 
-        Retrieves the signed document or signing transaction receipt depending on the id provided. 
+        Retrieves the signed document or signing transaction receipt depending on the id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -7228,7 +7254,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieves the signed document or signing transaction receipt
 
-        Retrieves the signed document or signing transaction receipt depending on the id provided. 
+        Retrieves the signed document or signing transaction receipt depending on the id provided.
 
         :param workflow_run_id: The unique identifier of the Workflow Run for which you want to retrieve the signed document. (required)
         :type workflow_run_id: str
@@ -7303,13 +7329,13 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if workflow_run_id is not None:
-            
+
             _query_params.append(('workflow_run_id', workflow_run_id))
-            
+
         if id is not None:
-            
+
             _query_params.append(('id', id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -7319,7 +7345,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/pdf', 
+                    'application/pdf',
                     'application/json'
                 ]
             )
@@ -7327,6 +7353,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -7367,7 +7394,7 @@ class DefaultApi:
     ) -> bytearray:
         """Retrieve Workflow Run Evidence Summary File
 
-        Retrieves the signed evidence file for the designated Workflow Run 
+        Retrieves the signed evidence file for the designated Workflow Run
 
         :param workflow_run_id: Workflow Run ID (required)
         :type workflow_run_id: str
@@ -7435,7 +7462,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Retrieve Workflow Run Evidence Summary File
 
-        Retrieves the signed evidence file for the designated Workflow Run 
+        Retrieves the signed evidence file for the designated Workflow Run
 
         :param workflow_run_id: Workflow Run ID (required)
         :type workflow_run_id: str
@@ -7503,7 +7530,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve Workflow Run Evidence Summary File
 
-        Retrieves the signed evidence file for the designated Workflow Run 
+        Retrieves the signed evidence file for the designated Workflow Run
 
         :param workflow_run_id: Workflow Run ID (required)
         :type workflow_run_id: str
@@ -7584,7 +7611,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/pdf', 
+                    'application/pdf',
                     'application/json'
                 ]
             )
@@ -7592,6 +7619,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -7632,7 +7660,7 @@ class DefaultApi:
     ) -> bytearray:
         """Download signing document
 
-        Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf. 
+        Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf.
 
         :param signing_document_id: (required)
         :type signing_document_id: str
@@ -7699,7 +7727,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Download signing document
 
-        Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf. 
+        Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf.
 
         :param signing_document_id: (required)
         :type signing_document_id: str
@@ -7766,7 +7794,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Download signing document
 
-        Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf. 
+        Downloads specific signing documents belonging to an applicant. If successful, the response will be the binary data representing the pdf.
 
         :param signing_document_id: (required)
         :type signing_document_id: str
@@ -7846,7 +7874,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    '*/*', 
+                    '*/*',
                     'application/json'
                 ]
             )
@@ -7854,6 +7882,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -7894,7 +7923,7 @@ class DefaultApi:
     ) -> Extraction:
         """Autofill
 
-        Extract information from a document 
+        Extract information from a document
 
         :param extract_request: (required)
         :type extract_request: ExtractRequest
@@ -7961,7 +7990,7 @@ class DefaultApi:
     ) -> ApiResponse[Extraction]:
         """Autofill
 
-        Extract information from a document 
+        Extract information from a document
 
         :param extract_request: (required)
         :type extract_request: ExtractRequest
@@ -8028,7 +8057,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Autofill
 
-        Extract information from a document 
+        Extract information from a document
 
         :param extract_request: (required)
         :type extract_request: ExtractRequest
@@ -8128,6 +8157,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -8168,7 +8198,7 @@ class DefaultApi:
     ) -> AddressesList:
         """Address Picker
 
-        Search for addresses by postcode 
+        Search for addresses by postcode
 
         :param postcode: (required)
         :type postcode: str
@@ -8235,7 +8265,7 @@ class DefaultApi:
     ) -> ApiResponse[AddressesList]:
         """Address Picker
 
-        Search for addresses by postcode 
+        Search for addresses by postcode
 
         :param postcode: (required)
         :type postcode: str
@@ -8302,7 +8332,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Address Picker
 
-        Search for addresses by postcode 
+        Search for addresses by postcode
 
         :param postcode: (required)
         :type postcode: str
@@ -8372,9 +8402,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if postcode is not None:
-            
+
             _query_params.append(('postcode', postcode))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -8391,6 +8421,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -8431,7 +8462,7 @@ class DefaultApi:
     ) -> Applicant:
         """Retrieve Applicant
 
-        Retrieves a single applicant. Returns an applicant object. 
+        Retrieves a single applicant. Returns an applicant object.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -8498,7 +8529,7 @@ class DefaultApi:
     ) -> ApiResponse[Applicant]:
         """Retrieve Applicant
 
-        Retrieves a single applicant. Returns an applicant object. 
+        Retrieves a single applicant. Returns an applicant object.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -8565,7 +8596,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve Applicant
 
-        Retrieves a single applicant. Returns an applicant object. 
+        Retrieves a single applicant. Returns an applicant object.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -8652,6 +8683,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -8692,7 +8724,7 @@ class DefaultApi:
     ) -> List[ApplicantConsent]:
         """Retrieve Applicant Consents
 
-        Retrieves consents for single applicant. 
+        Retrieves consents for single applicant.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -8759,7 +8791,7 @@ class DefaultApi:
     ) -> ApiResponse[List[ApplicantConsent]]:
         """Retrieve Applicant Consents
 
-        Retrieves consents for single applicant. 
+        Retrieves consents for single applicant.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -8826,7 +8858,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve Applicant Consents
 
-        Retrieves consents for single applicant. 
+        Retrieves consents for single applicant.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -8913,6 +8945,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -8953,7 +8986,7 @@ class DefaultApi:
     ) -> Check:
         """Retrieve a Check
 
-        Retrieves a single check. Returns a check object. 
+        Retrieves a single check. Returns a check object.
 
         :param check_id: (required)
         :type check_id: str
@@ -9020,7 +9053,7 @@ class DefaultApi:
     ) -> ApiResponse[Check]:
         """Retrieve a Check
 
-        Retrieves a single check. Returns a check object. 
+        Retrieves a single check. Returns a check object.
 
         :param check_id: (required)
         :type check_id: str
@@ -9087,7 +9120,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve a Check
 
-        Retrieves a single check. Returns a check object. 
+        Retrieves a single check. Returns a check object.
 
         :param check_id: (required)
         :type check_id: str
@@ -9174,6 +9207,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -9214,7 +9248,7 @@ class DefaultApi:
     ) -> Document:
         """Retrieve document
 
-        A single document can be retrieved by calling this endpoint with the document's unique identifier. 
+        A single document can be retrieved by calling this endpoint with the document's unique identifier.
 
         :param document_id: (required)
         :type document_id: str
@@ -9281,7 +9315,7 @@ class DefaultApi:
     ) -> ApiResponse[Document]:
         """Retrieve document
 
-        A single document can be retrieved by calling this endpoint with the document's unique identifier. 
+        A single document can be retrieved by calling this endpoint with the document's unique identifier.
 
         :param document_id: (required)
         :type document_id: str
@@ -9348,7 +9382,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve document
 
-        A single document can be retrieved by calling this endpoint with the document's unique identifier. 
+        A single document can be retrieved by calling this endpoint with the document's unique identifier.
 
         :param document_id: (required)
         :type document_id: str
@@ -9435,6 +9469,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -9475,7 +9510,7 @@ class DefaultApi:
     ) -> IdPhoto:
         """Retrieve ID photo
 
-        Retrieves a single ID photo. Returns a ID photo object. 
+        Retrieves a single ID photo. Returns a ID photo object.
 
         :param id_photo_id: The ID photo's unique identifier. (required)
         :type id_photo_id: str
@@ -9542,7 +9577,7 @@ class DefaultApi:
     ) -> ApiResponse[IdPhoto]:
         """Retrieve ID photo
 
-        Retrieves a single ID photo. Returns a ID photo object. 
+        Retrieves a single ID photo. Returns a ID photo object.
 
         :param id_photo_id: The ID photo's unique identifier. (required)
         :type id_photo_id: str
@@ -9609,7 +9644,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve ID photo
 
-        Retrieves a single ID photo. Returns a ID photo object. 
+        Retrieves a single ID photo. Returns a ID photo object.
 
         :param id_photo_id: The ID photo's unique identifier. (required)
         :type id_photo_id: str
@@ -9696,6 +9731,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -9736,7 +9772,7 @@ class DefaultApi:
     ) -> LivePhoto:
         """Retrieve live photo
 
-        Retrieves a single live photo. Returns a live photo object. 
+        Retrieves a single live photo. Returns a live photo object.
 
         :param live_photo_id: The live photo's unique identifier. (required)
         :type live_photo_id: str
@@ -9803,7 +9839,7 @@ class DefaultApi:
     ) -> ApiResponse[LivePhoto]:
         """Retrieve live photo
 
-        Retrieves a single live photo. Returns a live photo object. 
+        Retrieves a single live photo. Returns a live photo object.
 
         :param live_photo_id: The live photo's unique identifier. (required)
         :type live_photo_id: str
@@ -9870,7 +9906,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve live photo
 
-        Retrieves a single live photo. Returns a live photo object. 
+        Retrieves a single live photo. Returns a live photo object.
 
         :param live_photo_id: The live photo's unique identifier. (required)
         :type live_photo_id: str
@@ -9957,6 +9993,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -9997,7 +10034,7 @@ class DefaultApi:
     ) -> LiveVideo:
         """Retrieve live video
 
-        Retrieves a single live video. Returns the corresponding live video object. 
+        Retrieves a single live video. Returns the corresponding live video object.
 
         :param live_video_id: The live video's unique identifier. (required)
         :type live_video_id: str
@@ -10064,7 +10101,7 @@ class DefaultApi:
     ) -> ApiResponse[LiveVideo]:
         """Retrieve live video
 
-        Retrieves a single live video. Returns the corresponding live video object. 
+        Retrieves a single live video. Returns the corresponding live video object.
 
         :param live_video_id: The live video's unique identifier. (required)
         :type live_video_id: str
@@ -10131,7 +10168,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve live video
 
-        Retrieves a single live video. Returns the corresponding live video object. 
+        Retrieves a single live video. Returns the corresponding live video object.
 
         :param live_video_id: The live video's unique identifier. (required)
         :type live_video_id: str
@@ -10218,6 +10255,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -10258,7 +10296,7 @@ class DefaultApi:
     ) -> MotionCapture:
         """Retrieve motion capture
 
-        Retrieves a single motion capture. Returns the corresponding motion capture object. 
+        Retrieves a single motion capture. Returns the corresponding motion capture object.
 
         :param motion_capture_id: The motion capture's unique identifier. (required)
         :type motion_capture_id: str
@@ -10325,7 +10363,7 @@ class DefaultApi:
     ) -> ApiResponse[MotionCapture]:
         """Retrieve motion capture
 
-        Retrieves a single motion capture. Returns the corresponding motion capture object. 
+        Retrieves a single motion capture. Returns the corresponding motion capture object.
 
         :param motion_capture_id: The motion capture's unique identifier. (required)
         :type motion_capture_id: str
@@ -10392,7 +10430,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve motion capture
 
-        Retrieves a single motion capture. Returns the corresponding motion capture object. 
+        Retrieves a single motion capture. Returns the corresponding motion capture object.
 
         :param motion_capture_id: The motion capture's unique identifier. (required)
         :type motion_capture_id: str
@@ -10479,6 +10517,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -10520,7 +10559,7 @@ class DefaultApi:
     ) -> Passkey:
         """Retrieve passkey
 
-        Returns a passkey's details. 
+        Returns a passkey's details.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -10592,7 +10631,7 @@ class DefaultApi:
     ) -> ApiResponse[Passkey]:
         """Retrieve passkey
 
-        Returns a passkey's details. 
+        Returns a passkey's details.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -10664,7 +10703,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve passkey
 
-        Returns a passkey's details. 
+        Returns a passkey's details.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -10758,6 +10797,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -10798,7 +10838,7 @@ class DefaultApi:
     ) -> Report:
         """Retrieve report
 
-        A single report can be retrieved using this endpoint with the corresponding unique identifier. 
+        A single report can be retrieved using this endpoint with the corresponding unique identifier.
 
         :param report_id: (required)
         :type report_id: str
@@ -10865,7 +10905,7 @@ class DefaultApi:
     ) -> ApiResponse[Report]:
         """Retrieve report
 
-        A single report can be retrieved using this endpoint with the corresponding unique identifier. 
+        A single report can be retrieved using this endpoint with the corresponding unique identifier.
 
         :param report_id: (required)
         :type report_id: str
@@ -10932,7 +10972,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve report
 
-        A single report can be retrieved using this endpoint with the corresponding unique identifier. 
+        A single report can be retrieved using this endpoint with the corresponding unique identifier.
 
         :param report_id: (required)
         :type report_id: str
@@ -11019,6 +11059,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -11059,7 +11100,7 @@ class DefaultApi:
     ) -> SigningDocument:
         """Retrieve signing document
 
-        A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier. 
+        A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier.
 
         :param signing_document_id: (required)
         :type signing_document_id: str
@@ -11126,7 +11167,7 @@ class DefaultApi:
     ) -> ApiResponse[SigningDocument]:
         """Retrieve signing document
 
-        A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier. 
+        A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier.
 
         :param signing_document_id: (required)
         :type signing_document_id: str
@@ -11193,7 +11234,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve signing document
 
-        A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier. 
+        A single signing document can be retrieved by calling this endpoint with the signing document's unique identifier.
 
         :param signing_document_id: (required)
         :type signing_document_id: str
@@ -11280,6 +11321,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -11321,7 +11363,7 @@ class DefaultApi:
     ) -> Task:
         """Retrieve Task
 
-        A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run. 
+        A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Task belongs. (required)
         :type workflow_run_id: str
@@ -11392,7 +11434,7 @@ class DefaultApi:
     ) -> ApiResponse[Task]:
         """Retrieve Task
 
-        A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run. 
+        A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Task belongs. (required)
         :type workflow_run_id: str
@@ -11463,7 +11505,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve Task
 
-        A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run. 
+        A single task can be retrieved by calling this endpoint with the unique identifier of the Task and Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Task belongs. (required)
         :type workflow_run_id: str
@@ -11556,6 +11598,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -11597,7 +11640,7 @@ class DefaultApi:
     ) -> bytearray:
         """Retrieve Timeline File for Workflow Run
 
-        Retrieves the Timeline File for the designated Workflow Run. 
+        Retrieves the Timeline File for the designated Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -11669,7 +11712,7 @@ class DefaultApi:
     ) -> ApiResponse[bytearray]:
         """Retrieve Timeline File for Workflow Run
 
-        Retrieves the Timeline File for the designated Workflow Run. 
+        Retrieves the Timeline File for the designated Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -11741,7 +11784,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve Timeline File for Workflow Run
 
-        Retrieves the Timeline File for the designated Workflow Run. 
+        Retrieves the Timeline File for the designated Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -11828,7 +11871,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'application/pdf', 
+                    'application/pdf',
                     'application/json'
                 ]
             )
@@ -11836,6 +11879,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -11876,7 +11920,7 @@ class DefaultApi:
     ) -> WatchlistMonitor:
         """Retrieve monitor
 
-        Retrieves a single monitor 
+        Retrieves a single monitor
 
         :param monitor_id: The watchlist monitor's unique identifier. (required)
         :type monitor_id: str
@@ -11943,7 +11987,7 @@ class DefaultApi:
     ) -> ApiResponse[WatchlistMonitor]:
         """Retrieve monitor
 
-        Retrieves a single monitor 
+        Retrieves a single monitor
 
         :param monitor_id: The watchlist monitor's unique identifier. (required)
         :type monitor_id: str
@@ -12010,7 +12054,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve monitor
 
-        Retrieves a single monitor 
+        Retrieves a single monitor
 
         :param monitor_id: The watchlist monitor's unique identifier. (required)
         :type monitor_id: str
@@ -12097,6 +12141,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -12137,7 +12182,7 @@ class DefaultApi:
     ) -> Webhook:
         """Retrieve a Webhook
 
-        Retrieves a single webhook. Returns a webhook object. 
+        Retrieves a single webhook. Returns a webhook object.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -12204,7 +12249,7 @@ class DefaultApi:
     ) -> ApiResponse[Webhook]:
         """Retrieve a Webhook
 
-        Retrieves a single webhook. Returns a webhook object. 
+        Retrieves a single webhook. Returns a webhook object.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -12271,7 +12316,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve a Webhook
 
-        Retrieves a single webhook. Returns a webhook object. 
+        Retrieves a single webhook. Returns a webhook object.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -12358,6 +12403,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -12398,7 +12444,7 @@ class DefaultApi:
     ) -> WorkflowRun:
         """Retrieve Workflow Run
 
-        A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+        A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -12465,7 +12511,7 @@ class DefaultApi:
     ) -> ApiResponse[WorkflowRun]:
         """Retrieve Workflow Run
 
-        A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+        A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -12532,7 +12578,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve Workflow Run
 
-        A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+        A single workflow run can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run. (required)
         :type workflow_run_id: str
@@ -12619,6 +12665,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -12659,7 +12706,7 @@ class DefaultApi:
     ) -> None:
         """Force new report creation (BETA)
 
-        Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
+        Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update.
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -12726,7 +12773,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Force new report creation (BETA)
 
-        Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
+        Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update.
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -12793,7 +12840,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Force new report creation (BETA)
 
-        Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update. 
+        Triggers a new check with an updated report to be generated by the monitor, as if the monitor had received an update.
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -12880,6 +12927,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -12920,7 +12968,7 @@ class DefaultApi:
     ) -> SdkToken:
         """Generate a SDK token
 
-        Generates an SDK token. Returns a token object containing the SDK token. 
+        Generates an SDK token. Returns a token object containing the SDK token.
 
         :param sdk_token_builder: (required)
         :type sdk_token_builder: SdkTokenBuilder
@@ -12987,7 +13035,7 @@ class DefaultApi:
     ) -> ApiResponse[SdkToken]:
         """Generate a SDK token
 
-        Generates an SDK token. Returns a token object containing the SDK token. 
+        Generates an SDK token. Returns a token object containing the SDK token.
 
         :param sdk_token_builder: (required)
         :type sdk_token_builder: SdkTokenBuilder
@@ -13054,7 +13102,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Generate a SDK token
 
-        Generates an SDK token. Returns a token object containing the SDK token. 
+        Generates an SDK token. Returns a token object containing the SDK token.
 
         :param sdk_token_builder: (required)
         :type sdk_token_builder: SdkTokenBuilder
@@ -13154,6 +13202,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -13196,7 +13245,7 @@ class DefaultApi:
     ) -> ApplicantsList:
         """List Applicants
 
-        Lists all applicants you've created, sorted by creation date in descending order. 
+        Lists all applicants you've created, sorted by creation date in descending order.
 
         :param page: The page to return. The first page is `page=1`
         :type page: int
@@ -13271,7 +13320,7 @@ class DefaultApi:
     ) -> ApiResponse[ApplicantsList]:
         """List Applicants
 
-        Lists all applicants you've created, sorted by creation date in descending order. 
+        Lists all applicants you've created, sorted by creation date in descending order.
 
         :param page: The page to return. The first page is `page=1`
         :type page: int
@@ -13346,7 +13395,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List Applicants
 
-        Lists all applicants you've created, sorted by creation date in descending order. 
+        Lists all applicants you've created, sorted by creation date in descending order.
 
         :param page: The page to return. The first page is `page=1`
         :type page: int
@@ -13424,17 +13473,17 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if page is not None:
-            
+
             _query_params.append(('page', page))
-            
+
         if per_page is not None:
-            
+
             _query_params.append(('per_page', per_page))
-            
+
         if include_deleted is not None:
-            
+
             _query_params.append(('include_deleted', include_deleted))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -13451,6 +13500,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -13491,7 +13541,7 @@ class DefaultApi:
     ) -> ChecksList:
         """Retrieve Checks
 
-        Retrieves a single check. Returns a check object. 
+        Retrieves a single check. Returns a check object.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -13558,7 +13608,7 @@ class DefaultApi:
     ) -> ApiResponse[ChecksList]:
         """Retrieve Checks
 
-        Retrieves a single check. Returns a check object. 
+        Retrieves a single check. Returns a check object.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -13625,7 +13675,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve Checks
 
-        Retrieves a single check. Returns a check object. 
+        Retrieves a single check. Returns a check object.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -13695,9 +13745,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -13714,6 +13764,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -13958,9 +14009,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -13977,6 +14028,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -14017,7 +14069,7 @@ class DefaultApi:
     ) -> IdPhotosList:
         """List ID photos
 
-        Lists the ID photos that belong to an applicant. 
+        Lists the ID photos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the ID photos belong to. (required)
         :type applicant_id: str
@@ -14084,7 +14136,7 @@ class DefaultApi:
     ) -> ApiResponse[IdPhotosList]:
         """List ID photos
 
-        Lists the ID photos that belong to an applicant. 
+        Lists the ID photos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the ID photos belong to. (required)
         :type applicant_id: str
@@ -14151,7 +14203,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List ID photos
 
-        Lists the ID photos that belong to an applicant. 
+        Lists the ID photos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the ID photos belong to. (required)
         :type applicant_id: str
@@ -14221,9 +14273,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -14240,6 +14292,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -14280,7 +14333,7 @@ class DefaultApi:
     ) -> LivePhotosList:
         """List live photos
 
-        Lists the live photos that belong to an applicant. 
+        Lists the live photos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the live photos belong to. (required)
         :type applicant_id: str
@@ -14347,7 +14400,7 @@ class DefaultApi:
     ) -> ApiResponse[LivePhotosList]:
         """List live photos
 
-        Lists the live photos that belong to an applicant. 
+        Lists the live photos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the live photos belong to. (required)
         :type applicant_id: str
@@ -14414,7 +14467,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List live photos
 
-        Lists the live photos that belong to an applicant. 
+        Lists the live photos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the live photos belong to. (required)
         :type applicant_id: str
@@ -14484,9 +14537,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -14503,6 +14556,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -14543,7 +14597,7 @@ class DefaultApi:
     ) -> LiveVideosList:
         """List live videos
 
-        Lists all the live videos that belong to an applicant. 
+        Lists all the live videos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the live videos belong to. (required)
         :type applicant_id: str
@@ -14610,7 +14664,7 @@ class DefaultApi:
     ) -> ApiResponse[LiveVideosList]:
         """List live videos
 
-        Lists all the live videos that belong to an applicant. 
+        Lists all the live videos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the live videos belong to. (required)
         :type applicant_id: str
@@ -14677,7 +14731,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List live videos
 
-        Lists all the live videos that belong to an applicant. 
+        Lists all the live videos that belong to an applicant.
 
         :param applicant_id: The id of the applicant the live videos belong to. (required)
         :type applicant_id: str
@@ -14747,9 +14801,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -14766,6 +14820,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -14806,7 +14861,7 @@ class DefaultApi:
     ) -> MotionCapturesList:
         """List motion captures
 
-        Lists all the motion captures that belong to an applicant. 
+        Lists all the motion captures that belong to an applicant.
 
         :param applicant_id: The id of the applicant the motion captures belong to. (required)
         :type applicant_id: str
@@ -14873,7 +14928,7 @@ class DefaultApi:
     ) -> ApiResponse[MotionCapturesList]:
         """List motion captures
 
-        Lists all the motion captures that belong to an applicant. 
+        Lists all the motion captures that belong to an applicant.
 
         :param applicant_id: The id of the applicant the motion captures belong to. (required)
         :type applicant_id: str
@@ -14940,7 +14995,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List motion captures
 
-        Lists all the motion captures that belong to an applicant. 
+        Lists all the motion captures that belong to an applicant.
 
         :param applicant_id: The id of the applicant the motion captures belong to. (required)
         :type applicant_id: str
@@ -15010,9 +15065,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -15029,6 +15084,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -15069,7 +15125,7 @@ class DefaultApi:
     ) -> PasskeysList:
         """List passkeys
 
-        Returns every passkey registered under the supplied username. 
+        Returns every passkey registered under the supplied username.
 
         :param username: Username that owns the passkeys. (required)
         :type username: str
@@ -15137,7 +15193,7 @@ class DefaultApi:
     ) -> ApiResponse[PasskeysList]:
         """List passkeys
 
-        Returns every passkey registered under the supplied username. 
+        Returns every passkey registered under the supplied username.
 
         :param username: Username that owns the passkeys. (required)
         :type username: str
@@ -15205,7 +15261,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List passkeys
 
-        Returns every passkey registered under the supplied username. 
+        Returns every passkey registered under the supplied username.
 
         :param username: Username that owns the passkeys. (required)
         :type username: str
@@ -15293,6 +15349,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -15333,7 +15390,7 @@ class DefaultApi:
     ) -> RepeatAttemptsList:
         """Retrieve repeat attempts
 
-        Returns all repeat attempts for a given Document report 
+        Returns all repeat attempts for a given Document report
 
         :param report_id: (required)
         :type report_id: str
@@ -15400,7 +15457,7 @@ class DefaultApi:
     ) -> ApiResponse[RepeatAttemptsList]:
         """Retrieve repeat attempts
 
-        Returns all repeat attempts for a given Document report 
+        Returns all repeat attempts for a given Document report
 
         :param report_id: (required)
         :type report_id: str
@@ -15467,7 +15524,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Retrieve repeat attempts
 
-        Returns all repeat attempts for a given Document report 
+        Returns all repeat attempts for a given Document report
 
         :param report_id: (required)
         :type report_id: str
@@ -15554,6 +15611,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -15594,7 +15652,7 @@ class DefaultApi:
     ) -> ReportsList:
         """List reports
 
-        All the reports belonging to a particular check can be listed from this endpoint. 
+        All the reports belonging to a particular check can be listed from this endpoint.
 
         :param check_id: (required)
         :type check_id: str
@@ -15661,7 +15719,7 @@ class DefaultApi:
     ) -> ApiResponse[ReportsList]:
         """List reports
 
-        All the reports belonging to a particular check can be listed from this endpoint. 
+        All the reports belonging to a particular check can be listed from this endpoint.
 
         :param check_id: (required)
         :type check_id: str
@@ -15728,7 +15786,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List reports
 
-        All the reports belonging to a particular check can be listed from this endpoint. 
+        All the reports belonging to a particular check can be listed from this endpoint.
 
         :param check_id: (required)
         :type check_id: str
@@ -15798,9 +15856,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if check_id is not None:
-            
+
             _query_params.append(('check_id', check_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -15817,6 +15875,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -16061,9 +16120,9 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -16080,6 +16139,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -16120,7 +16180,7 @@ class DefaultApi:
     ) -> List[TaskItem]:
         """List Tasks
 
-        The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+        The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Tasks belong. (required)
         :type workflow_run_id: str
@@ -16187,7 +16247,7 @@ class DefaultApi:
     ) -> ApiResponse[List[TaskItem]]:
         """List Tasks
 
-        The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+        The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Tasks belong. (required)
         :type workflow_run_id: str
@@ -16254,7 +16314,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List Tasks
 
-        The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run. 
+        The tasks of a Workflow can be retrieved by calling this endpoint with the unique identifier of the Workflow Run.
 
         :param workflow_run_id: The unique identifier of the Workflow Run to which the Tasks belong. (required)
         :type workflow_run_id: str
@@ -16341,6 +16401,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -16381,7 +16442,7 @@ class DefaultApi:
     ) -> WatchlistMonitorMatchesList:
         """List matches (BETA)
 
-        List match IDs on this monitor, as well as their enabled/disabled status 
+        List match IDs on this monitor, as well as their enabled/disabled status
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -16448,7 +16509,7 @@ class DefaultApi:
     ) -> ApiResponse[WatchlistMonitorMatchesList]:
         """List matches (BETA)
 
-        List match IDs on this monitor, as well as their enabled/disabled status 
+        List match IDs on this monitor, as well as their enabled/disabled status
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -16515,7 +16576,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List matches (BETA)
 
-        List match IDs on this monitor, as well as their enabled/disabled status 
+        List match IDs on this monitor, as well as their enabled/disabled status
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -16602,6 +16663,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -16643,7 +16705,7 @@ class DefaultApi:
     ) -> WatchlistMonitorsList:
         """List monitors
 
-        List all available monitors for an applicant 
+        List all available monitors for an applicant
 
         :param applicant_id: The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed. (required)
         :type applicant_id: str
@@ -16714,7 +16776,7 @@ class DefaultApi:
     ) -> ApiResponse[WatchlistMonitorsList]:
         """List monitors
 
-        List all available monitors for an applicant 
+        List all available monitors for an applicant
 
         :param applicant_id: The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed. (required)
         :type applicant_id: str
@@ -16785,7 +16847,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List monitors
 
-        List all available monitors for an applicant 
+        List all available monitors for an applicant
 
         :param applicant_id: The id of the applicant the watchlist monitors belong to. If omitted, all monitors for the account will be listed. (required)
         :type applicant_id: str
@@ -16859,13 +16921,13 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         if include_deleted is not None:
-            
+
             _query_params.append(('include_deleted', include_deleted))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -16882,6 +16944,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -16921,7 +16984,7 @@ class DefaultApi:
     ) -> WebhooksList:
         """List webhooks
 
-        Lists all webhooks you've created. 
+        Lists all webhooks you've created.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -16984,7 +17047,7 @@ class DefaultApi:
     ) -> ApiResponse[WebhooksList]:
         """List webhooks
 
-        Lists all webhooks you've created. 
+        Lists all webhooks you've created.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -17047,7 +17110,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List webhooks
 
-        Lists all webhooks you've created. 
+        Lists all webhooks you've created.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -17128,6 +17191,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -17174,7 +17238,7 @@ class DefaultApi:
     ) -> List[WorkflowRun]:
         """List Workflow Runs
 
-        Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects. 
+        Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects.
 
         :param page: The number of the page to be retrieved. If not specified, defaults to 1.
         :type page: int
@@ -17265,7 +17329,7 @@ class DefaultApi:
     ) -> ApiResponse[List[WorkflowRun]]:
         """List Workflow Runs
 
-        Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects. 
+        Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects.
 
         :param page: The number of the page to be retrieved. If not specified, defaults to 1.
         :type page: int
@@ -17356,7 +17420,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """List Workflow Runs
 
-        Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects. 
+        Retrieves the Workflow Runs of the client. Returns a list of Workflow Run objects.
 
         :param page: The number of the page to be retrieved. If not specified, defaults to 1.
         :type page: int
@@ -17451,13 +17515,13 @@ class DefaultApi:
         # process the path parameters
         # process the query parameters
         if page is not None:
-            
+
             _query_params.append(('page', page))
-            
+
         if status is not None:
-            
+
             _query_params.append(('status', status))
-            
+
         if created_at_gt is not None:
             if isinstance(created_at_gt, date):
                 _query_params.append(
@@ -17470,7 +17534,7 @@ class DefaultApi:
                 )
             else:
                 _query_params.append(('created_at_gt', created_at_gt))
-            
+
         if created_at_lt is not None:
             if isinstance(created_at_lt, date):
                 _query_params.append(
@@ -17483,19 +17547,19 @@ class DefaultApi:
                 )
             else:
                 _query_params.append(('created_at_lt', created_at_lt))
-            
+
         if sort is not None:
-            
+
             _query_params.append(('sort', sort))
-            
+
         if applicant_id is not None:
-            
+
             _query_params.append(('applicant_id', applicant_id))
-            
+
         if tags is not None:
-            
+
             _query_params.append(('tags', tags))
-            
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -17512,6 +17576,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -17551,7 +17616,7 @@ class DefaultApi:
     ) -> str:
         """Ping
 
-        Run a health check on the Onfido API 
+        Run a health check on the Onfido API
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -17614,7 +17679,7 @@ class DefaultApi:
     ) -> ApiResponse[str]:
         """Ping
 
-        Run a health check on the Onfido API 
+        Run a health check on the Onfido API
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -17677,7 +17742,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Ping
 
-        Run a health check on the Onfido API 
+        Run a health check on the Onfido API
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -17751,7 +17816,7 @@ class DefaultApi:
         if 'Accept' not in _header_params:
             _header_params['Accept'] = self.api_client.select_header_accept(
                 [
-                    'text/plain', 
+                    'text/plain',
                     'application/json'
                 ]
             )
@@ -17759,6 +17824,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -17799,7 +17865,7 @@ class DefaultApi:
     ) -> ResultsFeedback:
         """Fraud reporting (ALPHA)
 
-        Create Feedback on checks and reports 
+        Create Feedback on checks and reports
 
         :param results_feedback: (required)
         :type results_feedback: ResultsFeedback
@@ -17866,7 +17932,7 @@ class DefaultApi:
     ) -> ApiResponse[ResultsFeedback]:
         """Fraud reporting (ALPHA)
 
-        Create Feedback on checks and reports 
+        Create Feedback on checks and reports
 
         :param results_feedback: (required)
         :type results_feedback: ResultsFeedback
@@ -17933,7 +17999,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Fraud reporting (ALPHA)
 
-        Create Feedback on checks and reports 
+        Create Feedback on checks and reports
 
         :param results_feedback: (required)
         :type results_feedback: ResultsFeedback
@@ -18033,6 +18099,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -18073,7 +18140,7 @@ class DefaultApi:
     ) -> None:
         """Resends webhooks
 
-        Resends events to all webhooks registered with a matching environment in your account. 
+        Resends events to all webhooks registered with a matching environment in your account.
 
         :param webhook_resend: (required)
         :type webhook_resend: WebhookResend
@@ -18141,7 +18208,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Resends webhooks
 
-        Resends events to all webhooks registered with a matching environment in your account. 
+        Resends events to all webhooks registered with a matching environment in your account.
 
         :param webhook_resend: (required)
         :type webhook_resend: WebhookResend
@@ -18209,7 +18276,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Resends webhooks
 
-        Resends events to all webhooks registered with a matching environment in your account. 
+        Resends events to all webhooks registered with a matching environment in your account.
 
         :param webhook_resend: (required)
         :type webhook_resend: WebhookResend
@@ -18310,6 +18377,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -18350,7 +18418,7 @@ class DefaultApi:
     ) -> None:
         """Restore Applicant
 
-        Restores a single applicant scheduled for deletion. 
+        Restores a single applicant scheduled for deletion.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -18417,7 +18485,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Restore Applicant
 
-        Restores a single applicant scheduled for deletion. 
+        Restores a single applicant scheduled for deletion.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -18484,7 +18552,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Restore Applicant
 
-        Restores a single applicant scheduled for deletion. 
+        Restores a single applicant scheduled for deletion.
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -18571,6 +18639,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -18611,7 +18680,7 @@ class DefaultApi:
     ) -> None:
         """Resume a Check
 
-        Resumes a paused check. 
+        Resumes a paused check.
 
         :param check_id: (required)
         :type check_id: str
@@ -18678,7 +18747,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Resume a Check
 
-        Resumes a paused check. 
+        Resumes a paused check.
 
         :param check_id: (required)
         :type check_id: str
@@ -18745,7 +18814,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Resume a Check
 
-        Resumes a paused check. 
+        Resumes a paused check.
 
         :param check_id: (required)
         :type check_id: str
@@ -18832,6 +18901,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -18872,7 +18942,7 @@ class DefaultApi:
     ) -> None:
         """Resume report
 
-        Resumes a single paused report. 
+        Resumes a single paused report.
 
         :param report_id: (required)
         :type report_id: str
@@ -18939,7 +19009,7 @@ class DefaultApi:
     ) -> ApiResponse[None]:
         """Resume report
 
-        Resumes a single paused report. 
+        Resumes a single paused report.
 
         :param report_id: (required)
         :type report_id: str
@@ -19006,7 +19076,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Resume report
 
-        Resumes a single paused report. 
+        Resumes a single paused report.
 
         :param report_id: (required)
         :type report_id: str
@@ -19093,6 +19163,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -19134,7 +19205,7 @@ class DefaultApi:
     ) -> Applicant:
         """Update Applicant
 
-        Allows updating applicant's information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant 
+        Allows updating applicant's information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -19205,7 +19276,7 @@ class DefaultApi:
     ) -> ApiResponse[Applicant]:
         """Update Applicant
 
-        Allows updating applicant's information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant 
+        Allows updating applicant's information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -19276,7 +19347,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update Applicant
 
-        Allows updating applicant's information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant 
+        Allows updating applicant's information before any checks is created. - Partial updates - Addresses and ID numbers present will replace existing ones - Same applicant validations to create applicant
 
         :param applicant_id: (required)
         :type applicant_id: str
@@ -19382,6 +19453,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -19424,7 +19496,7 @@ class DefaultApi:
     ) -> Passkey:
         """Update passkey
 
-        Updates a passkey's state. 
+        Updates a passkey's state.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -19501,7 +19573,7 @@ class DefaultApi:
     ) -> ApiResponse[Passkey]:
         """Update passkey
 
-        Updates a passkey's state. 
+        Updates a passkey's state.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -19578,7 +19650,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Update passkey
 
-        Updates a passkey's state. 
+        Updates a passkey's state.
 
         :param username: Username that owns the passkey. (required)
         :type username: str
@@ -19692,6 +19764,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -19733,7 +19806,7 @@ class DefaultApi:
     ) -> WatchlistMonitorMatchesList:
         """Set match status (BETA)
 
-        Update the status of the given matches 
+        Update the status of the given matches
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -19804,7 +19877,7 @@ class DefaultApi:
     ) -> ApiResponse[WatchlistMonitorMatchesList]:
         """Set match status (BETA)
 
-        Update the status of the given matches 
+        Update the status of the given matches
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -19875,7 +19948,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Set match status (BETA)
 
-        Update the status of the given matches 
+        Update the status of the given matches
 
         :param monitor_id: (required)
         :type monitor_id: str
@@ -19981,6 +20054,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -20022,7 +20096,7 @@ class DefaultApi:
     ) -> Webhook:
         """Edit a webhook
 
-        Edits a webhook. Returns the updated webhook object. 
+        Edits a webhook. Returns the updated webhook object.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -20093,7 +20167,7 @@ class DefaultApi:
     ) -> ApiResponse[Webhook]:
         """Edit a webhook
 
-        Edits a webhook. Returns the updated webhook object. 
+        Edits a webhook. Returns the updated webhook object.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -20164,7 +20238,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Edit a webhook
 
-        Edits a webhook. Returns the updated webhook object. 
+        Edits a webhook. Returns the updated webhook object.
 
         :param webhook_id: (required)
         :type webhook_id: str
@@ -20270,6 +20344,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -20317,7 +20392,7 @@ class DefaultApi:
     ) -> Document:
         """Upload a document
 
-        Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
+        Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB.
 
         :param type: The type of document (required)
         :type type: DocumentTypes
@@ -20412,7 +20487,7 @@ class DefaultApi:
     ) -> ApiResponse[Document]:
         """Upload a document
 
-        Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
+        Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB.
 
         :param type: The type of document (required)
         :type type: DocumentTypes
@@ -20507,7 +20582,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Upload a document
 
-        Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB. 
+        Documents are uploaded using this endpoint. Along with the file upload the relevant document type must be specified. Documents must be uploaded as a multipart form. The valid file types are: jpg, png and pdf. The file size must be between 2KB and 3MB.
 
         :param type: The type of document (required)
         :type type: DocumentTypes
@@ -20649,6 +20724,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -20690,7 +20766,7 @@ class DefaultApi:
     ) -> IdPhoto:
         """Upload ID photo
 
-        You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. 
+        You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB.
 
         :param applicant_id: The ID of the applicant whose ID photo is being uploaded.
         :type applicant_id: str
@@ -20761,7 +20837,7 @@ class DefaultApi:
     ) -> ApiResponse[IdPhoto]:
         """Upload ID photo
 
-        You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. 
+        You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB.
 
         :param applicant_id: The ID of the applicant whose ID photo is being uploaded.
         :type applicant_id: str
@@ -20832,7 +20908,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Upload ID photo
 
-        You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. 
+        You can upload ID photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB.
 
         :param applicant_id: The ID of the applicant whose ID photo is being uploaded.
         :type applicant_id: str
@@ -20938,6 +21014,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -20980,7 +21057,7 @@ class DefaultApi:
     ) -> LivePhoto:
         """Upload live photo
 
-        You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false. 
+        You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false.
 
         :param applicant_id: The ID of the applicant whose live photo is being uploaded.
         :type applicant_id: str
@@ -21055,7 +21132,7 @@ class DefaultApi:
     ) -> ApiResponse[LivePhoto]:
         """Upload live photo
 
-        You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false. 
+        You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false.
 
         :param applicant_id: The ID of the applicant whose live photo is being uploaded.
         :type applicant_id: str
@@ -21130,7 +21207,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Upload live photo
 
-        You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false. 
+        You can upload live photos to this endpoint. Like document upload, files must be uploaded as a multipart form. Valid file types are jpg, png and pdf. The file size must be between 32KB and 10MB. Live photos are validated at the point of upload to check that they contain exactly one face. This validation can be disabled by setting the advanced_validation argument to false.
 
         :param applicant_id: The ID of the applicant whose live photo is being uploaded.
         :type applicant_id: str
@@ -21242,6 +21319,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 
@@ -21283,7 +21361,7 @@ class DefaultApi:
     ) -> SigningDocument:
         """Upload a signing document
 
-        Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB. 
+        Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB.
 
         :param applicant_id: The ID of the applicant whose signing document is being uploaded. (required)
         :type applicant_id: str
@@ -21354,7 +21432,7 @@ class DefaultApi:
     ) -> ApiResponse[SigningDocument]:
         """Upload a signing document
 
-        Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB. 
+        Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB.
 
         :param applicant_id: The ID of the applicant whose signing document is being uploaded. (required)
         :type applicant_id: str
@@ -21425,7 +21503,7 @@ class DefaultApi:
     ) -> RESTResponseType:
         """Upload a signing document
 
-        Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB. 
+        Signing documents are uploaded using this endpoint. Signing documents must be uploaded as a multipart form. The only valid file type is pdf. The file size must be between 2KB and 3MB.
 
         :param applicant_id: The ID of the applicant whose signing document is being uploaded. (required)
         :type applicant_id: str
@@ -21531,6 +21609,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials',
             'Token'
         ]
 

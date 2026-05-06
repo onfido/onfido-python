@@ -122,6 +122,7 @@ AuthSettings = TypedDict(
     "AuthSettings",
     {
         "Token": APIKeyAuthSetting,
+        "OAuth2ClientCredentials": OAuth2AuthSetting,
     },
     total=False,
 )
@@ -191,6 +192,8 @@ conf = onfido.Configuration(
         api_token: Optional[str]=None,
         region: Optional[Region]=Region.EU,
         timeout: Optional[urllib3.util.Timeout]=None,
+        oauth_client_id: Optional[str]=None,
+        oauth_client_secret: Optional[str]=None,
         server_index: Optional[int]=None,
         server_operation_index: Optional[Dict[int, int]]=None,
         server_operation_variables: Optional[Dict[int, ServerVariablesT]]=None,
@@ -203,6 +206,11 @@ conf = onfido.Configuration(
     ) -> None:
         """Constructor
         """
+        if api_token and oauth_client_id:
+            raise ValueError("api_token and oauth_client_id are mutually exclusive")
+        if oauth_client_id and not oauth_client_secret:
+            raise ValueError("oauth_client_secret is required when oauth_client_id is provided")
+
         self._base_path = "https://api.eu.onfido.com/v3.6" if host is None else host
         """Default Base url
         """
@@ -228,6 +236,11 @@ conf = onfido.Configuration(
         self.username = None
         self.password = None
         self.access_token = None
+
+        self.oauth_client_id = oauth_client_id
+        self.oauth_client_secret = oauth_client_secret
+        self._oauth_access_token: Optional[str] = None
+        self._oauth_token_expires_at: float = 0
 
         self.logger = {}
         """Logging Settings
@@ -485,11 +498,54 @@ conf = onfido.Configuration(
             basic_auth=username + ':' + password
         ).get('authorization')
 
+    def _get_oauth_access_token(self) -> str:
+        """Fetches or returns a cached OAuth2 access token.
+
+        :return: The OAuth2 access token.
+        """
+        import time
+        if self._oauth_access_token and time.time() < self._oauth_token_expires_at:
+            return self._oauth_access_token
+
+        import json
+        from urllib.request import Request, urlopen
+        from urllib.parse import urlencode
+
+        token_url = self.host + '/oauth/token'
+        data = urlencode({
+            'grant_type': 'client_credentials',
+            'client_id': self.oauth_client_id,
+            'client_secret': self.oauth_client_secret,
+        }).encode('utf-8')
+
+        req = Request(token_url, data=data, method='POST')
+        req.add_header('Content-Type', 'application/x-www-form-urlencoded')
+
+        with urlopen(req) as response:
+            if response.status != 200:
+                raise RuntimeError(f"OAuth token exchange failed with status {response.status}")
+            body = json.loads(response.read().decode('utf-8'))
+
+        self._oauth_access_token = body['access_token']
+        expires_in = int(body['expires_in'])
+        self._oauth_token_expires_at = time.time() + (expires_in - 30)
+
+        return self._oauth_access_token
+
     def auth_settings(self)-> AuthSettings:
         """Gets Auth Settings dict for api client.
 
         :return: The Auth Settings information dict.
         """
+        if self.oauth_client_id:
+            return {
+                'Token': {
+                    'type': 'api_key',
+                    'in': 'header',
+                    'key': 'Authorization',
+                    'value': f"Bearer {self._get_oauth_access_token()}",
+                },
+            }
         auth: AuthSettings = {}
         if 'Token' in self.api_key:
             auth['Token'] = {
@@ -499,6 +555,13 @@ conf = onfido.Configuration(
                 'value': self.get_api_key_with_prefix(
                     'Token',
                 ),
+            }
+        if self.access_token is not None:
+            auth['OAuth2ClientCredentials'] = {
+                'type': 'oauth2',
+                'in': 'header',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
             }
         return auth
 

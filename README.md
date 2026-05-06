@@ -68,6 +68,23 @@ with onfido.ApiClient(configuration) as api_client:
   ...
 ```
 
+You can also authenticate using OAuth2 client credentials instead of an API token:
+
+```python
+configuration = onfido.Configuration(
+    oauth_client_id=environ['ONFIDO_OAUTH_CLIENT_ID'],
+    oauth_client_secret=environ['ONFIDO_OAUTH_CLIENT_SECRET'],
+    region=onfido.configuration.Region.EU,     # Supports `EU`, `US` and `CA`
+    timeout=urllib3.util.Timeout(connect=60.0, read=60.0)
+  )
+
+with onfido.ApiClient(configuration) as api_client:
+  onfido_api = onfido.DefaultApi(api_client)
+  ...
+```
+
+The client will automatically exchange credentials for an access token and refresh it when it expires.
+
 NB: by default, timeout values are set to 30 seconds. You can change the default timeout values by setting the `timeout` parameter in the `Configuration` object, as shown in the example above.
 
 ### Making a call to the API

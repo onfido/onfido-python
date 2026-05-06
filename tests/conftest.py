@@ -6,10 +6,25 @@ from time import sleep
 
 @pytest.fixture(scope="session")
 def onfido_api():
-    configuration = onfido.Configuration(
-        api_token=environ["ONFIDO_API_TOKEN"],
-        region=onfido.configuration.Region.EU,
-    )
+    oauth_client_id = environ.get("ONFIDO_OAUTH_CLIENT_ID")
+    base_path = environ.get("ONFIDO_BASE_PATH")
+
+    if oauth_client_id:
+        configuration = onfido.Configuration(
+            oauth_client_id=oauth_client_id,
+            oauth_client_secret=environ["ONFIDO_OAUTH_CLIENT_SECRET"],
+            region=onfido.configuration.Region.EU,
+        )
+    else:
+        configuration = onfido.Configuration(
+            api_token=environ["ONFIDO_API_TOKEN"],
+            region=onfido.configuration.Region.EU,
+        )
+
+    if base_path:
+        configuration._base_path = base_path
+        configuration.server_index = None
+
     configuration.debug = True
 
     with onfido.ApiClient(configuration) as api_client:
