@@ -22,6 +22,10 @@ from typing import Any, ClassVar, Dict, List, Literal, Optional, TypedDict, Unio
 from typing_extensions import NotRequired, Self
 
 import urllib3
+import time
+import json
+import threading
+from onfido.rest import RESTClientObject
 
 from enum import Enum
 
@@ -190,10 +194,10 @@ conf = onfido.Configuration(
         self,
         host: Optional[str]=None,
         api_token: Optional[str]=None,
-        region: Optional[Region]=Region.EU,
-        timeout: Optional[urllib3.util.Timeout]=None,
         oauth_client_id: Optional[str]=None,
         oauth_client_secret: Optional[str]=None,
+        region: Optional[Region]=Region.EU,
+        timeout: Optional[urllib3.util.Timeout]=None,
         server_index: Optional[int]=None,
         server_operation_index: Optional[Dict[int, int]]=None,
         server_operation_variables: Optional[Dict[int, ServerVariablesT]]=None,
@@ -206,10 +210,10 @@ conf = onfido.Configuration(
     ) -> None:
         """Constructor
         """
-        if api_token and oauth_client_id:
-            raise ValueError("api_token and oauth_client_id are mutually exclusive")
-        if oauth_client_id and not oauth_client_secret:
-            raise ValueError("oauth_client_secret is required when oauth_client_id is provided")
+        if api_token and (oauth_client_id or oauth_client_secret):
+            raise ValueError("api_token and oauth_client_id|oauth_client_secret are mutually exclusive")
+        if bool(oauth_client_id) != bool(oauth_client_secret):
+            raise ValueError("Both oauth_client_id and oauth_client_secret must be provided together")
 
         self._base_path = "https://api.eu.onfido.com/v3.6" if host is None else host
         """Default Base url
@@ -241,6 +245,7 @@ conf = onfido.Configuration(
         self.oauth_client_secret = oauth_client_secret
         self._oauth_access_token: Optional[str] = None
         self._oauth_token_expires_at: float = 0
+        self._oauth_lock = threading.Lock()
 
         self.logger = {}
         """Logging Settings
@@ -503,34 +508,34 @@ conf = onfido.Configuration(
 
         :return: The OAuth2 access token.
         """
-        import time
         if self._oauth_access_token and time.time() < self._oauth_token_expires_at:
             return self._oauth_access_token
 
-        import json
-        from urllib.request import Request, urlopen
-        from urllib.parse import urlencode
+        with self._oauth_lock:
+            # Double-checked locking: another thread may have refreshed while we waited
+            if self._oauth_access_token and time.time() < self._oauth_token_expires_at:
+                return self._oauth_access_token
 
-        token_url = self.host + '/oauth/token'
-        data = urlencode({
-            'grant_type': 'client_credentials',
-            'client_id': self.oauth_client_id,
-            'client_secret': self.oauth_client_secret,
-        }).encode('utf-8')
-
-        req = Request(token_url, data=data, method='POST')
-        req.add_header('Content-Type', 'application/x-www-form-urlencoded')
-
-        with urlopen(req) as response:
+            token_url = self.host + '/oauth/token'
+            rest_client = RESTClientObject(self)
+            response = rest_client.request(
+                'POST',
+                token_url,
+                post_params=[
+                    ('client_id', self.oauth_client_id),
+                    ('client_secret', self.oauth_client_secret),
+                ],
+                headers={'Content-Type': 'application/x-www-form-urlencoded'},
+            )
             if response.status != 200:
                 raise RuntimeError(f"OAuth token exchange failed with status {response.status}")
-            body = json.loads(response.read().decode('utf-8'))
+            body = json.loads(response.read())
 
-        self._oauth_access_token = body['access_token']
-        expires_in = int(body['expires_in'])
-        self._oauth_token_expires_at = time.time() + (expires_in - 30)
+            self._oauth_access_token = body['access_token']
+            expires_in = int(body['expires_in'])
+            self._oauth_token_expires_at = time.time() + (expires_in - 30)
 
-        return self._oauth_access_token
+            return self._oauth_access_token
 
     def auth_settings(self)-> AuthSettings:
         """Gets Auth Settings dict for api client.
