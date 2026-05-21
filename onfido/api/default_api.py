@@ -329,6 +329,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -633,6 +634,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -907,6 +909,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -1181,6 +1184,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -1442,6 +1446,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -1716,6 +1721,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -1990,6 +1996,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -2264,6 +2271,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -2525,6 +2533,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -2804,6 +2813,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -3068,6 +3078,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -3329,6 +3340,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -3590,6 +3602,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -3874,6 +3887,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -4136,6 +4150,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -4398,6 +4413,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -4660,6 +4676,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -4925,6 +4942,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -5187,6 +5205,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -5449,6 +5468,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -5711,6 +5731,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -5973,6 +5994,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -6235,6 +6257,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -6497,6 +6520,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -6759,6 +6783,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -7043,6 +7068,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -7327,6 +7353,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -7592,6 +7619,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -7854,6 +7882,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -8128,6 +8157,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -8391,6 +8421,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -8652,6 +8683,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -8913,6 +8945,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -9174,6 +9207,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -9435,6 +9469,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -9696,6 +9731,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -9957,6 +9993,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -10218,6 +10255,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -10479,6 +10517,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -10758,6 +10797,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -11019,6 +11059,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -11280,6 +11321,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -11556,6 +11598,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -11836,6 +11879,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -12097,6 +12141,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -12358,6 +12403,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -12619,6 +12665,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -12880,6 +12927,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -13154,6 +13202,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -13451,6 +13500,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -13714,6 +13764,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -13977,6 +14028,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -14240,6 +14292,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -14503,6 +14556,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -14766,6 +14820,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -15029,6 +15084,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -15293,6 +15349,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -15554,6 +15611,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -15817,6 +15875,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -16080,6 +16139,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -16341,6 +16401,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -16602,6 +16663,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -16882,6 +16944,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -17128,6 +17191,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -17512,6 +17576,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -17759,6 +17824,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -18033,6 +18099,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -18310,6 +18377,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -18571,6 +18639,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -18832,6 +18901,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -19093,6 +19163,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -19382,6 +19453,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -19692,6 +19764,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -19981,6 +20054,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -20270,6 +20344,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -20649,6 +20724,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -20938,6 +21014,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -21242,6 +21319,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 
@@ -21531,6 +21609,7 @@ class DefaultApi:
 
         # authentication setting
         _auth_settings: List[str] = [
+            'OAuth2ClientCredentials', 
             'Token'
         ]
 

@@ -22,6 +22,10 @@ from typing import Any, ClassVar, Dict, List, Literal, Optional, TypedDict, Unio
 from typing_extensions import NotRequired, Self
 
 import urllib3
+import time
+import json
+import threading  
+from onfido.rest import RESTClientObject  
 
 from enum import Enum
 
@@ -122,6 +126,7 @@ AuthSettings = TypedDict(
     "AuthSettings",
     {
         "Token": APIKeyAuthSetting,
+        "OAuth2ClientCredentials": OAuth2AuthSetting,
     },
     total=False,
 )
@@ -189,6 +194,8 @@ conf = onfido.Configuration(
         self,
         host: Optional[str]=None,
         api_token: Optional[str]=None,
+        oauth_client_id: Optional[str]=None,
+        oauth_client_secret: Optional[str]=None,
         region: Optional[Region]=Region.EU,
         timeout: Optional[urllib3.util.Timeout]=None,
         server_index: Optional[int]=None,
@@ -203,6 +210,11 @@ conf = onfido.Configuration(
     ) -> None:
         """Constructor
         """
+        if api_token and (oauth_client_id or oauth_client_secret):
+            raise ValueError("api_token and oauth_client_id|oauth_client_secret are mutually exclusive")
+        if bool(oauth_client_id) != bool(oauth_client_secret):
+            raise ValueError("Both oauth_client_id and oauth_client_secret must be provided together")
+
         self._base_path = "https://api.eu.onfido.com/v3.6" if host is None else host
         """Default Base url
         """
@@ -228,6 +240,12 @@ conf = onfido.Configuration(
         self.username = None
         self.password = None
         self.access_token = None
+
+        self.oauth_client_id = oauth_client_id
+        self.oauth_client_secret = oauth_client_secret
+        self._oauth_access_token: Optional[str] = None
+        self._oauth_token_expires_at: float = 0
+        self._oauth_lock = threading.Lock()
 
         self.logger = {}
         """Logging Settings
@@ -485,11 +503,54 @@ conf = onfido.Configuration(
             basic_auth=username + ':' + password
         ).get('authorization')
 
+    def _get_oauth_access_token(self) -> str:
+        """Fetches or returns a cached OAuth2 access token.
+
+        :return: The OAuth2 access token.
+        """
+        if self._oauth_access_token and time.time() < self._oauth_token_expires_at:
+            return self._oauth_access_token
+
+        with self._oauth_lock:
+            # Double-checked locking: another thread may have refreshed while we waited
+            if self._oauth_access_token and time.time() < self._oauth_token_expires_at:
+                return self._oauth_access_token
+
+            token_url = self.host + '/oauth/token'
+            rest_client = RESTClientObject(self)
+            response = rest_client.request(
+                'POST',
+                token_url,
+                post_params=[
+                    ('client_id', self.oauth_client_id),
+                    ('client_secret', self.oauth_client_secret),
+                ],
+                headers={'Content-Type': 'application/x-www-form-urlencoded'},
+            )
+            if response.status != 200:
+                raise RuntimeError(f"OAuth token exchange failed with status {response.status}")
+            body = json.loads(response.read())
+
+            self._oauth_access_token = body['access_token']
+            expires_in = int(body['expires_in'])
+            self._oauth_token_expires_at = time.time() + (expires_in - 30)
+
+            return self._oauth_access_token
+
     def auth_settings(self)-> AuthSettings:
         """Gets Auth Settings dict for api client.
 
         :return: The Auth Settings information dict.
         """
+        if self.oauth_client_id:
+            return {
+                'Token': {
+                    'type': 'api_key',
+                    'in': 'header',
+                    'key': 'Authorization',
+                    'value': f"Bearer {self._get_oauth_access_token()}",
+                },
+            }
         auth: AuthSettings = {}
         if 'Token' in self.api_key:
             auth['Token'] = {
@@ -499,6 +560,13 @@ conf = onfido.Configuration(
                 'value': self.get_api_key_with_prefix(
                     'Token',
                 ),
+            }
+        if self.access_token is not None:
+            auth['OAuth2ClientCredentials'] = {
+                'type': 'oauth2',
+                'in': 'header',
+                'key': 'Authorization',
+                'value': 'Bearer ' + self.access_token
             }
         return auth
 
@@ -511,7 +579,7 @@ conf = onfido.Configuration(
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: v3.6\n"\
-               "SDK Package Version: 6.1.0".\
+               "SDK Package Version: 6.2.0".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self) -> List[HostSetting]:
