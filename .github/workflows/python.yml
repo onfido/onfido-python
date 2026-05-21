@@ -57,7 +57,7 @@ jobs:
           poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude onfido
-      - name: Test with pytest
+      - name: Test with API token auth
         if: ${{ matrix.python-version == '3.13' &&
           github.repository_owner == 'onfido' &&
           (github.event_name == 'pull_request' ||
@@ -67,6 +67,22 @@ jobs:
           poetry run pytest --show-capture=no
         env:
           ONFIDO_API_TOKEN: ${{ secrets.ONFIDO_API_TOKEN }}
+          ONFIDO_SAMPLE_APPLICANT_ID: ${{ secrets.ONFIDO_SAMPLE_APPLICANT_ID }}
+          ONFIDO_SAMPLE_VIDEO_ID_1: ${{ secrets.ONFIDO_SAMPLE_VIDEO_ID_1 }}
+          ONFIDO_SAMPLE_VIDEO_ID_2: ${{ secrets.ONFIDO_SAMPLE_VIDEO_ID_2 }}
+          ONFIDO_SAMPLE_MOTION_ID_1: ${{ secrets.ONFIDO_SAMPLE_MOTION_ID_1 }}
+          ONFIDO_SAMPLE_MOTION_ID_2: ${{ secrets.ONFIDO_SAMPLE_MOTION_ID_2 }}
+      - name: Test with OAuth client credentials auth
+        if: ${{ matrix.python-version == '3.13' &&
+          github.repository_owner == 'onfido' &&
+          (github.event_name == 'pull_request' ||
+           github.event_name == 'release' ||
+           github.event_name == 'workflow_dispatch') }}
+        run: |
+          poetry run pytest --show-capture=no
+        env:
+          ONFIDO_OAUTH_CLIENT_ID: ${{ secrets.ONFIDO_OAUTH_CLIENT_ID }}
+          ONFIDO_OAUTH_CLIENT_SECRET: ${{ secrets.ONFIDO_OAUTH_CLIENT_SECRET }}
           ONFIDO_SAMPLE_APPLICANT_ID: ${{ secrets.ONFIDO_SAMPLE_APPLICANT_ID }}
           ONFIDO_SAMPLE_VIDEO_ID_1: ${{ secrets.ONFIDO_SAMPLE_VIDEO_ID_1 }}
           ONFIDO_SAMPLE_VIDEO_ID_2: ${{ secrets.ONFIDO_SAMPLE_VIDEO_ID_2 }}
