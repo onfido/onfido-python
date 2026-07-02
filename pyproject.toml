@@ -1,6 +1,6 @@
 [project]
 name = "onfido-python"
-version = "6.2.0"
+version = "6.3.0"
 description = "Python library for the Onfido API"
 authors = [
   {name = "OpenAPI Generator Community",email = "team@openapitools.org"},

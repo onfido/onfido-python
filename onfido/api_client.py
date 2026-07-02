@@ -91,7 +91,7 @@ class ApiClient:
             self.default_headers[header_name] = header_value
         self.cookie = cookie
         # Set default User-Agent.
-        self.user_agent = 'onfido-python/6.2.0'
+        self.user_agent = 'onfido-python/6.3.0'
         self.client_side_validation = configuration.client_side_validation
 
     def __enter__(self):

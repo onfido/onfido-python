@@ -26,9 +26,10 @@ class WebhookUpdate(BaseModel):
     """
     WebhookUpdate
     """ # noqa: E501
+    name: Optional[StrictStr] = Field(default=None, description="Name of the webhook.")
     url: Optional[StrictStr] = Field(default=None, description="The url that will listen to notifications (must be https).")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["url"]
+    __properties: ClassVar[List[str]] = ["name", "url"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +89,7 @@ class WebhookUpdate(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "name": obj.get("name"),
             "url": obj.get("url")
         })
         # store additional fields in additional_properties
