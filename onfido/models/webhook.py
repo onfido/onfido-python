@@ -38,11 +38,12 @@ class Webhook(BaseModel):
     oauth_server_client_secret: Optional[StrictStr] = Field(default=None, description="The client secret to authenticate the client credentials grant.")
     oauth_server_scope: Optional[StrictStr] = Field(default=None, description="The scopes to be sent when requesting the access token.")
     id: UUID = Field(description="The unique identifier of the webhook.")
+    name: Optional[StrictStr] = Field(default=None, description="Name of the webhook.")
     url: Optional[StrictStr] = Field(default=None, description="The url that will listen to notifications (must be https).")
     token: Optional[StrictStr] = Field(default=None, description="Webhook secret token used to sign the webhook's payload.")
     href: Optional[StrictStr] = Field(default=None, description="The API endpoint to retrieve the webhook.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["enabled", "events", "environments", "payload_version", "oauth_enabled", "oauth_server_url", "oauth_server_client_id", "oauth_server_client_secret", "oauth_server_scope", "id", "url", "token", "href"]
+    __properties: ClassVar[List[str]] = ["enabled", "events", "environments", "payload_version", "oauth_enabled", "oauth_server_url", "oauth_server_client_id", "oauth_server_client_secret", "oauth_server_scope", "id", "name", "url", "token", "href"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -112,6 +113,7 @@ class Webhook(BaseModel):
             "oauth_server_client_secret": obj.get("oauth_server_client_secret"),
             "oauth_server_scope": obj.get("oauth_server_scope"),
             "id": obj.get("id"),
+            "name": obj.get("name"),
             "url": obj.get("url"),
             "token": obj.get("token"),
             "href": obj.get("href")

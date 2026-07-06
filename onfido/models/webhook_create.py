@@ -18,7 +18,7 @@ import re  # noqa: F401
 import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -26,9 +26,10 @@ class WebhookCreate(BaseModel):
     """
     WebhookCreate
     """ # noqa: E501
+    name: Optional[StrictStr] = Field(default=None, description="Name of the webhook.")
     url: StrictStr = Field(description="The url that will listen to notifications (must be https).")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["url"]
+    __properties: ClassVar[List[str]] = ["name", "url"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -88,6 +89,7 @@ class WebhookCreate(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
+            "name": obj.get("name"),
             "url": obj.get("url")
         })
         # store additional fields in additional_properties

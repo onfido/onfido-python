@@ -29,6 +29,10 @@ from onfido.models.applicant_shared import ApplicantShared
 from onfido.models.applicant_update import ApplicantUpdate
 from onfido.models.applicant_updater import ApplicantUpdater
 from onfido.models.applicants_list import ApplicantsList
+from onfido.models.biometric_token import BiometricToken
+from onfido.models.biometric_token_data import BiometricTokenData
+from onfido.models.biometric_token_updater import BiometricTokenUpdater
+from onfido.models.biometric_tokens_list import BiometricTokensList
 from onfido.models.check import Check
 from onfido.models.check_builder import CheckBuilder
 from onfido.models.check_request import CheckRequest
@@ -197,6 +201,9 @@ from onfido.models.india_pan_report_all_of_breakdown_device_breakdown import Ind
 from onfido.models.india_pan_report_all_of_breakdown_device_breakdown_pan_valid import IndiaPanReportAllOfBreakdownDeviceBreakdownPanValid
 from onfido.models.india_pan_report_all_of_properties import IndiaPanReportAllOfProperties
 from onfido.models.india_pan_report_all_of_properties_device import IndiaPanReportAllOfPropertiesDevice
+from onfido.models.invalidated_biometric_token_summary import InvalidatedBiometricTokenSummary
+from onfido.models.invalidated_biometric_token_summary_deleted_items import InvalidatedBiometricTokenSummaryDeletedItems
+from onfido.models.invalidated_biometric_tokens_summary import InvalidatedBiometricTokensSummary
 from onfido.models.known_faces_breakdown import KnownFacesBreakdown
 from onfido.models.known_faces_breakdown_image_integrity import KnownFacesBreakdownImageIntegrity
 from onfido.models.known_faces_breakdown_previously_seen_faces import KnownFacesBreakdownPreviouslySeenFaces
@@ -251,6 +258,7 @@ from onfido.models.signing_documents_list import SigningDocumentsList
 from onfido.models.task import Task
 from onfido.models.task_item import TaskItem
 from onfido.models.timeline_file_reference import TimelineFileReference
+from onfido.models.update_biometric_token200_response import UpdateBiometricToken200Response
 from onfido.models.us_driving_licence_breakdown import UsDrivingLicenceBreakdown
 from onfido.models.us_driving_licence_breakdown_address import UsDrivingLicenceBreakdownAddress
 from onfido.models.us_driving_licence_breakdown_address_breakdown import UsDrivingLicenceBreakdownAddressBreakdown

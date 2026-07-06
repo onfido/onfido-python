@@ -14,7 +14,7 @@
 """  # noqa: E501
 
 
-__version__ = "6.2.0"
+__version__ = "6.3.0"
 
 # Define package exports
 __all__ = [
@@ -44,6 +44,10 @@ __all__ = [
     "ApplicantUpdate",
     "ApplicantUpdater",
     "ApplicantsList",
+    "BiometricToken",
+    "BiometricTokenData",
+    "BiometricTokenUpdater",
+    "BiometricTokensList",
     "Check",
     "CheckBuilder",
     "CheckRequest",
@@ -212,6 +216,9 @@ __all__ = [
     "IndiaPanReportAllOfBreakdownDeviceBreakdownPanValid",
     "IndiaPanReportAllOfProperties",
     "IndiaPanReportAllOfPropertiesDevice",
+    "InvalidatedBiometricTokenSummary",
+    "InvalidatedBiometricTokenSummaryDeletedItems",
+    "InvalidatedBiometricTokensSummary",
     "KnownFacesBreakdown",
     "KnownFacesBreakdownImageIntegrity",
     "KnownFacesBreakdownPreviouslySeenFaces",
@@ -266,6 +273,7 @@ __all__ = [
     "Task",
     "TaskItem",
     "TimelineFileReference",
+    "UpdateBiometricToken200Response",
     "UsDrivingLicenceBreakdown",
     "UsDrivingLicenceBreakdownAddress",
     "UsDrivingLicenceBreakdownAddressBreakdown",
@@ -369,6 +377,10 @@ from onfido.models.applicant_shared import ApplicantShared as ApplicantShared
 from onfido.models.applicant_update import ApplicantUpdate as ApplicantUpdate
 from onfido.models.applicant_updater import ApplicantUpdater as ApplicantUpdater
 from onfido.models.applicants_list import ApplicantsList as ApplicantsList
+from onfido.models.biometric_token import BiometricToken as BiometricToken
+from onfido.models.biometric_token_data import BiometricTokenData as BiometricTokenData
+from onfido.models.biometric_token_updater import BiometricTokenUpdater as BiometricTokenUpdater
+from onfido.models.biometric_tokens_list import BiometricTokensList as BiometricTokensList
 from onfido.models.check import Check as Check
 from onfido.models.check_builder import CheckBuilder as CheckBuilder
 from onfido.models.check_request import CheckRequest as CheckRequest
@@ -537,6 +549,9 @@ from onfido.models.india_pan_report_all_of_breakdown_device_breakdown import Ind
 from onfido.models.india_pan_report_all_of_breakdown_device_breakdown_pan_valid import IndiaPanReportAllOfBreakdownDeviceBreakdownPanValid as IndiaPanReportAllOfBreakdownDeviceBreakdownPanValid
 from onfido.models.india_pan_report_all_of_properties import IndiaPanReportAllOfProperties as IndiaPanReportAllOfProperties
 from onfido.models.india_pan_report_all_of_properties_device import IndiaPanReportAllOfPropertiesDevice as IndiaPanReportAllOfPropertiesDevice
+from onfido.models.invalidated_biometric_token_summary import InvalidatedBiometricTokenSummary as InvalidatedBiometricTokenSummary
+from onfido.models.invalidated_biometric_token_summary_deleted_items import InvalidatedBiometricTokenSummaryDeletedItems as InvalidatedBiometricTokenSummaryDeletedItems
+from onfido.models.invalidated_biometric_tokens_summary import InvalidatedBiometricTokensSummary as InvalidatedBiometricTokensSummary
 from onfido.models.known_faces_breakdown import KnownFacesBreakdown as KnownFacesBreakdown
 from onfido.models.known_faces_breakdown_image_integrity import KnownFacesBreakdownImageIntegrity as KnownFacesBreakdownImageIntegrity
 from onfido.models.known_faces_breakdown_previously_seen_faces import KnownFacesBreakdownPreviouslySeenFaces as KnownFacesBreakdownPreviouslySeenFaces
@@ -591,6 +606,7 @@ from onfido.models.signing_documents_list import SigningDocumentsList as Signing
 from onfido.models.task import Task as Task
 from onfido.models.task_item import TaskItem as TaskItem
 from onfido.models.timeline_file_reference import TimelineFileReference as TimelineFileReference
+from onfido.models.update_biometric_token200_response import UpdateBiometricToken200Response as UpdateBiometricToken200Response
 from onfido.models.us_driving_licence_breakdown import UsDrivingLicenceBreakdown as UsDrivingLicenceBreakdown
 from onfido.models.us_driving_licence_breakdown_address import UsDrivingLicenceBreakdownAddress as UsDrivingLicenceBreakdownAddress
 from onfido.models.us_driving_licence_breakdown_address_breakdown import UsDrivingLicenceBreakdownAddressBreakdown as UsDrivingLicenceBreakdownAddressBreakdown
