@@ -102,4 +102,3 @@ class BiometricToken(BaseModel):
 
 # TODO: Rewrite to not use raise_errors
 BiometricToken.model_rebuild(raise_errors=False)
-
