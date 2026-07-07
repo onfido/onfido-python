@@ -17,12 +17,13 @@ from tests.conftest import create_applicant, upload_live_photo
 
 @pytest.fixture(scope="function")
 def applicant_id(onfido_api):
+    unique_suffix = uuid4().hex[:8]
     applicant = create_applicant(
         onfido_api,
         ApplicantBuilder(
-            first_name="First",
-            last_name="Last",
-            email="first.last@gmail.com",
+            first_name=f"First{unique_suffix}",
+            last_name=f"Last{unique_suffix}",
+            email=f"first.last.{unique_suffix}@example.com",
             consents=[
                 ApplicantConsentBuilder(
                     name=ApplicantConsentName.PRIVACY_NOTICES_READ,
@@ -89,13 +90,8 @@ def create_biometric_token(
 
 
 @pytest.fixture(scope="function")
-def biometric_token(create_biometric_token):
-    return create_biometric_token.biometric_tokens[0]
-
-
-@pytest.fixture(scope="function")
-def biometric_token_id(biometric_token):
-    token_uuid = biometric_token.uuid
+def biometric_token_id(create_biometric_token):
+    token_uuid = create_biometric_token.biometric_tokens[0].uuid
     if token_uuid is None:
         pytest.fail("Biometric token response did not include a uuid")
 
@@ -119,14 +115,15 @@ def test_find_biometric_token(onfido_api, biometric_customer_user_id, biometric_
 
 
 def test_update_biometric_token_status(onfido_api, biometric_customer_user_id, biometric_token_id):
+    approved_status = "approved"
     updated_biometric_token = onfido_api.update_biometric_token(
         biometric_customer_user_id,
         biometric_token_id,
-        BiometricTokenUpdater(status="approved"),
+        BiometricTokenUpdater(status=approved_status),
     )
 
     assert updated_biometric_token.biometric_token.uuid == biometric_token_id
-    assert updated_biometric_token.biometric_token.data.status == "approved"
+    assert updated_biometric_token.biometric_token.data.status == approved_status
 
 
 def test_invalidate_biometric_token_success(onfido_api, biometric_customer_user_id, biometric_token_id):
