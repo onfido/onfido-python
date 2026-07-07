@@ -27,9 +27,9 @@ from onfido.models.applicant_builder import ApplicantBuilder
 from onfido.models.applicant_consent import ApplicantConsent
 from onfido.models.applicant_updater import ApplicantUpdater
 from onfido.models.applicants_list import ApplicantsList
-from onfido.models.biometric_token import BiometricToken
+from onfido.models.biometric_token_response import BiometricTokenResponse
 from onfido.models.biometric_token_updater import BiometricTokenUpdater
-from onfido.models.biometric_tokens_list import BiometricTokensList
+from onfido.models.biometric_tokens_response import BiometricTokensResponse
 from onfido.models.check import Check
 from onfido.models.check_builder import CheckBuilder
 from onfido.models.checks_list import ChecksList
@@ -40,8 +40,8 @@ from onfido.models.extract_request import ExtractRequest
 from onfido.models.extraction import Extraction
 from onfido.models.id_photo import IdPhoto
 from onfido.models.id_photos_list import IdPhotosList
-from onfido.models.invalidated_biometric_token_summary import InvalidatedBiometricTokenSummary
-from onfido.models.invalidated_biometric_tokens_summary import InvalidatedBiometricTokensSummary
+from onfido.models.invalidated_biometric_token_response import InvalidatedBiometricTokenResponse
+from onfido.models.invalidated_biometric_tokens_response import InvalidatedBiometricTokensResponse
 from onfido.models.live_photo import LivePhoto
 from onfido.models.live_photos_list import LivePhotosList
 from onfido.models.live_video import LiveVideo
@@ -63,7 +63,7 @@ from onfido.models.signing_documents_list import SigningDocumentsList
 from onfido.models.task import Task
 from onfido.models.task_item import TaskItem
 from onfido.models.timeline_file_reference import TimelineFileReference
-from onfido.models.update_biometric_token200_response import UpdateBiometricToken200Response
+from onfido.models.updated_biometric_token_response import UpdatedBiometricTokenResponse
 from onfido.models.watchlist_monitor import WatchlistMonitor
 from onfido.models.watchlist_monitor_builder import WatchlistMonitorBuilder
 from onfido.models.watchlist_monitor_matches_list import WatchlistMonitorMatchesList
@@ -8990,7 +8990,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> BiometricToken:
+    ) -> BiometricTokenResponse:
         """Retrieve biometric token
 
         Returns a biometric token's details. 
@@ -9031,7 +9031,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BiometricToken",
+            '200': "BiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -9061,7 +9061,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[BiometricToken]:
+    ) -> ApiResponse[BiometricTokenResponse]:
         """Retrieve biometric token
 
         Returns a biometric token's details. 
@@ -9102,7 +9102,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BiometricToken",
+            '200': "BiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -9173,7 +9173,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BiometricToken",
+            '200': "BiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -13524,7 +13524,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> InvalidatedBiometricTokenSummary:
+    ) -> InvalidatedBiometricTokenResponse:
         """Invalidate biometric token
 
         Invalidates a biometric token. 
@@ -13565,7 +13565,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InvalidatedBiometricTokenSummary",
+            '200': "InvalidatedBiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -13595,7 +13595,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[InvalidatedBiometricTokenSummary]:
+    ) -> ApiResponse[InvalidatedBiometricTokenResponse]:
         """Invalidate biometric token
 
         Invalidates a biometric token. 
@@ -13636,7 +13636,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InvalidatedBiometricTokenSummary",
+            '200': "InvalidatedBiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -13707,7 +13707,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InvalidatedBiometricTokenSummary",
+            '200': "InvalidatedBiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -13800,7 +13800,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> InvalidatedBiometricTokensSummary:
+    ) -> InvalidatedBiometricTokensResponse:
         """Invalidate biometric tokens
 
         Invalidates every biometric token associated with the supplied customer user ID. 
@@ -13838,7 +13838,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InvalidatedBiometricTokensSummary",
+            '200': "InvalidatedBiometricTokensResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -13867,7 +13867,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[InvalidatedBiometricTokensSummary]:
+    ) -> ApiResponse[InvalidatedBiometricTokensResponse]:
         """Invalidate biometric tokens
 
         Invalidates every biometric token associated with the supplied customer user ID. 
@@ -13905,7 +13905,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InvalidatedBiometricTokensSummary",
+            '200': "InvalidatedBiometricTokensResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -13972,7 +13972,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "InvalidatedBiometricTokensSummary",
+            '200': "InvalidatedBiometricTokensResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -14360,7 +14360,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> BiometricTokensList:
+    ) -> BiometricTokensResponse:
         """List biometric tokens
 
         Returns the biometric tokens associated with the supplied customer user ID. 
@@ -14398,7 +14398,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BiometricTokensList",
+            '200': "BiometricTokensResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -14427,7 +14427,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[BiometricTokensList]:
+    ) -> ApiResponse[BiometricTokensResponse]:
         """List biometric tokens
 
         Returns the biometric tokens associated with the supplied customer user ID. 
@@ -14465,7 +14465,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BiometricTokensList",
+            '200': "BiometricTokensResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -14532,7 +14532,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "BiometricTokensList",
+            '200': "BiometricTokensResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -20577,7 +20577,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> UpdateBiometricToken200Response:
+    ) -> UpdatedBiometricTokenResponse:
         """Update biometric token
 
         Updates a biometric token's status. 
@@ -20621,7 +20621,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateBiometricToken200Response",
+            '200': "UpdatedBiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -20652,7 +20652,7 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[UpdateBiometricToken200Response]:
+    ) -> ApiResponse[UpdatedBiometricTokenResponse]:
         """Update biometric token
 
         Updates a biometric token's status. 
@@ -20696,7 +20696,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateBiometricToken200Response",
+            '200': "UpdatedBiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -20771,7 +20771,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "UpdateBiometricToken200Response",
+            '200': "UpdatedBiometricTokenResponse",
         }
         response_data = self.api_client.call_api(
             *_param,

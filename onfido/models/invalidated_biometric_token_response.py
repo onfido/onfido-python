@@ -17,21 +17,19 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from uuid import UUID
-from onfido.models.biometric_token_data import BiometricTokenData
+from onfido.models.invalidated_biometric_token_summary import InvalidatedBiometricTokenSummary
 from typing import Optional, Set
 from typing_extensions import Self
 
-class BiometricToken(BaseModel):
+class InvalidatedBiometricTokenResponse(BaseModel):
     """
-    Biometric token.
+    InvalidatedBiometricTokenResponse
     """ # noqa: E501
-    uuid: UUID = Field(description="The biometric token's unique identifier.")
-    data: BiometricTokenData
+    biometric_token: InvalidatedBiometricTokenSummary
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["uuid", "data"]
+    __properties: ClassVar[List[str]] = ["biometric_token"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +49,7 @@ class BiometricToken(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of BiometricToken from a JSON string"""
+        """Create an instance of InvalidatedBiometricTokenResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,9 +72,9 @@ class BiometricToken(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of data
-        if self.data:
-            _dict['data'] = self.data.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of biometric_token
+        if self.biometric_token:
+            _dict['biometric_token'] = self.biometric_token.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -86,7 +84,7 @@ class BiometricToken(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of BiometricToken from a dict"""
+        """Create an instance of InvalidatedBiometricTokenResponse from a dict"""
         if obj is None:
             return None
 
@@ -94,8 +92,7 @@ class BiometricToken(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "uuid": obj.get("uuid"),
-            "data": BiometricTokenData.from_dict(obj["data"]) if obj.get("data") is not None else None
+            "biometric_token": InvalidatedBiometricTokenSummary.from_dict(obj["biometric_token"]) if obj.get("biometric_token") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -103,3 +100,5 @@ class BiometricToken(BaseModel):
                 _obj.additional_properties[_key] = obj.get(_key)
 
         return _obj
+
+

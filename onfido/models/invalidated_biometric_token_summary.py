@@ -19,16 +19,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
+from onfido.models.invalidated_biometric_token_summary_deleted_items import InvalidatedBiometricTokenSummaryDeletedItems
 from typing import Optional, Set
 from typing_extensions import Self
 
 class InvalidatedBiometricTokenSummary(BaseModel):
     """
-    InvalidatedBiometricTokenSummary
+    Invalidated biometric tokens response payload.
     """ # noqa: E501
-    biometric_token: InvalidatedBiometricTokenSummary
+    deleted_items: InvalidatedBiometricTokenSummaryDeletedItems
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["biometric_token"]
+    __properties: ClassVar[List[str]] = ["deleted_items"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,9 +72,9 @@ class InvalidatedBiometricTokenSummary(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of biometric_token
-        if self.biometric_token:
-            _dict['biometric_token'] = self.biometric_token.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of deleted_items
+        if self.deleted_items:
+            _dict['deleted_items'] = self.deleted_items.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -91,7 +92,7 @@ class InvalidatedBiometricTokenSummary(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "biometric_token": InvalidatedBiometricTokenSummary.from_dict(obj["biometric_token"]) if obj.get("biometric_token") is not None else None
+            "deleted_items": InvalidatedBiometricTokenSummaryDeletedItems.from_dict(obj["deleted_items"]) if obj.get("deleted_items") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -100,6 +101,4 @@ class InvalidatedBiometricTokenSummary(BaseModel):
 
         return _obj
 
-# TODO: Rewrite to not use raise_errors
-InvalidatedBiometricTokenSummary.model_rebuild(raise_errors=False)
 
