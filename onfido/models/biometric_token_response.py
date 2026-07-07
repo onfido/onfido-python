@@ -23,9 +23,9 @@ from onfido.models.biometric_token import BiometricToken
 from typing import Optional, Set
 from typing_extensions import Self
 
-class UpdateBiometricToken200Response(BaseModel):
+class BiometricTokenResponse(BaseModel):
     """
-    UpdateBiometricToken200Response
+    BiometricTokenResponse
     """ # noqa: E501
     biometric_token: BiometricToken
     additional_properties: Dict[str, Any] = {}
@@ -49,7 +49,7 @@ class UpdateBiometricToken200Response(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of UpdateBiometricToken200Response from a JSON string"""
+        """Create an instance of BiometricTokenResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,7 +84,7 @@ class UpdateBiometricToken200Response(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of UpdateBiometricToken200Response from a dict"""
+        """Create an instance of BiometricTokenResponse from a dict"""
         if obj is None:
             return None
 
