@@ -54,13 +54,22 @@ jobs:
           poetry run flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics --exclude onfido
-      - name: Test with API token auth
+      - name: Should run integration tests
+        id: should-run-integration-tests
         if: ${{ matrix.python-version == '3.13' &&
           github.repository_owner == 'onfido' &&
           (github.event_name == 'pull_request' ||
            github.event_name == 'release' ||
            github.event_name == 'workflow_dispatch' ||
            github.event_name == 'schedule') }}
+        run: echo "result=true" >> "$GITHUB_OUTPUT"
+      - name: Acquire integration test lock
+        if: steps.should-run-integration-tests.outputs.result == 'true'
+        uses: onfido/onfido-actions/lock/acquire@main
+        with:
+          github-token: ${{ secrets.CI_LOCK_TOKEN }}
+      - name: Test with API token auth
+        if: steps.should-run-integration-tests.outputs.result == 'true'
         run: |
           poetry run pytest --show-capture=no
         env:
@@ -71,12 +80,7 @@ jobs:
           ONFIDO_SAMPLE_MOTION_ID_1: ${{ secrets.ONFIDO_SAMPLE_MOTION_ID_1 }}
           ONFIDO_SAMPLE_MOTION_ID_2: ${{ secrets.ONFIDO_SAMPLE_MOTION_ID_2 }}
       - name: Test with OAuth client credentials auth
-        if: ${{ matrix.python-version == '3.13' &&
-          github.repository_owner == 'onfido' &&
-          (github.event_name == 'pull_request' ||
-           github.event_name == 'release' ||
-           github.event_name == 'workflow_dispatch' ||
-           github.event_name == 'schedule') }}
+        if: steps.should-run-integration-tests.outputs.result == 'true'
         run: |
           poetry run pytest --show-capture=no
         env:
@@ -87,6 +91,11 @@ jobs:
           ONFIDO_SAMPLE_VIDEO_ID_2: ${{ secrets.ONFIDO_SAMPLE_VIDEO_ID_2 }}
           ONFIDO_SAMPLE_MOTION_ID_1: ${{ secrets.ONFIDO_SAMPLE_MOTION_ID_1 }}
           ONFIDO_SAMPLE_MOTION_ID_2: ${{ secrets.ONFIDO_SAMPLE_MOTION_ID_2 }}
+      - name: Release integration test lock
+        if: always() && steps.should-run-integration-tests.outputs.result == 'true'
+        uses: onfido/onfido-actions/lock/release@main
+        with:
+          github-token: ${{ secrets.CI_LOCK_TOKEN }}
 
   publish:
     runs-on: ubuntu-latest
