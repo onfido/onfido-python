@@ -17,18 +17,21 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Any, ClassVar, Dict, List
+from uuid import UUID
+from onfido.models.biometric_token_data import BiometricTokenData
 from typing import Optional, Set
 from typing_extensions import Self
 
 class BiometricToken(BaseModel):
     """
-    BiometricToken
+    Biometric token.
     """ # noqa: E501
-    biometric_token: BiometricToken
+    uuid: UUID = Field(description="The biometric token's unique identifier.")
+    data: BiometricTokenData
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["biometric_token"]
+    __properties: ClassVar[List[str]] = ["uuid", "data"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -71,9 +74,9 @@ class BiometricToken(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of biometric_token
-        if self.biometric_token:
-            _dict['biometric_token'] = self.biometric_token.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of data
+        if self.data:
+            _dict['data'] = self.data.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -91,7 +94,8 @@ class BiometricToken(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "biometric_token": BiometricToken.from_dict(obj["biometric_token"]) if obj.get("biometric_token") is not None else None
+            "uuid": obj.get("uuid"),
+            "data": BiometricTokenData.from_dict(obj["data"]) if obj.get("data") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
@@ -100,6 +104,4 @@ class BiometricToken(BaseModel):
 
         return _obj
 
-# TODO: Rewrite to not use raise_errors
-BiometricToken.model_rebuild(raise_errors=False)
 

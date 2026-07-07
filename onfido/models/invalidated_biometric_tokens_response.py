@@ -23,9 +23,9 @@ from onfido.models.invalidated_biometric_token_summary import InvalidatedBiometr
 from typing import Optional, Set
 from typing_extensions import Self
 
-class InvalidatedBiometricTokensSummary(BaseModel):
+class InvalidatedBiometricTokensResponse(BaseModel):
     """
-    InvalidatedBiometricTokensSummary
+    InvalidatedBiometricTokensResponse
     """ # noqa: E501
     biometric_tokens: InvalidatedBiometricTokenSummary
     additional_properties: Dict[str, Any] = {}
@@ -49,7 +49,7 @@ class InvalidatedBiometricTokensSummary(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InvalidatedBiometricTokensSummary from a JSON string"""
+        """Create an instance of InvalidatedBiometricTokensResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -84,7 +84,7 @@ class InvalidatedBiometricTokensSummary(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InvalidatedBiometricTokensSummary from a dict"""
+        """Create an instance of InvalidatedBiometricTokensResponse from a dict"""
         if obj is None:
             return None
 

@@ -19,17 +19,17 @@ import json
 
 from pydantic import BaseModel, ConfigDict
 from typing import Any, ClassVar, Dict, List
-from onfido.models.invalidated_biometric_token_summary_deleted_items import InvalidatedBiometricTokenSummaryDeletedItems
+from onfido.models.invalidated_biometric_token_summary import InvalidatedBiometricTokenSummary
 from typing import Optional, Set
 from typing_extensions import Self
 
-class InvalidatedBiometricTokenSummary(BaseModel):
+class InvalidatedBiometricTokenResponse(BaseModel):
     """
-    Invalidated biometric tokens response payload.
+    InvalidatedBiometricTokenResponse
     """ # noqa: E501
-    deleted_items: InvalidatedBiometricTokenSummaryDeletedItems
+    biometric_token: InvalidatedBiometricTokenSummary
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["deleted_items"]
+    __properties: ClassVar[List[str]] = ["biometric_token"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +49,7 @@ class InvalidatedBiometricTokenSummary(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of InvalidatedBiometricTokenSummary from a JSON string"""
+        """Create an instance of InvalidatedBiometricTokenResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -72,9 +72,9 @@ class InvalidatedBiometricTokenSummary(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of deleted_items
-        if self.deleted_items:
-            _dict['deleted_items'] = self.deleted_items.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of biometric_token
+        if self.biometric_token:
+            _dict['biometric_token'] = self.biometric_token.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -84,7 +84,7 @@ class InvalidatedBiometricTokenSummary(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of InvalidatedBiometricTokenSummary from a dict"""
+        """Create an instance of InvalidatedBiometricTokenResponse from a dict"""
         if obj is None:
             return None
 
@@ -92,7 +92,7 @@ class InvalidatedBiometricTokenSummary(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "deleted_items": InvalidatedBiometricTokenSummaryDeletedItems.from_dict(obj["deleted_items"]) if obj.get("deleted_items") is not None else None
+            "biometric_token": InvalidatedBiometricTokenSummary.from_dict(obj["biometric_token"]) if obj.get("biometric_token") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
