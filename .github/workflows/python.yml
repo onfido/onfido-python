@@ -57,12 +57,8 @@ jobs:
       - name: Should run integration tests
         id: should-run-integration-tests
         if: ${{ matrix.python-version == '3.13' &&
-          github.repository_owner == 'onfido' &&
-          (github.event_name == 'pull_request' ||
-           github.event_name == 'release' ||
-           github.event_name == 'workflow_dispatch' ||
-           github.event_name == 'schedule') }}
-        run: echo "result=true" >> "$GITHUB_OUTPUT"
+          github.repository_owner == 'onfido' }}
+        uses: onfido/onfido-actions/should-run-integration-tests@add-lock-action
       - name: Acquire integration test lock
         if: steps.should-run-integration-tests.outputs.result == 'true'
         uses: onfido/onfido-actions/lock/acquire@add-lock-action
