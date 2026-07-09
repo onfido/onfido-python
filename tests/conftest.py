@@ -179,6 +179,21 @@ def repeat_request_until_task_output_changes(
     return instance
 
 
+def repeat_request_until(function, params, predicate, error_message, max_retries=15, sleep_time=1):
+    instance = function(*params)
+
+    iteration = 0
+    while not predicate(instance):
+        if iteration > max_retries:
+            pytest.fail(error_message)
+
+        iteration += 1
+        sleep(sleep_time)
+        instance = function(*params)
+
+    return instance
+
+
 def repeat_request_until_http_code_changes(
     function, params, max_retries=15, sleep_time=1
 ):
