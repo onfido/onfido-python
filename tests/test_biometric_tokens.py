@@ -1,5 +1,4 @@
 import json
-from time import sleep
 from uuid import uuid4
 
 import pytest
@@ -12,7 +11,7 @@ from onfido import (
     BiometricTokenUpdater,
     WorkflowRunBuilder,
 )
-from tests.conftest import create_applicant, upload_live_photo
+from tests.conftest import create_applicant, repeat_request_until_http_code_changes, upload_live_photo
 
 
 @pytest.fixture(scope="function")
@@ -75,16 +74,15 @@ def create_biometric_token(
 
     assert workflow_run.customer_user_id == biometric_customer_user_id
 
-    max_retries = 3
+    biometric_tokens = repeat_request_until_http_code_changes(
+        onfido_api.list_biometric_tokens,
+        [biometric_customer_user_id],
+        max_retries=10,
+        sleep_time=3,
+    )
 
-    # Wait for the biometric token to be created
-    for _ in range(max_retries + 1):
-        biometric_tokens = onfido_api.list_biometric_tokens(
-            biometric_customer_user_id
-        )
-        if biometric_tokens.biometric_tokens:
-            return biometric_tokens
-        sleep(2)
+    if biometric_tokens.biometric_tokens:
+        return biometric_tokens
 
     pytest.fail("Biometric tokens were not created in time")
 
