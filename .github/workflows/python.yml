@@ -58,10 +58,10 @@ jobs:
         id: should-run-integration-tests
         if: ${{ matrix.python-version == '3.13' &&
           github.repository_owner == 'onfido' }}
-        uses: onfido/onfido-actions/should-run-integration-tests@add-lock-action
+        uses: onfido/onfido-actions/should-run-integration-tests@main
       - name: Acquire integration test lock
         if: steps.should-run-integration-tests.outputs.result == 'true'
-        uses: onfido/onfido-actions/lock/acquire@add-lock-action
+        uses: onfido/onfido-actions/lock/acquire@main
         with:
           app-id: ${{ secrets.ONFIDO_CI_LOCK_APP_ID }}
           app-private-key: ${{ secrets.ONFIDO_CI_LOCK_PRIVATE_KEY }}
@@ -90,7 +90,7 @@ jobs:
           ONFIDO_SAMPLE_MOTION_ID_2: ${{ secrets.ONFIDO_SAMPLE_MOTION_ID_2 }}
       - name: Release integration test lock
         if: always() && steps.should-run-integration-tests.outputs.result == 'true'
-        uses: onfido/onfido-actions/lock/release@add-lock-action
+        uses: onfido/onfido-actions/lock/release@main
         with:
           app-id: ${{ secrets.ONFIDO_CI_LOCK_APP_ID }}
           app-private-key: ${{ secrets.ONFIDO_CI_LOCK_PRIVATE_KEY }}
