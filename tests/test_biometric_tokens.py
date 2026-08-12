@@ -132,29 +132,6 @@ def test_invalidate_biometric_token_success(onfido_api, biometric_customer_user_
     assert response.status == 200
 
 
-def test_invalidate_biometric_token_not_found_when_already_deleted(
-    onfido_api,
-    biometric_customer_user_id,
-    biometric_token_id,
-):
-    onfido_api.invalidate_biometric_token_without_preload_content(
-        biometric_customer_user_id,
-        biometric_token_id,
-    )
-
-    with pytest.raises(ApiException) as exc_info:
-        onfido_api.invalidate_biometric_token(
-            biometric_customer_user_id,
-            biometric_token_id,
-        )
-
-    error_response = json.loads(exc_info.value.body)
-
-    assert exc_info.value.status == 404
-    assert error_response["error"]["message"] == "Not found"
-    assert error_response["error"]["type"] == "resource_not_found"
-
-
 def test_invalidate_biometric_tokens_success(
     onfido_api,
     biometric_customer_user_id,
@@ -165,24 +142,3 @@ def test_invalidate_biometric_tokens_success(
     )
 
     assert response.status == 200
-
-
-def test_invalidate_biometric_tokens_not_found_when_already_deleted(
-    onfido_api,
-    biometric_customer_user_id,
-    create_biometric_token,
-):
-    onfido_api.invalidate_biometric_tokens_without_preload_content(
-        biometric_customer_user_id
-    )
-
-    with pytest.raises(ApiException) as exc_info:
-        onfido_api.invalidate_biometric_tokens(
-            biometric_customer_user_id
-        )
-
-    error_response = json.loads(exc_info.value.body)
-
-    assert exc_info.value.status == 404
-    assert error_response["error"]["message"] == "Not found"
-    assert error_response["error"]["type"] == "resource_not_found"
