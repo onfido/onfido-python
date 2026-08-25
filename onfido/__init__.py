@@ -28,6 +28,7 @@ __all__ = [
     "ApiKeyError",
     "ApiAttributeError",
     "ApiException",
+    "AddedMentions",
     "Address",
     "AddressBuilder",
     "AddressShared",
@@ -44,6 +45,7 @@ __all__ = [
     "ApplicantUpdate",
     "ApplicantUpdater",
     "ApplicantsList",
+    "Associate",
     "BiometricToken",
     "BiometricTokenData",
     "BiometricTokenResponse",
@@ -59,6 +61,7 @@ __all__ = [
     "CompleteTaskBuilder",
     "CompleteTaskDataBuilder",
     "CountryCodes",
+    "DateValue",
     "DeviceIntelligenceBreakdown",
     "DeviceIntelligenceBreakdownDevice",
     "DeviceIntelligenceBreakdownDeviceBreakdown",
@@ -210,6 +213,7 @@ __all__ = [
     "IdrSsnBreakdownBreakdown",
     "IdrSsnBreakdownBreakdownFullMatch",
     "IdrSsnBreakdownBreakdownLast4DigitsMatch",
+    "Image",
     "IndiaPanReport",
     "IndiaPanReportAllOfBreakdown",
     "IndiaPanReportAllOfBreakdownDevice",
@@ -227,6 +231,7 @@ __all__ = [
     "KnownFacesProperties",
     "KnownFacesPropertiesMatchesInner",
     "KnownFacesReport",
+    "Lists",
     "LivePhoto",
     "LivePhotoResponse",
     "LivePhotosList",
@@ -235,13 +240,19 @@ __all__ = [
     "Location",
     "LocationBuilder",
     "LocationShared",
+    "Media",
+    "ModelField",
     "MotionCapture",
     "MotionCapturesList",
+    "Name",
     "Passkey",
     "PasskeyUpdater",
     "PasskeysList",
+    "Pep",
+    "Person",
     "PhotoAutoReasons",
     "PhotoReasons",
+    "Profile",
     "ProofOfAddressBreakdown",
     "ProofOfAddressBreakdownDataComparison",
     "ProofOfAddressBreakdownDataComparisonBreakdown",
@@ -264,6 +275,10 @@ __all__ = [
     "ReportSubResult",
     "ReportsList",
     "ResultsFeedback",
+    "RiskDecision",
+    "RiskDetail",
+    "RiskIndicators",
+    "Sanctions",
     "SdkToken",
     "SdkTokenBuilder",
     "SdkTokenRequest",
@@ -287,6 +302,8 @@ __all__ = [
     "UsDrivingLicenceReport",
     "UsDrivingLicenceShared",
     "VideoReasons",
+    "WatchlistAlertRisk",
+    "WatchlistAlertRisk1",
     "WatchlistAmlBreakdown",
     "WatchlistAmlBreakdownAdverseMedia",
     "WatchlistAmlBreakdownLegalAndRegulatoryWarnings",
@@ -363,6 +380,7 @@ from onfido.exceptions import ApiAttributeError as ApiAttributeError
 from onfido.exceptions import ApiException as ApiException
 
 # import models into sdk package
+from onfido.models.added_mentions import AddedMentions as AddedMentions
 from onfido.models.address import Address as Address
 from onfido.models.address_builder import AddressBuilder as AddressBuilder
 from onfido.models.address_shared import AddressShared as AddressShared
@@ -379,6 +397,7 @@ from onfido.models.applicant_shared import ApplicantShared as ApplicantShared
 from onfido.models.applicant_update import ApplicantUpdate as ApplicantUpdate
 from onfido.models.applicant_updater import ApplicantUpdater as ApplicantUpdater
 from onfido.models.applicants_list import ApplicantsList as ApplicantsList
+from onfido.models.associate import Associate as Associate
 from onfido.models.biometric_token import BiometricToken as BiometricToken
 from onfido.models.biometric_token_data import BiometricTokenData as BiometricTokenData
 from onfido.models.biometric_token_response import BiometricTokenResponse as BiometricTokenResponse
@@ -394,6 +413,7 @@ from onfido.models.checks_list import ChecksList as ChecksList
 from onfido.models.complete_task_builder import CompleteTaskBuilder as CompleteTaskBuilder
 from onfido.models.complete_task_data_builder import CompleteTaskDataBuilder as CompleteTaskDataBuilder
 from onfido.models.country_codes import CountryCodes as CountryCodes
+from onfido.models.date_value import DateValue as DateValue
 from onfido.models.device_intelligence_breakdown import DeviceIntelligenceBreakdown as DeviceIntelligenceBreakdown
 from onfido.models.device_intelligence_breakdown_device import DeviceIntelligenceBreakdownDevice as DeviceIntelligenceBreakdownDevice
 from onfido.models.device_intelligence_breakdown_device_breakdown import DeviceIntelligenceBreakdownDeviceBreakdown as DeviceIntelligenceBreakdownDeviceBreakdown
@@ -545,6 +565,7 @@ from onfido.models.idr_ssn_breakdown import IdrSsnBreakdown as IdrSsnBreakdown
 from onfido.models.idr_ssn_breakdown_breakdown import IdrSsnBreakdownBreakdown as IdrSsnBreakdownBreakdown
 from onfido.models.idr_ssn_breakdown_breakdown_full_match import IdrSsnBreakdownBreakdownFullMatch as IdrSsnBreakdownBreakdownFullMatch
 from onfido.models.idr_ssn_breakdown_breakdown_last4_digits_match import IdrSsnBreakdownBreakdownLast4DigitsMatch as IdrSsnBreakdownBreakdownLast4DigitsMatch
+from onfido.models.image import Image as Image
 from onfido.models.india_pan_report import IndiaPanReport as IndiaPanReport
 from onfido.models.india_pan_report_all_of_breakdown import IndiaPanReportAllOfBreakdown as IndiaPanReportAllOfBreakdown
 from onfido.models.india_pan_report_all_of_breakdown_device import IndiaPanReportAllOfBreakdownDevice as IndiaPanReportAllOfBreakdownDevice
@@ -562,6 +583,7 @@ from onfido.models.known_faces_breakdown_previously_seen_faces import KnownFaces
 from onfido.models.known_faces_properties import KnownFacesProperties as KnownFacesProperties
 from onfido.models.known_faces_properties_matches_inner import KnownFacesPropertiesMatchesInner as KnownFacesPropertiesMatchesInner
 from onfido.models.known_faces_report import KnownFacesReport as KnownFacesReport
+from onfido.models.lists import Lists as Lists
 from onfido.models.live_photo import LivePhoto as LivePhoto
 from onfido.models.live_photo_response import LivePhotoResponse as LivePhotoResponse
 from onfido.models.live_photos_list import LivePhotosList as LivePhotosList
@@ -570,13 +592,19 @@ from onfido.models.live_videos_list import LiveVideosList as LiveVideosList
 from onfido.models.location import Location as Location
 from onfido.models.location_builder import LocationBuilder as LocationBuilder
 from onfido.models.location_shared import LocationShared as LocationShared
+from onfido.models.media import Media as Media
+from onfido.models.model_field import ModelField as ModelField
 from onfido.models.motion_capture import MotionCapture as MotionCapture
 from onfido.models.motion_captures_list import MotionCapturesList as MotionCapturesList
+from onfido.models.name import Name as Name
 from onfido.models.passkey import Passkey as Passkey
 from onfido.models.passkey_updater import PasskeyUpdater as PasskeyUpdater
 from onfido.models.passkeys_list import PasskeysList as PasskeysList
+from onfido.models.pep import Pep as Pep
+from onfido.models.person import Person as Person
 from onfido.models.photo_auto_reasons import PhotoAutoReasons as PhotoAutoReasons
 from onfido.models.photo_reasons import PhotoReasons as PhotoReasons
+from onfido.models.profile import Profile as Profile
 from onfido.models.proof_of_address_breakdown import ProofOfAddressBreakdown as ProofOfAddressBreakdown
 from onfido.models.proof_of_address_breakdown_data_comparison import ProofOfAddressBreakdownDataComparison as ProofOfAddressBreakdownDataComparison
 from onfido.models.proof_of_address_breakdown_data_comparison_breakdown import ProofOfAddressBreakdownDataComparisonBreakdown as ProofOfAddressBreakdownDataComparisonBreakdown
@@ -599,6 +627,10 @@ from onfido.models.report_status import ReportStatus as ReportStatus
 from onfido.models.report_sub_result import ReportSubResult as ReportSubResult
 from onfido.models.reports_list import ReportsList as ReportsList
 from onfido.models.results_feedback import ResultsFeedback as ResultsFeedback
+from onfido.models.risk_decision import RiskDecision as RiskDecision
+from onfido.models.risk_detail import RiskDetail as RiskDetail
+from onfido.models.risk_indicators import RiskIndicators as RiskIndicators
+from onfido.models.sanctions import Sanctions as Sanctions
 from onfido.models.sdk_token import SdkToken as SdkToken
 from onfido.models.sdk_token_builder import SdkTokenBuilder as SdkTokenBuilder
 from onfido.models.sdk_token_request import SdkTokenRequest as SdkTokenRequest
@@ -622,6 +654,8 @@ from onfido.models.us_driving_licence_builder import UsDrivingLicenceBuilder as 
 from onfido.models.us_driving_licence_report import UsDrivingLicenceReport as UsDrivingLicenceReport
 from onfido.models.us_driving_licence_shared import UsDrivingLicenceShared as UsDrivingLicenceShared
 from onfido.models.video_reasons import VideoReasons as VideoReasons
+from onfido.models.watchlist_alert_risk import WatchlistAlertRisk as WatchlistAlertRisk
+from onfido.models.watchlist_alert_risk1 import WatchlistAlertRisk1 as WatchlistAlertRisk1
 from onfido.models.watchlist_aml_breakdown import WatchlistAmlBreakdown as WatchlistAmlBreakdown
 from onfido.models.watchlist_aml_breakdown_adverse_media import WatchlistAmlBreakdownAdverseMedia as WatchlistAmlBreakdownAdverseMedia
 from onfido.models.watchlist_aml_breakdown_legal_and_regulatory_warnings import WatchlistAmlBreakdownLegalAndRegulatoryWarnings as WatchlistAmlBreakdownLegalAndRegulatoryWarnings
