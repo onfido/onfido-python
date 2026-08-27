@@ -64,7 +64,7 @@ from onfido.models.task import Task
 from onfido.models.task_item import TaskItem
 from onfido.models.timeline_file_reference import TimelineFileReference
 from onfido.models.updated_biometric_token_response import UpdatedBiometricTokenResponse
-from onfido.models.watchlist_alert_risk import WatchlistAlertRisk
+from onfido.models.watchlist_mesh_alert_risk import WatchlistMeshAlertRisk
 from onfido.models.watchlist_monitor import WatchlistMonitor
 from onfido.models.watchlist_monitor_builder import WatchlistMonitorBuilder
 from onfido.models.watchlist_monitor_matches_list import WatchlistMonitorMatchesList
@@ -17509,7 +17509,7 @@ class DefaultApi:
 
 
     @validate_call
-    def list_watchlist_alert_risks(
+    def list_watchlist_mesh_alert_risks(
         self,
         alert_id: Annotated[UUID, Field(description="The unique identifier of the alert whose risks you want to retrieve.")],
         page: Annotated[Optional[StrictInt], Field(description="The page of results to retrieve.")] = None,
@@ -17526,10 +17526,10 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> List[WatchlistAlertRisk]:
-        """Retrieve watchlist alert risks
+    ) -> List[WatchlistMeshAlertRisk]:
+        """Retrieve watchlist mesh alert risks
 
-        Retrieves the detailed risks associated with a watchlist alert. 
+        Retrieves the detailed risks associated with a watchlist mesh alert. 
 
         :param alert_id: The unique identifier of the alert whose risks you want to retrieve. (required)
         :type alert_id: str
@@ -17559,7 +17559,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_watchlist_alert_risks_serialize(
+        _param = self._list_watchlist_mesh_alert_risks_serialize(
             alert_id=alert_id,
             page=page,
             per_page=per_page,
@@ -17570,7 +17570,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistAlertRisk]",
+            '200': "List[WatchlistMeshAlertRisk]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -17584,7 +17584,7 @@ class DefaultApi:
 
 
     @validate_call
-    def list_watchlist_alert_risks_with_http_info(
+    def list_watchlist_mesh_alert_risks_with_http_info(
         self,
         alert_id: Annotated[UUID, Field(description="The unique identifier of the alert whose risks you want to retrieve.")],
         page: Annotated[Optional[StrictInt], Field(description="The page of results to retrieve.")] = None,
@@ -17601,10 +17601,10 @@ class DefaultApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[List[WatchlistAlertRisk]]:
-        """Retrieve watchlist alert risks
+    ) -> ApiResponse[List[WatchlistMeshAlertRisk]]:
+        """Retrieve watchlist mesh alert risks
 
-        Retrieves the detailed risks associated with a watchlist alert. 
+        Retrieves the detailed risks associated with a watchlist mesh alert. 
 
         :param alert_id: The unique identifier of the alert whose risks you want to retrieve. (required)
         :type alert_id: str
@@ -17634,7 +17634,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_watchlist_alert_risks_serialize(
+        _param = self._list_watchlist_mesh_alert_risks_serialize(
             alert_id=alert_id,
             page=page,
             per_page=per_page,
@@ -17645,7 +17645,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistAlertRisk]",
+            '200': "List[WatchlistMeshAlertRisk]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -17659,7 +17659,7 @@ class DefaultApi:
 
 
     @validate_call
-    def list_watchlist_alert_risks_without_preload_content(
+    def list_watchlist_mesh_alert_risks_without_preload_content(
         self,
         alert_id: Annotated[UUID, Field(description="The unique identifier of the alert whose risks you want to retrieve.")],
         page: Annotated[Optional[StrictInt], Field(description="The page of results to retrieve.")] = None,
@@ -17677,9 +17677,9 @@ class DefaultApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Retrieve watchlist alert risks
+        """Retrieve watchlist mesh alert risks
 
-        Retrieves the detailed risks associated with a watchlist alert. 
+        Retrieves the detailed risks associated with a watchlist mesh alert. 
 
         :param alert_id: The unique identifier of the alert whose risks you want to retrieve. (required)
         :type alert_id: str
@@ -17709,7 +17709,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._list_watchlist_alert_risks_serialize(
+        _param = self._list_watchlist_mesh_alert_risks_serialize(
             alert_id=alert_id,
             page=page,
             per_page=per_page,
@@ -17720,7 +17720,7 @@ class DefaultApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "List[WatchlistAlertRisk]",
+            '200': "List[WatchlistMeshAlertRisk]",
         }
         response_data = self.api_client.call_api(
             *_param,
@@ -17729,7 +17729,7 @@ class DefaultApi:
         return response_data.response
 
 
-    def _list_watchlist_alert_risks_serialize(
+    def _list_watchlist_mesh_alert_risks_serialize(
         self,
         alert_id,
         page,

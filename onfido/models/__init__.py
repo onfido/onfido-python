@@ -13,7 +13,6 @@
 """  # noqa: E501
 
 # import models into model package
-from onfido.models.added_mentions import AddedMentions
 from onfido.models.address import Address
 from onfido.models.address_builder import AddressBuilder
 from onfido.models.address_shared import AddressShared
@@ -30,7 +29,6 @@ from onfido.models.applicant_shared import ApplicantShared
 from onfido.models.applicant_update import ApplicantUpdate
 from onfido.models.applicant_updater import ApplicantUpdater
 from onfido.models.applicants_list import ApplicantsList
-from onfido.models.associate import Associate
 from onfido.models.biometric_token import BiometricToken
 from onfido.models.biometric_token_data import BiometricTokenData
 from onfido.models.biometric_token_response import BiometricTokenResponse
@@ -46,7 +44,6 @@ from onfido.models.checks_list import ChecksList
 from onfido.models.complete_task_builder import CompleteTaskBuilder
 from onfido.models.complete_task_data_builder import CompleteTaskDataBuilder
 from onfido.models.country_codes import CountryCodes
-from onfido.models.date_value import DateValue
 from onfido.models.device_intelligence_breakdown import DeviceIntelligenceBreakdown
 from onfido.models.device_intelligence_breakdown_device import DeviceIntelligenceBreakdownDevice
 from onfido.models.device_intelligence_breakdown_device_breakdown import DeviceIntelligenceBreakdownDeviceBreakdown
@@ -198,7 +195,6 @@ from onfido.models.idr_ssn_breakdown import IdrSsnBreakdown
 from onfido.models.idr_ssn_breakdown_breakdown import IdrSsnBreakdownBreakdown
 from onfido.models.idr_ssn_breakdown_breakdown_full_match import IdrSsnBreakdownBreakdownFullMatch
 from onfido.models.idr_ssn_breakdown_breakdown_last4_digits_match import IdrSsnBreakdownBreakdownLast4DigitsMatch
-from onfido.models.image import Image
 from onfido.models.india_pan_report import IndiaPanReport
 from onfido.models.india_pan_report_all_of_breakdown import IndiaPanReportAllOfBreakdown
 from onfido.models.india_pan_report_all_of_breakdown_device import IndiaPanReportAllOfBreakdownDevice
@@ -216,7 +212,6 @@ from onfido.models.known_faces_breakdown_previously_seen_faces import KnownFaces
 from onfido.models.known_faces_properties import KnownFacesProperties
 from onfido.models.known_faces_properties_matches_inner import KnownFacesPropertiesMatchesInner
 from onfido.models.known_faces_report import KnownFacesReport
-from onfido.models.lists import Lists
 from onfido.models.live_photo import LivePhoto
 from onfido.models.live_photo_response import LivePhotoResponse
 from onfido.models.live_photos_list import LivePhotosList
@@ -225,19 +220,13 @@ from onfido.models.live_videos_list import LiveVideosList
 from onfido.models.location import Location
 from onfido.models.location_builder import LocationBuilder
 from onfido.models.location_shared import LocationShared
-from onfido.models.media import Media
-from onfido.models.model_field import ModelField
 from onfido.models.motion_capture import MotionCapture
 from onfido.models.motion_captures_list import MotionCapturesList
-from onfido.models.name import Name
 from onfido.models.passkey import Passkey
 from onfido.models.passkey_updater import PasskeyUpdater
 from onfido.models.passkeys_list import PasskeysList
-from onfido.models.pep import Pep
-from onfido.models.person import Person
 from onfido.models.photo_auto_reasons import PhotoAutoReasons
 from onfido.models.photo_reasons import PhotoReasons
-from onfido.models.profile import Profile
 from onfido.models.proof_of_address_breakdown import ProofOfAddressBreakdown
 from onfido.models.proof_of_address_breakdown_data_comparison import ProofOfAddressBreakdownDataComparison
 from onfido.models.proof_of_address_breakdown_data_comparison_breakdown import ProofOfAddressBreakdownDataComparisonBreakdown
@@ -260,10 +249,6 @@ from onfido.models.report_status import ReportStatus
 from onfido.models.report_sub_result import ReportSubResult
 from onfido.models.reports_list import ReportsList
 from onfido.models.results_feedback import ResultsFeedback
-from onfido.models.risk_decision import RiskDecision
-from onfido.models.risk_detail import RiskDetail
-from onfido.models.risk_indicators import RiskIndicators
-from onfido.models.sanctions import Sanctions
 from onfido.models.sdk_token import SdkToken
 from onfido.models.sdk_token_builder import SdkTokenBuilder
 from onfido.models.sdk_token_request import SdkTokenRequest
@@ -287,8 +272,6 @@ from onfido.models.us_driving_licence_builder import UsDrivingLicenceBuilder
 from onfido.models.us_driving_licence_report import UsDrivingLicenceReport
 from onfido.models.us_driving_licence_shared import UsDrivingLicenceShared
 from onfido.models.video_reasons import VideoReasons
-from onfido.models.watchlist_alert_risk import WatchlistAlertRisk
-from onfido.models.watchlist_alert_risk1 import WatchlistAlertRisk1
 from onfido.models.watchlist_aml_breakdown import WatchlistAmlBreakdown
 from onfido.models.watchlist_aml_breakdown_adverse_media import WatchlistAmlBreakdownAdverseMedia
 from onfido.models.watchlist_aml_breakdown_legal_and_regulatory_warnings import WatchlistAmlBreakdownLegalAndRegulatoryWarnings
@@ -307,6 +290,23 @@ from onfido.models.watchlist_enhanced_properties_records_inner_event_inner impor
 from onfido.models.watchlist_enhanced_properties_records_inner_event_inner_source import WatchlistEnhancedPropertiesRecordsInnerEventInnerSource
 from onfido.models.watchlist_enhanced_properties_records_inner_source_inner import WatchlistEnhancedPropertiesRecordsInnerSourceInner
 from onfido.models.watchlist_enhanced_report import WatchlistEnhancedReport
+from onfido.models.watchlist_mesh_added_mentions import WatchlistMeshAddedMentions
+from onfido.models.watchlist_mesh_alert_risk import WatchlistMeshAlertRisk
+from onfido.models.watchlist_mesh_alert_risk1 import WatchlistMeshAlertRisk1
+from onfido.models.watchlist_mesh_associate import WatchlistMeshAssociate
+from onfido.models.watchlist_mesh_date_value import WatchlistMeshDateValue
+from onfido.models.watchlist_mesh_field import WatchlistMeshField
+from onfido.models.watchlist_mesh_image import WatchlistMeshImage
+from onfido.models.watchlist_mesh_lists import WatchlistMeshLists
+from onfido.models.watchlist_mesh_media import WatchlistMeshMedia
+from onfido.models.watchlist_mesh_name import WatchlistMeshName
+from onfido.models.watchlist_mesh_pep import WatchlistMeshPep
+from onfido.models.watchlist_mesh_person import WatchlistMeshPerson
+from onfido.models.watchlist_mesh_profile import WatchlistMeshProfile
+from onfido.models.watchlist_mesh_risk_decision import WatchlistMeshRiskDecision
+from onfido.models.watchlist_mesh_risk_detail import WatchlistMeshRiskDetail
+from onfido.models.watchlist_mesh_risk_indicators import WatchlistMeshRiskIndicators
+from onfido.models.watchlist_mesh_sanctions import WatchlistMeshSanctions
 from onfido.models.watchlist_monitor import WatchlistMonitor
 from onfido.models.watchlist_monitor_builder import WatchlistMonitorBuilder
 from onfido.models.watchlist_monitor_match import WatchlistMonitorMatch

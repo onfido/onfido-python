@@ -19,22 +19,22 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.lists import Lists
-from onfido.models.media import Media
-from onfido.models.pep import Pep
-from onfido.models.sanctions import Sanctions
+from onfido.models.watchlist_mesh_lists import WatchlistMeshLists
+from onfido.models.watchlist_mesh_media import WatchlistMeshMedia
+from onfido.models.watchlist_mesh_pep import WatchlistMeshPep
+from onfido.models.watchlist_mesh_sanctions import WatchlistMeshSanctions
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RiskIndicators(BaseModel):
+class WatchlistMeshRiskIndicators(BaseModel):
     """
-    RiskIndicators
+    WatchlistMeshRiskIndicators
     """ # noqa: E501
     aml_types: Optional[List[StrictStr]] = None
-    lists: Optional[List[Lists]] = None
-    media: Optional[List[Media]] = None
-    peps: Optional[List[Pep]] = None
-    sanctions: Optional[List[Sanctions]] = None
+    lists: Optional[List[WatchlistMeshLists]] = None
+    media: Optional[List[WatchlistMeshMedia]] = None
+    peps: Optional[List[WatchlistMeshPep]] = None
+    sanctions: Optional[List[WatchlistMeshSanctions]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["aml_types", "lists", "media", "peps", "sanctions"]
 
@@ -56,7 +56,7 @@ class RiskIndicators(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RiskIndicators from a JSON string"""
+        """Create an instance of WatchlistMeshRiskIndicators from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -141,7 +141,7 @@ class RiskIndicators(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RiskIndicators from a dict"""
+        """Create an instance of WatchlistMeshRiskIndicators from a dict"""
         if obj is None:
             return None
 
@@ -150,10 +150,10 @@ class RiskIndicators(BaseModel):
 
         _obj = cls.model_validate({
             "aml_types": obj.get("aml_types"),
-            "lists": [Lists.from_dict(_item) for _item in obj["lists"]] if obj.get("lists") is not None else None,
-            "media": [Media.from_dict(_item) for _item in obj["media"]] if obj.get("media") is not None else None,
-            "peps": [Pep.from_dict(_item) for _item in obj["peps"]] if obj.get("peps") is not None else None,
-            "sanctions": [Sanctions.from_dict(_item) for _item in obj["sanctions"]] if obj.get("sanctions") is not None else None
+            "lists": [WatchlistMeshLists.from_dict(_item) for _item in obj["lists"]] if obj.get("lists") is not None else None,
+            "media": [WatchlistMeshMedia.from_dict(_item) for _item in obj["media"]] if obj.get("media") is not None else None,
+            "peps": [WatchlistMeshPep.from_dict(_item) for _item in obj["peps"]] if obj.get("peps") is not None else None,
+            "sanctions": [WatchlistMeshSanctions.from_dict(_item) for _item in obj["sanctions"]] if obj.get("sanctions") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

@@ -22,14 +22,14 @@ from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class DateValue(BaseModel):
+class WatchlistMeshAssociate(BaseModel):
     """
-    DateValue
+    WatchlistMeshAssociate
     """ # noqa: E501
-    source: Optional[StrictStr] = None
-    value: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
+    type: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["source", "value"]
+    __properties: ClassVar[List[str]] = ["name", "type"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -49,7 +49,7 @@ class DateValue(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of DateValue from a JSON string"""
+        """Create an instance of WatchlistMeshAssociate from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,21 +77,21 @@ class DateValue(BaseModel):
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if source (nullable) is None
+        # set to None if name (nullable) is None
         # and model_fields_set contains the field
-        if self.source is None and "source" in self.model_fields_set:
-            _dict['source'] = None
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
 
-        # set to None if value (nullable) is None
+        # set to None if type (nullable) is None
         # and model_fields_set contains the field
-        if self.value is None and "value" in self.model_fields_set:
-            _dict['value'] = None
+        if self.type is None and "type" in self.model_fields_set:
+            _dict['type'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of DateValue from a dict"""
+        """Create an instance of WatchlistMeshAssociate from a dict"""
         if obj is None:
             return None
 
@@ -99,8 +99,8 @@ class DateValue(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "source": obj.get("source"),
-            "value": obj.get("value")
+            "name": obj.get("name"),
+            "type": obj.get("type")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

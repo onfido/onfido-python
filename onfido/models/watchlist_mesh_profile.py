@@ -17,22 +17,25 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional, Union
+from onfido.models.watchlist_mesh_person import WatchlistMeshPerson
+from onfido.models.watchlist_mesh_risk_indicators import WatchlistMeshRiskIndicators
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Media(BaseModel):
+class WatchlistMeshProfile(BaseModel):
     """
-    Media
+    WatchlistMeshProfile
     """ # noqa: E501
     identifier: Optional[StrictStr] = None
-    publishing_date: Optional[StrictStr] = None
-    snippet: Optional[StrictStr] = None
-    title: Optional[StrictStr] = None
-    url: Optional[StrictStr] = None
+    match_types: Optional[List[StrictStr]] = None
+    match_score: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The match score assigned to the profile.")
+    matching_name: Optional[StrictStr] = None
+    person: Optional[WatchlistMeshPerson] = None
+    risk_indicators: Optional[WatchlistMeshRiskIndicators] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["identifier", "publishing_date", "snippet", "title", "url"]
+    __properties: ClassVar[List[str]] = ["identifier", "match_types", "match_score", "matching_name", "person", "risk_indicators"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -52,7 +55,7 @@ class Media(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Media from a JSON string"""
+        """Create an instance of WatchlistMeshProfile from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,6 +78,12 @@ class Media(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of person
+        if self.person:
+            _dict['person'] = self.person.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of risk_indicators
+        if self.risk_indicators:
+            _dict['risk_indicators'] = self.risk_indicators.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -85,31 +94,31 @@ class Media(BaseModel):
         if self.identifier is None and "identifier" in self.model_fields_set:
             _dict['identifier'] = None
 
-        # set to None if publishing_date (nullable) is None
+        # set to None if match_types (nullable) is None
         # and model_fields_set contains the field
-        if self.publishing_date is None and "publishing_date" in self.model_fields_set:
-            _dict['publishing_date'] = None
+        if self.match_types is None and "match_types" in self.model_fields_set:
+            _dict['match_types'] = None
 
-        # set to None if snippet (nullable) is None
+        # set to None if matching_name (nullable) is None
         # and model_fields_set contains the field
-        if self.snippet is None and "snippet" in self.model_fields_set:
-            _dict['snippet'] = None
+        if self.matching_name is None and "matching_name" in self.model_fields_set:
+            _dict['matching_name'] = None
 
-        # set to None if title (nullable) is None
+        # set to None if person (nullable) is None
         # and model_fields_set contains the field
-        if self.title is None and "title" in self.model_fields_set:
-            _dict['title'] = None
+        if self.person is None and "person" in self.model_fields_set:
+            _dict['person'] = None
 
-        # set to None if url (nullable) is None
+        # set to None if risk_indicators (nullable) is None
         # and model_fields_set contains the field
-        if self.url is None and "url" in self.model_fields_set:
-            _dict['url'] = None
+        if self.risk_indicators is None and "risk_indicators" in self.model_fields_set:
+            _dict['risk_indicators'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Media from a dict"""
+        """Create an instance of WatchlistMeshProfile from a dict"""
         if obj is None:
             return None
 
@@ -118,10 +127,11 @@ class Media(BaseModel):
 
         _obj = cls.model_validate({
             "identifier": obj.get("identifier"),
-            "publishing_date": obj.get("publishing_date"),
-            "snippet": obj.get("snippet"),
-            "title": obj.get("title"),
-            "url": obj.get("url")
+            "match_types": obj.get("match_types"),
+            "match_score": obj.get("match_score"),
+            "matching_name": obj.get("matching_name"),
+            "person": WatchlistMeshPerson.from_dict(obj["person"]) if obj.get("person") is not None else None,
+            "risk_indicators": WatchlistMeshRiskIndicators.from_dict(obj["risk_indicators"]) if obj.get("risk_indicators") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

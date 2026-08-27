@@ -19,25 +19,30 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.model_field import ModelField
+from onfido.models.watchlist_mesh_field import WatchlistMeshField
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Sanctions(BaseModel):
+class WatchlistMeshPep(BaseModel):
     """
-    Sanctions
+    WatchlistMeshPep
     """ # noqa: E501
     aml_types: Optional[List[StrictStr]] = None
+    active_end_dates: Optional[List[StrictStr]] = None
+    active_start_dates: Optional[List[StrictStr]] = None
     country_codes: Optional[List[StrictStr]] = None
-    fields: Optional[List[ModelField]] = None
+    fields: Optional[List[WatchlistMeshField]] = None
     identifier: Optional[StrictStr] = None
     listing_ended_utc: Optional[StrictStr] = None
     listing_started_utc: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
+    political_parties: Optional[List[StrictStr]] = None
+    political_positions: Optional[List[StrictStr]] = None
+    political_regions: Optional[List[StrictStr]] = None
     related_urls: Optional[List[StrictStr]] = None
     url: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["aml_types", "country_codes", "fields", "identifier", "listing_ended_utc", "listing_started_utc", "name", "related_urls", "url"]
+    __properties: ClassVar[List[str]] = ["aml_types", "active_end_dates", "active_start_dates", "country_codes", "fields", "identifier", "listing_ended_utc", "listing_started_utc", "name", "political_parties", "political_positions", "political_regions", "related_urls", "url"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -57,7 +62,7 @@ class Sanctions(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Sanctions from a JSON string"""
+        """Create an instance of WatchlistMeshPep from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -97,6 +102,16 @@ class Sanctions(BaseModel):
         if self.aml_types is None and "aml_types" in self.model_fields_set:
             _dict['aml_types'] = None
 
+        # set to None if active_end_dates (nullable) is None
+        # and model_fields_set contains the field
+        if self.active_end_dates is None and "active_end_dates" in self.model_fields_set:
+            _dict['active_end_dates'] = None
+
+        # set to None if active_start_dates (nullable) is None
+        # and model_fields_set contains the field
+        if self.active_start_dates is None and "active_start_dates" in self.model_fields_set:
+            _dict['active_start_dates'] = None
+
         # set to None if country_codes (nullable) is None
         # and model_fields_set contains the field
         if self.country_codes is None and "country_codes" in self.model_fields_set:
@@ -127,6 +142,21 @@ class Sanctions(BaseModel):
         if self.name is None and "name" in self.model_fields_set:
             _dict['name'] = None
 
+        # set to None if political_parties (nullable) is None
+        # and model_fields_set contains the field
+        if self.political_parties is None and "political_parties" in self.model_fields_set:
+            _dict['political_parties'] = None
+
+        # set to None if political_positions (nullable) is None
+        # and model_fields_set contains the field
+        if self.political_positions is None and "political_positions" in self.model_fields_set:
+            _dict['political_positions'] = None
+
+        # set to None if political_regions (nullable) is None
+        # and model_fields_set contains the field
+        if self.political_regions is None and "political_regions" in self.model_fields_set:
+            _dict['political_regions'] = None
+
         # set to None if related_urls (nullable) is None
         # and model_fields_set contains the field
         if self.related_urls is None and "related_urls" in self.model_fields_set:
@@ -141,7 +171,7 @@ class Sanctions(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Sanctions from a dict"""
+        """Create an instance of WatchlistMeshPep from a dict"""
         if obj is None:
             return None
 
@@ -150,12 +180,17 @@ class Sanctions(BaseModel):
 
         _obj = cls.model_validate({
             "aml_types": obj.get("aml_types"),
+            "active_end_dates": obj.get("active_end_dates"),
+            "active_start_dates": obj.get("active_start_dates"),
             "country_codes": obj.get("country_codes"),
-            "fields": [ModelField.from_dict(_item) for _item in obj["fields"]] if obj.get("fields") is not None else None,
+            "fields": [WatchlistMeshField.from_dict(_item) for _item in obj["fields"]] if obj.get("fields") is not None else None,
             "identifier": obj.get("identifier"),
             "listing_ended_utc": obj.get("listing_ended_utc"),
             "listing_started_utc": obj.get("listing_started_utc"),
             "name": obj.get("name"),
+            "political_parties": obj.get("political_parties"),
+            "political_positions": obj.get("political_positions"),
+            "political_regions": obj.get("political_regions"),
             "related_urls": obj.get("related_urls"),
             "url": obj.get("url")
         })

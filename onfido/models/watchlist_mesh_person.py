@@ -19,22 +19,22 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.associate import Associate
-from onfido.models.date_value import DateValue
-from onfido.models.image import Image
-from onfido.models.name import Name
+from onfido.models.watchlist_mesh_associate import WatchlistMeshAssociate
+from onfido.models.watchlist_mesh_date_value import WatchlistMeshDateValue
+from onfido.models.watchlist_mesh_image import WatchlistMeshImage
+from onfido.models.watchlist_mesh_name import WatchlistMeshName
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Person(BaseModel):
+class WatchlistMeshPerson(BaseModel):
     """
-    Person
+    WatchlistMeshPerson
     """ # noqa: E501
-    associates: Optional[List[Associate]] = None
-    dates_of_birth: Optional[List[DateValue]] = None
-    dates_of_death: Optional[List[DateValue]] = None
-    images: Optional[List[Image]] = None
-    names: Optional[List[Name]] = None
+    associates: Optional[List[WatchlistMeshAssociate]] = None
+    dates_of_birth: Optional[List[WatchlistMeshDateValue]] = None
+    dates_of_death: Optional[List[WatchlistMeshDateValue]] = None
+    images: Optional[List[WatchlistMeshImage]] = None
+    names: Optional[List[WatchlistMeshName]] = None
     places_of_birth: Optional[List[StrictStr]] = None
     additional_properties: Dict[str, Any] = {}
     __properties: ClassVar[List[str]] = ["associates", "dates_of_birth", "dates_of_death", "images", "names", "places_of_birth"]
@@ -57,7 +57,7 @@ class Person(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Person from a JSON string"""
+        """Create an instance of WatchlistMeshPerson from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -154,7 +154,7 @@ class Person(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Person from a dict"""
+        """Create an instance of WatchlistMeshPerson from a dict"""
         if obj is None:
             return None
 
@@ -162,11 +162,11 @@ class Person(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "associates": [Associate.from_dict(_item) for _item in obj["associates"]] if obj.get("associates") is not None else None,
-            "dates_of_birth": [DateValue.from_dict(_item) for _item in obj["dates_of_birth"]] if obj.get("dates_of_birth") is not None else None,
-            "dates_of_death": [DateValue.from_dict(_item) for _item in obj["dates_of_death"]] if obj.get("dates_of_death") is not None else None,
-            "images": [Image.from_dict(_item) for _item in obj["images"]] if obj.get("images") is not None else None,
-            "names": [Name.from_dict(_item) for _item in obj["names"]] if obj.get("names") is not None else None,
+            "associates": [WatchlistMeshAssociate.from_dict(_item) for _item in obj["associates"]] if obj.get("associates") is not None else None,
+            "dates_of_birth": [WatchlistMeshDateValue.from_dict(_item) for _item in obj["dates_of_birth"]] if obj.get("dates_of_birth") is not None else None,
+            "dates_of_death": [WatchlistMeshDateValue.from_dict(_item) for _item in obj["dates_of_death"]] if obj.get("dates_of_death") is not None else None,
+            "images": [WatchlistMeshImage.from_dict(_item) for _item in obj["images"]] if obj.get("images") is not None else None,
+            "names": [WatchlistMeshName.from_dict(_item) for _item in obj["names"]] if obj.get("names") is not None else None,
             "places_of_birth": obj.get("places_of_birth")
         })
         # store additional fields in additional_properties
