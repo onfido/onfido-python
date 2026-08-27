@@ -17,28 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.risk_decision import RiskDecision
-from onfido.models.risk_detail import RiskDetail
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WatchlistAlertRisk1(BaseModel):
+class WatchlistMeshAddedMentions(BaseModel):
     """
-    WatchlistAlertRisk1
+    WatchlistMeshAddedMentions
     """ # noqa: E501
-    created_at: Optional[datetime] = Field(default=None, description="The date and time at which the risk record was created.")
-    decision: Optional[RiskDecision] = Field(default=None, description="The review decision currently applied to the risk.")
-    previous_decision: Optional[RiskDecision] = Field(default=None, description="The previous review decision, if one exists.")
-    detail: Optional[RiskDetail] = Field(default=None, description="Additional details about the risk.")
-    identifier: Optional[StrictStr] = Field(default=None, description="The unique identifier of the risk record.")
-    type: Optional[StrictStr] = Field(default=None, description="The type of risk returned for the alert.")
-    updated_by: Optional[StrictStr] = Field(default=None, description="The identifier of the user or system that last updated the risk decision.")
-    updated_at: Optional[datetime] = Field(default=None, description="The date and time at which the risk record was last updated.")
+    added_aml_types: Optional[List[StrictStr]] = None
+    added_snippets: Optional[List[StrictStr]] = None
+    added_listings: Optional[List[StrictStr]] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["created_at", "decision", "previous_decision", "detail", "identifier", "type", "updated_by", "updated_at"]
+    __properties: ClassVar[List[str]] = ["added_aml_types", "added_snippets", "added_listings"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -58,7 +50,7 @@ class WatchlistAlertRisk1(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WatchlistAlertRisk1 from a JSON string"""
+        """Create an instance of WatchlistMeshAddedMentions from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -81,34 +73,31 @@ class WatchlistAlertRisk1(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of detail
-        if self.detail:
-            _dict['detail'] = self.detail.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if previous_decision (nullable) is None
+        # set to None if added_aml_types (nullable) is None
         # and model_fields_set contains the field
-        if self.previous_decision is None and "previous_decision" in self.model_fields_set:
-            _dict['previous_decision'] = None
+        if self.added_aml_types is None and "added_aml_types" in self.model_fields_set:
+            _dict['added_aml_types'] = None
 
-        # set to None if updated_by (nullable) is None
+        # set to None if added_snippets (nullable) is None
         # and model_fields_set contains the field
-        if self.updated_by is None and "updated_by" in self.model_fields_set:
-            _dict['updated_by'] = None
+        if self.added_snippets is None and "added_snippets" in self.model_fields_set:
+            _dict['added_snippets'] = None
 
-        # set to None if updated_at (nullable) is None
+        # set to None if added_listings (nullable) is None
         # and model_fields_set contains the field
-        if self.updated_at is None and "updated_at" in self.model_fields_set:
-            _dict['updated_at'] = None
+        if self.added_listings is None and "added_listings" in self.model_fields_set:
+            _dict['added_listings'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WatchlistAlertRisk1 from a dict"""
+        """Create an instance of WatchlistMeshAddedMentions from a dict"""
         if obj is None:
             return None
 
@@ -116,14 +105,9 @@ class WatchlistAlertRisk1(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "created_at": obj.get("created_at"),
-            "decision": obj.get("decision"),
-            "previous_decision": obj.get("previous_decision"),
-            "detail": RiskDetail.from_dict(obj["detail"]) if obj.get("detail") is not None else None,
-            "identifier": obj.get("identifier"),
-            "type": obj.get("type"),
-            "updated_by": obj.get("updated_by"),
-            "updated_at": obj.get("updated_at")
+            "added_aml_types": obj.get("added_aml_types"),
+            "added_snippets": obj.get("added_snippets"),
+            "added_listings": obj.get("added_listings")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

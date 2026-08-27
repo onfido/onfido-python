@@ -17,25 +17,20 @@ import pprint
 import re  # noqa: F401
 import json
 
-from pydantic import BaseModel, ConfigDict, Field, StrictFloat, StrictInt, StrictStr
-from typing import Any, ClassVar, Dict, List, Optional, Union
-from onfido.models.person import Person
-from onfido.models.risk_indicators import RiskIndicators
+from pydantic import BaseModel, ConfigDict, StrictStr
+from typing import Any, ClassVar, Dict, List, Optional
 from typing import Optional, Set
 from typing_extensions import Self
 
-class Profile(BaseModel):
+class WatchlistMeshField(BaseModel):
     """
-    Profile
+    WatchlistMeshField
     """ # noqa: E501
-    identifier: Optional[StrictStr] = None
-    match_types: Optional[List[StrictStr]] = None
-    match_score: Optional[Union[StrictFloat, StrictInt]] = Field(default=None, description="The match score assigned to the profile.")
-    matching_name: Optional[StrictStr] = None
-    person: Optional[Person] = None
-    risk_indicators: Optional[RiskIndicators] = None
+    name: Optional[StrictStr] = None
+    tag: Optional[StrictStr] = None
+    value: Optional[StrictStr] = None
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["identifier", "match_types", "match_score", "matching_name", "person", "risk_indicators"]
+    __properties: ClassVar[List[str]] = ["name", "tag", "value"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -55,7 +50,7 @@ class Profile(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of Profile from a JSON string"""
+        """Create an instance of WatchlistMeshField from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -78,47 +73,31 @@ class Profile(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of person
-        if self.person:
-            _dict['person'] = self.person.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of risk_indicators
-        if self.risk_indicators:
-            _dict['risk_indicators'] = self.risk_indicators.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if identifier (nullable) is None
+        # set to None if name (nullable) is None
         # and model_fields_set contains the field
-        if self.identifier is None and "identifier" in self.model_fields_set:
-            _dict['identifier'] = None
+        if self.name is None and "name" in self.model_fields_set:
+            _dict['name'] = None
 
-        # set to None if match_types (nullable) is None
+        # set to None if tag (nullable) is None
         # and model_fields_set contains the field
-        if self.match_types is None and "match_types" in self.model_fields_set:
-            _dict['match_types'] = None
+        if self.tag is None and "tag" in self.model_fields_set:
+            _dict['tag'] = None
 
-        # set to None if matching_name (nullable) is None
+        # set to None if value (nullable) is None
         # and model_fields_set contains the field
-        if self.matching_name is None and "matching_name" in self.model_fields_set:
-            _dict['matching_name'] = None
-
-        # set to None if person (nullable) is None
-        # and model_fields_set contains the field
-        if self.person is None and "person" in self.model_fields_set:
-            _dict['person'] = None
-
-        # set to None if risk_indicators (nullable) is None
-        # and model_fields_set contains the field
-        if self.risk_indicators is None and "risk_indicators" in self.model_fields_set:
-            _dict['risk_indicators'] = None
+        if self.value is None and "value" in self.model_fields_set:
+            _dict['value'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of Profile from a dict"""
+        """Create an instance of WatchlistMeshField from a dict"""
         if obj is None:
             return None
 
@@ -126,12 +105,9 @@ class Profile(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "identifier": obj.get("identifier"),
-            "match_types": obj.get("match_types"),
-            "match_score": obj.get("match_score"),
-            "matching_name": obj.get("matching_name"),
-            "person": Person.from_dict(obj["person"]) if obj.get("person") is not None else None,
-            "risk_indicators": RiskIndicators.from_dict(obj["risk_indicators"]) if obj.get("risk_indicators") is not None else None
+            "name": obj.get("name"),
+            "tag": obj.get("tag"),
+            "value": obj.get("value")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

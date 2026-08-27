@@ -20,19 +20,19 @@ import json
 from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from onfido.models.risk_decision import RiskDecision
-from onfido.models.risk_detail import RiskDetail
+from onfido.models.watchlist_mesh_risk_decision import WatchlistMeshRiskDecision
+from onfido.models.watchlist_mesh_risk_detail import WatchlistMeshRiskDetail
 from typing import Optional, Set
 from typing_extensions import Self
 
-class WatchlistAlertRisk(BaseModel):
+class WatchlistMeshAlertRisk1(BaseModel):
     """
-    WatchlistAlertRisk
+    WatchlistMeshAlertRisk1
     """ # noqa: E501
     created_at: Optional[datetime] = Field(default=None, description="The date and time at which the risk record was created.")
-    decision: Optional[RiskDecision] = Field(default=None, description="The review decision currently applied to the risk.")
-    previous_decision: Optional[RiskDecision] = Field(default=None, description="The previous review decision, if one exists.")
-    detail: Optional[RiskDetail] = Field(default=None, description="Additional details about the risk.")
+    decision: Optional[WatchlistMeshRiskDecision] = Field(default=None, description="The review decision currently applied to the risk.")
+    previous_decision: Optional[WatchlistMeshRiskDecision] = Field(default=None, description="The previous review decision, if one exists.")
+    detail: Optional[WatchlistMeshRiskDetail] = Field(default=None, description="Additional details about the risk.")
     identifier: Optional[StrictStr] = Field(default=None, description="The unique identifier of the risk record.")
     type: Optional[StrictStr] = Field(default=None, description="The type of risk returned for the alert.")
     updated_by: Optional[StrictStr] = Field(default=None, description="The identifier of the user or system that last updated the risk decision.")
@@ -58,7 +58,7 @@ class WatchlistAlertRisk(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WatchlistAlertRisk from a JSON string"""
+        """Create an instance of WatchlistMeshAlertRisk1 from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -108,7 +108,7 @@ class WatchlistAlertRisk(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WatchlistAlertRisk from a dict"""
+        """Create an instance of WatchlistMeshAlertRisk1 from a dict"""
         if obj is None:
             return None
 
@@ -119,7 +119,7 @@ class WatchlistAlertRisk(BaseModel):
             "created_at": obj.get("created_at"),
             "decision": obj.get("decision"),
             "previous_decision": obj.get("previous_decision"),
-            "detail": RiskDetail.from_dict(obj["detail"]) if obj.get("detail") is not None else None,
+            "detail": WatchlistMeshRiskDetail.from_dict(obj["detail"]) if obj.get("detail") is not None else None,
             "identifier": obj.get("identifier"),
             "type": obj.get("type"),
             "updated_by": obj.get("updated_by"),

@@ -17,24 +17,28 @@ import pprint
 import re  # noqa: F401
 import json
 
+from datetime import datetime
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing import Any, ClassVar, Dict, List, Optional
-from uuid import UUID
-from onfido.models.added_mentions import AddedMentions
-from onfido.models.profile import Profile
+from onfido.models.watchlist_mesh_risk_decision import WatchlistMeshRiskDecision
+from onfido.models.watchlist_mesh_risk_detail import WatchlistMeshRiskDetail
 from typing import Optional, Set
 from typing_extensions import Self
 
-class RiskDetail(BaseModel):
+class WatchlistMeshAlertRisk(BaseModel):
     """
-    RiskDetail
+    WatchlistMeshAlertRisk
     """ # noqa: E501
-    change_type: Optional[StrictStr] = Field(default=None, description="The type of change that triggered the risk, if available.")
-    configuration_identifier: Optional[UUID] = Field(default=None, description="The identifier of the screening configuration associated with the risk.")
-    profile: Optional[Profile] = Field(default=None, description="The matched profile associated with the risk.")
-    added_mentions: Optional[AddedMentions] = Field(default=None, description="Newly added mentions associated with the risk.")
+    created_at: Optional[datetime] = Field(default=None, description="The date and time at which the risk record was created.")
+    decision: Optional[WatchlistMeshRiskDecision] = Field(default=None, description="The review decision currently applied to the risk.")
+    previous_decision: Optional[WatchlistMeshRiskDecision] = Field(default=None, description="The previous review decision, if one exists.")
+    detail: Optional[WatchlistMeshRiskDetail] = Field(default=None, description="Additional details about the risk.")
+    identifier: Optional[StrictStr] = Field(default=None, description="The unique identifier of the risk record.")
+    type: Optional[StrictStr] = Field(default=None, description="The type of risk returned for the alert.")
+    updated_by: Optional[StrictStr] = Field(default=None, description="The identifier of the user or system that last updated the risk decision.")
+    updated_at: Optional[datetime] = Field(default=None, description="The date and time at which the risk record was last updated.")
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["change_type", "configuration_identifier", "profile", "added_mentions"]
+    __properties: ClassVar[List[str]] = ["created_at", "decision", "previous_decision", "detail", "identifier", "type", "updated_by", "updated_at"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +58,7 @@ class RiskDetail(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of RiskDetail from a JSON string"""
+        """Create an instance of WatchlistMeshAlertRisk from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -77,42 +81,34 @@ class RiskDetail(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of profile
-        if self.profile:
-            _dict['profile'] = self.profile.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of added_mentions
-        if self.added_mentions:
-            _dict['added_mentions'] = self.added_mentions.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of detail
+        if self.detail:
+            _dict['detail'] = self.detail.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
                 _dict[_key] = _value
 
-        # set to None if change_type (nullable) is None
+        # set to None if previous_decision (nullable) is None
         # and model_fields_set contains the field
-        if self.change_type is None and "change_type" in self.model_fields_set:
-            _dict['change_type'] = None
+        if self.previous_decision is None and "previous_decision" in self.model_fields_set:
+            _dict['previous_decision'] = None
 
-        # set to None if configuration_identifier (nullable) is None
+        # set to None if updated_by (nullable) is None
         # and model_fields_set contains the field
-        if self.configuration_identifier is None and "configuration_identifier" in self.model_fields_set:
-            _dict['configuration_identifier'] = None
+        if self.updated_by is None and "updated_by" in self.model_fields_set:
+            _dict['updated_by'] = None
 
-        # set to None if profile (nullable) is None
+        # set to None if updated_at (nullable) is None
         # and model_fields_set contains the field
-        if self.profile is None and "profile" in self.model_fields_set:
-            _dict['profile'] = None
-
-        # set to None if added_mentions (nullable) is None
-        # and model_fields_set contains the field
-        if self.added_mentions is None and "added_mentions" in self.model_fields_set:
-            _dict['added_mentions'] = None
+        if self.updated_at is None and "updated_at" in self.model_fields_set:
+            _dict['updated_at'] = None
 
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of RiskDetail from a dict"""
+        """Create an instance of WatchlistMeshAlertRisk from a dict"""
         if obj is None:
             return None
 
@@ -120,10 +116,14 @@ class RiskDetail(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "change_type": obj.get("change_type"),
-            "configuration_identifier": obj.get("configuration_identifier"),
-            "profile": Profile.from_dict(obj["profile"]) if obj.get("profile") is not None else None,
-            "added_mentions": AddedMentions.from_dict(obj["added_mentions"]) if obj.get("added_mentions") is not None else None
+            "created_at": obj.get("created_at"),
+            "decision": obj.get("decision"),
+            "previous_decision": obj.get("previous_decision"),
+            "detail": WatchlistMeshRiskDetail.from_dict(obj["detail"]) if obj.get("detail") is not None else None,
+            "identifier": obj.get("identifier"),
+            "type": obj.get("type"),
+            "updated_by": obj.get("updated_by"),
+            "updated_at": obj.get("updated_at")
         })
         # store additional fields in additional_properties
         for _key in obj.keys():

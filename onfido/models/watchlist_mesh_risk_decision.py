@@ -18,9 +18,9 @@ from enum import Enum
 from typing_extensions import Self
 
 
-class RiskDecision(str, Enum):
+class WatchlistMeshRiskDecision(str, Enum):
     """
-    RiskDecision
+    WatchlistMeshRiskDecision
     """
 
     """
@@ -34,7 +34,7 @@ class RiskDecision(str, Enum):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of RiskDecision from a JSON string"""
+        """Create an instance of WatchlistMeshRiskDecision from a JSON string"""
         return cls(json.loads(json_str))
 
 
