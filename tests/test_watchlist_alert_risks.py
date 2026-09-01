@@ -6,7 +6,7 @@ import pytest
 from onfido import (
     AddressBuilder,
     ApplicantBuilder,
-    WatchlistAlertRisk,
+    WatchlistMeshAlertRisk,
     WorkflowRunBuilder,
 )
 from tests.conftest import (
@@ -87,11 +87,13 @@ def alert_id(watchlist_task):
 
 
 def test_list_watchlist_alert_risks(onfido_api, alert_id):
-    risks = onfido_api.list_watchlist_alert_risks(alert_id, page=1, per_page=1)
+    risks = onfido_api.list_watchlist_mesh_alert_risks(
+        alert_id, page=1, per_page=1
+    )
 
     assert len(risks) > 0
     assert len(risks) <= 1
-    assert isinstance(risks[0], WatchlistAlertRisk)
+    assert isinstance(risks[0], WatchlistMeshAlertRisk)
     assert risks[0].identifier is not None
     assert risks[0].decision is not None
     assert risks[0].detail is not None
