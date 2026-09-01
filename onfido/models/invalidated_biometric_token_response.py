@@ -27,9 +27,9 @@ class InvalidatedBiometricTokenResponse(BaseModel):
     """
     InvalidatedBiometricTokenResponse
     """ # noqa: E501
-    biometric_token: InvalidatedBiometricTokenSummary
+    biometric_tokens: InvalidatedBiometricTokenSummary
     additional_properties: Dict[str, Any] = {}
-    __properties: ClassVar[List[str]] = ["biometric_token"]
+    __properties: ClassVar[List[str]] = ["biometric_tokens"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -72,9 +72,9 @@ class InvalidatedBiometricTokenResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of biometric_token
-        if self.biometric_token:
-            _dict['biometric_token'] = self.biometric_token.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of biometric_tokens
+        if self.biometric_tokens:
+            _dict['biometric_tokens'] = self.biometric_tokens.to_dict()
         # puts key-value pairs in additional_properties in the top level
         if self.additional_properties is not None:
             for _key, _value in self.additional_properties.items():
@@ -92,7 +92,7 @@ class InvalidatedBiometricTokenResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "biometric_token": InvalidatedBiometricTokenSummary.from_dict(obj["biometric_token"]) if obj.get("biometric_token") is not None else None
+            "biometric_tokens": InvalidatedBiometricTokenSummary.from_dict(obj["biometric_tokens"]) if obj.get("biometric_tokens") is not None else None
         })
         # store additional fields in additional_properties
         for _key in obj.keys():
