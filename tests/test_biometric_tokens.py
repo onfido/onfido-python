@@ -124,12 +124,12 @@ def test_update_biometric_token_status(onfido_api, biometric_customer_user_id, b
 
 
 def test_invalidate_biometric_token_success(onfido_api, biometric_customer_user_id, biometric_token_id):
-    response = onfido_api.invalidate_biometric_token_without_preload_content(
+    response = onfido_api.invalidate_biometric_token(
         biometric_customer_user_id,
         biometric_token_id,
     )
 
-    assert response.status == 200
+    assert response.biometric_tokens.deleted_items.count == 0
 
 
 def test_invalidate_biometric_tokens_success(
@@ -137,8 +137,8 @@ def test_invalidate_biometric_tokens_success(
     biometric_customer_user_id,
     create_biometric_token,
 ):
-    response = onfido_api.invalidate_biometric_tokens_without_preload_content(
+    response = onfido_api.invalidate_biometric_tokens(
         biometric_customer_user_id
     )
 
-    assert response.status == 200
+    assert response.biometric_tokens.deleted_items.count == 0
