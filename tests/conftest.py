@@ -197,12 +197,11 @@ def repeat_request_until(function, params, predicate, error_message, max_retries
 def repeat_request_until_http_code_changes(
     function, params, max_retries=15, sleep_time=1
 ):
-    iteration = 0
-    while iteration <= max_retries:
+    last_exception = None
+    for _ in range(max_retries + 1):
         try:
-            instance = function(*params)
-            break
-        except onfido.ApiException:
+            return function(*params)
+        except onfido.ApiException as e:
+            last_exception = e
             sleep(sleep_time)
-            iteration += 1
-    return instance
+    raise last_exception
