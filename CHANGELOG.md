@@ -1,5 +1,25 @@
 # Changelog
 
+## v6.3.0 6th November 2026
+
+- Release based on Onfido OpenAPI spec version [v6.2.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v6.2.0):
+  - [STUDIO-6249] add name to webhook schema
+  - [BIO-8820] feat: Add biometric token endpoints to OpenAPI spec
+  - [BIO-8820] fix: Clarify biometric token response titles
+  - [DEXTV2-11695] Update document_types list
+  - [SIG-4322] Add ComplyAdvantage Mesh endpoint
+  - [SIG-4322] Add missing section for Mesh endpoint
+  - [BIO-8820] fix: fix wrong response field in DELETE biometric_token
+  - Python: remove virtualenv from runtime dependencies
+  - Python: bump minimum Python to 3.10 and pytest to >= 9.0.3
+  - chore: Update Python urllib3 dependency to >=2.8.0
+- [BIO-8820] feat: Add biometric token endpoints tests
+- Bump pygments from 2.19.2 to 2.20.0
+- SIG-4322: Add tests for watchlists mesh endpoint
+- Bump virtualenv from 21.7.7 to 21.7.13
+- Bump virtualenv from 21.7.13 to 21.14.13
+- test: raise last error when http code retry helper exhausts retries
+
 ## v6.2.0 21st May 2026
 
 - Release based on Onfido OpenAPI spec version [v6.1.0](https://github.com/onfido/onfido-openapi-spec/releases/tag/v6.1.0):
